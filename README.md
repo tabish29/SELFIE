@@ -20,3 +20,22 @@ Lo stack tecnologico include:
 ### Infrastruttura e Deployment:
 
 - **Git**: per il controllo di versione del codice sorgente, viene utilizzato Git insieme a GitHub per la collaborazione e la gestione dei rami di sviluppo
+
+# Progetto Frontend
+
+## Prerequisiti
+
+Per inizializzare la parte frontend del progetto, è necessario avere installato la CLI di Angular.
+
+## Istruzioni
+
+1. **Installazione della CLI di Angular**: Assicurati di avere installato la CLI di Angular. Puoi farlo eseguendo il seguente comando nel terminale:
+
+   ```bash
+   npm install -g @angular/cli
+2. **Andare sulla cartella frontend**
+   cd frontend
+3.**Digitare il segeunte comando**
+  ng serve
+
+
