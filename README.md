@@ -34,8 +34,10 @@ Per inizializzare la parte frontend del progetto, è necessario avere installato
    ```bash
    npm install -g @angular/cli
 2. **Andare sulla cartella frontend**
+    ```bash
    cd frontend
 3.**Digitare il segeunte comando**
+ ```bash
   ng serve
 
 
