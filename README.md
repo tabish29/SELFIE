@@ -21,6 +21,19 @@ Lo stack tecnologico include:
 
 - **Git**: per il controllo di versione del codice sorgente, viene utilizzato Git insieme a GitHub per la collaborazione e la gestione dei rami di sviluppo
 
+
+# Progetto Backend
+## Istruzioni
+
+1. **Installare il paccheto express **:
+    ```bash
+      npm i express 
+
+2. **Installare il paccheto nodemon **:
+    ```bash
+      npm i nodemon --save-dev 
+
+
 # Progetto Frontend
 
 ## Prerequisiti
@@ -39,5 +52,3 @@ Per inizializzare la parte frontend del progetto, è necessario avere installato
 3.**Digitare il segeunte comando**
    ```bash
    ng serve
-
-
