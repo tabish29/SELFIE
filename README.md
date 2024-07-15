@@ -32,8 +32,10 @@ Lo stack tecnologico include:
 2. **Installare il paccheto nodemon **:
     ```bash
       npm i nodemon --save-dev 
-
-
+3.**Digitare il segeunte comando per fare lo start del server**
+    ```bash
+      npm start
+     
 # Progetto Frontend
 
 ## Prerequisiti
