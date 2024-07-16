@@ -1,31 +1,121 @@
 .pomodoro-timer {
-    text-align: center;
-    margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  margin: 50px auto;
+  font-family: 'Arial', sans-serif;
+  transition: background-color 0.5s;
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.settings {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.settings label {
+  font-weight: bold;
+  color: #666;
+}
+
+.settings input {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.timer {
+  font-size: 48px;
+  margin: 20px 0;
+  color: #333;
+  font-weight: bold;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+}
+
+.controls button {
+  margin: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.controls button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.controls button:not(:disabled) {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.controls button:not(:disabled):hover {
+  background-color: #0056b3;
+}
+
+.session-info p {
+  margin-top: 20px;
+  font-size: 18px;
+  color: red;
+  font-weight: bold;
+}
+
+/* Animazione per la modalità di lavoro */
+@keyframes workAnimation {
+  0% {
+    transform: scale(1);
+    color: #333;
   }
-  
-  .settings {
-    margin-bottom: 20px;
+  50% {
+    transform: scale(1.1);
+    color: #e74c3c;
   }
-  
-  .settings label {
-    display: block;
-    margin: 5px 0;
+  100% {
+    transform: scale(1);
+    color: #333;
   }
-  
-  .timer {
-    font-size: 48px;
-    margin: 20px 0;
+}
+
+/* Animazione per la pausa breve */
+@keyframes breakAnimation {
+  0% {
+    transform: rotate(0deg);
+    color: #333;
   }
-  
-  .controls button {
-    margin: 0 5px;
-    padding: 10px 20px;
-    font-size: 16px;
+  50% {
+    transform: rotate(10deg);
+    color: #2ecc71;
   }
-  
-  .session-info {
-    margin-top: 20px;
-    font-size: 18px;
-    color: red;
+  100% {
+    transform: rotate(0deg);
+    color: #333;
   }
-  
+}
+
+/* Classi per applicare le animazioni */
+.work-mode .timer {
+  animation-name: workAnimation;
+}
+
+.break-mode .timer {
+  animation-name: breakAnimation;
+}

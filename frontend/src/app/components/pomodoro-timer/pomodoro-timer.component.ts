@@ -6,16 +6,19 @@ import { Component } from '@angular/core';
   styleUrl: './pomodoro-timer.component.css'
 })
 export class PomodoroTimerComponent {
-  minutes: number = 25;
+  minutes: number = 30;
   seconds: number = 0;
   isRunning: boolean = false;
   interval: any;
   sessionCount: number = 0;
   sessionMessage: string = 'Work Session';
 
-  workMinutes: number = 25;
+  workMinutes: number = 30;
   shortBreakMinutes: number = 5;
   longBreakMinutes: number = 15;
+
+  isWorkMode: boolean = true;
+  isBreakMode: boolean = false;
 
   ngOnInit() {
     this.updateTimer();
@@ -84,9 +87,13 @@ export class PomodoroTimerComponent {
         this.minutes = this.shortBreakMinutes;
         this.sessionMessage = 'Short Break';
       }
+      this.isWorkMode = false;
+      this.isBreakMode = true;
     } else {
       this.minutes = this.workMinutes;
       this.sessionMessage = 'Work Session';
+      this.isWorkMode = true;
+      this.isBreakMode = false;
     }
 
     this.seconds = 0;
