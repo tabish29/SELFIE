@@ -1,1 +1,31 @@
-<h1>Selfie</h1>
+<nav class="navbar">
+    <ul>
+        <li><a href="#">Login</a></li>
+        <li><a href="#">Note</a></li>
+        <li><a href="#">Calendario</a></li>
+        <li><a href="#">Pomodoro</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+    <h1>Registrazione</h1>
+    <form (ngSubmit)="register()" #registrationForm="ngForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required [(ngModel)]="username">
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required [(ngModel)]="password">
+        
+        <label for="firstName">Nome:</label>
+        <input type="text" id="firstName" name="firstName" required [(ngModel)]="firstName">
+        
+        <label for="lastName">Cognome:</label>
+        <input type="text" id="lastName" name="lastName" required [(ngModel)]="lastName">
+        
+        <button type="submit" [disabled]="registrationForm.invalid">Registrati</button>
+    </form>
+</div>
+
+<footer class="footer">
+    <p>&copy; 2024 Il Tuo Nome</p>
+</footer>
