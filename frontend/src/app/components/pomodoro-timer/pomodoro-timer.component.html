@@ -12,9 +12,19 @@
       <input type="number" [(ngModel)]="shortBreakMinutes" (input)="updateTimer()" min="1" max="60">
     </label>
     <label>
-      Long Break Minutes:
-      <input type="number" [(ngModel)]="longBreakMinutes" (input)="updateTimer()" min="1" max="60">
+      Total Hours:
+      <input type="number" [(ngModel)]="totalHours" (input)="calculateCycles()" min="0">
     </label>
+    <label>
+      Total Minutes:
+      <input type="number" [(ngModel)]="totalMinutes" (input)="calculateCycles()" min="0">
+    </label>
+    <div *ngIf="cycleProposals.length">
+      <h3>Cycle Proposals:</h3>
+      <ul>
+        <li *ngFor="let proposal of cycleProposals">{{ proposal }}</li>
+      </ul>
+    </div>
   </div>
 
   <div class="timer">
@@ -25,6 +35,8 @@
     <button (click)="startTimer()" [disabled]="isRunning">Start</button>
     <button (click)="pauseTimer()" [disabled]="!isRunning">Pause</button>
     <button (click)="resetTimer()">Reset</button>
+    <button (click)="forceNextSession()">Next Session</button>
+    <button (click)="endCycle()">End Cycle</button>
   </div>
 
   <div class="session-info">

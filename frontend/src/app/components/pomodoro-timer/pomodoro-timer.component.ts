@@ -12,10 +12,11 @@ export class PomodoroTimerComponent {
   interval: any;
   sessionCount: number = 0;
   sessionMessage: string = 'Work Session';
-
   workMinutes: number = 30;
   shortBreakMinutes: number = 5;
-  longBreakMinutes: number = 15;
+  totalHours: number = 0;
+  totalMinutes: number = 0;
+  cycleProposals: string[] = [];
 
   isWorkMode: boolean = true;
   isBreakMode: boolean = false;
@@ -34,14 +35,32 @@ export class PomodoroTimerComponent {
     if (!this.isRunning) {
       if (this.sessionMessage === 'Work Session') {
         this.minutes = this.workMinutes;
-      } else if (this.sessionMessage === 'Short Break') {
+      } else {
         this.minutes = this.shortBreakMinutes;
-      } else if (this.sessionMessage === 'Long Break') {
-        this.minutes = this.longBreakMinutes;
       }
       this.seconds = 0;
     }
   }
+
+  calculateCycles() {
+    const totalMinutesAvailable = (this.totalHours * 60) + this.totalMinutes;
+    const combinations = [
+        { work: 30, break: 5 },
+        { work: 25, break: 5 },
+        { work: 40, break: 7 },
+        { work: 50, break: 10 },
+    ];
+
+    this.cycleProposals = [];
+    combinations.forEach(combination => {
+        const cycleDuration = combination.work + combination.break;
+        const numberOfCycles = Math.floor(totalMinutesAvailable / cycleDuration);
+        if (numberOfCycles > 0) {
+            this.cycleProposals.push(`Cicli: ${numberOfCycles} - ${combination.work} min di lavoro e ${combination.break} min di pausa`);
+        }
+    });
+}
+
 
   startTimer() {
     if (!this.isRunning) {
@@ -71,6 +90,9 @@ export class PomodoroTimerComponent {
   resetTimer() {
     this.isRunning = false;
     clearInterval(this.interval);
+    this.sessionMessage = 'Work Session';
+    this.isWorkMode = true;
+    this.isBreakMode = false;
     this.updateTimer();
   }
 
@@ -80,13 +102,8 @@ export class PomodoroTimerComponent {
 
     if (this.sessionMessage === 'Work Session') {
       this.sessionCount++;
-      if (this.sessionCount % 4 === 0) {
-        this.minutes = this.longBreakMinutes;
-        this.sessionMessage = 'Long Break';
-      } else {
-        this.minutes = this.shortBreakMinutes;
-        this.sessionMessage = 'Short Break';
-      }
+      this.minutes = this.shortBreakMinutes;
+      this.sessionMessage = 'Short Break';
       this.isWorkMode = false;
       this.isBreakMode = true;
     } else {
@@ -97,7 +114,22 @@ export class PomodoroTimerComponent {
     }
 
     this.seconds = 0;
+    this.notifyUser();
     this.startTimer();
   }
 
+  forceNextSession() {
+    this.switchSession();
+  }
+
+  endCycle() {
+    this.isRunning = false;
+    clearInterval(this.interval);
+    this.notifyUser('Cycle ended.');
+    this.resetTimer();
+  }
+
+  notifyUser(message: string = this.sessionMessage) {
+    alert(message);
+  }
 }
