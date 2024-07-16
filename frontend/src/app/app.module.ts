@@ -10,6 +10,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { PomodoroTimerComponent } from './components/pomodoro-timer/pomodoro-timer.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegistrationComponent } from './components/registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { HomePageComponent } from './components/home-page/home-page.component';
     NavbarComponent,
     PomodoroTimerComponent,
     NotFoundComponent,
-    HomePageComponent
+    HomePageComponent,
+    LoginComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
