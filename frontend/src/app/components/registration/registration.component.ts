@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { RegisterService } from '../../services/register.service';
+import { UserService } from '../../services/user.service';
+import { User } from '../../models/User';
 
 @Component({
   selector: 'app-registration',
@@ -7,27 +8,20 @@ import { RegisterService } from '../../services/register.service';
   styleUrl: './registration.component.css'
 })
 export class RegistrationComponent {
-
   username: string = '';
   password: string = '';
   firstName: string = '';
   lastName: string = '';
 
-  constructor(private registerService: RegisterService) {}
+  constructor(private userService: UserService) {} 
 
   register() {
-    const userData = {
-      username: this.username,
-      password: this.password,
-      firstName: this.firstName,
-      lastName: this.lastName
-    };
+    const userData = new User(this.username, this.password, this.firstName, this.lastName);
 
-    this.registerService.register(userData).subscribe(response => {
+    this.userService.addUser(userData).subscribe(response => {
       console.log('Registrazione avvenuta con successo', response);
     }, error => {
       console.error('Errore nella registrazione', error);
     });
   }
-
 }
