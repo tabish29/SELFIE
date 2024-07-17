@@ -4,5 +4,11 @@
     "password": "securePassword123",
     "firstName": "John",
     "lastName": "Doe"
+  },
+  {
+    "username": "angularTest",
+    "password": "T",
+    "firstName": "a",
+    "lastName": "tesde"
   }
 ]

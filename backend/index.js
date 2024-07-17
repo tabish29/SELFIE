@@ -13,5 +13,5 @@ app.use(cors());
 app.use('/users', userRoutes);
 
 app.listen(PORT, () => {
-    console.log(`Server avviato sulla porta http://localhost/${PORT}`);
+    console.log(`Server avviato sulla porta http://localhost:${PORT}`);
 });
