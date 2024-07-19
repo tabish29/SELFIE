@@ -4,5 +4,11 @@
     "password": "$2b$10$XG0z3W7nm7BIdMU2JuXruexRtZKbsQ2BO5T9u86n0auq.AlkqLn8m",
     "firstName": "test",
     "lastName": "criptografia"
+  },
+  {
+    "username": "q",
+    "password": "$2b$10$0hm8GRFQqeochXHEjV3DMun9Fw1Zmv2Tn/m2ME2SovQq/dEtJYLgm",
+    "firstName": "q",
+    "lastName": "q"
   }
 ]

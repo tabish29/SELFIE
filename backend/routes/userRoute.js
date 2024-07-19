@@ -63,4 +63,15 @@ router.put('/:username', async (req, res) => {
     }
 });
 
+router.post('/login', async (req, res) => {
+    const { username, password } = req.body;
+
+    try {
+        const user = await userController.loginUser(username, password);
+        res.status(200).json({ message: 'Login effettuato con successo' });
+    } catch (error) {
+        res.status(401).json({ error: error.message });
+    }
+});
+
 module.exports = router;

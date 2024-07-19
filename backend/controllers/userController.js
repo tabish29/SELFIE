@@ -94,11 +94,34 @@ async function updateUser(username, updatedData) {
     await writeUsersFile(users);
 }
 
+async function loginUser(username, password) {
+    try {
+        
+        const user = await findUserByUsername(username);
+
+        if (!user) {
+            throw new Error('Username o password non validi');
+        }
+
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+
+        if (!isPasswordValid) {
+            throw new Error('Username o password non validi');
+        }
+
+        
+        return user;
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
+
 module.exports = {
     saveUser,
     findUserByUsername,
     getAllUsers,
     addUser,
     deleteUser,
-    updateUser
+    updateUser,
+    loginUser
 };
