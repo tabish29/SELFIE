@@ -22,5 +22,29 @@
     "createdAt": "2024-07-19T10:30:00Z",
     "updatedAt": "2024-07-19T12:00:00Z",
     "authorUsername": "testM"
+  },
+  {
+    "title": "test Note Frontend",
+    "content": "sto facendo un test da fronten per la creazione delle note ",
+    "categories": [],
+    "createdAt": "2024-07-19T14:13:34.089Z",
+    "updatedAt": "2024-07-19T14:13:34.089Z",
+    "authorUsername": "testM"
+  },
+  {
+    "title": "ioc acd",
+    "content": "sto facendo un test da fronten per la creazione delle note ",
+    "categories": [],
+    "createdAt": "2024-07-19T14:13:34.089Z",
+    "updatedAt": "2024-07-19T14:13:34.089Z",
+    "authorUsername": "testM"
+  },
+  {
+    "title": "sadad",
+    "content": "sadsds",
+    "categories": [],
+    "createdAt": "2024-07-30T19:02",
+    "updatedAt": "2024-07-30T19:02",
+    "authorUsername": "testM"
   }
 ]

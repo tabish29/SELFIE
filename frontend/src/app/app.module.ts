@@ -13,6 +13,7 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { TimeMachineComponent } from './components/time-machine/time-machine.component';
+import { UserNotesComponent } from './components/user-notes/user-notes.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { TimeMachineComponent } from './components/time-machine/time-machine.com
     HomePageComponent,
     LoginComponent,
     RegistrationComponent,
-    TimeMachineComponent
+    TimeMachineComponent,
+    UserNotesComponent
   ],
   imports: [
     BrowserModule,
