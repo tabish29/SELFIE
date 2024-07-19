@@ -1,14 +1,8 @@
 [
   {
-    "username": "asdascads",
-    "password": "securePassword123",
-    "firstName": "John",
-    "lastName": "Doe"
-  },
-  {
-    "username": "angularTest",
-    "password": "T",
-    "firstName": "a",
-    "lastName": "tesde"
+    "username": "testC",
+    "password": "$2b$10$XG0z3W7nm7BIdMU2JuXruexRtZKbsQ2BO5T9u86n0auq.AlkqLn8m",
+    "firstName": "test",
+    "lastName": "criptografia"
   }
 ]

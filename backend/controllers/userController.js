@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const bcrypt = require('bcrypt');
 const User = require('../models/user');
 
 // Percorso del file JSON
@@ -43,7 +44,7 @@ function getAllUsers() {
 }
 
 // Aggiunge un nuovo utente
-function addUser(username, password, firstName, lastName) {
+async function addUser(username, password, firstName, lastName) {
     // Controlla che i parametri siano diversi da null
     if (!username || !password || !firstName || !lastName) {
         throw new Error('Tutti i campi sono obbligatori');
@@ -54,17 +55,20 @@ function addUser(username, password, firstName, lastName) {
         throw new Error('Username già esistente');
     }
 
+    // Cripta la password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
     // Crea un nuovo utente
-    const newUser = new User(username, password, firstName, lastName);
+    const newUser = new User(username, hashedPassword, firstName, lastName);
 
     // Salva il nuovo utente nel file JSON
     saveUser(newUser);
 }
 
-function deleteUser(username) {
+async function deleteUser(username) {
     const users = readUsersFile();
     const userIndex = users.findIndex(user => user.username === username);
-    
+
     if (userIndex === -1) {
         throw new Error('Utente non trovato');
     }
@@ -74,7 +78,7 @@ function deleteUser(username) {
     writeUsersFile(users);
 }
 
-function updateUser(username, updatedData) {
+async function updateUser(username, updatedData) {
     const users = readUsersFile();
     const userIndex = users.findIndex(user => user.username === username);
 
@@ -82,8 +86,14 @@ function updateUser(username, updatedData) {
         throw new Error('Utente non trovato');
     }
 
-    // Aggiorna solo i campi presenti nel corpo della richiesta
     const user = users[userIndex];
+
+    // Se c'è una nuova password, criptala
+    if (updatedData.password) {
+        updatedData.password = await bcrypt.hash(updatedData.password, 10);
+    }
+
+    // Aggiorna solo i campi presenti nel corpo della richiesta
     Object.assign(user, updatedData);
 
     // Scrivi di nuovo nel file JSON
