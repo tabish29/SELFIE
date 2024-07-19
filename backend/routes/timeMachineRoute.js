@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const timeMachineController = require('../controllers/timemachinecontroller');
+const timeMachineController = require('../controllers/timeMachineController');
 
 
 router.get('/', async (req, res) => {
