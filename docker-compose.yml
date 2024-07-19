@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./backend/data:/usr/src/app/data
+    environment:
+      - NODE_ENV=development
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "4200:4200"
+    volumes:
+      - frontend-src:/usr/src/app/src
+    depends_on:
+      - backend
+
+volumes:
+  backend-data:
+    driver: local
+  frontend-src:
+    driver: local
