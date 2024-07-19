@@ -1,6 +1,7 @@
 <nav class="navbar">
     <ul>
-        <li><a routerLink="/login">Login</a></li>
+        <li *ngIf="!isLoggedIn"><a routerLink="/login">Login</a></li>
+        <li *ngIf="isLoggedIn"><a (click)="onLogout()">Logout</a></li>
         <li><a routerLink="/note">Note</a></li>
         <li><a routerLink="/calendario">Calendario</a></li>
         <li><a routerLink="/pomodoroTimer">Pomodoro</a></li>
