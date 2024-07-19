@@ -12,6 +12,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
+import { TimeMachineComponent } from './components/time-machine/time-machine.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { RegistrationComponent } from './components/registration/registration.co
     NotFoundComponent,
     HomePageComponent,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    TimeMachineComponent
   ],
   imports: [
     BrowserModule,

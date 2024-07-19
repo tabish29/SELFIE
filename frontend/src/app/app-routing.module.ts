@@ -5,6 +5,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
+import { TimeMachineComponent } from './components/time-machine/time-machine.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path: 'pomodoroTimer',
     component: PomodoroTimerComponent
+  },
+  {
+    path: 'timeMachine',
+    component: TimeMachineComponent
   },
   {
     path: 'home',

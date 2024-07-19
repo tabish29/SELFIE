@@ -1,0 +1,14 @@
+<app-navbar></app-navbar>
+
+<div *ngIf="timeMachine">
+    <h2>TimeMachine di {{ username }}</h2>
+    <p>Data attuale: {{ timeMachine.date }}</p>
+
+    <label for="newDate">Nuova data e ora:</label>
+    <input id="newDate" type="datetime-local" [(ngModel)]="newDate">
+
+    <button (click)="updateTimeMachine()">Aggiorna</button>
+    <button (click)="resetTimeMachine()">Reset</button>
+</div>
+
+<app-footer></app-footer>

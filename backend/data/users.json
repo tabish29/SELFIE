@@ -4,5 +4,23 @@
     "password": "$2b$10$0hm8GRFQqeochXHEjV3DMun9Fw1Zmv2Tn/m2ME2SovQq/dEtJYLgm",
     "firstName": "q",
     "lastName": "q"
+  },
+  {
+    "username": "testM",
+    "password": "$2b$10$JC5cAl07Q/ymQ.Oo6Rj15uP47ZcBDARmkNQWSxzw0gnyi94leI19a",
+    "firstName": "a",
+    "lastName": "a"
+  },
+  {
+    "username": "testMa",
+    "password": "$2b$10$YU/rmKi/kSgsTbsOBHfh6.3TKTbfAJ7EgmsrgDqg6L7SI7vO6L5Ra",
+    "firstName": "a",
+    "lastName": "a"
+  },
+  {
+    "username": "stestMa",
+    "password": "$2b$10$m0tavu8ryDJeeWQRIAH8EO75xtuKV28CoFEjd51iX9qGIRevL2BLe",
+    "firstName": "a",
+    "lastName": "a"
   }
 ]
