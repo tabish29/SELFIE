@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Meeting Notes",
+    "content": "Discussed project milestones and assigned tasks for the next sprint. Follow up on deliverables by end of week.",
+    "categories": [
+      "Work",
+      "Meetings",
+      "Urgent"
+    ],
+    "createdAt": "2024-07-19T10:30:00Z",
+    "updatedAt": "2024-07-19T12:00:00Z",
+    "authorUsername": "testM"
+  },
+  {
+    "title": "Nota test",
+    "content": "Discussed project milestones and assigned tasks for the next sprint. Follow up on deliverables by end of week.",
+    "categories": [
+      "Work",
+      "Meetings",
+      "Urgent"
+    ],
+    "createdAt": "2024-07-19T10:30:00Z",
+    "updatedAt": "2024-07-19T12:00:00Z",
+    "authorUsername": "testM"
+  }
+]
