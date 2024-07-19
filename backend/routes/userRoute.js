@@ -2,41 +2,48 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController');
 
-// Endpoint per ottenere tutti gli utenti
-router.get('/', (req, res) => {
-    const users = userController.getAllUsers();
-    res.status(200).json(users);
+
+router.get('/', async (req, res) => {
+    try {
+        const users = await userController.getAllUsers();
+        res.status(200).json(users);
+    } catch (error) {
+        res.status(500).json({ error: 'Errore nel recuperare gli utenti' });
+    }
 });
 
-// Endpoint per aggiungere un nuovo utente
-router.post('/', (req, res) => {
+
+router.post('/', async (req, res) => {
     const { username, password, firstName, lastName } = req.body;
     
     try {
-        userController.addUser(username, password, firstName, lastName);
+        await userController.addUser(username, password, firstName, lastName);
         res.status(201).json({ message: 'Utente registrato con successo' });
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
 });
 
-// Endpoint per ottenere un utente specifico (per username)
-router.get('/:username', (req, res) => {
+
+router.get('/:username', async (req, res) => {
     const { username } = req.params;
-    const user = userController.findUserByUsername(username);
-    
-    if (user) {
-        res.status(200).json(user);
-    } else {
-        res.status(404).json({ error: 'Utente non trovato' });
+    try {
+        const user = await userController.findUserByUsername(username);
+        if (user) {
+            res.status(200).json(user);
+        } else {
+            res.status(404).json({ error: 'Utente non trovato' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: 'Errore nel recuperare l\'utente' });
     }
 });
 
 
-router.delete('/:username', (req, res) => {
+router.delete('/:username', async (req, res) => {
     const { username } = req.params;
     try {
-        userController.deleteUser(username);
+        await userController.deleteUser(username);
         res.status(200).json({ message: 'Utente eliminato con successo' });
     } catch (error) {
         res.status(404).json({ error: error.message });
@@ -44,12 +51,12 @@ router.delete('/:username', (req, res) => {
 });
 
 
-router.put('/:username', (req, res) => {
+router.put('/:username', async (req, res) => {
     const { username } = req.params;
     const updatedData = req.body; 
 
     try {
-        userController.updateUser(username, updatedData);
+        await userController.updateUser(username, updatedData);
         res.status(200).json({ message: 'Utente aggiornato con successo' });
     } catch (error) {
         res.status(400).json({ error: error.message });

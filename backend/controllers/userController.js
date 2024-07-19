@@ -7,9 +7,9 @@ const User = require('../models/user');
 const USERS_FILE = path.join(__dirname, '../data', 'users.json');
 
 // Funzione per leggere il file users.json
-function readUsersFile() {
+async function readUsersFile() {
     try {
-        const data = fs.readFileSync(USERS_FILE, 'utf8');
+        const data = await fs.promises.readFile(USERS_FILE, 'utf8');
         return data ? JSON.parse(data) : [];
     } catch (error) {
         if (error.code === 'ENOENT') {
@@ -21,52 +21,49 @@ function readUsersFile() {
 }
 
 // Funzione per scrivere nel file users.json
-function writeUsersFile(users) {
-    fs.writeFileSync(USERS_FILE, JSON.stringify(users, null, 2));
+async function writeUsersFile(users) {
+    await fs.promises.writeFile(USERS_FILE, JSON.stringify(users, null, 2));
 }
 
 // Salva un nuovo utente
-function saveUser(user) {
-    const users = readUsersFile();
+async function saveUser(user) {
+    const users = await readUsersFile();
     users.push(user);
-    writeUsersFile(users);
+    await writeUsersFile(users);
 }
 
 // Trova un utente per username
-function findUserByUsername(username) {
-    const users = readUsersFile();
+async function findUserByUsername(username) {
+    const users = await readUsersFile();
     return users.find(user => user.username === username);
 }
 
 // Ottiene tutti gli utenti
-function getAllUsers() {
-    return readUsersFile();
+async function getAllUsers() {
+    return await readUsersFile();
 }
 
 // Aggiunge un nuovo utente
 async function addUser(username, password, firstName, lastName) {
-    // Controlla che i parametri siano diversi da null
+
     if (!username || !password || !firstName || !lastName) {
         throw new Error('Tutti i campi sono obbligatori');
     }
 
-    // Controlla se l'username esiste già
-    if (findUserByUsername(username)) {
+    const existingUser = await findUserByUsername(username);
+    if (existingUser) {
         throw new Error('Username già esistente');
     }
 
-    // Cripta la password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Crea un nuovo utente
     const newUser = new User(username, hashedPassword, firstName, lastName);
 
-    // Salva il nuovo utente nel file JSON
-    saveUser(newUser);
+    await saveUser(newUser);
 }
 
 async function deleteUser(username) {
-    const users = readUsersFile();
+    const users = await readUsersFile();
     const userIndex = users.findIndex(user => user.username === username);
 
     if (userIndex === -1) {
@@ -75,11 +72,11 @@ async function deleteUser(username) {
 
     // Rimuovi l'utente dalla lista
     users.splice(userIndex, 1);
-    writeUsersFile(users);
+    await writeUsersFile(users);
 }
 
 async function updateUser(username, updatedData) {
-    const users = readUsersFile();
+    const users = await readUsersFile();
     const userIndex = users.findIndex(user => user.username === username);
 
     if (userIndex === -1) {
@@ -88,16 +85,13 @@ async function updateUser(username, updatedData) {
 
     const user = users[userIndex];
 
-    // Se c'è una nuova password, criptala
     if (updatedData.password) {
         updatedData.password = await bcrypt.hash(updatedData.password, 10);
     }
 
-    // Aggiorna solo i campi presenti nel corpo della richiesta
     Object.assign(user, updatedData);
 
-    // Scrivi di nuovo nel file JSON
-    writeUsersFile(users);
+    await writeUsersFile(users);
 }
 
 module.exports = {
