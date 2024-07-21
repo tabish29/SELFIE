@@ -14,6 +14,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { TimeMachineComponent } from './components/time-machine/time-machine.component';
 import { UserNotesComponent } from './components/user-notes/user-notes.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { UserNotesComponent } from './components/user-notes/user-notes.component
     HttpClientModule
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+    provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })
