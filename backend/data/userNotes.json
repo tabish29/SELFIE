@@ -46,5 +46,61 @@
     "createdAt": "2024-07-30T19:02",
     "updatedAt": "2024-07-30T19:02",
     "authorUsername": "testM"
+  },
+  {
+    "title": "test creazione nota ",
+    "content": "ciao sono un test per vedere la creazione della nota",
+    "categories": "test,scuola",
+    "createdAt": "2024-07-21T07:53:17.580Z",
+    "updatedAt": "2024-07-21T07:53:17.580Z",
+    "authorUsername": "a"
+  },
+  {
+    "title": "sac",
+    "content": "asc",
+    "categories": "csa",
+    "createdAt": "2024-08-01T13:08",
+    "updatedAt": "2024-08-01T13:08",
+    "authorUsername": "a"
+  },
+  {
+    "title": "sad",
+    "content": "sad",
+    "categories": "sda",
+    "createdAt": "2024-08-01T13:08",
+    "updatedAt": "2024-08-01T13:08",
+    "authorUsername": "a"
+  },
+  {
+    "title": "a",
+    "content": "abbbb",
+    "categories": "a",
+    "createdAt": "2024-08-15T13:08",
+    "updatedAt": "2024-08-15T13:08",
+    "authorUsername": "a"
+  },
+  {
+    "title": "b",
+    "content": "b",
+    "categories": "b",
+    "createdAt": "2024-08-15T13:08",
+    "updatedAt": "2024-08-15T13:08",
+    "authorUsername": "a"
+  },
+  {
+    "title": "s",
+    "content": "s",
+    "categories": [],
+    "createdAt": "2024-08-15T13:08",
+    "updatedAt": "2024-08-15T13:08",
+    "authorUsername": "a"
+  },
+  {
+    "title": "q",
+    "content": "q",
+    "categories": "q",
+    "createdAt": "2024-08-15T13:08",
+    "updatedAt": "2024-08-15T13:08",
+    "authorUsername": "a"
   }
 ]

@@ -2,8 +2,10 @@ import { Component } from '@angular/core';
 import { UserNote } from '../../models/UserNote';
 import { UserNoteService } from '../../services/user-note.service';
 import { TimeMachineService } from '../../services/time-machine.service';
+import { MatDialog } from '@angular/material/dialog';
+import { NewNoteDialogComponent } from '../new-note-dialog/new-note-dialog.component';
 import { LocalStorageService } from '../../services/local-storage.service';
-import { TimeMachine } from '../../models/TimeMachine';
+import { UpdateNoteDialogComponent } from '../update-note-dialog/update-note-dialog.component';
 
 @Component({
   selector: 'app-user-notes',
@@ -13,73 +15,72 @@ import { TimeMachine } from '../../models/TimeMachine';
 export class UserNotesComponent {
   notes: UserNote[] = [];
   selectedNote: UserNote | null = null;
-  username: string | null = null;
-  newNote: UserNote = new UserNote('', '', [], '', '', '');
+  authorUsername: string = '';
 
   constructor(
-    private localStorageService: LocalStorageService,
+    private dialog: MatDialog,
     private userNotesService: UserNoteService,
-    private timeMachineService: TimeMachineService
-  ) {}
+    private localStorageService: LocalStorageService
+  ) { }
 
   ngOnInit(): void {
-    this.username = this.localStorageService.getItem('username');
-    this.loadNotes();
+    this.authorUsername = this.localStorageService.getItem('username');
+    
+    if (this.authorUsername) {
+      this.loadNotesByAuthor(this.authorUsername);
+    } else {
+      console.log("Non esiste l'username dell'autore");
+    }
   }
 
   loadNotes(): void {
-    if (this.username) {
-      this.userNotesService.getNotes().subscribe(
-        notes => this.notes = notes,
-        error => console.error('Errore nel caricamento delle note', error)
+    this.userNotesService.getNotes().subscribe(
+      notes => this.notes = notes,
+      error => console.error('Errore nel caricamento delle note', error)
+    );
+  }
+
+  openCreateNoteDialog(): void {
+    const dialogRef = this.dialog.open(NewNoteDialogComponent, {
+      width: '400px',
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.notes.push(result);
+      }
+    });
+  }
+
+  openUpdateNoteDialog(note: UserNote): void {
+    const dialogRef = this.dialog.open(UpdateNoteDialogComponent, {
+      width: '400px',
+      data: note 
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.updateNoteInList(result);
+      }
+    });
+  }
+
+  updateNoteInList(updatedNote: UserNote): void {
+    const index = this.notes.findIndex(note => note.title === updatedNote.title);
+    if (index > -1) {
+      this.notes[index] = updatedNote;
+      this.userNotesService.updateNote(updatedNote.title, updatedNote).subscribe(
+        () => console.log('Nota aggiornata con successo'),
+        error => console.error('Errore nell\'aggiornamento della nota', error)
       );
     }
   }
 
   selectNote(note: UserNote): void {
     this.selectedNote = { ...note };
-  }
-
-  createNote(newNote: UserNote): void {
-    if (this.username) {
-      this.timeMachineService.getTimeMachine(this.username).subscribe(
-        (timeMachine: TimeMachine) => {
-          const now = timeMachine.date;
-          newNote.createdAt = now;
-          newNote.updatedAt = now;
-          newNote.authorUsername = this.username; 
-          this.userNotesService.createNote(newNote).subscribe(
-            note => {
-              this.notes.push(note);
-              newNote = new UserNote('', '', [], now, now, this.username);
-            },
-            error => console.error('Errore nella creazione della nota', error)
-          );
-        },
-        error => console.error('Errore nel recupero del time machine', error)
-      );
-    }
-  }
-
-  updateNote(selectedNote: UserNote): void {
-    if (this.username && selectedNote != null) {
-      this.timeMachineService.getTimeMachine(this.username).subscribe(
-        (timeMachine: TimeMachine) => {
-          selectedNote.updatedAt = timeMachine.date;
-          this.userNotesService.updateNote(selectedNote.title, selectedNote).subscribe(
-            updatedNote => {
-              const index = this.notes.findIndex(note => note.title === updatedNote.title);
-              if (index > -1) {
-                this.notes[index] = updatedNote;
-              }
-              this.selectedNote = null;
-            },
-            error => console.error('Errore nell\'aggiornamento della nota', error)
-          );
-        },
-        error => console.error('Errore nel recupero del time machine', error)
-      );
-    }
+    // Open update dialog when a note is selected
+    this.openUpdateNoteDialog(this.selectedNote);
   }
 
   deleteNote(title: string): void {
@@ -100,7 +101,7 @@ export class UserNotesComponent {
 
   loadNotesByAuthor(authorUsername: string): void {
     this.userNotesService.getNotesByAuthor(authorUsername).subscribe(
-      notes => console.log(notes),
+      notes => this.notes = notes,
       error => console.error('Errore nel caricamento delle note dell\'autore', error)
     );
   }

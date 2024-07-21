@@ -2,6 +2,11 @@ import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms'; 
 import { HttpClientModule } from '@angular/common/http';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +20,8 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { TimeMachineComponent } from './components/time-machine/time-machine.component';
 import { UserNotesComponent } from './components/user-notes/user-notes.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { NewNoteDialogComponent } from './components/new-note-dialog/new-note-dialog.component';
+import { UpdateNoteDialogComponent } from './components/update-note-dialog/update-note-dialog.component';
 
 @NgModule({
   declarations: [
@@ -27,13 +34,19 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     LoginComponent,
     RegistrationComponent,
     TimeMachineComponent,
-    UserNotesComponent
+    UserNotesComponent,
+    NewNoteDialogComponent,
+    UpdateNoteDialogComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatInputModule,
+    MatFormFieldModule
   ],
   providers: [
     provideClientHydration(),

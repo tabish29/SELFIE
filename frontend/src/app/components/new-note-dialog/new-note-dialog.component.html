@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>Crea Nuova Nota</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <mat-label>Titolo</mat-label>
+    <input matInput [(ngModel)]="title">
+  </mat-form-field>
+  
+  <mat-form-field>
+    <mat-label>Contenuto</mat-label>
+    <textarea matInput [(ngModel)]="content"></textarea>
+  </mat-form-field>
+  
+  <mat-form-field>
+    <mat-label>Categorie</mat-label>
+    <input matInput [(ngModel)]="categories">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Annulla</button>
+  <button mat-button (click)="onCreate()">Crea Nota</button>
+</div>

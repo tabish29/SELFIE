@@ -22,5 +22,11 @@
     "password": "$2b$10$m0tavu8ryDJeeWQRIAH8EO75xtuKV28CoFEjd51iX9qGIRevL2BLe",
     "firstName": "a",
     "lastName": "a"
+  },
+  {
+    "username": "a",
+    "password": "$2b$10$cDKP.U4zoCzZ1wD1BR8YNe38QMPMzOrbUXjrXyBp5qAdubVSiikEi",
+    "firstName": "a",
+    "lastName": "a"
   }
 ]
