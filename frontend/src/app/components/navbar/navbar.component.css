@@ -1,13 +1,17 @@
+/* Stile per la Navbar */
 .navbar {
-    background-color: red;
-    padding: 1em;
+    background-color: #e63946;
+    padding: 10px 20px;
     width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .navbar ul {
     list-style: none;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
 }
 
 .navbar li {
@@ -16,7 +20,41 @@
 }
 
 .navbar a {
-    color: white;
+    color: #ffffff;
     text-decoration: none;
     font-weight: bold;
+    padding: 8px 15px;
+    margin: 5px;
+    display: block;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    border-radius: 10px;
+}
+
+/* Effetto Hover */
+.navbar a:hover {
+    background-color: #ff9c9c;
+    color: #494949;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Aggiunta di una transizione morbida */
+.navbar a {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar ul {
+        flex-direction: column;
+    }
+
+    .navbar li {
+        margin-bottom: 2px;
+    }
+
+    .navbar a {
+        padding: 5px 20px;
+        font-size: 16px; 
+    }
 }

@@ -28,5 +28,17 @@
     "password": "$2b$10$cDKP.U4zoCzZ1wD1BR8YNe38QMPMzOrbUXjrXyBp5qAdubVSiikEi",
     "firstName": "a",
     "lastName": "a"
+  },
+  {
+    "username": "Ale",
+    "password": "$2b$10$grWVqnxn3AsfpiwqDls8WuE7MBLjvtc8ucj0AfkODnBebYFmOxVla",
+    "firstName": "Ale",
+    "lastName": "DDD"
+  },
+  {
+    "username": "Leo",
+    "password": "$2b$10$b7y0j45Sdsrl98IoNYfbQeTjgk/ek0x3kUpS6Ipwr2CT.EpzUyDmK",
+    "firstName": "Leo",
+    "lastName": "Militare"
   }
 ]

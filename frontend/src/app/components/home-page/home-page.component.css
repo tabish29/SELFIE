@@ -4,6 +4,17 @@
     box-sizing: border-box;
 }
 
+/* Contenitore principale della pagina */
+.page-container {
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
 body {
     font-family: Arial, sans-serif;
     display: flex;

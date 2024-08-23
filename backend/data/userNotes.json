@@ -102,5 +102,29 @@
     "createdAt": "2024-08-15T13:08",
     "updatedAt": "2024-08-15T13:08",
     "authorUsername": "a"
+  },
+  {
+    "title": "Studio 1 ",
+    "content": "devi studiare tech",
+    "categories": "studio",
+    "createdAt": "2024-08-13T12:52:57.649Z",
+    "updatedAt": "2024-08-13T12:52:57.649Z",
+    "authorUsername": "Ale"
+  },
+  {
+    "title": "Studio 2 ",
+    "content": "Studia a ferragosto",
+    "categories": "Studio",
+    "createdAt": "2024-08-13T12:52:57.649Z",
+    "updatedAt": "2024-08-13T12:52:57.649Z",
+    "authorUsername": "Ale"
+  },
+  {
+    "title": "Giorno 1",
+    "content": "Ricordati di oggi",
+    "categories": "Giorno",
+    "createdAt": "2001-02-21T09:00",
+    "updatedAt": "2001-02-21T09:00",
+    "authorUsername": "Ale"
   }
 ]
