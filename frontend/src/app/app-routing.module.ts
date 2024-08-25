@@ -7,6 +7,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { TimeMachineComponent } from './components/time-machine/time-machine.component';
 import { UserNotesComponent } from './components/user-notes/user-notes.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path: 'pomodoroTimer',
     component: PomodoroTimerComponent
+  },
+  {
+    path: 'calendar',
+    component: CalendarComponent
   },
   {
     path: 'timeMachine',
