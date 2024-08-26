@@ -23,6 +23,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { NewNoteDialogComponent } from './components/new-note-dialog/new-note-dialog.component';
 import { UpdateNoteDialogComponent } from './components/update-note-dialog/update-note-dialog.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
+import { FullCalendarModule } from '@fullcalendar/angular'; 
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { CalendarComponent } from './components/calendar/calendar.component';
     MatDialogModule,
     MatButtonModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    FullCalendarModule
   ],
   providers: [
     provideClientHydration(),
