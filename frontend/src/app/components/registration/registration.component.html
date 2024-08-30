@@ -2,17 +2,23 @@
     <form (ngSubmit)="register()" #registrationForm="ngForm">
         <h1>Registrazione</h1>
         <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required [(ngModel)]="username">
-        
+        <input type="text" id="username" name="username" required maxlength="50" [(ngModel)]="username">
+
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required [(ngModel)]="password">
-        
+        <input type="password" id="password" name="password" required maxlength="50" [(ngModel)]="password">
+
         <label for="firstName">Nome:</label>
         <input type="text" id="firstName" name="firstName" required [(ngModel)]="firstName">
-        
+
         <label for="lastName">Cognome:</label>
         <input type="text" id="lastName" name="lastName" required [(ngModel)]="lastName">
-        
-        <button type="submit" [disabled]="registrationForm.invalid">Registrati</button>
+
+        <button type="submit">Registrati</button>
+
+        <!-- Messaggio di errore -->
+        <div *ngIf="errorMessage" class="error-message">
+            {{ errorMessage }}
+        </div>
+
     </form>
 </div>

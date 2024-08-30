@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/User';
 import { TimeMachine } from '../../models/TimeMachine';
@@ -14,8 +15,9 @@ export class RegistrationComponent {
   password: string = '';
   firstName: string = '';
   lastName: string = '';
+  errorMessage: string = ''; 
 
-  constructor(private userService: UserService,private timeMachineService: TimeMachineService) {} 
+  constructor(private userService: UserService,private timeMachineService: TimeMachineService,private router: Router) {} 
 
   register() {
     const userData = new User(this.username, this.password, this.firstName, this.lastName);
@@ -23,8 +25,16 @@ export class RegistrationComponent {
     this.userService.addUser(userData).subscribe(response => {
       console.log('Registrazione avvenuta con successo', response);
       this.createTimeMachineForUser(this.username);
+      this.router.navigateByUrl('/login');
     }, error => {
       console.error('Errore nella registrazione', error);
+      
+      if (error.error && error.error.error) {
+        this.errorMessage = error.error.error; 
+      } else {
+        this.errorMessage = "'Errore nella registrazione. Riprova.'";
+      }
+
     });
   }
 
