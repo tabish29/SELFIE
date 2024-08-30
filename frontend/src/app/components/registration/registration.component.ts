@@ -15,9 +15,9 @@ export class RegistrationComponent {
   password: string = '';
   firstName: string = '';
   lastName: string = '';
-  errorMessage: string = ''; 
+  errorMessage: string = '';
 
-  constructor(private userService: UserService,private timeMachineService: TimeMachineService,private router: Router) {} 
+  constructor(private userService: UserService, private timeMachineService: TimeMachineService, private router: Router) { }
 
   register() {
     const userData = new User(this.username, this.password, this.firstName, this.lastName);
@@ -28,9 +28,9 @@ export class RegistrationComponent {
       this.router.navigateByUrl('/login');
     }, error => {
       console.error('Errore nella registrazione', error);
-      
+
       if (error.error && error.error.error) {
-        this.errorMessage = error.error.error; 
+        this.errorMessage = error.error.error;
       } else {
         this.errorMessage = "'Errore nella registrazione. Riprova.'";
       }
@@ -39,7 +39,9 @@ export class RegistrationComponent {
   }
 
   private createTimeMachineForUser(machineOwner: string) {
-    const timeMachineData = new TimeMachine(machineOwner,new Date().toISOString());
+    const now = new Date();
+    const formattedDate = this.timeMachineService.formatDate(now);
+    const timeMachineData = new TimeMachine(machineOwner, formattedDate);
 
     this.timeMachineService.addTimeMachine(timeMachineData).subscribe(response => {
       console.log('TimeMachine creata con successo', response);
