@@ -19,7 +19,7 @@ services:
     ports:
       - "4200:4200"
     volumes:
-      - frontend-src:/usr/src/app/src
+      - ./frontend/src:/usr/src/app/src
     depends_on:
       - backend
 

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { UserService } from '../../services/user.service';
-import { User } from '../../models/User';
 import { Router } from '@angular/router';
 import { LocalStorageService } from '../../services/local-storage.service';
 
@@ -12,6 +11,7 @@ import { LocalStorageService } from '../../services/local-storage.service';
 export class LoginComponent {
   username: string = '';
   password: string = '';
+  errorMessage: string = ''; 
 
   constructor(private userService: UserService,private router: Router, private localStorageService: LocalStorageService) {}
 
@@ -27,11 +27,15 @@ export class LoginComponent {
       },
       error => {
         console.error('Login failed', error);
+       
+        if (error.error && error.error.error) {
+          this.errorMessage = error.error.error; 
+        } else {
+          this.errorMessage = "C'è stato un errore inaspettato";
+        }
         
       }
     );
   }
-
-
 
 }

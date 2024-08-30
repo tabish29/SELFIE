@@ -14,7 +14,6 @@ export class NavbarComponent {
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-   
     this.isLoggedIn = this.authService.hasLoggedIn();
   }
 

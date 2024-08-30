@@ -36,10 +36,11 @@ export class TimeMachineComponent {
 
   updateTimeMachine(): void {
     if (this.username && this.timeMachine) {
-      this.timeMachineService.updateTimeMachine(this.username, { date: this.newDate }).subscribe(
+      const formattedDate = this.timeMachineService.formatDate(new Date(this.newDate));
+      this.timeMachineService.updateTimeMachine(this.username, { date: formattedDate }).subscribe(
         (response) => {
           console.log('TimeMachine aggiornata con successo', response);
-          this.timeMachine!.date = this.newDate;
+          this.timeMachine!.date = formattedDate;
         },
         (error) => {
           console.error('Errore nell\'aggiornamento della TimeMachine', error);
@@ -49,14 +50,16 @@ export class TimeMachineComponent {
   }
 
   resetTimeMachine(): void {
-    const currentDate = new Date().toISOString();
+    const currentDate = new Date();
+    const formattedDate = this.timeMachineService.formatDate(currentDate);
     if (this.username) {
-      this.timeMachineService.updateTimeMachine(this.username, { date: currentDate }).subscribe(
+      this.timeMachineService.updateTimeMachine(this.username, { date: formattedDate }).subscribe(
         (response) => {
           console.log('TimeMachine resettata con successo', response);
+
           if (this.timeMachine) {
-            this.timeMachine.date = currentDate;
-            this.newDate = currentDate;
+            this.timeMachine.date = formattedDate;
+            this.newDate = formattedDate;
           }
         },
         (error) => {

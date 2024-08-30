@@ -1,7 +1,9 @@
-html, body {
+html,
+body {
     margin: 0;
     padding: 0;
-    height: 100%; /* Garantisce che l'html e il body occupino l'intera altezza */
+    height: 100%;
+    /* Garantisce che l'html e il body occupino l'intera altezza */
 }
 
 /* Contenitore principale della pagina */
@@ -18,24 +20,29 @@ html, body {
 
 /* Navbar */
 app-navbar {
-    flex-shrink: 0; /* Assicura che la navbar mantenga la sua altezza */
+    flex-shrink: 0;
+    /* Assicura che la navbar mantenga la sua altezza */
 }
 
 /* Corpo principale */
 .container {
-    flex-grow: 1; /* Fa sì che il corpo principale occupi tutto lo spazio disponibile */
+    flex-grow: 1;
+    /* Fa sì che il corpo principale occupi tutto lo spazio disponibile */
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 35px; /* Lascia spazio per la navbar */
-    padding-bottom: 20px; /* Lascia un po' di spazio prima del footer */
+    padding-top: 35px;
+    /* Lascia spazio per la navbar */
+    padding-bottom: 20px;
+    /* Lascia un po' di spazio prima del footer */
     background-color: #f7f9fc;
     width: 100%;
 }
 
 /* Footer */
 app-footer {
-    flex-shrink: 0; /* Assicura che il footer mantenga la sua altezza */
+    flex-shrink: 0;
+    /* Assicura che il footer mantenga la sua altezza */
 }
 
 
@@ -45,7 +52,7 @@ app-footer {
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     padding: 30px;
-    width: 350px; 
+    width: 350px;
     text-align: center;
 }
 
@@ -125,11 +132,18 @@ input:focus {
     text-decoration: underline;
 }
 
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
+
     /* Navbar e container */
     .container {
-        padding-top: 40px; /* Aumenta il padding-top per schermi più piccoli */
+        padding-top: 40px;
+        /* Aumenta il padding-top per schermi più piccoli */
     }
 
     /* Stile per il riquadro di login */

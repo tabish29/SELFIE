@@ -6,13 +6,21 @@
             <form (ngSubmit)="onLogin()">
                 <div id="div-form">
                     <label for="username">Username</label>
-                    <input type="text" id="username" name="username" placeholder="Inserisci il tuo username" maxlength="50" required [(ngModel)]="username">
+                    <input type="text" id="username" name="username" placeholder="Inserisci il tuo username"
+                        maxlength="50" required [(ngModel)]="username">
                 </div>
                 <div id="div-form">
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password" placeholder="Inserisci la tua password" maxlength="50"  required  [(ngModel)]="password">
+                    <input type="password" id="password" name="password" placeholder="Inserisci la tua password"
+                        maxlength="50" required [(ngModel)]="password">
                 </div>
                 <button type="submit" class="btn-login">Accedi</button>
+
+                <!-- Messaggio di errore -->
+                <div *ngIf="errorMessage" class="error-message">
+                    {{ errorMessage }}
+                </div>
+
             </form>
             <p class="register-link">Non sei ancora registrato? <a routerLink="/registration">Clicca qui</a></p>
         </div>
