@@ -23,7 +23,12 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { NewNoteDialogComponent } from './components/new-note-dialog/new-note-dialog.component';
 import { UpdateNoteDialogComponent } from './components/update-note-dialog/update-note-dialog.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
-import { FullCalendarModule } from '@fullcalendar/angular'; 
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { GameComponent } from './components/game/game.component';
+import { TrisComponent } from './components/game/tris/tris.component';
+import { SnakeComponent } from './components/game/snake/snake.component';
+import { SudokuComponent } from './components/game/sudoku/sudoku.component';
+import { ImpiccatoComponent } from './components/game/impiccato/impiccato.component'; 
 
 @NgModule({
   declarations: [
@@ -39,13 +44,17 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     UserNotesComponent,
     NewNoteDialogComponent,
     UpdateNoteDialogComponent,
-    CalendarComponent
+    CalendarComponent,
+    GameComponent,
+    TrisComponent,
+    SnakeComponent,
+    SudokuComponent,
+    ImpiccatoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule,
     MatDialogModule,
     MatButtonModule,
     MatInputModule,

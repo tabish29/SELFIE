@@ -1,18 +1,22 @@
-<div class="container">
-    <form (ngSubmit)="register()" #registrationForm="ngForm">
-        <h1>Registrazione</h1>
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required [(ngModel)]="username">
-        
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required [(ngModel)]="password">
-        
-        <label for="firstName">Nome:</label>
-        <input type="text" id="firstName" name="firstName" required [(ngModel)]="firstName">
-        
-        <label for="lastName">Cognome:</label>
-        <input type="text" id="lastName" name="lastName" required [(ngModel)]="lastName">
-        
-        <button type="submit" [disabled]="registrationForm.invalid">Registrati</button>
-    </form>
+<div class="page-container">
+    <app-navbar></app-navbar>
+    <div class="container">
+        <form (ngSubmit)="register()" #registrationForm="ngForm">
+            <h1>Registrazione</h1>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required [(ngModel)]="username">
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required [(ngModel)]="password">
+            
+            <label for="firstName">Nome:</label>
+            <input type="text" id="firstName" name="firstName" required [(ngModel)]="firstName">
+            
+            <label for="lastName">Cognome:</label>
+            <input type="text" id="lastName" name="lastName" required [(ngModel)]="lastName">
+            
+            <button type="submit" [disabled]="registrationForm.invalid">Registrati</button>
+        </form>
+    </div>
+    <app-footer></app-footer>
 </div>

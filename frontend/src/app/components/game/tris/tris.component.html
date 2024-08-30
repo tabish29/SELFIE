@@ -1,0 +1,14 @@
+<div class="page-container">
+    <app-navbar></app-navbar>
+    <div class="container">
+        <h1>Gioco del Tris</h1>
+        <div id="board" class="board">
+            <div class="cell" *ngFor="let cell of cells; let i = index" (click)="makeMove(i)">
+                {{ cell }}
+            </div>
+        </div>
+        <button (click)="resetGame()">Resetta Gioco</button>
+        <p id="status">Turno: {{ currentPlayer }}</p>
+    </div>
+    <app-footer></app-footer>
+</div>
