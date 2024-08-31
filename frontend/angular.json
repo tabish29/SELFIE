@@ -33,18 +33,7 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "src/assets",
-                "output": "/assets/"
-              },
-              {
-                "glob": "favicon.ico",
-                "input": "src/",
-                "output": "/"
-              },
-              {
-                "glob": "index.html",
-                "input": "src/",
-                "output": "/"
+                "input": "public"
               }
             ],
             "styles": [
@@ -108,18 +97,7 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "src/assets",
-                "output": "/assets/"
-              },
-              {
-                "glob": "favicon.ico",
-                "input": "src/",
-                "output": "/"
-              },
-              {
-                "glob": "index.html",
-                "input": "src/",
-                "output": "/"
+                "input": "public"
               }
             ],
             "styles": [

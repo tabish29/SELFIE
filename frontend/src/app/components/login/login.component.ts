@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { LocalStorageService } from '../../services/local-storage.service';
+import { TimeMachineService } from '../../services/time-machine.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ export class LoginComponent {
   password: string = '';
   errorMessage: string = ''; 
 
-  constructor(private userService: UserService,private router: Router, private localStorageService: LocalStorageService) {}
+  constructor(private userService: UserService,private timeMachineService:TimeMachineService,private router: Router, private localStorageService: LocalStorageService) {}
 
 
   onLogin() {
@@ -22,6 +23,7 @@ export class LoginComponent {
         console.log('Login successful', response);
       
         this.localStorageService.setItem('username', this.username);
+        this.timeMachineService.startAutoUpdate(this.username, 60000);
 
         this.router.navigateByUrl('/home');
       },

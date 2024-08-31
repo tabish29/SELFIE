@@ -55,6 +55,7 @@ import { ImpiccatoComponent } from './components/game/impiccato/impiccato.compon
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     MatDialogModule,
     MatButtonModule,
     MatInputModule,
