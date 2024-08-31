@@ -5,23 +5,23 @@
 
     <div class="settings">
       <label>
-        Work Minutes:
+        Minuti Lavoro:
         <input type="number" [(ngModel)]="workMinutes" (input)="updateTimer()" min="1" max="60">
       </label>
       <label>
-        Short Break Minutes:
+        Minuti Pausa:
         <input type="number" [(ngModel)]="shortBreakMinutes" (input)="updateTimer()" min="1" max="60">
       </label>
       <label>
-        Total Hours:
+        Ore Totali:
         <input type="number" [(ngModel)]="totalHours" (input)="calculateCycles()" min="0">
       </label>
       <label>
-        Total Minutes:
+        Minuti Totali:
         <input type="number" [(ngModel)]="totalMinutes" (input)="calculateCycles()" min="0">
       </label>
       <div *ngIf="cycleProposals.length">
-        <h3>Cycle Proposals:</h3>
+        <h3>Proposte di Cicli:</h3>
         <ul>
           <li *ngFor="let proposal of cycleProposals">{{ proposal }}</li>
         </ul>
@@ -33,11 +33,11 @@
     </div>
 
     <div class="controls">
-      <button (click)="startTimer()" [disabled]="isRunning">Start</button>
-      <button (click)="pauseTimer()" [disabled]="!isRunning">Pause</button>
+      <button (click)="startTimer()" [disabled]="isRunning">Inizia</button>
+      <button (click)="pauseTimer()" [disabled]="!isRunning">Pausa</button>
       <button (click)="resetTimer()">Reset</button>
-      <button (click)="forceNextSession()">Next Session</button>
-      <button (click)="endCycle()">End Cycle</button>
+      <button (click)="forceNextSession()">Prossima Sessione</button>
+      <button (click)="endCycle()">Fine Ciclo</button>
     </div>
 
     <div class="session-info">

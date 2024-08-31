@@ -11,7 +11,7 @@ export class PomodoroTimerComponent {
   isRunning: boolean = false;
   interval: any;
   sessionCount: number = 0;
-  sessionMessage: string = 'Work Session';
+  sessionMessage: string = 'Sessione di Lavoro';
   workMinutes: number = 30;
   shortBreakMinutes: number = 5;
   totalHours: number = 0;
@@ -33,7 +33,7 @@ export class PomodoroTimerComponent {
 
   updateTimer() {
     if (!this.isRunning) {
-      if (this.sessionMessage === 'Work Session') {
+      if (this.sessionMessage === 'Sessione di Lavoro') {
         this.minutes = this.workMinutes;
       } else {
         this.minutes = this.shortBreakMinutes;
@@ -90,7 +90,7 @@ export class PomodoroTimerComponent {
   resetTimer() {
     this.isRunning = false;
     clearInterval(this.interval);
-    this.sessionMessage = 'Work Session';
+    this.sessionMessage = 'Sessione di Lavoro';
     this.isWorkMode = true;
     this.isBreakMode = false;
     this.updateTimer();
@@ -100,15 +100,15 @@ export class PomodoroTimerComponent {
     this.isRunning = false;
     clearInterval(this.interval);
 
-    if (this.sessionMessage === 'Work Session') {
+    if (this.sessionMessage === 'Sessione di Lavoro') {
       this.sessionCount++;
       this.minutes = this.shortBreakMinutes;
-      this.sessionMessage = 'Short Break';
+      this.sessionMessage = 'Pausa';
       this.isWorkMode = false;
       this.isBreakMode = true;
     } else {
       this.minutes = this.workMinutes;
-      this.sessionMessage = 'Work Session';
+      this.sessionMessage = 'Sessione di Lavoro';
       this.isWorkMode = true;
       this.isBreakMode = false;
     }
@@ -125,7 +125,7 @@ export class PomodoroTimerComponent {
   endCycle() {
     this.isRunning = false;
     clearInterval(this.interval);
-    this.notifyUser('Cycle ended.');
+    this.notifyUser('Ciclo finito');
     this.resetTimer();
   }
 
