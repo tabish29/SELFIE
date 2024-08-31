@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-game',
@@ -9,6 +10,8 @@ export class GameComponent {
   cells: (null | 'X' | 'O')[] = Array(9).fill(null);
   currentPlayer: 'X' | 'O' = 'X';
   gameStatus: string = '';
+
+  constructor(private router: Router) { }
 
   makeMove(index: number): void {
     if (this.cells[index] || this.gameStatus) return;
@@ -48,5 +51,9 @@ export class GameComponent {
     this.cells = Array(9).fill(null);
     this.currentPlayer = 'X';
     this.gameStatus = '';
+  }
+
+  goToGame(gameName: string): void {
+    this.router.navigate(['/game', gameName]);
   }
 }

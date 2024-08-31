@@ -9,6 +9,10 @@ import { TimeMachineComponent } from './components/time-machine/time-machine.com
 import { UserNotesComponent } from './components/user-notes/user-notes.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { GameComponent } from './components/game/game.component';
+import { SnakeComponent } from './components/game/snake/snake.component';
+import { TrisComponent } from './components/game/tris/tris.component';
+import { SudokuComponent } from './components/game/sudoku/sudoku.component';
+import { ImpiccatoComponent } from './components/game/impiccato/impiccato.component';
 
 const routes: Routes = [
   {
@@ -42,6 +46,22 @@ const routes: Routes = [
   {
     path: 'game',
     component: GameComponent,
+  },
+  {
+    path: 'game/sudoku',
+    component: SudokuComponent,
+  },
+  {
+    path: 'game/tris',
+    component: TrisComponent,
+  },
+  {
+    path: 'game/impiccato',
+    component: ImpiccatoComponent,
+  },
+  {
+    path: 'game/snake',
+    component: SnakeComponent,
   },
   {
     path: '',
