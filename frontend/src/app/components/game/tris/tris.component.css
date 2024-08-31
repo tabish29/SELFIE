@@ -1,40 +1,118 @@
 .container {
-    max-width: 600px;
     margin: 20px auto;
     text-align: center;
+    max-width: 300px; /* Rende il contenitore più compatto */
 }
 
-.board {
+h2 {
+    font-size: 2.5em;
+    color: #4A90E2; /* Colore blu moderno */
+    margin-bottom: 20px;
+    letter-spacing: 1.5px;
+}
+
+#turn-info p {
+    margin: 5px 0;
+    font-size: 1.2em;
+    color: #555;
+    font-weight: 500;
+}
+
+#board {
     display: grid;
-    grid-template-columns: repeat(3, 100px);
-    grid-template-rows: repeat(3, 100px);
-    gap: 5px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 10px;
     margin: 20px auto;
+    max-width: 300px;
 }
 
 .cell {
     width: 100px;
     height: 100px;
+    background-color: #f7f7f7;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: white;
-    border: 1px solid #ddd;
-    font-size: 2em;
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #333;
     cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 .cell:hover {
-    background-color: #f0f0f0;
+    background-color: #e0e0e0;
+    transform: scale(1.05);
 }
 
-button {
+button.reset-button {
     margin-top: 20px;
     padding: 10px 20px;
-    font-size: 1em;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.2em;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.4);;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
 }
 
-#status {
-    font-size: 1.2em;
+button.reset-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 123, 255, 0.6);
+}
+
+.winner-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px; /* Aumenta la dimensione del popup */
+    border-radius: 10px;
+    text-align: center;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    animation: blink 1s infinite alternate, showModal 0.5s ease-in-out;
+    font-size: 20px; /* Ingrandisce il testo */
+}
+
+@keyframes showModal {
+    from {
+        transform: translate(-50%, -60%);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+}
+
+@keyframes blink {
+    0% { background-color: rgba(0, 0, 0, 0.8); }
+    50% { background-color: rgba(0, 0, 0, 0.6); }
+    100% { background-color: rgba(0, 0, 0, 0.8); }
+}
+
+button.close-modal {
     margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button.close-modal:hover {
+    background-color: #218838;
+    transform: scale(1.05);
 }

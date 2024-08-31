@@ -1,1 +1,27 @@
-<p>impiccato works!</p>
+<div class="page-container">
+    <app-navbar></app-navbar>
+    <div class="container">
+        <h2>Gioco dell'Impiccato</h2>
+        <div id="game-info">
+            <p>Indovina la parola:</p>
+            <div id="word-display">
+                <span *ngFor="let char of displayedWord">{{ char }}</span>
+            </div>
+            <p id="guessed-letters">Lettere indovinate: {{ guessedLetters }}</p>
+            <p id="remaining-attempts">Tentativi rimanenti: {{ remainingAttempts }}</p>
+        </div>
+        <div id="input-area">
+            <input [(ngModel)]="currentGuess" maxlength="1" (keyup.enter)="makeGuess()" placeholder="Inserisci una lettera">
+            <button class="guess-button" (click)="makeGuess()">Prova</button>
+        </div>
+        <div id="hangman-display">
+            <!-- Placeholder for the hangman graphic -->
+            <img [src]="hangmanImage" alt="Hangman">
+        </div>
+        <div id="winner-modal" *ngIf="isGameOver" class="winner-modal">
+            <p>{{ gameOverMessage }}</p>
+            <button class="close-modal" (click)="resetGame()">Gioca di nuovo</button>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

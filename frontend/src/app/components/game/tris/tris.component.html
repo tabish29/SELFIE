@@ -1,14 +1,20 @@
 <div class="page-container">
     <app-navbar></app-navbar>
     <div class="container">
-        <h1>Gioco del Tris</h1>
+        <h2>Gioco del Tris</h2>
+        <div id="turn-info">
+            <p id="status">Turno: Giocatore {{ currentPlayer }}</p>
+        </div>
         <div id="board" class="board">
             <div class="cell" *ngFor="let cell of cells; let i = index" (click)="makeMove(i)">
                 {{ cell }}
             </div>
         </div>
-        <button (click)="resetGame()">Resetta Gioco</button>
-        <p id="status">Turno: {{ currentPlayer }}</p>
+        <button class="reset-button" (click)="resetGame()">Resetta Gioco</button>
+        <div id="winner-modal" *ngIf="winner" class="winner-modal">
+            <p>Vincitore:</p> <p>Giocatore {{ winner }}</p>
+            <button class="close-modal" (click)="resetGame()">Gioca di nuovo</button>
+        </div>
     </div>
     <app-footer></app-footer>
 </div>

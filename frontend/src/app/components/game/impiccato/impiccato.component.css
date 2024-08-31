@@ -1,0 +1,118 @@
+.container {
+    margin: 20px auto;
+    text-align: center;
+    font-family: 'Poppins', sans-serif; /* Font moderno */
+    max-width: 500px; /* Dimensioni compatte */
+}
+
+h2 {
+    font-size: 2.5em;
+    color: #4A90E2;
+    margin-bottom: 20px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+#game-info {
+    margin-bottom: 20px;
+}
+
+#word-display {
+    font-size: 2em;
+    letter-spacing: 10px;
+    margin: 10px 0;
+}
+
+#guessed-letters,
+#remaining-attempts {
+    font-size: 1.2em;
+    color: #555;
+    margin: 5px 0;
+}
+
+#input-area {
+    margin: 20px 0;
+}
+
+input {
+    padding: 10px;
+    font-size: 1.2em;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-right: 10px;
+    max-width: 50px;
+    text-align: center;
+}
+
+button.guess-button {
+    padding: 10px 20px;
+    background-color: #FF6F61;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.2em;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(255, 111, 97, 0.4);
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+button.guess-button:hover {
+    background-color: #D9534F;
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(255, 111, 97, 0.6);
+}
+
+#hangman-display img {
+    max-width: 100%;
+    margin: 20px 0;
+}
+
+.winner-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    animation: blink 1s infinite alternate, showModal 0.5s ease-in-out;
+    font-size: 2em;
+}
+
+@keyframes blink {
+    0% { background-color: rgba(0, 0, 0, 0.8); }
+    50% { background-color: rgba(0, 0, 0, 0.6); }
+    100% { background-color: rgba(0, 0, 0, 0.8); }
+}
+
+@keyframes showModal {
+    from {
+        transform: translate(-50%, -60%);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+}
+
+button.close-modal {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button.close-modal:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
