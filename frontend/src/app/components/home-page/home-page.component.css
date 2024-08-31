@@ -15,6 +15,15 @@
     left: 0;
     z-index: 1000;
 }
+.page-container img{
+    width: 35%;
+    margin-top: 20px;
+}
+.main-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 body {
     font-family: Arial, sans-serif;
     display: flex;
