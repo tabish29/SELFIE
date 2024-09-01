@@ -1,8 +1,8 @@
 .container {
     margin: 20px auto;
     text-align: center;
-    font-family: 'Poppins', sans-serif; /* Font moderno */
-    max-width: 500px; /* Dimensioni compatte */
+    font-family: 'Poppins', sans-serif;
+    max-width: 1000px; /* Dimensione max per la pagina */
 }
 
 h2 {
@@ -13,21 +13,45 @@ h2 {
     text-transform: uppercase;
 }
 
-#game-info {
+.columns-container {
+    display: flex;
+    justify-content: space-between;
     margin-bottom: 20px;
 }
 
+#left-column, #right-column {
+    flex: 1;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+#left-column {
+    text-align: center;
+}
+
+#right-column {
+    text-align: center;
+}
+
+#hangman-display img {
+    max-width: 50%; /* Adatta l'immagine alla colonna */
+    height: auto;
+}
+
 #word-display {
-    font-size: 2em;
-    letter-spacing: 10px;
+    font-size: 3em; /* Ingrandito per evidenziare meglio la parola */
+    letter-spacing: 15px; /* Spazio extra tra le lettere */
     margin: 10px 0;
 }
 
-#guessed-letters,
+#info-bottom {
+    margin-bottom: 20px;
+}
+
 #remaining-attempts {
     font-size: 1.2em;
     color: #555;
-    margin: 5px 0;
+    margin-top: 30px;
 }
 
 #input-area {
@@ -35,38 +59,93 @@ h2 {
 }
 
 input {
-    padding: 10px;
+    padding: 12px;
     font-size: 1.2em;
-    border-radius: 5px;
-    border: 1px solid #ddd;
+    border-radius: 8px;
+    border: 2px solid #4A90E2;
+    background-color: #f9f9f9;
+    color: #333;
     margin-right: 10px;
-    max-width: 50px;
+    max-width: 60px;
     text-align: center;
+    outline: none;
+    transition: border-color 0.3s, background-color 0.3s, box-shadow 0.3s;
 }
+
+input::placeholder {
+    color: #999;
+}
+
+input:focus {
+    border-color: #4A90E2;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(74, 144, 226, 0.2);
+}
+
+input:disabled {
+    background-color: #e0e0e0;
+    color: #aaa;
+    cursor: not-allowed;
+}
+
 
 button.guess-button {
     padding: 10px 20px;
-    background-color: #FF6F61;
+    background-color: #cf2b96;
     color: white;
     border: none;
     border-radius: 30px;
     font-size: 1.2em;
     cursor: pointer;
-    box-shadow: 0 4px 8px rgba(255, 111, 97, 0.4);
+    box-shadow: 0 4px 8px rgba(255, 97, 252, 0.4);
     transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
 }
 
 button.guess-button:hover {
+    background-color: #c24fd9;
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(255, 97, 242, 0.6);
+}
+
+/* Alfabeto e lettere */
+#alphabet {
+    margin: 20px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#alphabet span {
+    font-size: 1.2em; /* Ridotto di un quarto circa */
+    margin: 3px; /* Ridotto per adattare la nuova dimensione */
+    padding: 7px; /* Ridotto di un quarto circa */
+    width: 30px;  /* Ridotto di un quarto circa */
+    height: 30px; /* Ridotto di un quarto circa */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.unused-letter {
+    background-color: #FF6F61;
+    color: white;
+    cursor: pointer;
+}
+
+.unused-letter:hover {
     background-color: #D9534F;
     transform: scale(1.1);
-    box-shadow: 0 6px 12px rgba(255, 111, 97, 0.6);
 }
 
-#hangman-display img {
-    max-width: 100%;
-    margin: 20px 0;
+.used-letter {
+    background-color: #ccc;
+    color: #999;
+    cursor: not-allowed;
 }
 
+/* Modal di vittoria/sconfitta */
 .winner-modal {
     position: fixed;
     top: 50%;

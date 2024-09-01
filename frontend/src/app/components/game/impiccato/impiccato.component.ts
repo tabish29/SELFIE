@@ -3,34 +3,36 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-impiccato',
   templateUrl: './impiccato.component.html',
-  styleUrls: ['./impiccato.component.css'] // Nota: "styleUrls" al plurale per riferirsi all'array di stili
+  styleUrls: ['./impiccato.component.css']
 })
 export class ImpiccatoComponent {
   word: string = 'ANGULAR'; // Parola da indovinare
   displayedWord: string[] = Array(this.word.length).fill('_'); // Parola mostrata con spazi vuoti
   guessedLetters: string[] = []; // Lettere indovinate
   remainingAttempts: number = 6; // Tentativi rimanenti
-  currentGuess: string = ''; // Lettera corrente
   isGameOver: boolean = false; // Stato del gioco
   gameOverMessage: string = ''; // Messaggio di fine partita
-  hangmanImage: string = '/assets/hangman0.png'; // Percorso dell'immagine dell'impiccato
+  hangmanImage: string = '/assets/hangman1.png'; // Percorso dell'immagine dell'impiccato
+  alphabet: string[] = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''); // Alfabeto
+  currentGuess: string = ''; // Lettera corrente
 
   // Metodo per gestire il tentativo di una lettera
   makeGuess(): void {
     if (this.currentGuess && !this.isGameOver) {
-      const guess = this.currentGuess.toUpperCase();
+      this.selectLetter(this.currentGuess.toUpperCase());
+      this.currentGuess = ''; // Reset dell'input
+    }
+  }
 
-      if (this.guessedLetters.includes(guess) || this.displayedWord.includes(guess)) {
-        this.currentGuess = ''; // Reset se la lettera è già stata usata
-        return;
-      }
+  // Metodo per selezionare una lettera dall'alfabeto
+  selectLetter(letter: string): void {
+    if (!this.isGameOver && !this.guessedLetters.includes(letter)) {
+      this.guessedLetters.push(letter);
 
-      this.guessedLetters.push(guess);
-
-      if (this.word.includes(guess)) {
+      if (this.word.includes(letter)) {
         for (let i = 0; i < this.word.length; i++) {
-          if (this.word[i] === guess) {
-            this.displayedWord[i] = guess;
+          if (this.word[i] === letter) {
+            this.displayedWord[i] = letter;
           }
         }
         if (!this.displayedWord.includes('_')) {
@@ -43,7 +45,8 @@ export class ImpiccatoComponent {
           this.gameOver(false);
         }
       }
-      this.currentGuess = ''; // Reset della lettera corrente
+    } else if (this.guessedLetters.includes(letter)) {
+      alert('Lettera già provata!');
     }
   }
 
@@ -55,7 +58,7 @@ export class ImpiccatoComponent {
 
   // Metodo per aggiornare l'immagine dell'impiccato
   updateHangmanImage(): void {
-    this.hangmanImage = `/assets/hangman${6 - this.remainingAttempts}.png`;
+    this.hangmanImage = `/assets/hangman${7 - this.remainingAttempts}.png`;
   }
 
   // Metodo per resettare il gioco
@@ -66,6 +69,6 @@ export class ImpiccatoComponent {
     this.remainingAttempts = 6;
     this.isGameOver = false;
     this.currentGuess = '';
-    this.hangmanImage = '/assets/hangman0.png';
+    this.hangmanImage = '/assets/hangman1.png';
   }
 }
