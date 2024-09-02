@@ -1,1 +1,22 @@
-<p>sudoku works!</p>
+<div class="page-container">
+    <app-navbar></app-navbar>
+    <div class="container">
+        <h2>Gioco del Sudoku</h2>
+        <div id="sudoku-board">
+            <!-- Griglia del Sudoku -->
+            <div class="sudoku-grid">
+                <!-- Questa è la griglia completa, visibile solo il primo quadrato per esempio -->
+                <div class="sudoku-box" *ngFor="let box of sudokuBoxes; let i = index">
+                    <div *ngIf="i === 0" class="sudoku-box-inner">
+                        <div *ngFor="let row of box; let rowIndex = index" class="sudoku-row">
+                            <div *ngFor="let cell of row; let colIndex = index" class="sudoku-cell">
+                                <input [(ngModel)]="cell.value" maxlength="1" placeholder="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>
