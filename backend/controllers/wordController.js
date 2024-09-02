@@ -1,9 +1,9 @@
 const fs = require('fs');
 const path = require('path');
-const Word = require('./models/Word'); // Importa il modello Word
+const Word = require('../models/word'); // Importa il modello Word
 
 function getRandomWord() {
-    const filePath = path.join(__dirname, 'data', 'words.json');
+    const filePath = path.join(__dirname, '../data', 'words.json');
     return new Promise((resolve, reject) => {
         fs.readFile(filePath, 'utf8', (err, data) => {
             if (err) {
@@ -24,11 +24,6 @@ function getRandomWord() {
     });
 }
 
-// Esempio di utilizzo della funzione
-getRandomWord()
-    .then(word => {
-        console.log("Parola scelta:", word.word); // Accedi alla proprietà word
-    })
-    .catch(err => {
-        console.error("Errore:", err.message);
-    });
+module.exports = {
+    getRandomWord
+};
