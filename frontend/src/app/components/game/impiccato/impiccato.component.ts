@@ -20,28 +20,27 @@ export class ImpiccatoComponent implements OnInit {
   constructor(private wordService: WordService) {}
 
   ngOnInit(): void {
-    this.loadRandomWord();
+    this.loadRandomWord(); // Carica una parola casuale all'inizio del gioco
   }
 
+  // Metodo per caricare una parola casuale dal servizio
   loadRandomWord(): void {
-    this.wordService.getWords().subscribe(words => {
-      this.word = this.getRandomWord(words);
-      this.displayedWord = Array(this.word.length).fill('_');
+    this.wordService.getRandomWord().subscribe(word => {
+      this.word = word; // Usa la parola esattamente come viene fornita
+      this.displayedWord = Array(this.word.length).fill('_'); // Inizializza la parola mostrata
+      console.log('Parola caricata:', this.word); // Mostra la parola caricata nella console
     });
   }
 
-  getRandomWord(words: string[]): string {
-    const randomIndex = Math.floor(Math.random() * words.length);
-    return words[randomIndex];
-  }
-
+  // Metodo per gestire il tentativo di una lettera
   makeGuess(): void {
     if (this.currentGuess && !this.isGameOver) {
-      this.selectLetter(this.currentGuess.toUpperCase());
+      this.selectLetter(this.currentGuess);
       this.currentGuess = ''; // Reset dell'input
     }
   }
 
+  // Metodo per selezionare una lettera dall'alfabeto
   selectLetter(letter: string): void {
     if (!this.isGameOver && !this.guessedLetters.includes(letter)) {
       this.guessedLetters.push(letter);
@@ -67,21 +66,29 @@ export class ImpiccatoComponent implements OnInit {
     }
   }
 
+  // Metodo per gestire la fine del gioco
   gameOver(won: boolean): void {
     this.isGameOver = true;
     this.gameOverMessage = won ? 'Hai vinto!' : 'Hai perso! La parola era: ' + this.word;
   }
 
+  // Metodo per aggiornare l'immagine dell'impiccato
   updateHangmanImage(): void {
     this.hangmanImage = `/assets/hangman${7 - this.remainingAttempts}.png`;
   }
 
-  resetGame(): void {
-    this.loadRandomWord();
+  // Metodo per resettare il gioco
+  /*resetGame(): void {
+    this.loadRandomWord(); // Carica una nuova parola casuale
     this.guessedLetters = [];
     this.remainingAttempts = 6;
     this.isGameOver = false;
     this.currentGuess = '';
     this.hangmanImage = '/assets/hangman1.png';
+  }*/
+  resetGame(): void {
+    // Ricarica la pagina
+    window.location.reload();
   }
+
 }

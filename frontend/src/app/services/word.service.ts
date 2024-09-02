@@ -6,11 +6,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class WordService {
-  private apiUrl = 'assets/data/words.json'; // Percorso al file JSON
+  private baseWordsApiUrl = 'http://localhost:3000/words'; 
 
   constructor(private http: HttpClient) {}
 
-  getWords(): Observable<string[]> {
-    return this.http.get<string[]>(this.apiUrl);
+  getRandomWord(): Observable<string> {
+    return this.http.get<string>(`${this.baseWordsApiUrl}/random`);
   }
 }

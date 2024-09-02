@@ -16,7 +16,7 @@ function getRandomWord() {
                 }
                 const randomIndex = Math.floor(Math.random() * words.length);
                 const randomWord = new Word(words[randomIndex]); // Crea un'istanza di Word
-                resolve(randomWord);
+                resolve(randomWord.word);
             } catch (parseErr) {
                 reject(parseErr);
             }
