@@ -8,8 +8,8 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 export class SnakeComponent implements OnInit, AfterViewInit {
   private canvas!: HTMLCanvasElement;
   private ctx!: CanvasRenderingContext2D;
-  private gridSize = 13; // Griglia più piccola
-  private tileSize = 55; // Caselle più grandi
+  private gridSize = 10; // Griglia più piccola
+  private tileSize = 40; // Caselle più grandi
   private snake: { x: number, y: number }[] = [{ x: 5, y: 5 }];
   private food = { x: 0, y: 0 };
   private dx = 0;
@@ -18,7 +18,7 @@ export class SnakeComponent implements OnInit, AfterViewInit {
   private gameInterval: any;
   private appleImage: HTMLImageElement | undefined;
   private snakeImage: HTMLImageElement | undefined;
-  private speed = 100; // Velocità iniziale (200 ms per frame)
+  private speed = 200; // Velocità iniziale (200 ms per frame)
 
   ngOnInit(): void {
     this.initializeFoodPosition();
@@ -159,7 +159,7 @@ export class SnakeComponent implements OnInit, AfterViewInit {
 
   private adjustSpeed(): void {
     if (this.score % 5 === 0) {
-      this.speed = Math.max(50, this.speed * 0.7); // Aumenta la velocità del 10% ogni 5 punti
+      this.speed = Math.max(50, this.speed * 0.9); // Aumenta la velocità del 10% ogni 5 punti
       clearInterval(this.gameInterval);
       this.gameInterval = setInterval(() => {
         this.update();

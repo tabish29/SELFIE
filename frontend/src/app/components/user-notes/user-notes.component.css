@@ -1,7 +1,10 @@
 .container {
-    max-width: 800px;
+    max-width: 1000px;
     margin: auto;
     padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background-color: #fff;
 }
 
 h1 {
@@ -9,73 +12,82 @@ h1 {
     color: #333;
 }
 
-.note-list {
-    list-style: none;
-    padding: 0;
+.notes-section {
+    margin-top: 20px;
+}
+
+.note-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
 }
 
 .note-item {
     border: 1px solid #ddd;
     padding: 15px;
-    margin: 10px 0;
+    border-radius: 8px;
+    background-color: #fafafa;
+    transition: transform 0.3s, box-shadow 0.3s;
     cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s;
 }
 
 .note-item:hover {
-    background-color: #f9f9f9;
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.note-form {
-    margin-top: 20px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    background-color: #f9f9f9;
-}
-
-.note-form label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-}
-
-.note-form input,
-.note-form textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.note-form button {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    background-color: #007bff;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    margin-right: 10px;
-}
-
-.note-form button:hover {
-    background-color: #0056b3;
-}
-
+/* Stile generico per tutti i bottoni */
 button {
-    padding: 10px 15px;
+    padding: 12px 20px;
     border: none;
-    border-radius: 4px;
+    border-radius: 15px;
     background-color: #007bff;
-    color: white;
+    color: white; /* Testo bianco */
     font-size: 16px;
+    font-weight: 600px;
     cursor: pointer;
-    margin: 10px 0;
+    margin-top: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #0056b3; /* Colore più scuro al passaggio del mouse */
+    transform: translateY(-3px); /* Leggero sollevamento al passaggio del mouse */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+button:active {
+    transform: translateY(0); /* Ritorno alla posizione originale al clic */
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Stile specifico per il pulsante "Carica Anteprime" */
+.preview-button {
+    margin-top: 20px;
+    background-color: #28a745; /* Verde per distinguersi dagli altri */
+    color: white; /* Testo bianco */
+}
+
+.preview-button:hover {
+    background-color: #218838; /* Colore più scuro al passaggio del mouse */
+}
+
+/* Stile per i pulsanti nella sezione di azione */
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; /* I bottoni vanno a capo su schermi piccoli */
+    gap: 10px;
+}
+
+@media (max-width: 768px) {
+    .note-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+        align-items: stretch; /* I bottoni si allungano per riempire la larghezza disponibile */
+    }
 }

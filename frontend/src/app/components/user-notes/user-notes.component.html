@@ -1,35 +1,33 @@
-<!-- user-notes.component.html -->
 <app-navbar></app-navbar>
 
 <div class="container">
   <h1>Gestione Note</h1>
 
   <!-- Sezione per visualizzare le note -->
-  <div *ngIf="notes.length > 0">
+  <div *ngIf="notes.length > 0" class="notes-section">
     <h2>Le tue Note</h2>
-    <ul class="note-list">
-      <li *ngFor="let note of notes" (click)="selectNote(note)" class="note-item">
+    <div class="note-grid">
+      <div *ngFor="let note of notes" (click)="selectNote(note)" class="note-item">
         <h3>{{ note.title }}</h3>
         <p>{{ note.content }}</p>
         <p><strong>Creato il:</strong> {{ note.createdAt | date:'short' }}</p>
         <p><strong>Ultima modifica:</strong> {{ note.updatedAt | date:'short' }}</p>
-      </li>
-    </ul>
+      </div>
+    </div>
   </div>
-  <div *ngIf="notes.length === 0">
+
+  <div *ngIf="notes.length === 0" class="empty-notes">
     <p>Nessuna nota disponibile.</p>
   </div>
 
-  <!-- Pulsante per creare una nuova nota -->
-  <button mat-button (click)="openCreateNoteDialog()">Crea Nota</button>
+  <!-- Pulsanti di azione -->
+  <div class="action-buttons">
+    <button mat-button (click)="openCreateNoteDialog()">Crea Nota</button>
+    <button mat-button *ngIf="selectedNote" (click)="openUpdateNoteDialog(selectedNote)">Modifica Nota</button>
+    <button mat-button *ngIf="selectedNote" (click)="deleteNote(selectedNote.title)">Elimina Nota</button>
+  </div>
 
-  <!-- Pulsante per aggiornare la nota selezionata (mostrato solo se una nota è selezionata) -->
-  <button mat-button *ngIf="selectedNote" (click)="openUpdateNoteDialog(selectedNote)">Modifica Nota</button>
-
-  <!-- Pulsante per eliminare la nota selezionata (mostrato solo se una nota è selezionata) -->
-  <button mat-button *ngIf="selectedNote" (click)="deleteNote(selectedNote.title)">Elimina Nota</button>
-
-  <button (click)="loadPreviews()">Carica Anteprime</button>
+  <button class="preview-button" (click)="loadPreviews()">Carica Anteprime</button>
 </div>
 
 <app-footer></app-footer>
