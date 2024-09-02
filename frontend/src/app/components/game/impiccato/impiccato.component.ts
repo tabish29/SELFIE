@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { WordService } from '../../../services/word.service'; // Importa il servizio
 
 @Component({
   selector: 'app-impiccato',
   templateUrl: './impiccato.component.html',
   styleUrls: ['./impiccato.component.css']
 })
-export class ImpiccatoComponent {
-  word: string = 'ANGULAR'; // Parola da indovinare
-  displayedWord: string[] = Array(this.word.length).fill('_'); // Parola mostrata con spazi vuoti
+export class ImpiccatoComponent implements OnInit {
+  word: string = ''; // Parola da indovinare
+  displayedWord: string[] = []; // Parola mostrata con spazi vuoti
   guessedLetters: string[] = []; // Lettere indovinate
   remainingAttempts: number = 6; // Tentativi rimanenti
   isGameOver: boolean = false; // Stato del gioco
@@ -16,7 +17,24 @@ export class ImpiccatoComponent {
   alphabet: string[] = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''); // Alfabeto
   currentGuess: string = ''; // Lettera corrente
 
-  // Metodo per gestire il tentativo di una lettera
+  constructor(private wordService: WordService) {}
+
+  ngOnInit(): void {
+    this.loadRandomWord();
+  }
+
+  loadRandomWord(): void {
+    this.wordService.getWords().subscribe(words => {
+      this.word = this.getRandomWord(words);
+      this.displayedWord = Array(this.word.length).fill('_');
+    });
+  }
+
+  getRandomWord(words: string[]): string {
+    const randomIndex = Math.floor(Math.random() * words.length);
+    return words[randomIndex];
+  }
+
   makeGuess(): void {
     if (this.currentGuess && !this.isGameOver) {
       this.selectLetter(this.currentGuess.toUpperCase());
@@ -24,7 +42,6 @@ export class ImpiccatoComponent {
     }
   }
 
-  // Metodo per selezionare una lettera dall'alfabeto
   selectLetter(letter: string): void {
     if (!this.isGameOver && !this.guessedLetters.includes(letter)) {
       this.guessedLetters.push(letter);
@@ -50,21 +67,17 @@ export class ImpiccatoComponent {
     }
   }
 
-  // Metodo per gestire la fine del gioco
   gameOver(won: boolean): void {
     this.isGameOver = true;
     this.gameOverMessage = won ? 'Hai vinto!' : 'Hai perso! La parola era: ' + this.word;
   }
 
-  // Metodo per aggiornare l'immagine dell'impiccato
   updateHangmanImage(): void {
     this.hangmanImage = `/assets/hangman${7 - this.remainingAttempts}.png`;
   }
 
-  // Metodo per resettare il gioco
   resetGame(): void {
-    this.word = 'ANGULAR'; // Resetta la parola
-    this.displayedWord = Array(this.word.length).fill('_');
+    this.loadRandomWord();
     this.guessedLetters = [];
     this.remainingAttempts = 6;
     this.isGameOver = false;
