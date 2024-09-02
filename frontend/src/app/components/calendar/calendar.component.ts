@@ -1,9 +1,11 @@
-import { Component , signal, ChangeDetectorRef } from '@angular/core';
+import { Component , signal, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { FullCalendarModule } from '@fullcalendar/angular'; 
+import { FullCalendarComponent, FullCalendarModule } from '@fullcalendar/angular'; 
 import { CalendarOptions, DateSelectArg, EventClickArg, EventApi } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';  
+import listPlugin from '@fullcalendar/list';          
 import { INITIAL_EVENTS, createEventId } from './event-utils';
 
 @Component({
@@ -12,10 +14,16 @@ import { INITIAL_EVENTS, createEventId } from './event-utils';
   styleUrl: './calendar.component.css',
 })
 export class CalendarComponent {
+  
+  @ViewChild('fullcalendar')
+  fullcalendar!: FullCalendarComponent;
+  
   calendarVisible = signal(true);
   calendarOptions = signal<CalendarOptions>({
     plugins: [
       dayGridPlugin,
+      timeGridPlugin,
+      listPlugin,
     ],
     headerToolbar: {
       left: 'prev,next today',
@@ -38,21 +46,17 @@ export class CalendarComponent {
     eventRemove:
     */
   });
+
+  changeView(viewName: string) {
+    this.fullcalendar.getApi().changeView(viewName);
+  }
+  
   currentEvents = signal<EventApi[]>([]);
 
   constructor(private changeDetector: ChangeDetectorRef) {
   }
 
-  handleCalendarToggle() {
-    this.calendarVisible.update((bool) => !bool);
-  }
-
-  handleWeekendsToggle() {
-    this.calendarOptions.update((options) => ({
-      ...options,
-      weekends: !options.weekends,
-    }));
-  }
+  
 
   handleDateSelect(selectInfo: DateSelectArg) {
     const title = prompt('Please enter a new title for your event');
