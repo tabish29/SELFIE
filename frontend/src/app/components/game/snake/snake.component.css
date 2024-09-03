@@ -22,12 +22,6 @@
     background-color: #000;
 }
 
-.score {
-    font-size: 24px;
-    color: #fff;
-    margin: 10px 0;
-}
-
 canvas {
     display: block;
     background-color: #000;
@@ -35,13 +29,13 @@ canvas {
 
 .score {
     color: #fff;
-    font-size: 24px;
-    margin-top: 10px;
+    font-size: 20px;
+    margin-top: 5px;
     font-family: 'Arial', sans-serif;
 }
 
 .reset-button {
-    margin-top: 10px;
+    margin: 5px;
     padding: 10px 20px;
     background-color: #007bff;
     border: none;

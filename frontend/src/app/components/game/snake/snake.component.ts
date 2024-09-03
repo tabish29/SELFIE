@@ -8,8 +8,8 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 export class SnakeComponent implements OnInit, AfterViewInit {
   private canvas!: HTMLCanvasElement;
   private ctx!: CanvasRenderingContext2D;
-  private gridSize = 10; // Griglia più piccola
-  private tileSize = 40; // Caselle più grandi
+  private gridSize = 12; 
+  private tileSize = 36; 
   private snake: { x: number, y: number }[] = [{ x: 5, y: 5 }];
   private food = { x: 0, y: 0 };
   private dx = 0;
@@ -17,8 +17,8 @@ export class SnakeComponent implements OnInit, AfterViewInit {
   public score = 0;
   private gameInterval: any;
   private appleImage: HTMLImageElement | undefined;
-  private snakeImage: HTMLImageElement | undefined;
-  private speed = 200; // Velocità iniziale (200 ms per frame)
+  private snakeHeadImage: HTMLImageElement | undefined;
+  private speed = 100;
 
   ngOnInit(): void {
     this.initializeFoodPosition();
@@ -34,17 +34,16 @@ export class SnakeComponent implements OnInit, AfterViewInit {
       this.appleImage = new Image();
       this.appleImage.src = 'assets/apple.png';
 
-      this.snakeImage = new Image();
-      this.snakeImage.src = 'assets/snake.png';
+      this.snakeHeadImage = new Image();
+      this.snakeHeadImage.src = 'assets/snake_head.png';
 
-      // Assegna l'handler di onload solo se le immagini sono caricate
       this.appleImage.onload = () => {
-        if (this.snakeImage) {
-          this.snakeImage.onload = () => {
+        if (this.snakeHeadImage) {
+          this.snakeHeadImage.onload = () => {
             this.startGame();
           };
         } else {
-          this.startGame(); // Fall back se l'immagine del serpente non è definita
+          this.startGame();
         }
       };
     }
@@ -89,21 +88,58 @@ export class SnakeComponent implements OnInit, AfterViewInit {
   }
 
   private draw(): void {
-    if (!this.appleImage || !this.snakeImage) return; // Assicurati che le immagini siano caricate
+    if (!this.appleImage || !this.snakeHeadImage) return; 
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-    // Draw snake
-    for (const segment of this.snake) {
-      this.ctx.drawImage(
-        this.snakeImage,
-        segment.x * this.tileSize,
-        segment.y * this.tileSize,
-        this.tileSize,
-        this.tileSize
-      );
+    // Disegna il corpo del serpente come un filo continuo
+    const bodyWidth = this.tileSize * 0.5;
+
+    this.ctx.strokeStyle = '#228B22'; // Colore verde per il corpo
+    this.ctx.lineWidth = bodyWidth;
+    this.ctx.lineCap = 'round'; // Per rendere il corpo più realistico
+
+    this.ctx.beginPath();
+
+    // Partenza dalla testa
+    this.ctx.moveTo(
+      this.snake[0].x * this.tileSize + this.tileSize / 2,
+      this.snake[0].y * this.tileSize + this.tileSize / 2
+    );
+
+    // Tracciare il corpo del serpente lungo i segmenti
+    for (let i = 1; i < this.snake.length; i++) {
+      const segment = this.snake[i];
+      const previousSegment = this.snake[i - 1];
+
+      // Controlla se il serpente attraversa un bordo della griglia
+      if (Math.abs(segment.x - previousSegment.x) > 1 || Math.abs(segment.y - previousSegment.y) > 1) {
+        // Interrompe la linea se attraversa il bordo
+        this.ctx.moveTo(
+          segment.x * this.tileSize + this.tileSize / 2,
+          segment.y * this.tileSize + this.tileSize / 2
+        );
+      } else {
+        // Continua a tracciare la linea
+        this.ctx.lineTo(
+          segment.x * this.tileSize + this.tileSize / 2,
+          segment.y * this.tileSize + this.tileSize / 2
+        );
+      }
     }
 
-    // Draw food (apple image)
+    this.ctx.stroke();
+
+    // Disegna la testa del serpente
+    const head = this.snake[0];
+    this.ctx.drawImage(
+      this.snakeHeadImage,
+      head.x * this.tileSize,
+      head.y * this.tileSize,
+      this.tileSize,
+      this.tileSize
+    );
+
+    // Disegna la mela
     this.ctx.drawImage(
       this.appleImage,
       this.food.x * this.tileSize,
@@ -112,7 +148,7 @@ export class SnakeComponent implements OnInit, AfterViewInit {
       this.tileSize
     );
 
-    // Draw score
+    // Disegna il punteggio
     this.ctx.fillStyle = 'white';
     this.ctx.font = '24px Arial';
     this.ctx.fillText(`Score: ${this.score}`, 10, this.canvas.height - 10);
@@ -136,7 +172,7 @@ export class SnakeComponent implements OnInit, AfterViewInit {
       this.snake.unshift(head);
       this.score++;
       this.placeFood();
-      this.adjustSpeed(); // Aumenta la velocità del gioco
+      this.adjustSpeed(); 
     } else {
       this.snake.unshift(head);
       this.snake.pop();
@@ -159,7 +195,7 @@ export class SnakeComponent implements OnInit, AfterViewInit {
 
   private adjustSpeed(): void {
     if (this.score % 5 === 0) {
-      this.speed = Math.max(50, this.speed * 0.9); // Aumenta la velocità del 10% ogni 5 punti
+      this.speed = Math.max(50, this.speed * 0.9); 
       clearInterval(this.gameInterval);
       this.gameInterval = setInterval(() => {
         this.update();
@@ -174,9 +210,9 @@ export class SnakeComponent implements OnInit, AfterViewInit {
     this.dx = 0;
     this.dy = 0;
     this.score = 0;
-    this.speed = 200; // Reset della velocità iniziale
+    this.speed = 200; 
     this.initializeFoodPosition();
-    if (this.appleImage && this.snakeImage) {
+    if (this.appleImage && this.snakeHeadImage) {
       this.gameInterval = setInterval(() => {
         this.update();
         this.draw();
