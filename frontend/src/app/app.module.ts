@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +24,7 @@ import { TimeMachineComponent } from './components/time-machine/time-machine.com
 import { UserNotesComponent } from './components/user-notes/user-notes.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { NewNoteDialogComponent } from './components/new-note-dialog/new-note-dialog.component';
+import { NewActivityDialogComponent } from './components/new-activity-dialog/new-activity-dialog.component';
 import { UpdateNoteDialogComponent } from './components/update-note-dialog/update-note-dialog.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
@@ -43,6 +47,7 @@ import { PuzzleComponent } from './components/game/puzzle/puzzle.component';
     TimeMachineComponent,
     UserNotesComponent,
     NewNoteDialogComponent,
+    NewActivityDialogComponent,
     UpdateNoteDialogComponent,
     CalendarComponent,
     GameComponent,
@@ -55,12 +60,18 @@ import { PuzzleComponent } from './components/game/puzzle/puzzle.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     MatDialogModule,
     MatButtonModule,
     MatInputModule,
     MatFormFieldModule,
-    FullCalendarModule
+    FullCalendarModule,
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatCheckboxModule
+
   ],
   providers: [
     provideClientHydration(),

@@ -46,5 +46,11 @@
     "password": "$2b$10$v0qa1aTjRFFWNCAGF7Kq2uCn3CJ/utxx3mtWR6ogd310rIKzRFvtC",
     "firstName": "d",
     "lastName": "d"
+  },
+  {
+    "username": "mati",
+    "password": "$2b$10$xuDaABX97prT8AwfiD3tUu8Wga/hB034gojmmLT.qcSJfij7c4Sui",
+    "firstName": "Matilde",
+    "lastName": "Matilde"
   }
 ]

@@ -7,6 +7,8 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';  
 import listPlugin from '@fullcalendar/list';          
 import { INITIAL_EVENTS, createEventId } from './event-utils';
+import { MatDialog } from '@angular/material/dialog';
+import { NewActivityDialogComponent } from '../new-activity-dialog/new-activity-dialog.component';
 
 @Component({
   selector: 'app-calendar',
@@ -53,12 +55,37 @@ export class CalendarComponent {
   
   currentEvents = signal<EventApi[]>([]);
 
-  constructor(private changeDetector: ChangeDetectorRef) {
-  }
-
-  
+  constructor(private dialog: MatDialog, private changeDetector: ChangeDetectorRef) {}
 
   handleDateSelect(selectInfo: DateSelectArg) {
+    console.log('Date selected:', selectInfo);
+    /*
+    const dialogRef = this.dialog.open(NewEventDialogComponent, {
+      width: '400px',
+      data: {
+        startStr: selectInfo.startStr,
+        endStr: selectInfo.endStr,
+        allDay: selectInfo.allDay
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      const calendarApi = selectInfo.view.calendar;
+      calendarApi.unselect(); // clear date selection
+
+      if (result) {
+        calendarApi.addEvent({
+          id: createEventId(),
+          title: result.title,
+          start: result.start,
+          end: result.end,
+          allDay: result.allDay
+        });
+      }
+    });*/
+
+
+    /*
     const title = prompt('Please enter a new title for your event');
     const calendarApi = selectInfo.view.calendar;
 
@@ -72,7 +99,7 @@ export class CalendarComponent {
         end: selectInfo.endStr,
         allDay: selectInfo.allDay
       });
-    }
+    }*/
   }
 
   handleEventClick(clickInfo: EventClickArg) {
@@ -83,6 +110,29 @@ export class CalendarComponent {
 
   handleEvents(events: EventApi[]) {
     this.currentEvents.set(events);
-    this.changeDetector.detectChanges(); // workaround for pressionChangedAfterItHasBeenCheckedError
+    this.changeDetector.detectChanges(); 
+  }
+
+  hadleNewActivity(){
+    console.log("New Activity");
+
+    const dialogRef = this.dialog.open(NewActivityDialogComponent, {
+      width: '400px',
+      data: {
+        title: '',
+        dueDate: null,
+        notes: ''
+      }
+    });
+
+    
+    dialogRef.afterClosed().subscribe(result => {
+      
+
+      if (result) {
+        console.log('Nuova Attività:', result);
+      }
+    });
+
   }
 }
