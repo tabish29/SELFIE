@@ -166,5 +166,13 @@
     "createdAt": "04/09/2024 17:16",
     "updatedAt": "04/09/2024 17:16",
     "authorUsername": "Leo"
+  },
+  {
+    "title": "Prova 3",
+    "content": "Fai 100 addominali",
+    "categories": "Esercizi",
+    "createdAt": "04/09/2024 19:34",
+    "updatedAt": "04/09/2024 19:34",
+    "authorUsername": "Leo"
   }
 ]

@@ -8,6 +8,8 @@
     text-align: center;
     margin-top: 20px;
     margin-bottom: 20px;
+    height: 80vh;
+    align-items: center;
 }
 
 .games-grid {

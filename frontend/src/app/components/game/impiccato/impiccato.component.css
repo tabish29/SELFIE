@@ -3,6 +3,7 @@
     text-align: center;
     font-family: 'Poppins', sans-serif;
     max-width: 1000px; /* Dimensione max per la pagina */
+    height: 80vh;
 }
 
 h2 {
