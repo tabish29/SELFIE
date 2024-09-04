@@ -38,6 +38,7 @@ async function getAllActivities() {
 }
 
 async function addActivity(title, dueDate, notes, authorUsername) {
+    console.log("activityController: addActivity");
     if (!title || !dueDate || !notes || !authorUsername) {
         throw new Error('Title, dueDate, notes, authorUsername are required');
     }

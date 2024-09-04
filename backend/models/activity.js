@@ -1,4 +1,4 @@
-export class Activity {
+class Activity {
     constructor(title, dueDate, notes, authorUsername){
         this.title = title;
         this.dueDate = dueDate,
@@ -7,4 +7,5 @@ export class Activity {
 
     }
 }
+
 module.exports = Activity;

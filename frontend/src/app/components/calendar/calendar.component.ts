@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { NewActivityDialogComponent } from '../new-activity-dialog/new-activity-dialog.component';
 import { Activity } from '../../models/Activity';
 import { ActivityService } from '../../services/activity.service';
+import { LocalStorageService } from '../../services/local-storage.service';
 
 @Component({
   selector: 'app-calendar',
@@ -18,14 +19,22 @@ import { ActivityService } from '../../services/activity.service';
   styleUrl: './calendar.component.css',
 })
 export class CalendarComponent {
+  activities: Activity[] = [];
+  authorUsername: string = '';
+
   constructor(
     private dialog: MatDialog,
     private changeDetector: ChangeDetectorRef,
-    private activityService: ActivityService
+    private activityService: ActivityService,
+    private localStorageService: LocalStorageService
   ) {}
 
-  activities: Activity[] = [];
-  authorUsername: string = '';
+  ngOnInit(): void {
+    this.authorUsername = this.localStorageService.getItem('username') || '';
+    if (!this.authorUsername) {
+      console.error('Errore: Nessun username trovato');
+    }
+  }
   
   @ViewChild('fullcalendar')
   fullcalendar!: FullCalendarComponent;
@@ -124,15 +133,9 @@ export class CalendarComponent {
   }
 
   hadleNewActivity(){
-    console.log("New Activity");
-
     const dialogRef = this.dialog.open(NewActivityDialogComponent, {
       width: '400px',
-      data: {
-        title: '',
-        dueDate: null,
-        notes: ''
-      }
+      data: {}
     });
 
     
@@ -140,15 +143,20 @@ export class CalendarComponent {
       
 
       if (result) {
-        console.log('Nuova Attività:', result);
-        this.activities.push(result);
 
-        this.activityService.createActivity(result).subscribe(
-          () => console.log('calendar.component: Attività creata'),
-          error => console.error("Errore nella creazione dell'attività, in calendar.component")
+        const newActivity: Activity = {
+          title: result.title,
+          dueDate: result.dueDate ? new Date(result.dueDate) : null,
+          notes: result.notes,
+          authorUsername: this.authorUsername
+        };
+
+        this.activities.push(newActivity);
+
+        this.activityService.createActivity(newActivity).subscribe(
+          () => console.log('Attività creata' + newActivity),
+          error => console.error("Errore nella creazione dell'attività")
         )
-
-        console.log(this.activities);
       }
     });
 

@@ -20,7 +20,7 @@ export class ActivityService {
   }
 
   createActivity(activity: Activity): Observable<Activity> {
-    console.log("activity.service: " + activity.title);
+    console.log("activity.service: username" + activity.authorUsername);
     return this.http.post<Activity>(this.apiUrl, activity);
     
   }

@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-    console.log("activityRoute: post");
+    console.log("activityRoute: post - Dati ricevuti:", req.body);
     const { title, dueDate, notes, authorUsername } = req.body;
 
     try {
