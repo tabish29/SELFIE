@@ -3,8 +3,9 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 .container {
-    background-image: url('/assets/tris_sfondo.png');
+    background-image: url('/assets/puzzle_sfondo.png');
     margin: 20px auto;
     text-align: center;
     width: 100%;
@@ -12,30 +13,23 @@
 
 h2 {
     font-size: 2.5em;
-    color: #4A90E2; /* Colore blu moderno */
+    color: #4A90E2;
     margin-bottom: 20px;
     letter-spacing: 1.5px;
 }
 
-#turn-info p {
-    margin: 5px 0;
-    font-size: 1.2em;
-    color: #555;
-    font-weight: 500;
-}
-
 #board {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr); /* Griglia 4x4 per il puzzle */
+    grid-template-rows: repeat(4, 1fr);
     gap: 10px;
     margin: 20px auto;
-    max-width: 300px;
+    max-width: 400px;
 }
 
 .cell {
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
     background-color: #f7f7f7;
     border-radius: 10px;
     display: flex;
@@ -47,6 +41,12 @@ h2 {
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s, transform 0.2s;
+}
+
+.cell.empty {
+    background-color: transparent;
+    cursor: default;
+    box-shadow: none;
 }
 
 .cell:hover {
@@ -63,7 +63,7 @@ button.reset-button {
     border-radius: 30px;
     font-size: 1.2em;
     cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.4);;
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.4);
     transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
 }
 
@@ -80,13 +80,13 @@ button.reset-button:hover {
     transform: translate(-50%, -50%);
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
-    padding: 20px; /* Aumenta la dimensione del popup */
+    padding: 20px;
     border-radius: 10px;
     text-align: center;
     z-index: 1000;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     animation: blink 1s infinite alternate, showModal 0.5s ease-in-out;
-    font-size: 20px; /* Ingrandisce il testo */
+    font-size: 20px;
 }
 
 @keyframes showModal {

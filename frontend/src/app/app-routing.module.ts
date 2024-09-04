@@ -11,8 +11,8 @@ import { CalendarComponent } from './components/calendar/calendar.component';
 import { GameComponent } from './components/game/game.component';
 import { SnakeComponent } from './components/game/snake/snake.component';
 import { TrisComponent } from './components/game/tris/tris.component';
-import { SudokuComponent } from './components/game/sudoku/sudoku.component';
 import { ImpiccatoComponent } from './components/game/impiccato/impiccato.component';
+import { PuzzleComponent } from './components/game/puzzle/puzzle.component'; 
 
 const routes: Routes = [
   {
@@ -48,8 +48,8 @@ const routes: Routes = [
     component: GameComponent,
   },
   {
-    path: 'game/sudoku',
-    component: SudokuComponent,
+    path: 'game/puzzle',
+    component: PuzzleComponent,
   },
   {
     path: 'game/tris',
