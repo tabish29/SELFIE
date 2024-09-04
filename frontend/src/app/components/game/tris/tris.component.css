@@ -1,7 +1,14 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 .container {
+    background-image: url('/assets/tris_sfondo.png');
+    background-color: #218838;
     margin: 20px auto;
     text-align: center;
-    max-width: 300px; /* Rende il contenitore più compatto */
+    width: 100%;
 }
 
 h2 {

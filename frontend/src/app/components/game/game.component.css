@@ -1,4 +1,9 @@
 /* Stili comuni per tutti gli schermi */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 .container {
     text-align: center;
     margin-top: 20px;
