@@ -20,14 +20,16 @@ export class ActivityService {
   }
 
   createActivity(activity: Activity): Observable<Activity> {
+    console.log("activity.service: " + activity.title);
     return this.http.post<Activity>(this.apiUrl, activity);
+    
   }
 
   deleteActivity(title: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${title}`);
   }
 
-  getNotesByAuthor(authorUsername: string): Observable<Activity[]> {
+  getActivitiesByAuthor(authorUsername: string): Observable<Activity[]> {
     return this.http.get<Activity[]>(`${this.apiUrl}/authors/${authorUsername}`);
   }
 }

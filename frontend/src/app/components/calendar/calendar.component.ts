@@ -9,6 +9,8 @@ import listPlugin from '@fullcalendar/list';
 import { INITIAL_EVENTS, createEventId } from './event-utils';
 import { MatDialog } from '@angular/material/dialog';
 import { NewActivityDialogComponent } from '../new-activity-dialog/new-activity-dialog.component';
+import { Activity } from '../../models/Activity';
+import { ActivityService } from '../../services/activity.service';
 
 @Component({
   selector: 'app-calendar',
@@ -16,6 +18,14 @@ import { NewActivityDialogComponent } from '../new-activity-dialog/new-activity-
   styleUrl: './calendar.component.css',
 })
 export class CalendarComponent {
+  constructor(
+    private dialog: MatDialog,
+    private changeDetector: ChangeDetectorRef,
+    private activityService: ActivityService
+  ) {}
+
+  activities: Activity[] = [];
+  authorUsername: string = '';
   
   @ViewChild('fullcalendar')
   fullcalendar!: FullCalendarComponent;
@@ -55,7 +65,7 @@ export class CalendarComponent {
   
   currentEvents = signal<EventApi[]>([]);
 
-  constructor(private dialog: MatDialog, private changeDetector: ChangeDetectorRef) {}
+ 
 
   handleDateSelect(selectInfo: DateSelectArg) {
     console.log('Date selected:', selectInfo);
@@ -131,8 +141,17 @@ export class CalendarComponent {
 
       if (result) {
         console.log('Nuova Attività:', result);
+        this.activities.push(result);
+
+        this.activityService.createActivity(result).subscribe(
+          () => console.log('calendar.component: Attività creata'),
+          error => console.error("Errore nella creazione dell'attività, in calendar.component")
+        )
+
+        console.log(this.activities);
       }
     });
 
   }
+
 }
