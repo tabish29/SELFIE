@@ -1,6 +1,4 @@
 import { Component , signal, ChangeDetectorRef, ViewChild } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
 import { FullCalendarComponent, FullCalendarModule } from '@fullcalendar/angular'; 
 import { CalendarOptions, DateSelectArg, EventClickArg, EventApi } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -12,6 +10,9 @@ import { NewActivityDialogComponent } from '../new-activity-dialog/new-activity-
 import { Activity } from '../../models/Activity';
 import { ActivityService } from '../../services/activity.service';
 import { LocalStorageService } from '../../services/local-storage.service';
+import { TimeMachineService } from '../../services/time-machine.service';
+import { TimeMachine } from '../../models/TimeMachine';
+
 
 @Component({
   selector: 'app-calendar',
@@ -21,24 +22,17 @@ import { LocalStorageService } from '../../services/local-storage.service';
 export class CalendarComponent {
   activities: Activity[] = [];
   authorUsername: string = '';
+  today: string = '';
+  calendarInitialized = false;
 
   constructor(
     private dialog: MatDialog,
     private changeDetector: ChangeDetectorRef,
     private activityService: ActivityService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private timeMachineService: TimeMachineService
   ) {}
 
-  /* CALENDAR */
-  ngOnInit(): void {
-    this.authorUsername = this.localStorageService.getItem('username') || '';
-    if (!this.authorUsername) {
-      console.error('Errore: Nessun username trovato');
-    }
-    this.loadActivities();
-    
-  }
-  
   @ViewChild('fullcalendar')
   fullcalendar!: FullCalendarComponent;
   
@@ -57,6 +51,7 @@ export class CalendarComponent {
       right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
     },
     initialView: 'dayGridMonth',
+    initialDate: new Date(),
     initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
     weekends: true,
     editable: true,
@@ -73,13 +68,46 @@ export class CalendarComponent {
     */
   });
 
+  /* CALENDAR */
+
+  //salva username, carica activities
+  ngOnInit(): void {
+    this.authorUsername = this.localStorageService.getItem('username') || '';
+    if (!this.authorUsername) {
+      console.error('Errore: Nessun username trovato');
+    }
+
+    this.timeMachineService.getTimeMachine(this.authorUsername).subscribe(
+      (timeMachine: TimeMachine) => {
+        this.today = this.convertToDateTimeLocalFormat(timeMachine.date);
+        // Aggiorna le opzioni del calendario solo dopo aver ottenuto `this.today`
+        this.updateCalendarDate();
+      },
+      (error) => console.error('Errore nel recupero del time machine', error)
+    );
+    this.loadActivities();
+    
+  }
+  
+  updateCalendarDate(): void {
+    if (this.fullcalendar && this.today) {
+      const calendarApi = this.fullcalendar.getApi();
+      calendarApi.gotoDate(this.convertToDateTimeLocalFormat(this.today)); 
+    this.changeDetector.detectChanges();
+    }
+  }
+
+  
+
   changeView(viewName: string) {
     this.fullcalendar.getApi().changeView(viewName);
   }
   
   
   /* ACTIVITIES */
+  //carica le attività dell'utente, in ordine
   loadActivities(){
+    
     this.activityService.getActivitiesByAuthor(this.authorUsername).subscribe(
       (data) => {
         this.activities = data;
@@ -94,15 +122,45 @@ export class CalendarComponent {
           if (!b.dueDate) return -1; // Metti null alla fine
           return 0; // Se entrambe sono null, lasciale inalterate
         });
+
         
-        console.log('Caricamento delle attività: ');
+        
+        console.log('Date delle attività caricate: ');
         for(var i = 0; i<this.activities.length; i++){
-          console.log(this.activities[i].title);
+          console.log(this.activities[i].dueDate);
         }
+
+        console.log("Oggi: " + this.today);
       }
       
     );
+
     
+    
+
+  }
+
+  
+  isExpired(activity: Activity): boolean {
+    
+    /*
+    if (!activity.dueDate) {
+      return false; // Se la data non è presente, non è scaduta
+    }
+    const today = this.getToday(); // Ottieni la data corrente simulata
+    const dueDateObj = new Date(activity.dueDate); // Assicurati che sia un oggetto Date
+
+    if(dueDateObj.getTime() < today.getTime()){
+      //console.log(activity.dueDate + " is expired")
+      return true;
+    }else{
+      //console.log(activity.dueDate + " is NOT expired")
+      return false;
+    }
+    
+    // Confronta le date: ritorna true se la scadenza è nel passato
+    */
+   return true;
   }
     
   onCheckboxChange(activity: Activity){
@@ -184,7 +242,7 @@ export class CalendarComponent {
 
         const newActivity: Activity = {
           title: result.title,
-          dueDate: result.dueDate ? new Date(result.dueDate) : null,
+          dueDate: result.dueDate,
           notes: result.notes,
           authorUsername: this.authorUsername
         };
@@ -198,6 +256,14 @@ export class CalendarComponent {
       }
     });
 
+  }
+
+  convertToDateTimeLocalFormat(dateStr: string): string {
+    // Supponiamo che dateStr sia nel formato "dd/MM/yyyy hh:mm"
+    const [datePart, timePart] = dateStr.split(' '); // Divide la data e l'ora
+    const [day, month, year] = datePart.split('/'); // Divide la parte della data
+    const formattedDate = `${year}-${month}-${day}T${timePart}`; // Riformatta la data
+    return formattedDate;
   }
 
 }

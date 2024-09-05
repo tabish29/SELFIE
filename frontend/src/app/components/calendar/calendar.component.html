@@ -19,9 +19,11 @@
         
         <ul>
           <p>(check to delete)</p>
-          <li *ngFor="let activity of activities">
+          <li *ngFor="let activity of activities" > 
             <input type="checkbox" (change)="onCheckboxChange(activity)" />
-            <b>{{ activity.title }}</b> - {{ activity.dueDate | date:'shortDate' }}
+            <b>{{ activity.title }}</b> - {{ activity.dueDate | date:'dd MMMM yyyy' }}
+            <i>{{ activity.notes }}</i>
+            
           </li>
         </ul>
       </div>
