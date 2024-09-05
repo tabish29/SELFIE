@@ -6,9 +6,6 @@
 
 .container {
     background-image: url('/assets/puzzle_sfondo.png');
-    margin: 00px auto;
-    text-align: center;
-    width: 100%;
 }
 
 h2 {
@@ -55,7 +52,7 @@ h2 {
 }
 
 button.reset-button {
-    margin-top: 20px;
+    margin: 15px auto;
     padding: 10px 20px;
     background-color: #007bff;
     color: white;

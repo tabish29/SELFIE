@@ -1,11 +1,3 @@
-.container {
-    margin: 20px auto;
-    text-align: center;
-    font-family: 'Poppins', sans-serif;
-    max-width: 1000px; /* Dimensione max per la pagina */
-    height: 80vh;
-}
-
 h2 {
     font-size: 2.5em;
     color: #4A90E2;
@@ -14,10 +6,19 @@ h2 {
     text-transform: uppercase;
 }
 
+/* Contenitore principale */
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Colonne */
 .columns-container {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
+    flex-wrap: wrap;
 }
 
 #left-column, #right-column {
@@ -28,37 +29,46 @@ h2 {
 
 #left-column {
     text-align: center;
+    justify-content: center;
+    align-items: center;
 }
 
 #right-column {
-    text-align: center;
+    text-align: right;
 }
 
 #hangman-display img {
     max-width: 50%; /* Adatta l'immagine alla colonna */
     height: auto;
 }
+#game-info p{
+    font-style: italic;
+    font-weight: bold;
+    font-size: 100%;
+    margin-top: 30px;
+}
 
+/* Parola da indovinare */
 #word-display {
-    font-size: 3em; /* Ingrandito per evidenziare meglio la parola */
-    letter-spacing: 15px; /* Spazio extra tra le lettere */
-    margin: 10px 0;
+    font-size: 3.2rem;
+    letter-spacing: 15px;
+    margin: 20px 0;
+    color: #4A90E2;
 }
 
-#info-bottom {
-    margin-bottom: 20px;
-}
-
+/* Tentativi rimanenti 
 #remaining-attempts {
-    font-size: 1.2em;
+    font-size: 1rem;
     color: #555;
     margin-top: 30px;
 }
 
+/* Area di input 
 #input-area {
     margin: 20px 0;
-}
+}*/
 
+/* Input lettere */
 input {
     padding: 12px;
     font-size: 1.2em;
@@ -73,23 +83,7 @@ input {
     transition: border-color 0.3s, background-color 0.3s, box-shadow 0.3s;
 }
 
-input::placeholder {
-    color: #999;
-}
-
-input:focus {
-    border-color: #4A90E2;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(74, 144, 226, 0.2);
-}
-
-input:disabled {
-    background-color: #e0e0e0;
-    color: #aaa;
-    cursor: not-allowed;
-}
-
-
+/* Pulsante di invio */
 button.guess-button {
     padding: 10px 20px;
     background-color: #cf2b96;
@@ -108,7 +102,7 @@ button.guess-button:hover {
     box-shadow: 0 6px 12px rgba(255, 97, 242, 0.6);
 }
 
-/* Alfabeto e lettere */
+/* Alfabeto */
 #alphabet {
     margin: 20px 0;
     display: flex;
@@ -117,11 +111,10 @@ button.guess-button:hover {
 }
 
 #alphabet span {
-    font-size: 1.2em; /* Ridotto di un quarto circa */
-    margin: 3px; /* Ridotto per adattare la nuova dimensione */
-    padding: 7px; /* Ridotto di un quarto circa */
-    width: 30px;  /* Ridotto di un quarto circa */
-    height: 30px; /* Ridotto di un quarto circa */
+    font-size: 1.2rem;
+    margin: 3px;
+    width: 50px; 
+    height: 50px; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -129,6 +122,7 @@ button.guess-button:hover {
     transition: background-color 0.3s, transform 0.2s;
 }
 
+/* Lettere non utilizzate */
 .unused-letter {
     background-color: #FF6F61;
     color: white;
@@ -140,6 +134,7 @@ button.guess-button:hover {
     transform: scale(1.1);
 }
 
+/* Lettere utilizzate */
 .used-letter {
     background-color: #ccc;
     color: #999;
@@ -163,23 +158,6 @@ button.guess-button:hover {
     font-size: 2em;
 }
 
-@keyframes blink {
-    0% { background-color: rgba(0, 0, 0, 0.8); }
-    50% { background-color: rgba(0, 0, 0, 0.6); }
-    100% { background-color: rgba(0, 0, 0, 0.8); }
-}
-
-@keyframes showModal {
-    from {
-        transform: translate(-50%, -60%);
-        opacity: 0;
-    }
-    to {
-        transform: translate(-50%, -50%);
-        opacity: 1;
-    }
-}
-
 button.close-modal {
     margin-top: 10px;
     padding: 10px 20px;
@@ -195,4 +173,44 @@ button.close-modal {
 button.close-modal:hover {
     background-color: #218838;
     transform: scale(1.05);
+}
+
+/* Media query per schermi piccoli */
+@media (max-width: 768px) {
+    h2 {
+        font-size: 2em;
+    }
+    #left-column, #right-column {
+        width: 100%;
+        text-align: center;
+    }
+    #word-display {
+        font-size: 2.2rem;
+        letter-spacing: 10px;
+        margin: 10px 0;
+    }
+    #alphabet span {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    .winner-modal {
+        font-size: 1.5em;
+    }
+}
+
+/* Media query per schermi molto piccoli (smartphone) */
+@media (max-width: 480px) {
+    h2 {
+        font-size: 1.8em;
+    }
+    #alphabet span {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9rem;
+    }
+    .winner-modal {
+        padding: 20px;
+        font-size: 1.2em;
+    }
 }
