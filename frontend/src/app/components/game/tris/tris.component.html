@@ -11,8 +11,16 @@
             </div>
         </div>
         <button class="reset-button" (click)="resetGame()">Resetta Gioco</button>
+
+        <!-- Pop-up per la vittoria -->
         <div id="winner-modal" *ngIf="winner" class="winner-modal">
             <p>Vincitore:</p> <p>Giocatore {{ winner }}</p>
+            <button class="close-modal" (click)="resetGame()">Gioca di nuovo</button>
+        </div>
+
+        <!-- Pop-up per il pareggio -->
+        <div id="draw-modal" *ngIf="isDraw" class="winner-modal">
+            <p>Pareggio!</p>
             <button class="close-modal" (click)="resetGame()">Gioca di nuovo</button>
         </div>
     </div>

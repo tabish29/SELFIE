@@ -41,3 +41,36 @@ canvas {
 .reset-button:hover {
     background-color: #0056b3;
 }
+.game-over-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    animation: blink 1s infinite alternate, showModal 0.5s ease-in-out;
+    font-size: 20px;
+}
+
+button.close-modal {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button.close-modal:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
