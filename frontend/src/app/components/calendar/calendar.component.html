@@ -17,6 +17,13 @@
         <h2>Activities</h2>
         <button (click)="hadleNewActivity()">New Activity</button>
         
+        <ul>
+          <p>(check to delete)</p>
+          <li *ngFor="let activity of activities">
+            <input type="checkbox" (change)="onCheckboxChange(activity)" />
+            <b>{{ activity.title }}</b> - {{ activity.dueDate | date:'shortDate' }}
+          </li>
+        </ul>
       </div>
       
       <div class='demo-app-sidebar-section'>

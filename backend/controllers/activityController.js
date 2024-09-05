@@ -59,9 +59,11 @@ async function addActivity(title, dueDate, notes, authorUsername) {
     await saveActivity(newActivity);
 }
 
+
 async function deleteActivity(title) {
+    console.log("delete");
     const activities = await readActivitiesFile();
-    const activityIndex = notes.findIndex(activity => activity.title === title);
+    const activityIndex = activities.findIndex(activity => activity.title === title);
 
     if (activityIndex === -1) {
         throw new Error('Attivita non trovata');
@@ -95,6 +97,7 @@ async function updateActivity(title, updatedData) {
     await writeActivitiesFile(activities);
 }*/
 
+
 async function getActivitiesPreview(length = 200) {
     const activities = await readActivitiesFile();
     return activities.map(activity => ({
@@ -106,6 +109,7 @@ async function getActivitiesPreview(length = 200) {
 async function getActivitiesByAuthor(authorUsername) {
     const activities = await readActivitiesFile();
     return activities.filter(activity => activity.authorUsername === authorUsername);
+    
 }
 
 module.exports = {

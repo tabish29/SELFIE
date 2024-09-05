@@ -29,16 +29,21 @@ export class CalendarComponent {
     private localStorageService: LocalStorageService
   ) {}
 
+  /* CALENDAR */
   ngOnInit(): void {
     this.authorUsername = this.localStorageService.getItem('username') || '';
     if (!this.authorUsername) {
       console.error('Errore: Nessun username trovato');
     }
+    this.loadActivities();
+    
   }
   
   @ViewChild('fullcalendar')
   fullcalendar!: FullCalendarComponent;
   
+  currentEvents = signal<EventApi[]>([]);
+
   calendarVisible = signal(true);
   calendarOptions = signal<CalendarOptions>({
     plugins: [
@@ -72,9 +77,42 @@ export class CalendarComponent {
     this.fullcalendar.getApi().changeView(viewName);
   }
   
-  currentEvents = signal<EventApi[]>([]);
+  
+  /* ACTIVITIES */
+  loadActivities(){
+    this.activityService.getActivitiesByAuthor(this.authorUsername).subscribe(
+      (data) => {
+        this.activities = data;
 
- 
+        this.activities.sort((a, b) => {
+          // Se entrambe le date sono presenti, le confrontiamo
+          if (a.dueDate && b.dueDate) {
+            return new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime();
+          }
+          // Se una delle due date è null, la consideriamo come "più lontana"
+          if (!a.dueDate) return 1; // Metti null alla fine
+          if (!b.dueDate) return -1; // Metti null alla fine
+          return 0; // Se entrambe sono null, lasciale inalterate
+        });
+        
+        console.log('Caricamento delle attività: ');
+        for(var i = 0; i<this.activities.length; i++){
+          console.log(this.activities[i].title);
+        }
+      }
+      
+    );
+    
+  }
+    
+  onCheckboxChange(activity: Activity){
+    console.log(activity.title + " checked")
+    this.activityService.deleteActivity(activity.title).subscribe(
+      () => console.log(activity.title + "deleted")
+    )
+    this.loadActivities();
+  }
+  
 
   handleDateSelect(selectInfo: DateSelectArg) {
     console.log('Date selected:', selectInfo);
