@@ -1,52 +1,32 @@
-/* Contenitore principale della pagina */
 .page-container {
     display: flex;
-    flex-direction: column;
-    height: auto;
-    width: 100vw;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-}
-
-/* Corpo principale */
-.container {
-    flex-grow: 1;
-    /* Fa sì che il corpo principale occupi tutto lo spazio disponibile */
-    display: flex;
-    justify-content: right;
-    align-items: right;
-    background-color: #f7f9fc;
-    width: 100%;
+    justify-content: space-between;
+    align-items: center;
     height: 100vh;
+    padding: 20px;
+    background-color: #f7f9fc;
+    flex-direction: row-reverse; /* Sposta il login a destra */
 }
 
-/* Stile del riquadro di login */
+/* Sezione del login */
+.login-section {
+    flex-basis: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Riquadro di login */
 #div-login {
     background: white;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    padding: 30px;
+    padding: 20px;
     width: 350px;
     text-align: center;
 }
 
-/* Titolo del login */
-#title {
-    font-size: 24px;
-    margin-bottom: 25px;
-    color: #333;
-    font-weight: bold;
-}
-
-/* Stile per i gruppi di form */
-.form-group {
-    margin-bottom: 20px;
-    text-align: left;
-}
-
-/* Stile per le etichette */
+/* Etichetta */
 label {
     font-weight: bold;
     display: block;
@@ -55,7 +35,7 @@ label {
     color: #555;
 }
 
-/* Stile per gli input */
+/* Input */
 input {
     width: 90%;
     padding: 12px;
@@ -72,7 +52,7 @@ input:focus {
     background-color: #fff;
 }
 
-/* Stile per il bottone di login */
+/* Bottone di login */
 .btn-login {
     background-color: #007bff;
     color: white;
@@ -91,57 +71,63 @@ input:focus {
     transform: scale(1.02);
 }
 
-/* Link per la registrazione */
-.register-link {
-    margin-top: 20px;
+/* Sezione delle funzionalità */
+.features-section {
+    flex-basis: 65%;
+}
+
+.features-section h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.feature-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+}
+
+.feature-card img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+}
+
+.feature-card h4 {
+    margin-bottom: 10px;
+    color: #007bff;
+}
+
+.feature-card p {
+    color: #555;
     font-size: 14px;
 }
 
-.register-link a {
-    color: #007bff;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-.register-link a:hover {
-    color: #0056b3;
-    text-decoration: underline;
-}
-
-.error-message {
-    color: red;
-    margin-top: 10px;
-}
-
-/* Responsive Design */
+/* Responsive Design per schermi piccoli */
 @media (max-width: 768px) {
-
-    /* Navbar e container */
-    .container {
-        padding-top: 40px;
-        /* Aumenta il padding-top per schermi più piccoli */
+    .page-container {
+        flex-direction: column; /* Colonna: il login va sotto */
     }
 
-    /* Stile per il riquadro di login */
-    #div-login {
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .login-section, .features-section {
         width: 100%;
-        max-width: 90%;
-        padding: 20px;
     }
 
-    /* Riduci il font size per il titolo */
-    #title {
-        font-size: 20px;
-    }
-
-    /* Riduci il font size per i pulsanti */
-    .btn-login {
-        font-size: 16px;
-        padding: 10px 15px;
-    }
-
-    /* Adatta la dimensione del link di registrazione */
-    .register-link {
-        font-size: 12px;
+    .feature-card img {
+        width: 60px;
+        height: 60px;
     }
 }
