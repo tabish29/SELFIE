@@ -14,6 +14,7 @@ export class PomodoroTimerComponent {
   sessionMessage: string = 'Sessione di Lavoro';
   workMinutes: number = 30;
   shortBreakMinutes: number = 5;
+  selectedCycles: number = 2;
   totalHours: number = 0;
   totalMinutes: number = 0;
   cycleProposals: string[] = [];
@@ -59,8 +60,7 @@ export class PomodoroTimerComponent {
             this.cycleProposals.push(`Cicli: ${numberOfCycles} - ${combination.work} min di lavoro e ${combination.break} min di pausa`);
         }
     });
-}
-
+  }
 
   startTimer() {
     if (!this.isRunning) {
@@ -93,6 +93,7 @@ export class PomodoroTimerComponent {
     this.sessionMessage = 'Sessione di Lavoro';
     this.isWorkMode = true;
     this.isBreakMode = false;
+    this.sessionCount = 0; 
     this.updateTimer();
   }
 
@@ -101,12 +102,12 @@ export class PomodoroTimerComponent {
     clearInterval(this.interval);
 
     if (this.sessionMessage === 'Sessione di Lavoro') {
-      this.sessionCount++;
       this.minutes = this.shortBreakMinutes;
       this.sessionMessage = 'Pausa';
       this.isWorkMode = false;
       this.isBreakMode = true;
     } else {
+      this.sessionCount++;
       this.minutes = this.workMinutes;
       this.sessionMessage = 'Sessione di Lavoro';
       this.isWorkMode = true;
@@ -114,8 +115,14 @@ export class PomodoroTimerComponent {
     }
 
     this.seconds = 0;
-    this.notifyUser();
-    this.startTimer();
+
+    // Controllo se il numero di sessioni raggiunge i cicli selezionati
+    if (this.sessionCount >= this.selectedCycles) {
+      this.notifyUser('Complimenti! Hai finito la sessione del Pomodoro Timer che avevi impostato.');
+      this.resetTimer();
+    } else {
+      this.startTimer();
+    }
   }
 
   forceNextSession() {
@@ -125,8 +132,11 @@ export class PomodoroTimerComponent {
   endCycle() {
     this.isRunning = false;
     clearInterval(this.interval);
-    this.notifyUser('Ciclo finito');
-    this.resetTimer();
+    this.sessionMessage = 'Sessione di Lavoro';
+    this.isWorkMode = true;
+    this.isBreakMode = false;
+    this.sessionCount += 1; 
+    this.updateTimer();
   }
 
   notifyUser(message: string = this.sessionMessage) {

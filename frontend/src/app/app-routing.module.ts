@@ -13,6 +13,7 @@ import { SnakeComponent } from './components/game/snake/snake.component';
 import { TrisComponent } from './components/game/tris/tris.component';
 import { ImpiccatoComponent } from './components/game/impiccato/impiccato.component';
 import { PuzzleComponent } from './components/game/puzzle/puzzle.component'; 
+import { accessGuard } from './guards/access.guard';
 
 const routes: Routes = [
   {
@@ -25,43 +26,52 @@ const routes: Routes = [
   },
   {
     path: 'pomodoroTimer',
-    component: PomodoroTimerComponent
+    component: PomodoroTimerComponent,
+    canActivate: [accessGuard]
   },
   {
     path: 'calendar',
-    component: CalendarComponent
+    component: CalendarComponent,
+    canActivate: [accessGuard]
   },
   {
     path: 'timeMachine',
-    component: TimeMachineComponent
+    component: TimeMachineComponent,
+    canActivate: [accessGuard]
   },
   {
     path: 'userNote',
-    component: UserNotesComponent
+    component: UserNotesComponent,
+    canActivate: [accessGuard]
   },
   {
     path: 'home',
-    component: HomePageComponent,
+    component: HomePageComponent
   },
   {
     path: 'game',
     component: GameComponent,
+    canActivate: [accessGuard]
   },
   {
     path: 'game/puzzle',
     component: PuzzleComponent,
+    canActivate: [accessGuard]
   },
   {
     path: 'game/tris',
     component: TrisComponent,
+    canActivate: [accessGuard]
   },
   {
     path: 'game/impiccato',
     component: ImpiccatoComponent,
+    canActivate: [accessGuard]
   },
   {
     path: 'game/snake',
     component: SnakeComponent,
+    canActivate: [accessGuard]
   },
   {
     path: '',

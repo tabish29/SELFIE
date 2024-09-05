@@ -18,7 +18,8 @@ export class SnakeComponent implements OnInit, AfterViewInit {
   private gameInterval: any;
   private appleImage: HTMLImageElement | undefined;
   private snakeHeadImage: HTMLImageElement | undefined;
-  private speed = 100;
+  private speed = 250;
+  public gameOver: boolean = false;
 
   ngOnInit(): void {
     this.initializeFoodPosition();
@@ -53,25 +54,42 @@ export class SnakeComponent implements OnInit, AfterViewInit {
     document.addEventListener('keydown', (e) => {
       switch (e.key) {
         case 'ArrowUp':
-          if (this.dy === 0) { this.dx = 0; this.dy = -1; }
+          if (this.dy === 0) {
+            this.dx = 0;
+            this.dy = -1;
+            e.preventDefault(); // Previene il comportamento predefinito della freccia su
+          }
           break;
         case 'ArrowDown':
-          if (this.dy === 0) { this.dx = 0; this.dy = 1; }
+          if (this.dy === 0) {
+            this.dx = 0;
+            this.dy = 1;
+            e.preventDefault(); // Previene il comportamento predefinito della freccia giù
+          }
           break;
         case 'ArrowLeft':
-          if (this.dx === 0) { this.dx = -1; this.dy = 0; }
+          if (this.dx === 0) {
+            this.dx = -1;
+            this.dy = 0;
+            e.preventDefault(); // Previene il comportamento predefinito della freccia sinistra
+          }
           break;
         case 'ArrowRight':
-          if (this.dx === 0) { this.dx = 1; this.dy = 0; }
+          if (this.dx === 0) {
+            this.dx = 1;
+            this.dy = 0;
+            e.preventDefault(); // Previene il comportamento predefinito della freccia destra
+          }
           break;
       }
     });
-
+  
     this.gameInterval = setInterval(() => {
       this.update();
       this.draw();
     }, this.speed);
   }
+  
 
   private initializeFoodPosition(): void {
     this.food = {
@@ -156,28 +174,32 @@ export class SnakeComponent implements OnInit, AfterViewInit {
 
   private update(): void {
     const head = { x: this.snake[0].x + this.dx, y: this.snake[0].y + this.dy };
-
+  
     // Wrap around logic
     if (head.x < 0) head.x = this.gridSize - 1;
     if (head.x >= this.gridSize) head.x = 0;
     if (head.y < 0) head.y = this.gridSize - 1;
     if (head.y >= this.gridSize) head.y = 0;
-
-    if (this.snake.some(segment => head.x === segment.x && head.y === segment.y)) {
-      this.resetGame();
+  
+    // Controlla se il serpente ha mangiato la coda solo se ha più di 1 segmento
+    if (this.snake.length > 1 && this.snake.some(segment => head.x === segment.x && head.y === segment.y)) {
+      this.gameOver = true;  // Imposta la variabile gameOver a true
+      clearInterval(this.gameInterval);  // Ferma il gioco
       return;
     }
-
+  
+    // Controlla se il serpente ha mangiato la mela
     if (head.x === this.food.x && head.y === this.food.y) {
-      this.snake.unshift(head);
+      this.snake.unshift(head); // Aggiunge un segmento
       this.score++;
       this.placeFood();
       this.adjustSpeed(); 
     } else {
       this.snake.unshift(head);
-      this.snake.pop();
+      this.snake.pop(); // Rimuove l'ultimo segmento
     }
   }
+  
 
   private placeFood(): void {
     this.food = {
@@ -195,7 +217,7 @@ export class SnakeComponent implements OnInit, AfterViewInit {
 
   private adjustSpeed(): void {
     if (this.score % 5 === 0) {
-      this.speed = Math.max(50, this.speed * 0.9); 
+      this.speed = Math.max(50, this.speed * 0.7); 
       clearInterval(this.gameInterval);
       this.gameInterval = setInterval(() => {
         this.update();
@@ -206,11 +228,12 @@ export class SnakeComponent implements OnInit, AfterViewInit {
 
   public resetGame(): void {
     clearInterval(this.gameInterval);
-    this.snake = [{ x: 5, y: 5 }];
-    this.dx = 0;
+    this.snake = [{ x: 5, y: 5 }]; // Resetta il serpente con un solo segmento
+    this.dx = 0; // Fermo inizialmente
     this.dy = 0;
     this.score = 0;
-    this.speed = 200; 
+    this.speed = 250; 
+    this.gameOver = false; // Chiude il pop-up di sconfitta
     this.initializeFoodPosition();
     if (this.appleImage && this.snakeHeadImage) {
       this.gameInterval = setInterval(() => {
@@ -218,5 +241,5 @@ export class SnakeComponent implements OnInit, AfterViewInit {
         this.draw();
       }, this.speed);
     }
-  }
+  }  
 }

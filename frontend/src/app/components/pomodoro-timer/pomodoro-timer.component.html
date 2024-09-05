@@ -6,20 +6,26 @@
     <div class="settings">
       <label>
         Minuti Lavoro:
-        <input type="number" [(ngModel)]="workMinutes" (input)="updateTimer()" min="1" max="60">
+        <input type="number" [(ngModel)]="workMinutes" (input)="updateTimer()" min="1" max="60" [disabled]="isRunning">
       </label>
       <label>
         Minuti Pausa:
-        <input type="number" [(ngModel)]="shortBreakMinutes" (input)="updateTimer()" min="1" max="60">
+        <input type="number" [(ngModel)]="shortBreakMinutes" (input)="updateTimer()" min="1" max="60" [disabled]="isRunning">
+      </label>
+      <label>
+        Numero di Cicli:
+        <input type="number" [(ngModel)]="selectedCycles" min="2">
       </label>
       <label>
         Ore Totali:
-        <input type="number" [(ngModel)]="totalHours" (input)="calculateCycles()" min="0">
+        <input type="number" [(ngModel)]="totalHours" (input)="calculateCycles()" min="0" [disabled]="isRunning">
       </label>
       <label>
         Minuti Totali:
-        <input type="number" [(ngModel)]="totalMinutes" (input)="calculateCycles()" min="0">
+        <input type="number" [(ngModel)]="totalMinutes" (input)="calculateCycles()" min="0" [disabled]="isRunning">
       </label>
+      
+
       <div *ngIf="cycleProposals.length">
         <h3>Proposte di Cicli:</h3>
         <ul>
@@ -45,6 +51,6 @@
     </div>
   </div>
 
-    
+
   <app-footer></app-footer>
 </div>

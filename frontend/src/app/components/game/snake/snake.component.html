@@ -6,6 +6,12 @@
             <canvas id="gameCanvas"></canvas>
         </div>          
         <button class="reset-button" (click)="resetGame()">Resetta Gioco</button>
+
+        <!-- Pop-up per la sconfitta -->
+        <div id="game-over-modal" *ngIf="gameOver" class="game-over-modal">
+            <p>Hai perso! Il serpente ha mangiato la coda.</p>
+            <button class="close-modal" (click)="resetGame()">Gioca di nuovo</button>
+        </div>
     </div>
     <app-footer></app-footer>
 </div>
