@@ -16,6 +16,10 @@
   z-index: 1000;
   overflow-y: auto; /* Aggiungi lo scroll verticale se necessario */
 }
+.container {
+  background-image: url('/assets/Pomodoro.png');
+  background-size: 150px 150px;
+}
 .pomodoro-timer {
   display: flex;
   flex-direction: column;

@@ -1,56 +1,56 @@
 <div class="page-container">
   <app-navbar></app-navbar>
-  <div class="pomodoro-timer" [ngClass]="{'work-mode': isWorkMode, 'break-mode': isBreakMode}">
-    <h2>Pomodoro Timer</h2>
-
-    <div class="settings">
-      <label>
-        Minuti Lavoro:
-        <input type="number" [(ngModel)]="workMinutes" (input)="updateTimer()" min="1" max="60" [disabled]="isRunning">
-      </label>
-      <label>
-        Minuti Pausa:
-        <input type="number" [(ngModel)]="shortBreakMinutes" (input)="updateTimer()" min="1" max="60" [disabled]="isRunning">
-      </label>
-      <label>
-        Numero di Cicli:
-        <input type="number" [(ngModel)]="selectedCycles" min="2">
-      </label>
-      <label>
-        Ore Totali:
-        <input type="number" [(ngModel)]="totalHours" (input)="calculateCycles()" min="0" [disabled]="isRunning">
-      </label>
-      <label>
-        Minuti Totali:
-        <input type="number" [(ngModel)]="totalMinutes" (input)="calculateCycles()" min="0" [disabled]="isRunning">
-      </label>
-      
-
-      <div *ngIf="cycleProposals.length">
-        <h3>Proposte di Cicli:</h3>
-        <ul>
-          <li *ngFor="let proposal of cycleProposals">{{ proposal }}</li>
-        </ul>
+  <div class="container">
+    <div class="pomodoro-timer" [ngClass]="{'work-mode': isWorkMode, 'break-mode': isBreakMode}">
+      <h2>Pomodoro Timer</h2>
+  
+      <div class="settings">
+        <label>
+          Minuti Lavoro:
+          <input type="number" [(ngModel)]="workMinutes" (input)="updateTimer()" min="1" max="60" [disabled]="isRunning">
+        </label>
+        <label>
+          Minuti Pausa:
+          <input type="number" [(ngModel)]="shortBreakMinutes" (input)="updateTimer()" min="1" max="60" [disabled]="isRunning">
+        </label>
+        <label>
+          Numero di Cicli:
+          <input type="number" [(ngModel)]="selectedCycles" min="2">
+        </label>
+        <label>
+          Ore Totali:
+          <input type="number" [(ngModel)]="totalHours" (input)="calculateCycles()" min="0" [disabled]="isRunning">
+        </label>
+        <label>
+          Minuti Totali:
+          <input type="number" [(ngModel)]="totalMinutes" (input)="calculateCycles()" min="0" [disabled]="isRunning">
+        </label>
+        
+  
+        <div *ngIf="cycleProposals.length">
+          <h3>Proposte di Cicli:</h3>
+          <ul>
+            <li *ngFor="let proposal of cycleProposals">{{ proposal }}</li>
+          </ul>
+        </div>
+      </div>
+  
+      <div class="timer">
+        <span class="time">{{ minutes | number: '2.0' }}</span>:<span class="time">{{ seconds | number: '2.0' }}</span>
+      </div>
+  
+      <div class="controls">
+        <button (click)="startTimer()" [disabled]="isRunning">Inizia</button>
+        <button (click)="pauseTimer()" [disabled]="!isRunning">Pausa</button>
+        <button (click)="resetTimer()">Reset</button>
+        <button (click)="forceNextSession()">Prossima Sessione</button>
+        <button (click)="endCycle()">Fine Ciclo</button>
+      </div>
+  
+      <div class="session-info">
+        <p>{{ sessionMessage }}</p>
       </div>
     </div>
-
-    <div class="timer">
-      <span class="time">{{ minutes | number: '2.0' }}</span>:<span class="time">{{ seconds | number: '2.0' }}</span>
-    </div>
-
-    <div class="controls">
-      <button (click)="startTimer()" [disabled]="isRunning">Inizia</button>
-      <button (click)="pauseTimer()" [disabled]="!isRunning">Pausa</button>
-      <button (click)="resetTimer()">Reset</button>
-      <button (click)="forceNextSession()">Prossima Sessione</button>
-      <button (click)="endCycle()">Fine Ciclo</button>
-    </div>
-
-    <div class="session-info">
-      <p>{{ sessionMessage }}</p>
-    </div>
   </div>
-
-
   <app-footer></app-footer>
 </div>

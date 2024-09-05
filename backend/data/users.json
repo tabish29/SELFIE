@@ -52,5 +52,11 @@
     "password": "$2b$10$UTGk0PzIr74HSV9tvXoRFuMOciOJjcum0VNf5rdfRjJ5.FmeAJTf2",
     "firstName": "Matilde",
     "lastName": "Matilde"
+  },
+  {
+    "username": "Nathan",
+    "password": "$2b$10$mXr0has7wHjZW./E3D4aOOZq2NRnJDEfSB.xghn9Vjz0bY.7k/tpC",
+    "firstName": "Nano-Talpa",
+    "lastName": "ciao"
   }
 ]

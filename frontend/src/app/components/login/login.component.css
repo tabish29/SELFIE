@@ -1,16 +1,8 @@
-html,
-body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    /* Garantisce che l'html e il body occupino l'intera altezza */
-}
-
 /* Contenitore principale della pagina */
 .page-container {
     display: flex;
     flex-direction: column;
-    height: 80vh;
+    height: auto;
     width: 100vw;
     position: fixed;
     top: 0;
@@ -18,33 +10,17 @@ body {
     z-index: 1000;
 }
 
-/* Navbar */
-app-navbar {
-    flex-shrink: 0;
-    /* Assicura che la navbar mantenga la sua altezza */
-}
-
 /* Corpo principale */
 .container {
     flex-grow: 1;
     /* Fa sì che il corpo principale occupi tutto lo spazio disponibile */
     display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-top: 35px;
-    /* Lascia spazio per la navbar */
-    padding-bottom: 20px;
-    /* Lascia un po' di spazio prima del footer */
+    justify-content: right;
+    align-items: right;
     background-color: #f7f9fc;
     width: 100%;
+    height: 100vh;
 }
-
-/* Footer */
-app-footer {
-    flex-shrink: 0;
-    /* Assicura che il footer mantenga la sua altezza */
-}
-
 
 /* Stile del riquadro di login */
 #div-login {
