@@ -16,7 +16,10 @@
     <mat-label>Notes</mat-label>
     <textarea matInput [(ngModel)]="data.notes"></textarea>
   </mat-form-field>
+
+
 </mat-dialog-content>
+<p id="inputError" class="error-message"></p>
 <mat-dialog-actions>
   <button mat-button (click)="onCancel()">Annulla</button>
   <button mat-button (click)="onSave()">Salva</button>

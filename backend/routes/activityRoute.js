@@ -17,16 +17,19 @@ router.post('/', async (req, res) => {
 
     try {
         if (!title || !dueDate || !authorUsername) {
-            throw new Error('Inserire tutti i Campi');
+            throw new Error('Inserire tutti i Campi obbligatori');
         }
 
         await activityController.addActivity(title, dueDate, notes, authorUsername);
         res.status(201).json({ message: 'Attivita aggiunta con successo' });
     } catch (error) {
+        console.error('Errore durante l\'aggiunta dell\'attività:', error.message);
+
         res.status(400).json({ error: error.message });
     }
 });
 
+/* serve?
 router.get('/:title', async (req, res) => {
     const { title } = req.params;
     try {
@@ -39,7 +42,8 @@ router.get('/:title', async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: 'Errore nel recuperare la attivita' });
     }
-});
+});*/
+
 
 router.delete('/:title', async (req, res) => {
     const { title } = req.params;
@@ -64,6 +68,7 @@ router.put('/:title', async (req, res) => {
     }
 });*/
 
+/*
 router.get('/previews', async (req, res) => {
     const length = parseInt(req.query.length) || 200;
     try {
@@ -72,7 +77,8 @@ router.get('/previews', async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: 'Errore nel recuperare le preview delle attivita' });
     }
-});
+});*/
+
 
 router.get('/authors/:authorUsername', async (req, res) => {
     const { authorUsername } = req.params;

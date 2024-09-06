@@ -19,12 +19,8 @@ import { TimeMachine } from '../../models/TimeMachine';
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.css',
 })
-export class CalendarComponent {
-  activities: Activity[] = [];
-  authorUsername: string = '';
-  today: string = '';
-  calendarInitialized = false;
 
+export class CalendarComponent {
   constructor(
     private dialog: MatDialog,
     private changeDetector: ChangeDetectorRef,
@@ -33,11 +29,13 @@ export class CalendarComponent {
     private timeMachineService: TimeMachineService
   ) {}
 
-  @ViewChild('fullcalendar')
-  fullcalendar!: FullCalendarComponent;
-  
-  currentEvents = signal<EventApi[]>([]);
 
+  activities: Activity[] = [];
+  authorUsername: string = '';
+  today: string = '';
+  calendarInitialized = false;
+
+  currentEvents = signal<EventApi[]>([]);
   calendarVisible = signal(true);
   calendarOptions = signal<CalendarOptions>({
     plugins: [
@@ -68,27 +66,34 @@ export class CalendarComponent {
     */
   });
 
+  
+  @ViewChild('fullcalendar') fullcalendar!: FullCalendarComponent;
+
   /* CALENDAR */
 
-  //salva username, carica activities
+  
   ngOnInit(): void {
+    
     this.authorUsername = this.localStorageService.getItem('username') || '';
     if (!this.authorUsername) {
-      console.error('Errore: Nessun username trovato');
+      console.error('Username is missing');
     }
 
     this.timeMachineService.getTimeMachine(this.authorUsername).subscribe(
       (timeMachine: TimeMachine) => {
-        this.today = this.convertToDateTimeLocalFormat(timeMachine.date);
-        // Aggiorna le opzioni del calendario solo dopo aver ottenuto `this.today`
-        this.updateCalendarDate();
+        //this.today = this.convertToDateTimeLocalFormat(timeMachine.date);
+        this.today = timeMachine.date;
+        console.log("Calendar date of today: " + this.today);
+        //this.updateCalendarDate();
       },
       (error) => console.error('Errore nel recupero del time machine', error)
     );
+
     this.loadActivities();
     
   }
   
+  // NON FUNZIONA
   updateCalendarDate(): void {
     if (this.fullcalendar && this.today) {
       const calendarApi = this.fullcalendar.getApi();
@@ -97,23 +102,21 @@ export class CalendarComponent {
     }
   }
 
-  
-
   changeView(viewName: string) {
     this.fullcalendar.getApi().changeView(viewName);
   }
   
   
   /* ACTIVITIES */
-  //carica le attività dell'utente, in ordine
+  //carica le attività dell'utente
   loadActivities(){
     
     this.activityService.getActivitiesByAuthor(this.authorUsername).subscribe(
       (data) => {
         this.activities = data;
 
+        //ELENCO LATERALE DELLE ATTIVITA
         this.activities.sort((a, b) => {
-          // Se entrambe le date sono presenti, le confrontiamo
           if (a.dueDate && b.dueDate) {
             return new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime();
           }
@@ -122,23 +125,18 @@ export class CalendarComponent {
           if (!b.dueDate) return -1; // Metti null alla fine
           return 0; // Se entrambe sono null, lasciale inalterate
         });
-
         
-        
-        console.log('Date delle attività caricate: ');
-        for(var i = 0; i<this.activities.length; i++){
-          console.log(this.activities[i].dueDate);
-        }
 
-        console.log("Oggi: " + this.today);
+        //VISUALIZZAZIONE NEL CALENDARIO DELLE ATTIVITA
+        
+
       }
       
     );
 
-    
-    
-
   }
+
+  
 
   
   isExpired(activity: Activity): boolean {
@@ -253,9 +251,13 @@ export class CalendarComponent {
           () => console.log('Attività creata' + newActivity),
           error => console.error("Errore nella creazione dell'attività")
         )
+
+        
       }
+      
     });
 
+    this.loadActivities();
   }
 
   convertToDateTimeLocalFormat(dateStr: string): string {

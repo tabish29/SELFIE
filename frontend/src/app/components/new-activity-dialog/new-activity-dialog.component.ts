@@ -2,8 +2,8 @@ import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TimeMachineService } from '../../services/time-machine.service';
 import { LocalStorageService } from '../../services/local-storage.service';
-import { TimeMachine } from '../../models/TimeMachine';
-import { CalendarComponent } from '../calendar/calendar.component';
+//import { TimeMachine } from '../../models/TimeMachine';
+//import { CalendarComponent } from '../calendar/calendar.component';
 import { Activity } from '../../models/Activity';
 import { ActivityService } from '../../services/activity.service';
 
@@ -23,7 +23,7 @@ export class NewActivityDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<NewActivityDialogComponent>,
     private activityService: ActivityService,
-    private timeMachineService: TimeMachineService,
+    //private timeMachineService: TimeMachineService,
     private localStorageService: LocalStorageService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
@@ -34,14 +34,16 @@ export class NewActivityDialogComponent {
   }
 
   onCreate(): void {
+    
     if (!this.authorUsername) {
-      console.error('Username is required');
+      console.error('Username is missing');
       return;
     }
 
-    this.timeMachineService.getTimeMachine(this.authorUsername).subscribe(
-      (timeMachine: TimeMachine) => {
-        const now = timeMachine.date;
+    //this.timeMachineService.getTimeMachine(this.authorUsername).subscribe(
+      //(timeMachine: TimeMachine) => {
+        //const now = timeMachine.date;
+
         const newActivity : Activity= {
           title: this.title,
           dueDate: this.dueDate,
@@ -55,13 +57,23 @@ export class NewActivityDialogComponent {
           },
           error => console.error('Errore nella creazione della nota', error)
         );
-      },
-      error => console.error('Errore nel recupero del time machine', error)
-    );
+      
+      //},
+      //error => console.error('Errore nel recupero del time machine', error)
+    //);
   }
 
   onSave(): void {
-    this.dialogRef.close(this.data);
+    const inputError = document.getElementById('inputError');
+
+    if(!this.data.title || !this.data.dueDate){
+      if(inputError){
+        inputError.textContent = 'Title and Due Date are required';
+      }
+    } else{
+      this.dialogRef.close(this.data);
+    }
+    
   }
 
   onCancel(): void {
