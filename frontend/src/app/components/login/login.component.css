@@ -1,19 +1,28 @@
 .page-container {
-    display: flex;
     justify-content: space-between;
-    align-items: center;
-    height: 100vh;
+    text-align: center;
+    height: 100%;
+    background-color: #e63946;
+}
+.page-container p:first-child {
+    font-weight: bolder;
+    font-style: italic;
+    font-size: 38px;
     padding: 20px;
-    background-color: #f7f9fc;
-    flex-direction: row-reverse; /* Sposta il login a destra */
+}
+.container {
+    align-items: center;
+    display: flex;
 }
 
 /* Sezione del login */
 .login-section {
+    box-sizing: content-box;
     flex-basis: 30%;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 10px;
 }
 
 /* Riquadro di login */
@@ -74,6 +83,7 @@ input:focus {
 /* Sezione delle funzionalità */
 .features-section {
     flex-basis: 65%;
+    box-sizing: content-box;
 }
 
 .features-section h2 {
@@ -93,6 +103,7 @@ input:focus {
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     padding: 20px;
+    margin: 10px;
     text-align: center;
 }
 
@@ -114,7 +125,7 @@ input:focus {
 
 /* Responsive Design per schermi piccoli */
 @media (max-width: 768px) {
-    .page-container {
+    .page-container .container {
         flex-direction: column; /* Colonna: il login va sotto */
     }
 

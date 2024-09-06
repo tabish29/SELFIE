@@ -1,54 +1,56 @@
 <div class="page-container">
-    <!-- Sezione del login -->
-    <div class="login-section">
-        <div id="div-login">
-            <form (ngSubmit)="onLogin()">
-                <div id="div-form">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username" placeholder="Inserisci il tuo username"
-                        maxlength="50" required [(ngModel)]="username">
+    <p>Scopri le funzionalità del nostro sito!</p> 
+    <div class="container">
+        <!-- Sezione delle funzionalità -->
+        <div class="features-section">
+            <div class="features-grid">
+                <!-- Calendario -->
+                <div class="feature-card">
+                    <img src="assets/calendario.png" alt="Calendario">
+                    <h4>Calendario</h4>
+                    <p>Gestisci i tuoi impegni con il nostro calendario intuitivo.</p>
                 </div>
-                <div id="div-form">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" placeholder="Inserisci la tua password"
-                        maxlength="50" required [(ngModel)]="password">
+                <!-- Pomodoro Timer -->
+                <div class="feature-card">
+                    <img src="assets/Pomodoro.png" alt="Pomodoro Timer">
+                    <h4>Pomodoro Timer</h4>
+                    <p>Organizza il tuo tempo e lavora in sessioni con il Pomodoro Timer.</p>
                 </div>
-                <button type="submit" class="btn-login">Accedi</button>
-                <div *ngIf="errorMessage" class="error-message">
-                    {{ errorMessage }}
+                <!-- Note -->
+                <div class="feature-card">
+                    <img src="assets/note.png" alt="Note">
+                    <h4>Note</h4>
+                    <p>Annota tutto ciò che ti serve con la nostra sezione per le note.</p>
                 </div>
-            </form>
-            <p class="register-link">Non sei ancora registrato? <a routerLink="/registration">Clicca qui</a></p>
+                <!-- Giochi -->
+                <div class="feature-card">
+                    <img src="assets/games.jpg" alt="Giochi">
+                    <h4>Giochi</h4>
+                    <p>Fai una pausa e divertiti con i nostri giochi: Tris, Puzzle, Snake e L'impiccato.</p>
+                </div>
+            </div>
         </div>
-    </div>
 
-    <!-- Sezione delle funzionalità -->
-    <div class="features-section">
-        <h2>Scopri le funzionalità del nostro sito!</h2>
-        <div class="features-grid">
-            <!-- Calendario -->
-            <div class="feature-card">
-                <img src="assets/calendar.png" alt="Calendario">
-                <h4>Calendario</h4>
-                <p>Gestisci i tuoi impegni con il nostro calendario intuitivo.</p>
-            </div>
-            <!-- Pomodoro Timer -->
-            <div class="feature-card">
-                <img src="assets/pomodoro.png" alt="Pomodoro Timer">
-                <h4>Pomodoro Timer</h4>
-                <p>Organizza il tuo tempo e lavora in sessioni con il Pomodoro Timer.</p>
-            </div>
-            <!-- Note -->
-            <div class="feature-card">
-                <img src="assets/notes.png" alt="Note">
-                <h4>Note</h4>
-                <p>Annota tutto ciò che ti serve con la nostra sezione per le note.</p>
-            </div>
-            <!-- Giochi -->
-            <div class="feature-card">
-                <img src="assets/games.png" alt="Giochi">
-                <h4>Giochi</h4>
-                <p>Fai una pausa e divertiti con i nostri giochi: Tris, Puzzle, Snake e L'impiccato.</p>
+        <!-- Sezione del login -->
+        <div class="login-section">
+            <div id="div-login">
+                <form (ngSubmit)="onLogin()">
+                    <div id="div-form">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" placeholder="Inserisci il tuo username"
+                            maxlength="50" required [(ngModel)]="username">
+                    </div>
+                    <div id="div-form">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Inserisci la tua password"
+                            maxlength="50" required [(ngModel)]="password">
+                    </div>
+                    <button type="submit" class="btn-login">Accedi</button>
+                    <div *ngIf="errorMessage" class="error-message">
+                        {{ errorMessage }}
+                    </div>
+                </form>
+                <p class="register-link">Non sei ancora registrato? <a routerLink="/registration">Clicca qui</a></p>
             </div>
         </div>
     </div>
