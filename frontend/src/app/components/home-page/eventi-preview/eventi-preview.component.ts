@@ -12,9 +12,6 @@ export class EventiPreviewComponent implements OnInit {
   constructor(private eventService: EventService) {}
 
   ngOnInit(): void {
-    // Recupera gli eventi della settimana dal servizio
-    this.eventService.getEventiSettimana().subscribe((data) => {
-      this.eventi = data;
-    });
+   
   }
 }

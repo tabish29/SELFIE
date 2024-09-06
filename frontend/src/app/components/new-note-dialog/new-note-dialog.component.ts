@@ -49,7 +49,7 @@ export class NewNoteDialogComponent {
 
         this.userNoteService.createNote(newNote).subscribe(
           note => {
-            this.dialogRef.close(note);
+            this.dialogRef.close(newNote);
           },
           error => console.error('Errore nella creazione della nota', error)
         );

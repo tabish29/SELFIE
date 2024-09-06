@@ -25,7 +25,7 @@ export class UserNotesComponent {
 
   ngOnInit(): void {
     this.authorUsername = this.localStorageService.getItem('username');
-    
+
     if (this.authorUsername) {
       this.loadNotesByAuthor(this.authorUsername);
     } else {
@@ -56,7 +56,7 @@ export class UserNotesComponent {
   openUpdateNoteDialog(note: UserNote): void {
     const dialogRef = this.dialog.open(UpdateNoteDialogComponent, {
       width: '400px',
-      data: note 
+      data: note
     });
 
     dialogRef.afterClosed().subscribe(result => {
