@@ -1,8 +1,27 @@
 <div class="page-container">
     <app-navbar></app-navbar>
+
     <div class="main-container">
-        <h1>Benvenuto su: </h1>
-        <img src="assets/home2.png" alt="logo">
+        <h1>Benvenuto su:</h1>
+        <img src="assets/home2.png" alt="logo" class="logo">
+
+        <div class="previews-container">
+            <!-- Eventi della settimana/giorno corrente -->
+            <app-eventi-preview></app-eventi-preview>
+
+            <!-- Ultima nota creata -->
+            <app-ultima-nota></app-ultima-nota>
+
+            <!-- Attività imminente -->
+            <app-attivita-imminente></app-attivita-imminente>
+
+            <!-- Report sull'ultimo Pomodoro -->
+            <app-pomodoro-report></app-pomodoro-report>
+
+            <!-- Orologio con l'orario del giorno -->
+            <app-orologio></app-orologio>
+        </div>
     </div>
+
     <app-footer></app-footer>
 </div>

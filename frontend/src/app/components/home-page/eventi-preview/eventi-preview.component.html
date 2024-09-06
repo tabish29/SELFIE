@@ -1,0 +1,7 @@
+<div class="preview-card">
+    <h3>Eventi della Settimana</h3>
+    <ul *ngIf="eventi.length > 0">
+        <li *ngFor="let evento of eventi">{{ evento.nome }} - {{ evento.data | date: 'dd/MM/yyyy' }}</li>
+    </ul>
+    <p *ngIf="eventi.length === 0">Nessun evento per questa settimana.</p>
+</div>

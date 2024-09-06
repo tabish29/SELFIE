@@ -1,0 +1,7 @@
+<div class="report-card" *ngIf="report">
+    <h3>Report Ultimo Pomodoro</h3>
+    <p>Tempo trascorso: {{ report.timeSpent }} minuti</p>
+    <p>Obiettivo: {{ report.goal }}</p>
+    <p>Data: {{ report.date | date: 'dd/MM/yyyy HH:mm' }}</p>
+</div>
+<p *ngIf="!report">Nessun report disponibile.</p>

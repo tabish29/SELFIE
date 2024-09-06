@@ -1,0 +1,18 @@
+.clock-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    max-width: 300px;
+}
+
+.clock-card h3 {
+    color: #007bff;
+}
+
+.clock-card p {
+    font-size: 2em;
+    color: #555;
+}

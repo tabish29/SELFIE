@@ -1,0 +1,26 @@
+.preview-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+}
+
+.preview-card h3 {
+    color: #007bff;
+}
+
+.preview-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.preview-card li {
+    padding: 5px 0;
+}
+
+.preview-card p {
+    color: #555;
+}

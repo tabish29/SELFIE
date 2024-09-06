@@ -32,7 +32,12 @@ import { GameComponent } from './components/game/game.component';
 import { TrisComponent } from './components/game/tris/tris.component';
 import { SnakeComponent } from './components/game/snake/snake.component';
 import { ImpiccatoComponent } from './components/game/impiccato/impiccato.component';
-import { PuzzleComponent } from './components/game/puzzle/puzzle.component'; 
+import { PuzzleComponent } from './components/game/puzzle/puzzle.component';
+import { EventiPreviewComponent } from './components/home-page/eventi-preview/eventi-preview.component';
+import { UltimaNotaComponent } from './components/home-page/ultima-nota/ultima-nota.component';
+import { AttivitaImminenteComponent } from './components/home-page/attivita-imminente/attivita-imminente.component';
+import { PomodoroReportComponent } from './components/home-page/pomodoro-report/pomodoro-report.component';
+import { OrologioComponent } from './components/home-page/orologio/orologio.component'; 
 
 @NgModule({
   declarations: [
@@ -54,7 +59,12 @@ import { PuzzleComponent } from './components/game/puzzle/puzzle.component';
     TrisComponent,
     SnakeComponent,
     ImpiccatoComponent,
-    PuzzleComponent
+    PuzzleComponent,
+    EventiPreviewComponent,
+    UltimaNotaComponent,
+    AttivitaImminenteComponent,
+    PomodoroReportComponent,
+    OrologioComponent
   ],
   imports: [
     BrowserModule,
