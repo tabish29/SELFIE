@@ -84,7 +84,7 @@ export class CalendarComponent {
         //this.today = this.convertToDateTimeLocalFormat(timeMachine.date);
         this.today = timeMachine.date;
         console.log("Calendar date of today: " + this.today);
-        //this.updateCalendarDate();
+        this.updateCalendarDate();
       },
       (error) => console.error('Errore nel recupero del time machine', error)
     );
