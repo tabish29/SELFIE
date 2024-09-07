@@ -32,6 +32,40 @@ export class UserNotesComponent {
     }
   }
 
+
+  onFilterChange(event: any): void {
+    const filterValue = event.target.value;
+
+    switch (filterValue) {
+      case 'title':
+        this.filterByTitle();
+        break;
+      case 'date':
+        this.filterByDate();
+        break;
+      case 'contentLength':
+        this.filterByContentLength();
+        break;
+      case 'none': 
+      this.loadNotesByAuthor(this.authorUsername);
+        break;
+      default:
+        break;
+    }
+  }
+
+  filterByTitle(): void {
+    this.notes.sort((a, b) => a.title.localeCompare(b.title));
+  }
+
+  filterByDate(): void {
+    this.notes.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+  }
+
+  filterByContentLength(): void {
+    this.notes.sort((a, b) => b.content.length - a.content.length);
+  }
+
   loadNotes(): void {
     this.userNotesService.getNotes().subscribe(
       notes => this.notes = notes,
@@ -83,7 +117,7 @@ export class UserNotesComponent {
     const index = this.notes.findIndex(note => note.title === updatedNote.title);
     if (index > -1) {
       this.notes[index] = updatedNote;
-      
+
       if (updatedNote.authorUsername) {
         this.userNotesService.updateNote(updatedNote.authorUsername, updatedNote.title, updatedNote).subscribe(
           () => console.log('Nota aggiornata con successo'),
@@ -96,7 +130,7 @@ export class UserNotesComponent {
 
   selectNote(note: UserNote): void {
     this.selectedNote = { ...note };
-    
+
     this.openUpdateNoteDialog(this.selectedNote);
   }
 

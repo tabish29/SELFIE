@@ -3,6 +3,16 @@
 <div class="container">
   <h1>Gestione Note</h1>
 
+  <div class="filter-section">
+    <label for="filter">Filtra per:</label>
+    <select id="filter" (change)="onFilterChange($event)">
+      <option value="none">--</option>
+      <option value="title">Titolo (A-Z)</option>
+      <option value="date">Data di Creazione</option>
+      <option value="contentLength">Lunghezza del Contenuto</option>
+    </select>
+  </div>
+
   <!-- Sezione per visualizzare le note -->
   <div *ngIf="notes.length > 0" class="notes-section">
     <h2>Le tue Note</h2>
