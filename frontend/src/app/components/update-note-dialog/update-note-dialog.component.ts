@@ -58,4 +58,28 @@ export class UpdateNoteDialogComponent {
     }
   }
 
+  duplicateNote(): void {
+    if (this.note.authorUsername) {
+      this.timeMachineService.getTimeMachine(this.note.authorUsername).subscribe(
+        (timeMachine) => {
+          const now = timeMachine.date;
+
+          const duplicatedNote: UserNote = {
+            title: `${this.note.title}(2)`,
+            content: this.note.content,
+            categories: this.note.categories,
+            createdAt: now,
+            updatedAt: now,
+            authorUsername: this.note.authorUsername
+          };
+
+          this.dialogRef.close({ isDuplicated: true, note: duplicatedNote });
+        },
+        (error) => {
+          console.error('Errore nel recupero della Time Machine', error);
+        }
+      );
+    }
+  }
+
 }

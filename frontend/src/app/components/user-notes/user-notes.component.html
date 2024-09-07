@@ -20,8 +20,8 @@
       <div *ngFor="let note of notes" (click)="selectNote(note)" class="note-item">
         <h3>{{ note.title }}</h3>
         <p>{{ note.content }}</p>
-        <p><strong>Creato il:</strong> {{ note.createdAt | date:'short' }}</p>
-        <p><strong>Ultima modifica:</strong> {{ note.updatedAt | date:'short' }}</p>
+        <p><strong>Creato il:</strong> {{ note.createdAt }}</p>
+        <p><strong>Ultima modifica:</strong> {{ note.updatedAt }}</p>
       </div>
     </div>
   </div>
@@ -30,7 +30,6 @@
     <p>Nessuna nota disponibile.</p>
   </div>
 
-  <!-- Pulsanti di azione -->
   <div class="action-buttons">
     <button (click)="openCreateNoteDialog()">Crea Nota</button>
   </div>

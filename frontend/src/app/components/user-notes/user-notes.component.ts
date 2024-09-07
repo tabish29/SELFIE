@@ -46,8 +46,8 @@ export class UserNotesComponent {
       case 'contentLength':
         this.filterByContentLength();
         break;
-      case 'none': 
-      this.loadNotesByAuthor(this.authorUsername);
+      case 'none':
+        this.loadNotesByAuthor(this.authorUsername);
         break;
       default:
         break;
@@ -101,6 +101,9 @@ export class UserNotesComponent {
         if (result.isUpdated) {
           this.updateNoteInList(result.note);
         }
+        if (result.isDuplicated) {
+          this.duplicateNoteInList(result.note);
+        }
 
       }
     });
@@ -124,6 +127,19 @@ export class UserNotesComponent {
           error => console.error('Errore nell\'aggiornamento della nota', error)
         );
       }
+
+    }
+  }
+
+  duplicateNoteInList(duplicatedNote: UserNote): void {
+    if (duplicatedNote.authorUsername) {
+      this.userNotesService.createNote(duplicatedNote).subscribe(
+        (createdNote) => {
+          console.log('Nota duplicata con successo');
+          this.notes.push(duplicatedNote);
+        },
+        (error) => console.error('Errore nella duplicazione della nota', error)
+      );
 
     }
   }
