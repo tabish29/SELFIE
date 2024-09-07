@@ -1,7 +1,7 @@
 /* Stile per la Navbar */
 .navbar {
     background-color: #e63946;
-    padding: 10px 20px;
+    padding: 5px 10px;
     width: 100%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -23,14 +23,19 @@
     color: #ffffff;
     text-decoration: none;
     font-weight: bold;
-    padding: 8px 15px;
+    padding: 10px 10px;
     margin: 5px;
     display: block;
     font-size: 16px;
     transition: all 0.3s ease;
     border-radius: 10px;
 }
-
+.navbar a img{
+    width: 20px;
+    height: 20px;
+    margin: 0px;
+    padding: 0px;
+}
 /* Effetto Hover */
 .navbar a:hover {
     background-color: #ff9c9c;

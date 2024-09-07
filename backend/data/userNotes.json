@@ -240,5 +240,16 @@
     "createdAt": "04/09/2024 13:27",
     "updatedAt": "04/09/2024 13:27",
     "authorUsername": "a"
+  },
+  {
+    "title": "Prova 5",
+    "content": "corriiiii",
+    "categories": [
+      "cardio",
+      "Sex"
+    ],
+    "createdAt": "04/09/2024 22:25",
+    "updatedAt": "04/09/2024 22:25",
+    "authorUsername": "Leo"
   }
 ]

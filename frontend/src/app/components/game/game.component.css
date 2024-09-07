@@ -1,3 +1,6 @@
+.container{
+    padding: 5px;
+}
 .games-grid {
     display: flex;
     flex-wrap: wrap;
