@@ -67,7 +67,7 @@ export class UserNotesComponent {
         if (result.isUpdated) {
           this.updateNoteInList(result.note);
         }
-        
+
       }
     });
   }
@@ -83,16 +83,20 @@ export class UserNotesComponent {
     const index = this.notes.findIndex(note => note.title === updatedNote.title);
     if (index > -1) {
       this.notes[index] = updatedNote;
-      this.userNotesService.updateNote(updatedNote.title, updatedNote).subscribe(
-        () => console.log('Nota aggiornata con successo'),
-        error => console.error('Errore nell\'aggiornamento della nota', error)
-      );
+      
+      if (updatedNote.authorUsername) {
+        this.userNotesService.updateNote(updatedNote.authorUsername, updatedNote.title, updatedNote).subscribe(
+          () => console.log('Nota aggiornata con successo'),
+          error => console.error('Errore nell\'aggiornamento della nota', error)
+        );
+      }
+
     }
   }
 
   selectNote(note: UserNote): void {
     this.selectedNote = { ...note };
-    // Open update dialog when a note is selected
+    
     this.openUpdateNoteDialog(this.selectedNote);
   }
 

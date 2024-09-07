@@ -33,6 +33,12 @@ async function findNoteByTitle(title) {
     return notes.find(note => note.title === title);
 }
 
+async function findNoteByAuthorAndTitle(authorUsername, title) {
+    const notes = await readNotesFile();
+
+    return notes.find(note => note.title === title && note.authorUsername === authorUsername);
+}
+
 async function getAllNotes() {
     return await readNotesFile();
 }
@@ -42,10 +48,9 @@ async function addNote(title, content, categories, createdAt, updatedAt, authorU
         throw new Error('Title, content, categories,authorUsername, createdAt, and updatedAt are required');
     }
 
-
-    const existingNote = await findNoteByTitle(title);
+    const existingNote = await findNoteByAuthorAndTitle(authorUsername, title);
     if (existingNote) {
-        throw new Error('Note with this title already exists');
+        throw new Error('Esiste già una nota con questo titolo');
     }
 
     const newNote = new UserNote(
@@ -60,9 +65,9 @@ async function addNote(title, content, categories, createdAt, updatedAt, authorU
     await saveNote(newNote);
 }
 
-async function deleteNote(title) {
+async function deleteNote(authorUsername, title) {
     const notes = await readNotesFile();
-    const noteIndex = notes.findIndex(note => note.title === title);
+    const noteIndex = notes.findIndex(note => note.title === title && note.authorUsername === authorUsername);
 
     if (noteIndex === -1) {
         throw new Error('Nota non trovata');
@@ -73,9 +78,9 @@ async function deleteNote(title) {
     await writeNotesFile(notes);
 }
 
-async function updateNote(title, updatedData) {
+async function updateNote(authorUsername, title, updatedData) {
     const notes = await readNotesFile();
-    const noteIndex = notes.findIndex(note => note.title === title);
+    const noteIndex = notes.findIndex(note => note.title === title && note.authorUsername === authorUsername);
 
     if (noteIndex === -1) {
         throw new Error('Nota non trovata');
@@ -83,12 +88,10 @@ async function updateNote(title, updatedData) {
 
     const note = notes[noteIndex];
 
-
     if (updatedData.content) {
         note.content = updatedData.content;
         note.updatedAt = new Date();
     }
-
 
     Object.assign(note, updatedData);
 

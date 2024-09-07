@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class UserNoteService {
-  private apiUrl = 'http://localhost:3000/userNotes';  
+  private apiUrl = 'http://localhost:3000/userNotes';
 
   constructor(private http: HttpClient) { }
 
@@ -23,12 +23,12 @@ export class UserNoteService {
     return this.http.post<UserNote>(this.apiUrl, note);
   }
 
-  updateNote(title: string, note: Partial<UserNote>): Observable<UserNote> {
-    return this.http.put<UserNote>(`${this.apiUrl}/${title}`, note);
+  updateNote(authorUsername: string, title: string, note: Partial<UserNote>): Observable<UserNote> {
+    return this.http.put<UserNote>(`${this.apiUrl}/${authorUsername}/${title}`, note);
   }
 
-  deleteNote(title: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${title}`);
+  deleteNote(authorUsername: string, title: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${authorUsername}/${title}`);
   }
 
   getNotesPreview(length: number = 200): Observable<{ title: string; preview: string; }[]> {

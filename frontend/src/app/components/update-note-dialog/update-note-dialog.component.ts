@@ -17,39 +17,39 @@ export class UpdateNoteDialogComponent {
     public dialogRef: MatDialogRef<UpdateNoteDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: UserNote,
     private timeMachineService: TimeMachineService,
-    private userNoteService:UserNoteService
+    private userNoteService: UserNoteService
   ) {
-    this.note = { ...data }; 
+    this.note = { ...data };
   }
 
   onUpdate(): void {
-    if(this.note.authorUsername){
+    if (this.note.authorUsername) {
 
-    this.timeMachineService.getTimeMachine(this.note.authorUsername).subscribe(
-      (timeMachine) => {
-        const now = timeMachine.date; 
-        this.note.updatedAt = now; 
+      this.timeMachineService.getTimeMachine(this.note.authorUsername).subscribe(
+        (timeMachine) => {
+          const now = timeMachine.date;
+          this.note.updatedAt = now;
 
-       
-        this.dialogRef.close({ isUpdated: true ,note: this.note});
-      },
-      (error) => {
-        console.error('Errore nel recupero della Time Machine', error);
-      }
-    );
+
+          this.dialogRef.close({ isUpdated: true, note: this.note });
+        },
+        (error) => {
+          console.error('Errore nel recupero della Time Machine', error);
+        }
+      );
     }
   }
 
   onCancel(): void {
-    this.dialogRef.close({ isDeleted: false ,isUpdated: false});
+    this.dialogRef.close({ isDeleted: false, isUpdated: false });
   }
 
   onDelete(): void {
-    if (this.note.title) {
-      this.userNoteService.deleteNote(this.note.title).subscribe(
+    if (this.note.title && this.note.authorUsername) {
+      this.userNoteService.deleteNote(this.note.authorUsername, this.note.title).subscribe(
         () => {
           console.log('Nota eliminata con successo');
-          this.dialogRef.close({ isDeleted: true ,note: this.note});  
+          this.dialogRef.close({ isDeleted: true, note: this.note });
         },
         (error) => {
           console.error('Errore nell\'eliminazione della nota', error);
