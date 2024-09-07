@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { UserNote } from '../../models/UserNote';
 import { UserNoteService } from '../../services/user-note.service';
-import { TimeMachineService } from '../../services/time-machine.service';
 import { MatDialog } from '@angular/material/dialog';
 import { NewNoteDialogComponent } from '../new-note-dialog/new-note-dialog.component';
 import { LocalStorageService } from '../../services/local-storage.service';
@@ -61,9 +60,23 @@ export class UserNotesComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.updateNoteInList(result);
+
+        if (result.isDeleted) {
+          this.deleteNote(result.note);
+        }
+        if (result.isUpdated) {
+          this.updateNoteInList(result.note);
+        }
+        
       }
     });
+  }
+
+  deleteNote(noteToDelete: UserNote): void {
+    const index = this.notes.findIndex(note => note.title === noteToDelete.title);
+    if (index > -1) {
+      this.notes.splice(index, 1);
+    }
   }
 
   updateNoteInList(updatedNote: UserNote): void {
@@ -81,15 +94,6 @@ export class UserNotesComponent {
     this.selectedNote = { ...note };
     // Open update dialog when a note is selected
     this.openUpdateNoteDialog(this.selectedNote);
-  }
-
-  deleteNote(title: string): void {
-    this.userNotesService.deleteNote(title).subscribe(
-      () => {
-        this.notes = this.notes.filter(note => note.title !== title);
-      },
-      error => console.error('Errore nella cancellazione della nota', error)
-    );
   }
 
   loadPreviews(): void {

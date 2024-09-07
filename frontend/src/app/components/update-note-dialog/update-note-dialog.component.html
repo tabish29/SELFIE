@@ -3,7 +3,7 @@
   <form>
     <mat-form-field appearance="fill">
       <mat-label>Title</mat-label>
-      <input matInput [(ngModel)]="note.title" name="title" required />
+      <input matInput [(ngModel)]="note.title" name="title" required readonly/>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
@@ -14,5 +14,6 @@
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onCancel()">Cancel</button>
-  <button mat-button (click)="onUpdate()">Update</button>
+  <button mat-button (click)="onDelete()">Elimina</button>
+  <button mat-button (click)="onUpdate()">Aggiorna</button>
 </div>

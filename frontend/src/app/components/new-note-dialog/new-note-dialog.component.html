@@ -1,21 +1,34 @@
 <h1 mat-dialog-title>Crea Nuova Nota</h1>
 <div mat-dialog-content>
-  <mat-form-field>
+  <mat-form-field appearance="fill">
     <mat-label>Titolo</mat-label>
-    <input matInput [(ngModel)]="title">
+    <input matInput [(ngModel)]="title" required>
   </mat-form-field>
-  
-  <mat-form-field>
+
+  <mat-form-field appearance="fill">
     <mat-label>Contenuto</mat-label>
-    <textarea matInput [(ngModel)]="content"></textarea>
+    <textarea matInput [(ngModel)]="content" required></textarea>
   </mat-form-field>
-  
-  <mat-form-field>
-    <mat-label>Categorie</mat-label>
-    <input matInput [(ngModel)]="categories">
+
+  <!-- Campo per aggiungere una nuova categoria -->
+  <mat-form-field appearance="fill">
+    <mat-label>Inserisci Categoria</mat-label>
+    <input matInput [(ngModel)]="categoryInput" placeholder="Aggiungi categoria">
   </mat-form-field>
+  <button mat-button (click)="addCategory()">Aggiungi Categoria</button>
+
+  <!-- Lista delle categorie aggiunte con possibilità di rimuoverle -->
+  <div *ngIf="categories.length > 0">
+    <h3>Categorie Aggiunte</h3>
+    <div *ngFor="let category of categories; let i = index" class="category-chip">
+      {{ category }}
+      <button mat-icon-button (click)="removeCategory(i)">
+        x
+      </button>
+    </div>
+  </div>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onCancel()">Annulla</button>
-  <button mat-button (click)="onCreate()">Crea Nota</button>
+  <button mat-button (click)="onCreate()" [disabled]="!title || !content">Crea Nota</button>
 </div>

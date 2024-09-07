@@ -22,12 +22,9 @@
 
   <!-- Pulsanti di azione -->
   <div class="action-buttons">
-    <button mat-button (click)="openCreateNoteDialog()">Crea Nota</button>
-    <button mat-button *ngIf="selectedNote" (click)="openUpdateNoteDialog(selectedNote)">Modifica Nota</button>
-    <button mat-button *ngIf="selectedNote" (click)="deleteNote(selectedNote.title)">Elimina Nota</button>
+    <button (click)="openCreateNoteDialog()">Crea Nota</button>
   </div>
 
-  <button class="preview-button" (click)="loadPreviews()">Carica Anteprime</button>
 </div>
 
 <app-footer></app-footer>

@@ -12,14 +12,28 @@ export class AppComponent implements OnInit {
   constructor(
     private localStorageService: LocalStorageService,
     private timeMachineService: TimeMachineService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
+    /*if (typeof window !== 'undefined') {
+      window.addEventListener('beforeunload', this.clearLocalStorage);
+    }*/
+
     const username = this.localStorageService.getItem('username');
 
     if (username) {
       this.timeMachineService.startAutoUpdate(username, 60000);
     }
+  }
+
+  ngOnDestroy(): void {
+   /* if (typeof window !== 'undefined') {
+      window.removeEventListener('beforeunload', this.clearLocalStorage);
+    } */
+  }
+
+  clearLocalStorage(): void {
+    localStorage.clear();
   }
 
 }

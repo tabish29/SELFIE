@@ -15,6 +15,7 @@ export class NewNoteDialogComponent {
   title: string = '';
   content: string = '';
   categories: string[] = [];
+  categoryInput: string = '';
   authorUsername: string | null = null;
 
   constructor(
@@ -29,6 +30,18 @@ export class NewNoteDialogComponent {
     this.authorUsername = this.localStorageService.getItem('username');
   }
 
+
+  addCategory(): void {
+    if (this.categoryInput.trim() && !this.categories.includes(this.categoryInput.trim())) {
+      this.categories.push(this.categoryInput.trim());
+      this.categoryInput = '';
+    }
+  }
+
+  removeCategory(index: number): void {
+    this.categories.splice(index, 1);
+  }
+
   onCreate(): void {
     if (!this.authorUsername) {
       console.error('Username is required');
@@ -38,7 +51,7 @@ export class NewNoteDialogComponent {
     this.timeMachineService.getTimeMachine(this.authorUsername).subscribe(
       (timeMachine: TimeMachine) => {
         const now = timeMachine.date;
-        const newNote : UserNote= {
+        const newNote: UserNote = {
           title: this.title,
           content: this.content,
           categories: this.categories,
@@ -61,4 +74,5 @@ export class NewNoteDialogComponent {
   onCancel(): void {
     this.dialogRef.close();
   }
+
 }
