@@ -17,6 +17,8 @@ export class NewNoteDialogComponent {
   categories: string[] = [];
   categoryInput: string = '';
   authorUsername: string | null = null;
+  selectedColor: string = ''; 
+  colors: string[] = ['red', 'yellow', 'green', 'blue', 'purple', 'orange', 'brown', 'gray'];
 
   constructor(
     public dialogRef: MatDialogRef<NewNoteDialogComponent>,
@@ -28,6 +30,9 @@ export class NewNoteDialogComponent {
 
   ngOnInit(): void {
     this.authorUsername = this.localStorageService.getItem('username');
+  }
+  selectColor(color: string): void {
+    this.selectedColor = color;
   }
 
 
