@@ -44,9 +44,6 @@ async function getAllNotes() {
 }
 
 async function addNote(title, content, categories, createdAt, updatedAt, authorUsername) {
-    if (!title || !content || !authorUsername || !createdAt || !updatedAt) {
-        throw new Error('Title, content, categories,authorUsername, createdAt, and updatedAt are required');
-    }
 
     const existingNote = await findNoteByAuthorAndTitle(authorUsername, title);
     if (existingNote) {
