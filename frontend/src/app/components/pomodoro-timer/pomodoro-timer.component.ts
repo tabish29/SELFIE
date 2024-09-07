@@ -14,7 +14,7 @@ export class PomodoroTimerComponent {
   sessionMessage: string = 'Sessione di Lavoro';
   workMinutes: number = 30;
   shortBreakMinutes: number = 5;
-  selectedCycles: number = 2;
+  selectedCycles: number = 5;
   totalHours: number = 0;
   totalMinutes: number = 0;
   cycleProposals: string[] = [];
@@ -116,7 +116,7 @@ export class PomodoroTimerComponent {
 
     this.seconds = 0;
 
-    // Controllo se il numero di sessioni raggiunge i cicli selezionati
+    
     if (this.sessionCount >= this.selectedCycles) {
       this.notifyUser('Complimenti! Hai finito la sessione del Pomodoro Timer che avevi impostato.');
       this.resetTimer();

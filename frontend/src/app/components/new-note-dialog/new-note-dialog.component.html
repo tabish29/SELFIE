@@ -19,14 +19,15 @@
 
   <!-- Lista delle categorie aggiunte con possibilità di rimuoverle -->
   <div *ngIf="categories.length > 0">
-    <h3>Categorie Aggiunte</h3>
-    <div *ngFor="let category of categories; let i = index" class="category-chip">
-      {{ category }}
-      <button mat-icon-button (click)="removeCategory(i)">
-        x
-      </button>
+    <p>Categorie Aggiunte</p>
+    <div class="category-container">
+      <div *ngFor="let category of categories; let i = index" class="category-chip">
+        {{ category }}
+        <mat-icon class="closeIcon" (click)="removeCategory(i)">close</mat-icon>
+      </div>
     </div>
   </div>
+
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onCancel()">Annulla</button>
