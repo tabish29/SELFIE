@@ -6,6 +6,7 @@ const timeMachineRoutes = require('./routes/timeMachineRoute');
 const userNoteRoutes = require('./routes/userNoteRoute');
 const wordRoutes = require('./routes/wordRoute');
 const activityRoutes = require('./routes/activityRoute');
+const flashCardRoutes= require('./routes/flashCardRoute');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -23,6 +24,8 @@ app.use('/userNotes', userNoteRoutes);
 app.use('/words', wordRoutes);
 
 app.use('/activities', activityRoutes);
+
+app.use('/flashcards', flashCardRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server avviato sulla porta http://localhost:${PORT}`);
