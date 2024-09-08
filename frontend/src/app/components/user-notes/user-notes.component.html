@@ -3,6 +3,7 @@
 <div class="container">
   <h1>Gestione Note</h1>
 
+  <!-- Sezione filtri -->
   <div class="filter-section">
     <label for="filter">Filtra per:</label>
     <select id="filter" (change)="onFilterChange($event)">
@@ -13,8 +14,31 @@
     </select>
   </div>
 
+  <!-- Sezione per selezionare il colore, visibile solo quando l'opzione "Colore" è selezionata -->
+  <div class="color-filter-section">
+    <label for="colorFilter">Seleziona un colore:</label>
+    <select id="colorFilter" (change)="filterByColor($event)">
+      <option value="none">Tutti i colori</option>
+      <option *ngFor="let color of colors" [value]="color.value">{{ color.name }}</option>
+    </select>
+  </div>
+
+  <!-- Sezione per visualizzare le note filtrate per colore -->
+  <div *ngIf="selectedColor !== 'none' && filteredByColorNotes.length > 0" class="notes-section">
+    <h2>Le tue Note</h2>
+    <div class="note-grid">
+      <div *ngFor="let note of filteredByColorNotes" (click)="selectNote(note)" class="note-item"
+        [ngStyle]="{'background-color': note.noteColor}">
+        <h3>{{ note.title }}</h3>
+        <p>{{ note.content }}</p>
+        <p><strong>Creato il:</strong> {{ note.createdAt }}</p>
+        <p><strong>Ultima modifica:</strong> {{ note.updatedAt }}</p>
+      </div>
+    </div>
+  </div>
+
   <!-- Sezione per visualizzare le note -->
-  <div *ngIf="notes.length > 0" class="notes-section">
+  <div *ngIf="selectedColor === 'none' && notes.length > 0 " class="notes-section">
     <h2>Le tue Note</h2>
     <div class="note-grid">
       <div *ngFor="let note of notes" (click)="selectNote(note)" class="note-item" [ngStyle]="{'background-color': note.noteColor}">
@@ -26,8 +50,12 @@
     </div>
   </div>
 
-  <div *ngIf="notes.length === 0" class="empty-notes">
+  <div *ngIf="notes.length === 0 && selectedColor === 'none'" class="empty-notes">
     <p>Nessuna nota disponibile.</p>
+  </div>
+
+  <div *ngIf="filteredByColorNotes.length === 0 && selectedColor !== 'none' " class="empty-notes">
+    <p>Nessuna nota disponibile del colore selezionato.</p>
   </div>
 
   <div class="action-buttons">

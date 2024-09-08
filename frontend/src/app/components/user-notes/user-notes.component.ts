@@ -13,8 +13,23 @@ import { UpdateNoteDialogComponent } from '../update-note-dialog/update-note-dia
 })
 export class UserNotesComponent {
   notes: UserNote[] = [];
+  filteredByColorNotes: UserNote[] = [];
   selectedNote: UserNote | null = null;
   authorUsername: string = '';
+  selectedColor: string = 'none';
+  selectedFilter: string = 'none';
+
+  colors: { name: string, value: string }[] = [
+    { name: 'Rosso', value: 'red' },
+    { name: 'Giallo', value: 'yellow' },
+    { name: 'Verde', value: 'green' },
+    { name: 'Blu', value: 'blue' },
+    { name: 'Viola', value: 'purple' },
+    { name: 'Arancione', value: 'orange' },
+    { name: 'Marrone', value: 'brown' },
+    { name: 'Grigio', value: 'gray' },
+    { name: 'Bianco', value: 'white' }
+  ];
 
   constructor(
     private dialog: MatDialog,
@@ -34,9 +49,16 @@ export class UserNotesComponent {
 
 
   onFilterChange(event: any): void {
-    const filterValue = event.target.value;
 
-    switch (filterValue) {
+    if (event instanceof Event) {
+      const target = event.target as HTMLSelectElement | null;
+      if (target) {
+        this.selectedFilter = target.value;
+      }
+
+    }
+
+    switch (this.selectedFilter) {
       case 'title':
         this.filterByTitle();
         break;
@@ -56,14 +78,27 @@ export class UserNotesComponent {
 
   filterByTitle(): void {
     this.notes.sort((a, b) => a.title.localeCompare(b.title));
+    this.filteredByColorNotes.sort((a, b) => a.title.localeCompare(b.title));
   }
 
   filterByDate(): void {
     this.notes.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+    this.filteredByColorNotes.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
   }
 
   filterByContentLength(): void {
     this.notes.sort((a, b) => b.content.length - a.content.length);
+    this.filteredByColorNotes.sort((a, b) => b.content.length - a.content.length);
+  }
+
+  filterByColor(event: Event): void {
+    const target = event.target as HTMLSelectElement;
+    this.selectedColor = target.value;
+    if (this.selectedColor === 'none') {
+      this.loadNotesByAuthor(this.authorUsername);
+    } else {
+      this.filteredByColorNotes = this.notes.filter(note => note.noteColor === this.selectedColor);
+    }
   }
 
   loadNotes(): void {
@@ -82,6 +117,15 @@ export class UserNotesComponent {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.notes.push(result);
+
+        if (result.noteColor === this.selectedColor) {
+          this.filteredByColorNotes.push(result);
+        }
+
+        if(this.selectedFilter !== "none"){
+          this.onFilterChange(this.selectedFilter);
+        }
+
       }
     });
   }
