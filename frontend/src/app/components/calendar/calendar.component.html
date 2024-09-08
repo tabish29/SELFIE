@@ -21,7 +21,7 @@
           <p>(<b>check</b> per eliminare)</p>
           <li *ngFor="let activity of activities" > 
             <input type="checkbox" (change)="onCheckboxChange(activity)" />
-            <b>{{ activity.title }}</b> - {{ activity.dueDate | date:'dd MMMM yyyy' }}
+            <b [ngClass]="{'expired': isExpired(activity)}">{{ activity.title }}</b> - {{ activity.dueDate | date:'dd MMMM yyyy' }}
             <i>{{ activity.notes }}</i>
             
           </li>

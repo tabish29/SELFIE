@@ -81,13 +81,14 @@ export class CalendarComponent {
 
     this.timeMachineService.getTimeMachine(this.authorUsername).subscribe(
       (timeMachine: TimeMachine) => {
-        //this.today = this.convertToDateTimeLocalFormat(timeMachine.date);
-        this.today = timeMachine.date;
+        
+        this.today = this.convertToDateTimeLocalFormat(timeMachine.date);
         console.log("Calendar date of today: " + this.today);
         this.updateCalendarDate();
       },
       (error) => console.error('Errore nel recupero del time machine', error)
     );
+
 
     this.loadActivities();
     
@@ -115,6 +116,12 @@ export class CalendarComponent {
       (data) => {
         this.activities = data;
 
+        for(var i = 0; i<this.activities.length; i++){
+          this.isExpired(this.activities[i]);
+        }
+
+        
+
         //ELENCO LATERALE DELLE ATTIVITA
         this.activities.sort((a, b) => {
           if (a.dueDate && b.dueDate) {
@@ -125,6 +132,7 @@ export class CalendarComponent {
           if (!b.dueDate) return -1; // Metti null alla fine
           return 0; // Se entrambe sono null, lasciale inalterate
         });
+        
         
 
         //VISUALIZZAZIONE NEL CALENDARIO DELLE ATTIVITA
@@ -140,25 +148,16 @@ export class CalendarComponent {
 
   
   isExpired(activity: Activity): boolean {
-    
-    /*
-    if (!activity.dueDate) {
-      return false; // Se la data non è presente, non è scaduta
-    }
-    const today = this.getToday(); // Ottieni la data corrente simulata
-    const dueDateObj = new Date(activity.dueDate); // Assicurati che sia un oggetto Date
+  if(!activity.dueDate){
+    return false;
+  }
+    const todayDate = new Date(this.today);
+    const dueDate = new Date(activity.dueDate);
 
-    if(dueDateObj.getTime() < today.getTime()){
-      //console.log(activity.dueDate + " is expired")
-      return true;
-    }else{
-      //console.log(activity.dueDate + " is NOT expired")
-      return false;
-    }
-    
-    // Confronta le date: ritorna true se la scadenza è nel passato
-    */
-   return true;
+    console.log("Oggi: " + todayDate + "Data di scadenza:" + todayDate);
+
+    return dueDate < todayDate; //True se scaduta prima di oggi 
+    return true;
   }
     
   onCheckboxChange(activity: Activity){
@@ -261,11 +260,12 @@ export class CalendarComponent {
   }
 
   convertToDateTimeLocalFormat(dateStr: string): string {
-    // Supponiamo che dateStr sia nel formato "dd/MM/yyyy hh:mm"
+    // Formato time machine: "dd/MM/yyyy hh:mm"
     const [datePart, timePart] = dateStr.split(' '); // Divide la data e l'ora
     const [day, month, year] = datePart.split('/'); // Divide la parte della data
     const formattedDate = `${year}-${month}-${day}T${timePart}`; // Riformatta la data
     return formattedDate;
+    //formato attuale ISO 8601 
   }
 
 }
