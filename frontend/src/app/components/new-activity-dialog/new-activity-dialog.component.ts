@@ -25,6 +25,7 @@ export class NewActivityDialogComponent {
     private activityService: ActivityService,
     //private timeMachineService: TimeMachineService,
     private localStorageService: LocalStorageService,
+    //private calendarComponent: CalendarComponent,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 

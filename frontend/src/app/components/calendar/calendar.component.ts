@@ -12,6 +12,7 @@ import { ActivityService } from '../../services/activity.service';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { TimeMachineService } from '../../services/time-machine.service';
 import { TimeMachine } from '../../models/TimeMachine';
+import { Console } from 'node:console';
 
 
 @Component({
@@ -77,8 +78,6 @@ export class CalendarComponent {
   
 
   /* CALENDAR */
-
-  
   ngOnInit(): void {
     
     this.authorUsername = this.localStorageService.getItem('username') || '';
@@ -129,7 +128,7 @@ export class CalendarComponent {
   }*/
 
   
-  // NON FUNZIONA
+  // FUNZIONA IN PARTE
   updateCalendarDate(): void {
     console.log("Today is set to: ", this.today);
     console.log("FullCalendar instance: ", this.fullcalendar);
@@ -153,16 +152,15 @@ export class CalendarComponent {
   /* ACTIVITIES */
   //carica le attività dell'utente
   loadActivities(){
-    
+
     this.activityService.getActivitiesByAuthor(this.authorUsername).subscribe(
       (data) => {
         this.activities = data;
 
         for(var i = 0; i<this.activities.length; i++){
           this.isExpired(this.activities[i]);
+          
         }
-
-        
 
         //ELENCO LATERALE DELLE ATTIVITA
         this.activities.sort((a, b) => {
@@ -185,9 +183,6 @@ export class CalendarComponent {
     );
 
   }
-
-  
-
   
   isExpired(activity: Activity): boolean {
   if(!activity.dueDate){
@@ -195,16 +190,21 @@ export class CalendarComponent {
   }
     const todayDate = new Date(this.today);
     const dueDate = new Date(activity.dueDate);
+    todayDate.setHours(0, 0, 0, 0);
 
     return dueDate < todayDate; //True se scaduta prima di oggi 
   }
+
+  
     
   onCheckboxChange(activity: Activity){
     console.log(activity.title + " checked")
     this.activityService.deleteActivity(activity.title).subscribe(
-      () => console.log(activity.title + "deleted")
+      () => {console.log(activity.title + "deleted"),
+        this.loadActivities()
+      }
     )
-    this.loadActivities();
+    
   }
   
 
@@ -265,6 +265,7 @@ export class CalendarComponent {
   }
 
   hadleNewActivity(){
+    var actvityLoaded = false;
     const dialogRef = this.dialog.open(NewActivityDialogComponent, {
       width: '400px',
       data: {}
@@ -284,18 +285,21 @@ export class CalendarComponent {
         };
 
         this.activities.push(newActivity);
+        
+        
+        
 
         this.activityService.createActivity(newActivity).subscribe(
-          () => console.log('Attività creata' + newActivity),
-          error => console.error("Errore nella creazione dell'attività")
+          () =>  {console.log('Attività creata'), 
+            this.loadActivities()}
+          
         )
-
+        
         
       }
       
     });
-
-    this.loadActivities();
+    
   }
 
   convertToDateTimeLocalFormat(dateStr: string): string {
