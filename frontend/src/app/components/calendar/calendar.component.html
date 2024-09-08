@@ -40,7 +40,7 @@
     </div>
   
     <div class='demo-app-main'>
-      <full-calendar *ngIf='calendarVisible()' [options]='calendarOptions()'>
+      <full-calendar #fullcalendar [options]='calendarOptions()'>
         <ng-template #eventContent let-arg>
           <b>{{ arg.timeText }}</b>
           <i>{{ arg.event.title }}</i>

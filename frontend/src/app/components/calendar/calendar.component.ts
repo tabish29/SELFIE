@@ -21,6 +21,8 @@ import { TimeMachine } from '../../models/TimeMachine';
 })
 
 export class CalendarComponent {
+  @ViewChild('fullcalendar') fullcalendar!: FullCalendarComponent;
+  
   constructor(
     private dialog: MatDialog,
     private changeDetector: ChangeDetectorRef,
@@ -29,11 +31,13 @@ export class CalendarComponent {
     private timeMachineService: TimeMachineService
   ) {}
 
+  
 
   activities: Activity[] = [];
   authorUsername: string = '';
   today: string = '';
   calendarInitialized = false;
+  
 
   currentEvents = signal<EventApi[]>([]);
   calendarVisible = signal(true);
@@ -59,6 +63,8 @@ export class CalendarComponent {
     select: this.handleDateSelect.bind(this),
     eventClick: this.handleEventClick.bind(this),
     eventsSet: this.handleEvents.bind(this)
+    
+    
     /* you can update a remote database when these fire:
     eventAdd:
     eventChange:
@@ -67,7 +73,8 @@ export class CalendarComponent {
   });
 
   
-  @ViewChild('fullcalendar') fullcalendar!: FullCalendarComponent;
+  
+  
 
   /* CALENDAR */
 
@@ -83,23 +90,58 @@ export class CalendarComponent {
       (timeMachine: TimeMachine) => {
         
         this.today = this.convertToDateTimeLocalFormat(timeMachine.date);
-        console.log("Calendar date of today: " + this.today);
+        
         this.updateCalendarDate();
+
+
       },
       (error) => console.error('Errore nel recupero del time machine', error)
     );
 
-
+   
+    
     this.loadActivities();
     
   }
+
+  /*
+  ngAfterViewInit(): void {
+
+
+    // accedo al DOM e cambio il comportamento del pulsante today
+    setTimeout(() => {
+      const todayButton = document.querySelector('.fc-today-button');
+      if (todayButton) {
+        todayButton.addEventListener('click', () => {
+          this.handleTodayButtonClick(); 
+        });
+      }
+    });
+  }
+
+
+  handleTodayButtonClick() {
+    const calendarApi = this.fullcalendar.getApi();
+    if (calendarApi) {
+      calendarApi.gotoDate(this.today);
+      this.changeDetector.detectChanges();
+    }
+  }*/
+
   
   // NON FUNZIONA
   updateCalendarDate(): void {
+    console.log("Today is set to: ", this.today);
+    console.log("FullCalendar instance: ", this.fullcalendar);
+    
     if (this.fullcalendar && this.today) {
+      
       const calendarApi = this.fullcalendar.getApi();
-      calendarApi.gotoDate(this.convertToDateTimeLocalFormat(this.today)); 
-    this.changeDetector.detectChanges();
+      calendarApi.gotoDate(this.today); 
+  
+      this.changeDetector.detectChanges();
+    }else{
+      console.log("fullcalendar or today is missing");
     }
   }
 
@@ -154,10 +196,7 @@ export class CalendarComponent {
     const todayDate = new Date(this.today);
     const dueDate = new Date(activity.dueDate);
 
-    console.log("Oggi: " + todayDate + "Data di scadenza:" + todayDate);
-
     return dueDate < todayDate; //True se scaduta prima di oggi 
-    return true;
   }
     
   onCheckboxChange(activity: Activity){
