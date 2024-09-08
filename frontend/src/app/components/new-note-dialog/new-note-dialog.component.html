@@ -30,9 +30,9 @@
   <div class="color-selection">
     <p>Seleziona il colore della nota</p>
     <div class="color-options">
-      <div *ngFor="let color of colors" class="color-option" (click)="selectColor(color)" [ngClass]="{'selected': selectedColor === color}">
-        <div class="color-box" [ngStyle]="{'background-color': color}"></div>
-        <span>{{ color }}</span>
+      <div *ngFor="let color of colors" class="color-option" (click)="selectColor(color.value)" [ngClass]="{'selected': selectedColor === color.value}">
+        <div class="color-box" [ngStyle]="{'background-color': color.value}"></div>
+        <span>{{ color.name }}</span>
       </div>
     </div>
   </div>
