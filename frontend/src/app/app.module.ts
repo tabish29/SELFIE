@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -37,7 +38,9 @@ import { EventiPreviewComponent } from './components/home-page/eventi-preview/ev
 import { UltimaNotaComponent } from './components/home-page/ultima-nota/ultima-nota.component';
 import { AttivitaImminenteComponent } from './components/home-page/attivita-imminente/attivita-imminente.component';
 import { PomodoroReportComponent } from './components/home-page/pomodoro-report/pomodoro-report.component';
-import { OrologioComponent } from './components/home-page/orologio/orologio.component'; 
+import { OrologioComponent } from './components/home-page/orologio/orologio.component';
+import { TruncatePipe } from './pipes/truncate.pipe';
+import { FlashcardComponent } from './components/flashcard/flashcard.component'; 
 
 @NgModule({
   declarations: [
@@ -64,7 +67,9 @@ import { OrologioComponent } from './components/home-page/orologio/orologio.comp
     UltimaNotaComponent,
     AttivitaImminenteComponent,
     PomodoroReportComponent,
-    OrologioComponent
+    OrologioComponent,
+    TruncatePipe,
+    FlashcardComponent
   ],
   imports: [
     BrowserModule,
@@ -80,7 +85,8 @@ import { OrologioComponent } from './components/home-page/orologio/orologio.comp
     BrowserAnimationsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatIconModule
 
   ],
   providers: [

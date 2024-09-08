@@ -19,12 +19,21 @@
 
   <!-- Lista delle categorie aggiunte con possibilità di rimuoverle -->
   <div *ngIf="categories.length > 0">
-    <h3>Categorie Aggiunte</h3>
-    <div *ngFor="let category of categories; let i = index" class="category-chip">
-      {{ category }}
-      <button mat-icon-button (click)="removeCategory(i)">
-        x
-      </button>
+    <p>Categorie Aggiunte</p>
+    <div class="category-container">
+      <div *ngFor="let category of categories; let i = index" class="category-chip">
+        {{ category }}
+        <mat-icon class="closeIcon" (click)="removeCategory(i)">close</mat-icon>
+      </div>
+    </div>
+  </div>
+  <div class="color-selection">
+    <p>Seleziona il colore della nota</p>
+    <div class="color-options">
+      <div *ngFor="let color of colors" class="color-option" (click)="selectColor(color.value)" [ngClass]="{'selected': selectedColor === color.value}">
+        <div class="color-box" [ngStyle]="{'background-color': color.value}"></div>
+        <span>{{ color.name }}</span>
+      </div>
     </div>
   </div>
 </div>

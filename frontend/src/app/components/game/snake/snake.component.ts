@@ -217,7 +217,7 @@ export class SnakeComponent implements OnInit, AfterViewInit {
 
   private adjustSpeed(): void {
     if (this.score % 5 === 0) {
-      this.speed = Math.max(50, this.speed * 0.7); 
+      this.speed = Math.max(50, this.speed * 0.5); 
       clearInterval(this.gameInterval);
       this.gameInterval = setInterval(() => {
         this.update();

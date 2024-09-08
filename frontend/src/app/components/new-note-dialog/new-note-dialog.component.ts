@@ -17,6 +17,18 @@ export class NewNoteDialogComponent {
   categories: string[] = [];
   categoryInput: string = '';
   authorUsername: string | null = null;
+  selectedColor: string = '';
+  colors: { name: string, value: string }[] = [
+    { name: 'rosso', value: 'red' },
+    { name: 'giallo', value: 'yellow' },
+    { name: 'verde', value: 'green' },
+    { name: 'blu', value: 'blue' },
+    { name: 'viola', value: 'purple' },
+    { name: 'arancione', value: 'orange' },
+    { name: 'marrone', value: 'brown' },
+    { name: 'grigio', value: 'gray' },
+    { name: 'bianco', value: 'white' }
+  ];
 
   constructor(
     public dialogRef: MatDialogRef<NewNoteDialogComponent>,
@@ -30,6 +42,9 @@ export class NewNoteDialogComponent {
     this.authorUsername = this.localStorageService.getItem('username');
   }
 
+  selectColor(color: string): void {
+    this.selectedColor = color;
+  }
 
   addCategory(): void {
     if (this.categoryInput.trim() && !this.categories.includes(this.categoryInput.trim())) {
@@ -57,7 +72,8 @@ export class NewNoteDialogComponent {
           categories: this.categories,
           createdAt: now,
           updatedAt: now,
-          authorUsername: this.authorUsername
+          authorUsername: this.authorUsername,
+          noteColor: this.selectedColor
         };
 
         this.userNoteService.createNote(newNote).subscribe(

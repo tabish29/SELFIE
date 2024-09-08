@@ -1,0 +1,54 @@
+[
+  {
+    "author": "John Doe",
+    "topic": "Geografia",
+    "flashcards": [
+      {
+        "question": "Qual è la capitale della Francia?",
+        "answer": "La capitale della Francia è Parigi."
+      },
+      {
+        "question": "Qual è la capitale della Germania?",
+        "answer": "La capitale della Francia è Berlino."
+      },
+      {
+        "question": "Qual è la capitale della Spagna?",
+        "answer": "La capitale della Francia è Madrid."
+      }
+    ]
+  },
+  {
+    "author": "John Doe",
+    "topic": "Storia",
+    "flashcards": [
+      {
+        "question": "Quando c'è stata la seconda guerra mondiale?",
+        "answer": "1941-1945"
+      }
+    ]
+  },
+  {
+    "author": "JohnDoe",
+    "topic": "Storia",
+    "flashcards": [
+      {
+        "question": "Quando c'è stata la seconda guerra mondiale?",
+        "answer": "1941-1945"
+      },
+      {
+        "question": "Quando c'è stata la seconda guerra wsdws?",
+        "answer": "1941-1945"
+      }
+    ]
+  },
+  {
+    "author": "JohnDoe",
+    "topic": "dqw",
+    "flashcards": [
+      {
+        "question": "Quando c'è stata la seconda guerra wsdws?",
+        "answer": "1941-1945"
+      }
+    ]
+  }
+]

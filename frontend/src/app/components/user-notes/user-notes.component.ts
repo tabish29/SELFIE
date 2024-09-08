@@ -13,8 +13,23 @@ import { UpdateNoteDialogComponent } from '../update-note-dialog/update-note-dia
 })
 export class UserNotesComponent {
   notes: UserNote[] = [];
+  filteredByColorNotes: UserNote[] = [];
   selectedNote: UserNote | null = null;
   authorUsername: string = '';
+  selectedColor: string = 'none';
+  selectedFilter: string = 'none';
+
+  colors: { name: string, value: string }[] = [
+    { name: 'Rosso', value: 'red' },
+    { name: 'Giallo', value: 'yellow' },
+    { name: 'Verde', value: 'green' },
+    { name: 'Blu', value: 'blue' },
+    { name: 'Viola', value: 'purple' },
+    { name: 'Arancione', value: 'orange' },
+    { name: 'Marrone', value: 'brown' },
+    { name: 'Grigio', value: 'gray' },
+    { name: 'Bianco', value: 'white' }
+  ];
 
   constructor(
     private dialog: MatDialog,
@@ -29,6 +44,60 @@ export class UserNotesComponent {
       this.loadNotesByAuthor(this.authorUsername);
     } else {
       console.log("Non esiste l'username dell'autore");
+    }
+  }
+
+
+  onFilterChange(event: any): void {
+
+    if (event instanceof Event) {
+      const target = event.target as HTMLSelectElement | null;
+      if (target) {
+        this.selectedFilter = target.value;
+      }
+
+    }
+
+    switch (this.selectedFilter) {
+      case 'title':
+        this.filterByTitle();
+        break;
+      case 'date':
+        this.filterByDate();
+        break;
+      case 'contentLength':
+        this.filterByContentLength();
+        break;
+      case 'none':
+        this.loadNotesByAuthor(this.authorUsername);
+        break;
+      default:
+        break;
+    }
+  }
+
+  filterByTitle(): void {
+    this.notes.sort((a, b) => a.title.localeCompare(b.title));
+    this.filteredByColorNotes.sort((a, b) => a.title.localeCompare(b.title));
+  }
+
+  filterByDate(): void {
+    this.notes.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+    this.filteredByColorNotes.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+  }
+
+  filterByContentLength(): void {
+    this.notes.sort((a, b) => b.content.length - a.content.length);
+    this.filteredByColorNotes.sort((a, b) => b.content.length - a.content.length);
+  }
+
+  filterByColor(event: Event): void {
+    const target = event.target as HTMLSelectElement;
+    this.selectedColor = target.value;
+    if (this.selectedColor === 'none') {
+      this.loadNotesByAuthor(this.authorUsername);
+    } else {
+      this.filteredByColorNotes = this.notes.filter(note => note.noteColor === this.selectedColor);
     }
   }
 
@@ -48,6 +117,15 @@ export class UserNotesComponent {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.notes.push(result);
+
+        if (result.noteColor === this.selectedColor) {
+          this.filteredByColorNotes.push(result);
+        }
+
+        if(this.selectedFilter !== "none"){
+          this.onFilterChange(this.selectedFilter);
+        }
+
       }
     });
   }
@@ -67,7 +145,10 @@ export class UserNotesComponent {
         if (result.isUpdated) {
           this.updateNoteInList(result.note);
         }
-        
+        if (result.isDuplicated) {
+          this.duplicateNoteInList(result.note);
+        }
+
       }
     });
   }
@@ -83,16 +164,33 @@ export class UserNotesComponent {
     const index = this.notes.findIndex(note => note.title === updatedNote.title);
     if (index > -1) {
       this.notes[index] = updatedNote;
-      this.userNotesService.updateNote(updatedNote.title, updatedNote).subscribe(
-        () => console.log('Nota aggiornata con successo'),
-        error => console.error('Errore nell\'aggiornamento della nota', error)
+
+      if (updatedNote.authorUsername) {
+        this.userNotesService.updateNote(updatedNote.authorUsername, updatedNote.title, updatedNote).subscribe(
+          () => console.log('Nota aggiornata con successo'),
+          error => console.error('Errore nell\'aggiornamento della nota', error)
+        );
+      }
+
+    }
+  }
+
+  duplicateNoteInList(duplicatedNote: UserNote): void {
+    if (duplicatedNote.authorUsername) {
+      this.userNotesService.createNote(duplicatedNote).subscribe(
+        (createdNote) => {
+          console.log('Nota duplicata con successo');
+          this.notes.push(duplicatedNote);
+        },
+        (error) => console.error('Errore nella duplicazione della nota', error)
       );
+
     }
   }
 
   selectNote(note: UserNote): void {
     this.selectedNote = { ...note };
-    // Open update dialog when a note is selected
+
     this.openUpdateNoteDialog(this.selectedNote);
   }
 

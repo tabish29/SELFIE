@@ -12,7 +12,8 @@ import { GameComponent } from './components/game/game.component';
 import { SnakeComponent } from './components/game/snake/snake.component';
 import { TrisComponent } from './components/game/tris/tris.component';
 import { ImpiccatoComponent } from './components/game/impiccato/impiccato.component';
-import { PuzzleComponent } from './components/game/puzzle/puzzle.component'; 
+import { PuzzleComponent } from './components/game/puzzle/puzzle.component';
+import { FlashcardComponent } from './components/flashcard/flashcard.component'; 
 import { accessGuard } from './guards/access.guard';
 
 const routes: Routes = [
@@ -71,6 +72,11 @@ const routes: Routes = [
   {
     path: 'game/snake',
     component: SnakeComponent,
+    canActivate: [accessGuard]
+  },
+  {
+    path: 'flashCard',
+    component: FlashcardComponent,
     canActivate: [accessGuard]
   },
   {

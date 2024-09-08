@@ -1,17 +1,22 @@
-.page-container {
+.login-container {
     justify-content: space-between;
     text-align: center;
     height: 100%;
 }
-.page-container p:first-child {
-    font-weight: bolder;
-    font-style: italic;
+.login-container h2 {
     font-size: 38px;
-    padding: 20px;
+    padding: 20px 0px 0px 0px;
+    margin-top: 0px;
+    line-height: 1;
+    color:#007bff;
+    font-weight: bold;
 }
+
 .container {
     align-items: center;
     display: flex;
+    padding: 40px 5px 40px 5px;
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 /* Sezione del login */
@@ -124,7 +129,7 @@ input:focus {
 
 /* Responsive Design per schermi piccoli */
 @media (max-width: 768px) {
-    .page-container .container {
+    .login-container .container {
         flex-direction: column; /* Colonna: il login va sotto */
     }
 

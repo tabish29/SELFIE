@@ -17,42 +17,67 @@ export class UpdateNoteDialogComponent {
     public dialogRef: MatDialogRef<UpdateNoteDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: UserNote,
     private timeMachineService: TimeMachineService,
-    private userNoteService:UserNoteService
+    private userNoteService: UserNoteService
   ) {
-    this.note = { ...data }; 
+    this.note = { ...data };
   }
 
   onUpdate(): void {
-    if(this.note.authorUsername){
+    if (this.note.authorUsername) {
 
-    this.timeMachineService.getTimeMachine(this.note.authorUsername).subscribe(
-      (timeMachine) => {
-        const now = timeMachine.date; 
-        this.note.updatedAt = now; 
+      this.timeMachineService.getTimeMachine(this.note.authorUsername).subscribe(
+        (timeMachine) => {
+          const now = timeMachine.date;
+          this.note.updatedAt = now;
 
-       
-        this.dialogRef.close({ isUpdated: true ,note: this.note});
-      },
-      (error) => {
-        console.error('Errore nel recupero della Time Machine', error);
-      }
-    );
+
+          this.dialogRef.close({ isUpdated: true, note: this.note });
+        },
+        (error) => {
+          console.error('Errore nel recupero della Time Machine', error);
+        }
+      );
     }
   }
 
   onCancel(): void {
-    this.dialogRef.close({ isDeleted: false ,isUpdated: false});
+    this.dialogRef.close({ isDeleted: false, isUpdated: false });
   }
 
   onDelete(): void {
-    if (this.note.title) {
-      this.userNoteService.deleteNote(this.note.title).subscribe(
+    if (this.note.title && this.note.authorUsername) {
+      this.userNoteService.deleteNote(this.note.authorUsername, this.note.title).subscribe(
         () => {
           console.log('Nota eliminata con successo');
-          this.dialogRef.close({ isDeleted: true ,note: this.note});  
+          this.dialogRef.close({ isDeleted: true, note: this.note });
         },
         (error) => {
           console.error('Errore nell\'eliminazione della nota', error);
+        }
+      );
+    }
+  }
+
+  duplicateNote(): void {
+    if (this.note.authorUsername) {
+      this.timeMachineService.getTimeMachine(this.note.authorUsername).subscribe(
+        (timeMachine) => {
+          const now = timeMachine.date;
+
+          const duplicatedNote: UserNote = {
+            title: `${this.note.title}(2)`,
+            content: this.note.content,
+            categories: this.note.categories,
+            createdAt: now,
+            updatedAt: now,
+            authorUsername: this.note.authorUsername,
+            noteColor: this.note.noteColor
+          };
+
+          this.dialogRef.close({ isDuplicated: true, note: duplicatedNote });
+        },
+        (error) => {
+          console.error('Errore nel recupero della Time Machine', error);
         }
       );
     }

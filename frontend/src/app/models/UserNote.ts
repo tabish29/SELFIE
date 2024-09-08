@@ -7,7 +7,8 @@ export class UserNote {
         public categories: string[],
         public createdAt: string,
         public updatedAt: string,
-        public authorUsername: string | null) {
+        public authorUsername: string | null,
+        public noteColor: string ) {
 
     }
 }

@@ -13,16 +13,14 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-    const { title, content, categories, createdAt, updatedAt, authorUsername } = req.body;
+    const { title, content, categories, createdAt, updatedAt, authorUsername, noteColor } = req.body;
 
     try {
-        // Assicurati che tutti i parametri necessari siano presenti
-        if (!title || !content || !authorUsername || !createdAt || !updatedAt) {
+        if (!title || !content || !authorUsername || !createdAt || !updatedAt || !noteColor) {
             throw new Error('Inserire tutti i Campi');
         }
 
-        // Aggiungi la nota usando il controller
-        await userNoteController.addNote(title, content, categories, createdAt, updatedAt, authorUsername);
+        await userNoteController.addNote(title, content, categories, createdAt, updatedAt, authorUsername, noteColor);
         res.status(201).json({ message: 'Nota aggiunta con successo' });
     } catch (error) {
         res.status(400).json({ error: error.message });
@@ -43,22 +41,23 @@ router.get('/:title', async (req, res) => {
     }
 });
 
-router.delete('/:title', async (req, res) => {
-    const { title } = req.params;
+router.delete('/:authorUsername/:title', async (req, res) => {
+    const { authorUsername, title } = req.params;
     try {
-        await userNoteController.deleteNote(title);
+        await userNoteController.deleteNote(authorUsername, title);
         res.status(200).json({ message: 'Nota eliminata con successo' });
     } catch (error) {
         res.status(404).json({ error: error.message });
     }
 });
 
-router.put('/:title', async (req, res) => {
-    const { title } = req.params;
+
+router.put('/:authorUsername/:title', async (req, res) => {
+    const { authorUsername, title } = req.params;
     const updatedData = req.body;
 
     try {
-        await userNoteController.updateNote(title, updatedData);
+        await userNoteController.updateNote(authorUsername, title, updatedData);
         res.status(200).json({ message: 'Nota aggiornata con successo' });
     } catch (error) {
         res.status(400).json({ error: error.message });

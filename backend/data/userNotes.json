@@ -48,14 +48,6 @@
     "authorUsername": "testM"
   },
   {
-    "title": "test creazione nota ",
-    "content": "ciao sono un test per vedere la creazione della nota",
-    "categories": "test,scuola",
-    "createdAt": "04/09/2024 13:07",
-    "updatedAt": "04/09/2024 13:07",
-    "authorUsername": "a"
-  },
-  {
     "title": "Studio 1 ",
     "content": "devi studiare tech",
     "categories": "studio",
@@ -160,95 +152,193 @@
     "authorUsername": "d"
   },
   {
-    "title": "ew",
-    "content": "ew",
-    "categories": "ew",
-    "createdAt": "04/09/2024 13:26",
-    "updatedAt": "04/09/2024 13:26",
-    "authorUsername": "d"
+    "title": "Prova 5",
+    "content": "corriiiii",
+    "categories": [
+      "cardio",
+      "Sex"
+    ],
+    "createdAt": "04/09/2024 22:25",
+    "updatedAt": "04/09/2024 22:25",
+    "authorUsername": "Leo"
   },
   {
-    "title": "testw",
-    "content": "sono dopo le 13:28",
-    "categories": "ewda",
-    "createdAt": "04/09/2024 13:28",
-    "updatedAt": "04/09/2024 13:38",
-    "authorUsername": "d"
-  },
-  {
-    "title": "wqwq",
-    "content": "wqw",
-    "categories": "wwq",
-    "createdAt": "04/09/2024 13:14",
-    "updatedAt": "04/09/2024 13:14",
-    "authorUsername": "a"
-  },
-  {
-    "title": "sxxs",
-    "content": "xs",
-    "categories": "xxssx",
-    "createdAt": "04/09/2024 13:14",
-    "updatedAt": "04/09/2024 13:14",
-    "authorUsername": "a"
-  },
-  {
-    "title": "xsxa",
-    "content": "xasxa",
-    "categories": "x",
-    "createdAt": "04/09/2024 13:14",
-    "updatedAt": "04/09/2024 13:14",
-    "authorUsername": "a"
-  },
-  {
-    "title": "fgds",
-    "content": "ddew",
-    "categories": "d",
-    "createdAt": "04/09/2024 13:14",
-    "updatedAt": "04/09/2024 13:17",
-    "authorUsername": "a"
-  },
-  {
-    "title": "testCategorie",
-    "content": "sono un test per le categorie ",
+    "title": "testColoreRosso",
+    "content": " rosso",
     "categories": [
       "test",
-      "ji",
-      "dw",
-      "dqws",
-      "fineTest"
+      "colori"
     ],
-    "createdAt": "04/09/2024 13:25",
-    "updatedAt": "04/09/2024 13:25",
-    "authorUsername": "a"
+    "createdAt": "04/06/2024 20:17",
+    "updatedAt": "04/06/2024 20:17",
+    "authorUsername": "d",
+    "noteColor": "red"
   },
   {
-    "title": "ciaosd",
-    "content": "ds",
+    "title": "f",
+    "content": "f",
     "categories": [
-      "q",
-      "w",
-      "e"
+      "f"
     ],
-    "createdAt": "04/09/2024 13:26",
-    "updatedAt": "04/09/2024 13:26",
-    "authorUsername": "a"
+    "createdAt": "04/06/2024 20:17",
+    "updatedAt": "04/06/2024 20:17",
+    "authorUsername": "d",
+    "noteColor": "yellow"
   },
   {
-    "title": "wsa",
+    "title": "f(2)",
+    "content": "f",
+    "categories": [
+      "f"
+    ],
+    "createdAt": "04/06/2024 20:18",
+    "updatedAt": "04/06/2024 20:18",
+    "authorUsername": "d",
+    "noteColor": "yellow"
+  },
+  {
+    "title": "d",
+    "content": "ddqw",
+    "categories": [],
+    "createdAt": "04/06/2024 20:19",
+    "updatedAt": "04/06/2024 20:19",
+    "authorUsername": "d",
+    "noteColor": "white"
+  },
+  {
+    "title": "ew",
+    "content": "d",
+    "categories": [],
+    "createdAt": "04/06/2024 20:49",
+    "updatedAt": "04/06/2024 20:49",
+    "authorUsername": "d",
+    "noteColor": "yellow"
+  },
+  {
+    "title": "test colore giallo ",
+    "content": "weeeeeee saas",
+    "categories": [],
+    "createdAt": "04/06/2024 20:59",
+    "updatedAt": "04/06/2024 20:59",
+    "authorUsername": "d",
+    "noteColor": "yellow"
+  },
+  {
+    "title": "test creazione nota gialla",
+    "content": "sax",
+    "categories": [],
+    "createdAt": "04/06/2024 21:01",
+    "updatedAt": "04/06/2024 21:01",
+    "authorUsername": "d",
+    "noteColor": "yellow"
+  },
+  {
+    "title": "aced",
+    "content": "dwsa",
+    "categories": [],
+    "createdAt": "04/06/2024 21:01",
+    "updatedAt": "04/06/2024 21:01",
+    "authorUsername": "d",
+    "noteColor": "yellow"
+  },
+  {
+    "title": "abfed",
     "content": "dw",
+    "categories": [],
+    "createdAt": "04/06/2024 21:01",
+    "updatedAt": "04/06/2024 21:01",
+    "authorUsername": "d",
+    "noteColor": "yellow"
+  },
+  {
+    "title": "aaaa",
+    "content": "a",
+    "categories": [
+      "a"
+    ],
+    "createdAt": "04/06/2024 21:02",
+    "updatedAt": "04/06/2024 21:02",
+    "authorUsername": "d",
+    "noteColor": "green"
+  },
+  {
+    "title": "test creazione odpo le 21:01",
+    "content": "ads",
+    "categories": [],
+    "createdAt": "04/06/2024 21:08",
+    "updatedAt": "04/06/2024 21:08",
+    "authorUsername": "d",
+    "noteColor": "yellow"
+  },
+  {
+    "title": "sas",
+    "content": "ads",
+    "categories": [],
+    "createdAt": "04/06/2024 21:10",
+    "updatedAt": "04/06/2024 21:10",
+    "authorUsername": "d",
+    "noteColor": "yellow"
+  },
+  {
+    "title": "sdada",
+    "content": "dsadas",
+    "categories": [],
+    "createdAt": "04/06/2024 21:11",
+    "updatedAt": "04/06/2024 21:11",
+    "authorUsername": "d",
+    "noteColor": "orange"
+  },
+  {
+    "title": "colore rosso 2",
+    "content": "dsa",
+    "categories": [],
+    "createdAt": "04/06/2024 21:11",
+    "updatedAt": "04/06/2024 21:11",
+    "authorUsername": "d",
+    "noteColor": "red"
+  },
+  {
+    "title": "test creazione dopo le 21:10 giallo",
+    "content": "das",
+    "categories": [],
+    "createdAt": "04/06/2024 21:16",
+    "updatedAt": "04/06/2024 21:16",
+    "authorUsername": "d",
+    "noteColor": "yellow"
+  },
+  {
+    "title": "asdeq",
+    "content": "cs",
+    "categories": [],
+    "createdAt": "04/06/2024 21:16",
+    "updatedAt": "04/06/2024 21:16",
+    "authorUsername": "d",
+    "noteColor": "green"
+  },
+  {
+    "title": "adfe",
+    "content": "dq",
+    "categories": [],
+    "createdAt": "04/06/2024 21:17",
+    "updatedAt": "04/06/2024 21:17",
+    "authorUsername": "d",
+    "noteColor": "orange"
+  },
+  {
+    "title": "creazione viola ",
+    "content": "ds",
+    "categories": [],
+    "createdAt": "04/06/2024 21:19",
+    "updatedAt": "04/06/2024 21:19",
+    "authorUsername": "d",
+    "noteColor": "purple"
+  },
+  {
+    "title": "banansq",
+    "content": "ds",
     "categories": [],
     "createdAt": "04/09/2024 13:27",
     "updatedAt": "04/09/2024 13:27",
     "authorUsername": "a"
-  },
-  {
-    "title": "prova nota",
-    "content": "nota prova",
-    "categories": [
-      "studio"
-    ],
-    "createdAt": "15/09/2024 18:37",
-    "updatedAt": "15/09/2024 18:37",
-    "authorUsername": "mati"
   }
 ]

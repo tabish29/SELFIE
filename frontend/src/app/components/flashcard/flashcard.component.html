@@ -1,0 +1,17 @@
+<div class="page-container">
+    <app-navbar></app-navbar>
+  
+    <div class="flashcard-container">
+      <div class="flashcard" [class.flipped]="isFlipped" (click)="flipCard()">
+        <div class="front">
+          <p>{{ question }}</p>
+        </div>
+        <div class="back">
+          <p>{{ answer }}</p>
+        </div>
+      </div>
+    </div>
+  
+    <app-footer></app-footer>
+  </div>
+  
