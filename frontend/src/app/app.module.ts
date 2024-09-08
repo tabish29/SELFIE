@@ -38,7 +38,8 @@ import { EventiPreviewComponent } from './components/home-page/eventi-preview/ev
 import { UltimaNotaComponent } from './components/home-page/ultima-nota/ultima-nota.component';
 import { AttivitaImminenteComponent } from './components/home-page/attivita-imminente/attivita-imminente.component';
 import { PomodoroReportComponent } from './components/home-page/pomodoro-report/pomodoro-report.component';
-import { OrologioComponent } from './components/home-page/orologio/orologio.component'; 
+import { OrologioComponent } from './components/home-page/orologio/orologio.component';
+import { TruncatePipe } from './pipes/truncate.pipe'; 
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { OrologioComponent } from './components/home-page/orologio/orologio.comp
     UltimaNotaComponent,
     AttivitaImminenteComponent,
     PomodoroReportComponent,
-    OrologioComponent
+    OrologioComponent,
+    TruncatePipe
   ],
   imports: [
     BrowserModule,
