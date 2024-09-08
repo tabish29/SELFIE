@@ -70,7 +70,8 @@ export class UpdateNoteDialogComponent {
             categories: this.note.categories,
             createdAt: now,
             updatedAt: now,
-            authorUsername: this.note.authorUsername
+            authorUsername: this.note.authorUsername,
+            noteColor: this.note.noteColor
           };
 
           this.dialogRef.close({ isDuplicated: true, note: duplicatedNote });

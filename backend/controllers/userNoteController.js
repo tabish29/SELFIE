@@ -43,7 +43,7 @@ async function getAllNotes() {
     return await readNotesFile();
 }
 
-async function addNote(title, content, categories, createdAt, updatedAt, authorUsername) {
+async function addNote(title, content, categories, createdAt, updatedAt, authorUsername, noteColor) {
 
     const existingNote = await findNoteByAuthorAndTitle(authorUsername, title);
     if (existingNote) {
@@ -56,7 +56,8 @@ async function addNote(title, content, categories, createdAt, updatedAt, authorU
         categories,
         createdAt,
         updatedAt,
-        authorUsername
+        authorUsername,
+        noteColor
     );
 
     await saveNote(newNote);

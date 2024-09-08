@@ -17,7 +17,7 @@ export class NewNoteDialogComponent {
   categories: string[] = [];
   categoryInput: string = '';
   authorUsername: string | null = null;
-  selectedColor: string = ''; 
+  selectedColor: string = '';
   colors: { name: string, value: string }[] = [
     { name: 'rosso', value: 'red' },
     { name: 'giallo', value: 'yellow' },
@@ -26,7 +26,8 @@ export class NewNoteDialogComponent {
     { name: 'viola', value: 'purple' },
     { name: 'arancione', value: 'orange' },
     { name: 'marrone', value: 'brown' },
-    { name: 'grigio', value: 'gray' }
+    { name: 'grigio', value: 'gray' },
+    { name: 'bianco', value: 'white' }
   ];
 
   constructor(
@@ -71,7 +72,8 @@ export class NewNoteDialogComponent {
           categories: this.categories,
           createdAt: now,
           updatedAt: now,
-          authorUsername: this.authorUsername
+          authorUsername: this.authorUsername,
+          noteColor: this.selectedColor
         };
 
         this.userNoteService.createNote(newNote).subscribe(

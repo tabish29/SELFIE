@@ -243,5 +243,39 @@
     "createdAt": "04/09/2024 14:14",
     "updatedAt": "04/09/2024 14:14",
     "authorUsername": "a"
+  },
+  {
+    "title": "testColoreRosso",
+    "content": " rosso",
+    "categories": [
+      "test",
+      "colori"
+    ],
+    "createdAt": "04/06/2024 20:17",
+    "updatedAt": "04/06/2024 20:17",
+    "authorUsername": "d",
+    "noteColor": "red"
+  },
+  {
+    "title": "f",
+    "content": "f",
+    "categories": [
+      "f"
+    ],
+    "createdAt": "04/06/2024 20:17",
+    "updatedAt": "04/06/2024 20:17",
+    "authorUsername": "d",
+    "noteColor": "yellow"
+  },
+  {
+    "title": "f(2)",
+    "content": "f",
+    "categories": [
+      "f"
+    ],
+    "createdAt": "04/06/2024 20:18",
+    "updatedAt": "04/06/2024 20:18",
+    "authorUsername": "d",
+    "noteColor": "yellow"
   }
 ]

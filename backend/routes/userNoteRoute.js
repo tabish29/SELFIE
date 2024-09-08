@@ -13,14 +13,14 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-    const { title, content, categories, createdAt, updatedAt, authorUsername } = req.body;
+    const { title, content, categories, createdAt, updatedAt, authorUsername, noteColor } = req.body;
 
     try {
-        if (!title || !content || !authorUsername || !createdAt || !updatedAt) {
+        if (!title || !content || !authorUsername || !createdAt || !updatedAt || !noteColor) {
             throw new Error('Inserire tutti i Campi');
         }
 
-        await userNoteController.addNote(title, content, categories, createdAt, updatedAt, authorUsername);
+        await userNoteController.addNote(title, content, categories, createdAt, updatedAt, authorUsername, noteColor);
         res.status(201).json({ message: 'Nota aggiunta con successo' });
     } catch (error) {
         res.status(400).json({ error: error.message });
