@@ -38,8 +38,10 @@ async function addFlashcardSet(author, topic, question, answer) {
         throw new Error('Esiste già una flashcard con questa domanda');
     }
 
-  
+  if(question !== "" && answer !== ""){
     flashcardSet.flashcards.push({ question, answer });
+  }
+   
 
 
     await writeFlashcardFile(flashcards);

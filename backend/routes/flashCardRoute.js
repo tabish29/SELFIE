@@ -27,6 +27,24 @@ router.post('/', async (req, res) => {
     }
 });
 
+router.post('/authors/:author/topics', async (req, res) => {
+    const { author } = req.params;
+    const { topic } = req.body;
+
+    try {
+        if (!author || !topic) {
+            throw new Error('Inserire tutti i campi richiesti');
+        }
+
+        await flashcardController.addFlashcardSet(author, topic, "", "");
+        res.status(201).json({ message: 'Nuovo topic inserito' });
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+});
+
+
+
 router.get('/authors/:author', async (req, res) => {
     const { author } = req.params;
     try {

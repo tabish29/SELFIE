@@ -1,17 +1,43 @@
 <div class="page-container">
-    <app-navbar></app-navbar>
-  
-    <div class="flashcard-container">
-      <div class="flashcard" [class.flipped]="isFlipped" (click)="flipCard()">
-        <div class="front">
-          <p>{{ question }}</p>
+  <app-navbar></app-navbar>
+
+
+  <div class="flashcard-page">
+    <!-- Sezione per selezionare il topic -->
+    <div class="topic-selection">
+      <label for="topic-select">Seleziona un Topic:</label>
+      <select id="topic-select" [(ngModel)]="selectedTopic" (change)="onTopicChange()">
+        <option *ngFor="let flashcardSet of flashcardSets" [value]="flashcardSet.topic">
+          {{ flashcardSet.topic }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Sezione per aggiungere un nuovo topic -->
+    <div class="add-topic">
+      <label for="new-topic">Aggiungi un nuovo Topic:</label>
+      <input id="new-topic" type="text" [(ngModel)]="newTopic" placeholder="Inserisci un nuovo topic">
+      <button (click)="addTopic()">Aggiungi Topic</button>
+    </div>
+
+    <!-- Sezione per visualizzare una carta alla volta -->
+    <div *ngIf="selectedTopic && currentFlashcard">
+      <div class="flashcard-navigation">
+        <button class="prevButton" (click)="prevFlashcard()">&#10094;</button>
+        <div class="flashcard-container">
+          <div class="flashcard" [class.flipped]="isFlipped" (click)="flipCard()">
+            <div class="front" *ngIf="!isFlipped">
+              <p>{{ currentFlashcard.question }}</p>
+            </div>
+            <div class="back" *ngIf="isFlipped">
+              <p>{{ currentFlashcard.answer }}</p>
+            </div>
+          </div>
         </div>
-        <div class="back">
-          <p>{{ answer }}</p>
-        </div>
+        <button class="nextButton" (click)="nextFlashcard()">&#10095;</button>
       </div>
     </div>
-  
-    <app-footer></app-footer>
   </div>
-  
+
+  <app-footer></app-footer>
+</div>
