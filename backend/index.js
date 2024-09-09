@@ -25,6 +25,8 @@ app.use('/words', wordRoutes);
 
 app.use('/activities', activityRoutes);
 
+app.use('/events', activityRoutes);
+
 app.use('/flashcards', flashCardRoutes);
 
 app.listen(PORT, () => {

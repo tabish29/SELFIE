@@ -181,15 +181,11 @@ export class CalendarComponent {
           return 0; // Se entrambe sono null, lasciale inalterate
         });
         
-        
-
-        //VISUALIZZAZIONE NEL CALENDARIO DELLE ATTIVITA
-        
-
       }
       
     );
 
+    
   }
   
   isExpired(activity: Activity): boolean {
@@ -218,54 +214,23 @@ export class CalendarComponent {
 
   
   /* EVENTS */
-  hadleNewEvent(){
-    const dialogRef = this.dialog.open(NewEventDialogComponent, {
-      width: '400px',
-      data: {}
-    });
-
-    
-    dialogRef.afterClosed().subscribe(result => {
-      
-
-      if (result) {
-
-        const newEvent: Event = {
-          title: result.title,
-          dateStart: result.dateStart,
-          dateEnd: result.dateEnd,
-          notes: result.notes,
-          authorUsername: this.authorUsername
-        };
-
-        this.events.push(newEvent);
-        
-        console.log(newEvent.title + newEvent.dateStart + newEvent.dateEnd)
-        
-        /*
-        this.eventService.createEvent(newEvent).subscribe(
-          () =>  {console.log('Evento creato'), 
-            this.loadEvents()}
-          
-        )
-        */
-        
-      }
-      
-    });
-  }
 
   handleDateSelect(selectInfo: DateSelectArg) {
     console.log('Date selected:', selectInfo);
     
+    
     const dialogRef = this.dialog.open(NewEventDialogComponent, {
       width: '400px',
       data: {
-        startStr: selectInfo.startStr,
+        /*startStr: selectInfo.startStr,
         endStr: selectInfo.endStr,
-        allDay: selectInfo.allDay
+        allDay: selectInfo.allDay*/
       }
+
+      
     });
+
+    
 
     dialogRef.afterClosed().subscribe(result => {
       const calendarApi = selectInfo.view.calendar;
@@ -281,7 +246,7 @@ export class CalendarComponent {
         });
       }
     });
-
+    
 
     /*
     const title = prompt('Please enter a new title for your event');

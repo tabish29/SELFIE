@@ -43,11 +43,11 @@ async function addActivity(title, dueDate, notes, authorUsername) {
         throw new Error('Title, dueDate, authorUsername are required');
     }
 
-
+    /*
     const existingActivity = await findActivityByTitle(title);
     if (existingActivity) {
         throw new Error('Activity with this title already exists');
-    }
+    }*/
 
     const newActivity = new Activity(
         title,
