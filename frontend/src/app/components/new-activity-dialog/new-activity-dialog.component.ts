@@ -1,10 +1,10 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { TimeMachineService } from '../../services/time-machine.service';
+//import { TimeMachineService } from '../../services/time-machine.service';
 import { LocalStorageService } from '../../services/local-storage.service';
 //import { TimeMachine } from '../../models/TimeMachine';
 //import { CalendarComponent } from '../calendar/calendar.component';
-import { Activity } from '../../models/Activity';
+//import { Activity } from '../../models/Activity';
 import { ActivityService } from '../../services/activity.service';
 
 

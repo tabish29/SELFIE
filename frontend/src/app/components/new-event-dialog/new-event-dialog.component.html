@@ -1,0 +1,32 @@
+<h2 mat-dialog-title>New Event</h2>
+<mat-dialog-content>
+  <mat-form-field>
+    <mat-label>Titolo</mat-label>
+    <input matInput [(ngModel)]="data.title">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Data di inizio</mat-label>
+    <input matInput [matDatepicker]="startDatePicker" [(ngModel)]="data.dateStart">
+    <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+    <mat-datepicker #startDatePicker></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Data di fine</mat-label>
+    <input matInput [matDatepicker]="endDatePicker" [(ngModel)]="data.dateEnd">
+    <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+    <mat-datepicker #endDatePicker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Note</mat-label>
+    <textarea matInput [(ngModel)]="data.notes"></textarea>
+  </mat-form-field>
+
+
+</mat-dialog-content>
+<p id="inputError" class="error-message"></p>
+<mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Annulla</button>
+  <button mat-button (click)="onSave()">Salva</button>
+</mat-dialog-actions>

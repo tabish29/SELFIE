@@ -40,7 +40,8 @@ import { AttivitaImminenteComponent } from './components/home-page/attivita-immi
 import { PomodoroReportComponent } from './components/home-page/pomodoro-report/pomodoro-report.component';
 import { OrologioComponent } from './components/home-page/orologio/orologio.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
-import { FlashcardComponent } from './components/flashcard/flashcard.component'; 
+import { FlashcardComponent } from './components/flashcard/flashcard.component';
+import { NewEventDialogComponent } from './components/new-event-dialog/new-event-dialog.component'; 
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { FlashcardComponent } from './components/flashcard/flashcard.component';
     PomodoroReportComponent,
     OrologioComponent,
     TruncatePipe,
-    FlashcardComponent
+    FlashcardComponent,
+    NewEventDialogComponent
   ],
   imports: [
     BrowserModule,

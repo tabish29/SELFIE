@@ -7,8 +7,11 @@ import listPlugin from '@fullcalendar/list';
 import { INITIAL_EVENTS, createEventId } from './event-utils';
 import { MatDialog } from '@angular/material/dialog';
 import { NewActivityDialogComponent } from '../new-activity-dialog/new-activity-dialog.component';
+import { NewEventDialogComponent } from '../new-event-dialog/new-event-dialog.component';
 import { Activity } from '../../models/Activity';
+import { Event } from '../../models/Event';
 import { ActivityService } from '../../services/activity.service';
+import { EventService } from '../../services/event.service';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { TimeMachineService } from '../../services/time-machine.service';
 import { TimeMachine } from '../../models/TimeMachine';
@@ -28,6 +31,7 @@ export class CalendarComponent {
     private dialog: MatDialog,
     private changeDetector: ChangeDetectorRef,
     private activityService: ActivityService,
+    private eventService: EventService,
     private localStorageService: LocalStorageService,
     private timeMachineService: TimeMachineService
   ) {}
@@ -35,6 +39,7 @@ export class CalendarComponent {
   
 
   activities: Activity[] = [];
+  events: Event[] = [];
   authorUsername: string = '';
   today: string = '';
   calendarInitialized = false;
@@ -206,11 +211,50 @@ export class CalendarComponent {
     )
     
   }
+
+
   
+  /* EVENTS */
+  hadleNewEvent(){
+    const dialogRef = this.dialog.open(NewEventDialogComponent, {
+      width: '400px',
+      data: {}
+    });
+
+    
+    dialogRef.afterClosed().subscribe(result => {
+      
+
+      if (result) {
+
+        const newEvent: Event = {
+          title: result.title,
+          dateStart: result.dateStart,
+          dateEnd: result.dateEnd,
+          notes: result.notes,
+          authorUsername: this.authorUsername
+        };
+
+        this.events.push(newEvent);
+        
+        console.log(newEvent.title + newEvent.dateStart + newEvent.dateEnd)
+        
+        /*
+        this.eventService.createEvent(newEvent).subscribe(
+          () =>  {console.log('Evento creato'), 
+            this.loadEvents()}
+          
+        )
+        */
+        
+      }
+      
+    });
+  }
 
   handleDateSelect(selectInfo: DateSelectArg) {
     console.log('Date selected:', selectInfo);
-    /*
+    
     const dialogRef = this.dialog.open(NewEventDialogComponent, {
       width: '400px',
       data: {
@@ -233,7 +277,7 @@ export class CalendarComponent {
           allDay: result.allDay
         });
       }
-    });*/
+    });
 
 
     /*
@@ -265,7 +309,7 @@ export class CalendarComponent {
   }
 
   hadleNewActivity(){
-    var actvityLoaded = false;
+    
     const dialogRef = this.dialog.open(NewActivityDialogComponent, {
       width: '400px',
       data: {}
