@@ -3,7 +3,8 @@ import { FullCalendarComponent, FullCalendarModule } from '@fullcalendar/angular
 import { CalendarOptions, DateSelectArg, EventClickArg, EventApi } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';  
-import listPlugin from '@fullcalendar/list';          
+import listPlugin from '@fullcalendar/list';        
+import interactionPlugin from '@fullcalendar/interaction';  
 import { INITIAL_EVENTS, createEventId } from './event-utils';
 import { MatDialog } from '@angular/material/dialog';
 import { NewActivityDialogComponent } from '../new-activity-dialog/new-activity-dialog.component';
@@ -15,7 +16,8 @@ import { EventService } from '../../services/event.service';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { TimeMachineService } from '../../services/time-machine.service';
 import { TimeMachine } from '../../models/TimeMachine';
-import { Console } from 'node:console';
+
+
 
 
 @Component({
@@ -52,6 +54,7 @@ export class CalendarComponent {
       dayGridPlugin,
       timeGridPlugin,
       listPlugin,
+      interactionPlugin
     ],
     headerToolbar: {
       left: 'prev,next today',
