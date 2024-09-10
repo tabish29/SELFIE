@@ -17,9 +17,23 @@ export class EventService {
     return this.http.get<any[]>(`${this.apiUrl}/settimana`);
   }
 
+  getEvent(): Observable<Event[]> {
+    return this.http.get<Event[]>(this.apiUrl);
+  }
+
+
   createEvent(event: Event): Observable<Event> {
     console.log(event);
     return this.http.post<Event>(this.apiUrl, event);
     
+  }
+
+  deleteEvent(title: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${title}`);
+  }
+
+  getEventsByAuthor(authorUsername: string): Observable<Event[]> {
+    console.log("autore: " + authorUsername);
+    return this.http.get<Event[]>(`${this.apiUrl}/authors/${authorUsername}`);
   }
 }

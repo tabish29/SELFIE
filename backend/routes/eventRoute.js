@@ -4,6 +4,7 @@ const eventController = require('../controllers/eventController');
 
 
 router.get('/', async (req, res) => {
+    
     try {
         const events = await eventController.getAllEvents();
         res.status(200).json(events);
@@ -30,6 +31,7 @@ router.post('/', async (req, res) => {
 });
 
 router.get('/authors/:authorUsername', async (req, res) => {
+    console.log("get eventRoute");
     const { authorUsername } = req.params;
     try {
         const events = await eventController.getEventsByAuthor(authorUsername);

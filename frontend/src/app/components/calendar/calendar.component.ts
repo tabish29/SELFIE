@@ -108,6 +108,7 @@ export class CalendarComponent {
    
     
     this.loadActivities();
+    this.loadEvents();
     
   }
 
@@ -250,7 +251,7 @@ export class CalendarComponent {
 
         this.eventService.createEvent(newEvent).subscribe(
           () =>  {console.log('Evento creato'), 
-            this.loadActivities()}
+            this.loadEvents()}
           
         )
         
@@ -292,6 +293,32 @@ export class CalendarComponent {
         allDay: selectInfo.allDay
       });
     }*/
+  }
+
+  loadEvents(){
+
+    console.log("load events");
+    this.eventService.getEventsByAuthor(this.authorUsername).subscribe(
+      (data) => {
+        this.events = data;
+
+
+        //ELENCO LATERALE DELLE ATTIVITA
+        this.events.sort((a, b) => {
+          if (a.dateStart && b.dateStart) {
+            return new Date(a.dateStart).getTime() - new Date(b.dateStart).getTime();
+          }
+          // Se una delle due date è null, la consideriamo come "più lontana"
+          if (!a.dateStart) return 1; // Metti null alla fine
+          if (!b.dateStart) return -1; // Metti null alla fine
+          return 0; // Se entrambe sono null, lasciale inalterate
+        });
+        
+      }
+      
+    );
+
+    
   }
 
   handleEventClick(clickInfo: EventClickArg) {

@@ -5,5 +5,19 @@
     "dateEnd": "2024-09-11T22:00:00.000Z",
     "notes": "aaa",
     "authorUsername": "mati"
+  },
+  {
+    "title": "secondo evento",
+    "dateStart": "2024-09-12T22:00:00.000Z",
+    "dateEnd": "2024-09-12T22:00:00.000Z",
+    "notes": "",
+    "authorUsername": "mati"
+  },
+  {
+    "title": "evento",
+    "dateStart": "2024-09-11T22:00:00.000Z",
+    "dateEnd": "2024-09-19T22:00:00.000Z",
+    "notes": "",
+    "authorUsername": "mati"
   }
 ]

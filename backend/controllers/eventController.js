@@ -108,7 +108,7 @@ async function getEventsPreview(length = 200) {
 
 async function getEventsByAuthor(authorUsername) {
     const events = await readEventsFile();
-    return events.filter(event => events.authorUsername === authorUsername);
+    return events.filter(event => event.authorUsername === authorUsername);
     
 }
 
