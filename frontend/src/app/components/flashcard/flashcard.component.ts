@@ -90,6 +90,12 @@ export class FlashcardComponent {
           () => {
             this.newQuestion = '';
             this.newAnswer = '';
+
+            if (!this.currentFlashcard && selectedSet.flashcards.length > 0) {
+              this.currentFlashcardIndex = 0;
+              this.currentFlashcard = selectedSet.flashcards[this.currentFlashcardIndex];
+            }
+
             console.log('Flashcard aggiunta con successo!');
           },
           (error) => {
@@ -98,7 +104,7 @@ export class FlashcardComponent {
         );
       }
     } else {
-      console.warn('Domanda e risposta non possono essere vuoti.');
+      console.error('Domanda e risposta non possono essere vuoti.');
     }
   }
 
@@ -117,11 +123,7 @@ export class FlashcardComponent {
       selectedSet.flashcards = selectedSet.flashcards.filter(flashcard => flashcard.question !== question);
 
       if (selectedSet.flashcards.length === 0) {
-
-        this.flashcardSets = this.flashcardSets.filter(set => set.topic !== this.selectedTopic);
-        this.selectedTopic = '';
         this.currentFlashcard = null;
-
       } else if (this.currentFlashcard && this.currentFlashcard.question === question) {
 
         this.currentFlashcardIndex = 0;
@@ -129,6 +131,7 @@ export class FlashcardComponent {
         this.isFlipped = false;
 
       }
+
     }
   }
 
