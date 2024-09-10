@@ -10,7 +10,7 @@ async function readFlashcardFile() {
         return data ? JSON.parse(data) : [];
     } catch (error) {
         if (error.code === 'ENOENT') {
-            return [];  
+            return [];
         } else {
             throw error;
         }
@@ -24,7 +24,6 @@ async function writeFlashcardFile(flashcards) {
 async function addFlashcardSet(author, topic, question, answer) {
     const flashcards = await readFlashcardFile();
 
-    
     let flashcardSet = flashcards.find(fc => fc.author === author && fc.topic === topic);
 
     if (!flashcardSet) {
@@ -32,24 +31,23 @@ async function addFlashcardSet(author, topic, question, answer) {
         flashcards.push(flashcardSet);
     }
 
- 
     const existingFlashcard = flashcardSet.flashcards.find(fc => fc.question === question);
     if (existingFlashcard) {
         throw new Error('Esiste già una flashcard con questa domanda');
     }
 
-  if(question !== "" && answer !== ""){
-    flashcardSet.flashcards.push({ question, answer });
-  }
-   
-
+    if (question !== "" && answer !== "") {
+        flashcardSet.flashcards.push({ question, answer });
+    } else {
+        throw new Error('Domanda o risposta vuote');
+    }
 
     await writeFlashcardFile(flashcards);
 }
 
 async function deleteFlashcard(author, topic, question) {
     const flashcards = await readFlashcardFile();
-  
+
     const flashcardSet = flashcards.find(fc => fc.author === author && fc.topic === topic);
     if (!flashcardSet) {
         throw new Error('Set di flashcard non trovato');

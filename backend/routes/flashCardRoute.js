@@ -13,15 +13,18 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-    const { author, topic, question, answer } = req.body;
+    const { author, topic, flashcards } = req.body;
 
     try {
-        if (!author || !topic || !question || !answer) {
-            throw new Error('Inserire tutti i campi richiesti');
+        if (!author || !topic || !flashcards || flashcards.length === 0) {
+            throw new Error(`Inserire tutti i campi richiesti.`);
         }
 
-        await flashcardController.addFlashcardSet(author, topic, question, answer);
-        res.status(201).json({ message: 'Flashcard aggiunta con successo' });
+        const lastFlashcard = flashcards[flashcards.length - 1];
+
+        await flashcardController.addFlashcardSet(author, topic, lastFlashcard.question, lastFlashcard.answer);
+
+        res.status(201).json({ message: 'Nuova flashcard aggiunta con successo' });
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
@@ -42,8 +45,6 @@ router.post('/authors/:author/topics', async (req, res) => {
         res.status(400).json({ error: error.message });
     }
 });
-
-
 
 router.get('/authors/:author', async (req, res) => {
     const { author } = req.params;

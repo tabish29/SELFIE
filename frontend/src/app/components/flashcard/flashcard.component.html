@@ -39,5 +39,19 @@
     </div>
   </div>
 
+  <div *ngIf="selectedTopic" class="create-flashcard-section">
+    <h3>Aggiungi una nuova flashcard per il topic: {{ selectedTopic }}</h3>
+
+    <div class="new-flashcard-form">
+      <label for="new-question">Domanda:</label>
+      <input id="new-question" type="text" [(ngModel)]="newQuestion" placeholder="Inserisci la domanda">
+
+      <label for="new-answer">Risposta:</label>
+      <input id="new-answer" type="text" [(ngModel)]="newAnswer" placeholder="Inserisci la risposta">
+
+      <button (click)="addFlashcard()">Aggiungi Flashcard</button>
+    </div>
+  </div>
+
   <app-footer></app-footer>
 </div>

@@ -16,6 +16,8 @@ export class FlashcardComponent {
   currentFlashcardIndex: number = 0;
   currentFlashcard: any = null;
   newTopic: string = '';
+  newQuestion: string = '';
+  newAnswer: string = '';
 
   constructor(private flashcardService: FlashcardService, private localStorageService: LocalStorageService) { }
 
@@ -42,7 +44,7 @@ export class FlashcardComponent {
     if (selectedSet) {
       this.currentFlashcardIndex = 0;
       this.currentFlashcard = selectedSet.flashcards[this.currentFlashcardIndex];
-    }else{
+    } else {
       console.log("non si riesce a trovare il set per il topic selezionato");
     }
   }
@@ -69,7 +71,6 @@ export class FlashcardComponent {
     }
   }
 
-
   prevFlashcard(): void {
     const selectedSet = this.flashcardSets.find(set => set.topic === this.selectedTopic);
     if (selectedSet) {
@@ -78,4 +79,27 @@ export class FlashcardComponent {
       this.isFlipped = false;
     }
   }
+
+  addFlashcard(): void {
+    if (this.newQuestion.trim() !== '' && this.newAnswer.trim() !== '') {
+      const selectedSet = this.flashcardSets.find(set => set.topic === this.selectedTopic && set.author == this.author);
+      if (selectedSet) {
+        selectedSet.flashcards.push({ question: this.newQuestion, answer: this.newAnswer });
+        
+        this.flashcardService.createFlashcardSet(selectedSet).subscribe(
+          () => {
+            this.newQuestion = '';
+            this.newAnswer = '';
+            console.log('Flashcard aggiunta con successo!');
+          },
+          (error) => {
+            console.error('Errore durante l\'aggiunta della flashcard:', error);
+          }
+        );
+      }
+    } else {
+      console.warn('Domanda e risposta non possono essere vuoti.');
+    }
+  }
+
 }
