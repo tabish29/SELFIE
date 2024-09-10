@@ -59,6 +59,21 @@ async function deleteFlashcard(author, topic, question) {
     await writeFlashcardFile(flashcardSets);
 }
 
+async function deleteFlashcardSet(author, topic) {
+    const flashcardSets = await readFlashcardFile();
+
+   
+    const setIndex = flashcardSets.findIndex(fc => fc.author === author && fc.topic === topic);
+  
+    if (setIndex === -1) {
+        throw new Error('Set di flashcard non trovato');
+    }
+
+    flashcardSets.splice(setIndex, 1);
+
+
+    await writeFlashcardFile(flashcardSets);
+}
 
 async function updateFlashcard(author, topic, question, newQuestion, newAnswer) {
     const flashcards = await readFlashcardFile();
@@ -93,5 +108,6 @@ module.exports = {
     deleteFlashcard,
     updateFlashcard,
     getAllFlashcards,
-    getFlashcardsByAuthor
+    getFlashcardsByAuthor,
+    deleteFlashcardSet
 };

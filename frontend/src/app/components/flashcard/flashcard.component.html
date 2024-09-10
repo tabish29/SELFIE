@@ -11,6 +11,7 @@
           {{ flashcardSet.topic }}
         </option>
       </select>
+      <button *ngIf="selectedTopic" (click)="deleteTopic(selectedTopic)">Elimina Topic</button>
     </div>
 
     <!-- Sezione per aggiungere un nuovo topic -->

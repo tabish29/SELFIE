@@ -34,8 +34,8 @@ export class FlashcardService {
     return this.http.put<FlashcardSet>(`${this.apiUrl}/${topic}`, flashcardSet);
   }
 
-  deleteFlashcardSet(topic: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${topic}`);
+  deleteFlashcardSet(author: string,topic: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/authors/${author}/topics/${topic}`);
   }
 
   getAllTopics(): Observable<string[]> {

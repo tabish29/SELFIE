@@ -58,6 +58,20 @@ export class FlashcardComponent {
     }
   }
 
+  deleteTopic(topic: string): void {
+    if (confirm(`Sei sicuro di voler eliminare il topic "${topic}"?`)) {
+      
+      this.flashcardService.deleteFlashcardSet(this.author, topic).subscribe(() => {
+        this.loadFlashcards();
+        this.selectedTopic = '';
+        this.currentFlashcard = null;
+      }, (error) => {
+        console.error('Errore durante l\'eliminazione del topic:', error);
+      });
+      
+    }
+  }
+
   flipCard(): void {
     this.isFlipped = !this.isFlipped;
   }
