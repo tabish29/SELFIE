@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FlashcardSet } from '../../models/FlashcardSet';
 import { FlashcardService } from '../../services/flashcard.service';
 import { LocalStorageService } from '../../services/local-storage.service';
+import { MatDialog } from '@angular/material/dialog';
+import { UpdateTopicDialogComponent } from './update-topic-dialog/update-topic.component';
 
 @Component({
   selector: 'app-flashcard',
@@ -19,7 +21,7 @@ export class FlashcardComponent {
   newQuestion: string = '';
   newAnswer: string = '';
 
-  constructor(private flashcardService: FlashcardService, private localStorageService: LocalStorageService) { }
+  constructor(private flashcardService: FlashcardService, private localStorageService: LocalStorageService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.author = this.localStorageService.getItem('username');
@@ -45,7 +47,7 @@ export class FlashcardComponent {
       this.currentFlashcardIndex = 0;
       this.currentFlashcard = selectedSet.flashcards[this.currentFlashcardIndex];
     } else {
-      console.log("non si riesce a trovare il set per il topic selezionato");
+      console.log("Non c'è il set per il topic selezionato");
     }
   }
 
@@ -60,7 +62,7 @@ export class FlashcardComponent {
 
   deleteTopic(topic: string): void {
     if (confirm(`Sei sicuro di voler eliminare il topic "${topic}"?`)) {
-      
+
       this.flashcardService.deleteFlashcardSet(this.author, topic).subscribe(() => {
         this.loadFlashcards();
         this.selectedTopic = '';
@@ -68,7 +70,7 @@ export class FlashcardComponent {
       }, (error) => {
         console.error('Errore durante l\'eliminazione del topic:', error);
       });
-      
+
     }
   }
 
@@ -147,6 +149,36 @@ export class FlashcardComponent {
       }
 
     }
+  }
+
+  updateTopic(oldTopicName: string): void {
+    const dialogRef = this.dialog.open(UpdateTopicDialogComponent, {
+      width: '800px',
+      data: { topicName: oldTopicName }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        const oldTopicname = result.oldTopicName;
+        const newTopicName= result.newTopicName;  
+
+        this.flashcardService.updateFlashcardSetTopic(this.author, oldTopicName, newTopicName).subscribe(
+          response => {
+            console.log('Topic aggiornato con successo!')
+           
+            const updatedSet = this.flashcardSets.find(set => set.topic === oldTopicName);
+            if (updatedSet) {
+              updatedSet.topic = newTopicName;
+              this.selectedTopic = newTopicName;
+            }
+
+
+            this.loadFlashcards();
+          },
+          error => console.error('Errore durante l\'aggiornamento del topic', error)
+        );
+      }
+    });
   }
 
 }

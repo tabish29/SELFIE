@@ -30,11 +30,11 @@ export class FlashcardService {
     return this.http.post<FlashcardSet>(this.apiUrl, flashcardSet);
   }
 
-  updateFlashcardSet(topic: string, flashcardSet: Partial<FlashcardSet>): Observable<FlashcardSet> {
-    return this.http.put<FlashcardSet>(`${this.apiUrl}/${topic}`, flashcardSet);
+  updateFlashcardSetTopic(author: string, oldTopicName: string, newTopicName: string): Observable<FlashcardSet> {
+    return this.http.put<FlashcardSet>(`${this.apiUrl}/authors/${author}/topics/${oldTopicName}`, { newTopicName });
   }
 
-  deleteFlashcardSet(author: string,topic: string): Observable<void> {
+  deleteFlashcardSet(author: string, topic: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/authors/${author}/topics/${topic}`);
   }
 
