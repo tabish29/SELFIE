@@ -46,21 +46,17 @@ async function addFlashcardSet(author, topic, question, answer) {
 }
 
 async function deleteFlashcard(author, topic, question) {
-    const flashcards = await readFlashcardFile();
+    const flashcardSets = await readFlashcardFile();
 
-    const flashcardSet = flashcards.find(fc => fc.author === author && fc.topic === topic);
+    const flashcardSet = flashcardSets.find(fc => fc.author === author && fc.topic === topic);
     if (!flashcardSet) {
         throw new Error('Set di flashcard non trovato');
     }
 
     flashcardSet.flashcards = flashcardSet.flashcards.filter(fc => fc.question !== question);
 
-    if (flashcardSet.flashcards.length === 0) {
-        const setIndex = flashcards.indexOf(flashcardSet);
-        flashcards.splice(setIndex, 1);
-    }
 
-    await writeFlashcardFile(flashcards);
+    await writeFlashcardFile(flashcardSets);
 }
 
 

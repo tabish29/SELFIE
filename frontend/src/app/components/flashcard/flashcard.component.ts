@@ -85,7 +85,7 @@ export class FlashcardComponent {
       const selectedSet = this.flashcardSets.find(set => set.topic === this.selectedTopic && set.author == this.author);
       if (selectedSet) {
         selectedSet.flashcards.push({ question: this.newQuestion, answer: this.newAnswer });
-        
+
         this.flashcardService.createFlashcardSet(selectedSet).subscribe(
           () => {
             this.newQuestion = '';
@@ -99,6 +99,36 @@ export class FlashcardComponent {
       }
     } else {
       console.warn('Domanda e risposta non possono essere vuoti.');
+    }
+  }
+
+  deleteFlashcard(flashcard: any): void {
+    if (this.selectedTopic && flashcard) {
+      this.flashcardService.deleteFlashcard(this.author, this.selectedTopic, flashcard.question).subscribe(() => {
+        this.removeFlashcardLocally(flashcard.question);
+      });
+
+    }
+  }
+
+  removeFlashcardLocally(question: string): void {
+    const selectedSet = this.flashcardSets.find(set => set.topic === this.selectedTopic);
+    if (selectedSet) {
+      selectedSet.flashcards = selectedSet.flashcards.filter(flashcard => flashcard.question !== question);
+
+      if (selectedSet.flashcards.length === 0) {
+
+        this.flashcardSets = this.flashcardSets.filter(set => set.topic !== this.selectedTopic);
+        this.selectedTopic = '';
+        this.currentFlashcard = null;
+
+      } else if (this.currentFlashcard && this.currentFlashcard.question === question) {
+
+        this.currentFlashcardIndex = 0;
+        this.currentFlashcard = selectedSet.flashcards[this.currentFlashcardIndex];
+        this.isFlipped = false;
+
+      }
     }
   }
 

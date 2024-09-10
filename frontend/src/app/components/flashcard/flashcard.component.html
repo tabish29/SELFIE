@@ -33,9 +33,13 @@
               <p>{{ currentFlashcard.answer }}</p>
             </div>
           </div>
+          <div>
+
+          </div>
         </div>
         <button class="nextButton" (click)="nextFlashcard()">&#10095;</button>
       </div>
+      <button (click)="deleteFlashcard(currentFlashcard)" class="delete-button">Elimina Flashcard</button>
     </div>
   </div>
 

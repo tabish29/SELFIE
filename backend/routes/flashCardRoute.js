@@ -72,9 +72,8 @@ router.put('/:author/:topic/:question', async (req, res) => {
     }
 });
 
-router.delete('/:author/:topic/:question', async (req, res) => {
+router.delete('/authors/:author/topics/:topic/flashcards/:question', async (req, res) => {
     const { author, topic, question } = req.params;
-
     try {
         await flashcardController.deleteFlashcard(author, topic, question);
         res.status(200).json({ message: 'Flashcard eliminata con successo' });

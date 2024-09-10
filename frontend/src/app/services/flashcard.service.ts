@@ -46,4 +46,10 @@ export class FlashcardService {
     return this.http.post<string>(`${this.apiUrl}/authors/${author}/topics`, { topic });
   }
 
+  deleteFlashcard(author: string, topic: string, question: string) {
+    const encodedQuestion = encodeURIComponent(question);
+
+    return this.http.delete<void>(`${this.apiUrl}/authors/${author}/topics/${topic}/flashcards/${encodedQuestion}`);
+  }
+
 }
