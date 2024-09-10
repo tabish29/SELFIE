@@ -16,7 +16,7 @@ import { EventService } from '../../services/event.service';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { TimeMachineService } from '../../services/time-machine.service';
 import { TimeMachine } from '../../models/TimeMachine';
-
+import { HttpClient } from '@angular/common/http';
 
 
 
@@ -35,7 +35,8 @@ export class CalendarComponent {
     private activityService: ActivityService,
     private eventService: EventService,
     private localStorageService: LocalStorageService,
-    private timeMachineService: TimeMachineService
+    private timeMachineService: TimeMachineService,
+    private http: HttpClient
   ) {}
 
   
@@ -297,7 +298,7 @@ export class CalendarComponent {
 
   loadEvents(){
 
-    console.log("load events");
+    
     this.eventService.getEventsByAuthor(this.authorUsername).subscribe(
       (data) => {
         this.events = data;
@@ -314,10 +315,32 @@ export class CalendarComponent {
           return 0; // Se entrambe sono null, lasciale inalterate
         });
         
+        this.calendarOptions.set({
+          ...this.calendarOptions(),  // Mantiene le altre opzioni
+          events: this.events.map(event => ({
+            title: event.title,
+            start: event.dateStart,
+            end: event.dateEnd,
+            notes: event.notes,
+            allDay: false  // Imposta allDay a false se non lo è, oppure gestiscilo in base ai dati
+          }))
+        });
+        
       }
       
     );
-
+/*
+    this.http.get<any[]>('http://localhost:3000/events').subscribe(events => {
+      // Imposta le opzioni del calendario con gli eventi
+      this.calendarOptions.set( {
+        initialView: 'dayGridMonth',
+        events: events, // Gli eventi dal server
+        editable: true,
+        selectable: true,
+        // Altre opzioni
+      });
+    });*/
+    
     
   }
 
