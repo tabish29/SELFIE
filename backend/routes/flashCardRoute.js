@@ -72,6 +72,18 @@ router.put('/:author/:topic/:question', async (req, res) => {
     }
 });
 
+router.put('/authors/:author/topics/:topic', async (req, res) => {
+    const { author, topic } = req.params;
+    const { newTopicName } = req.body;
+
+    try {
+        await flashcardController.updateFlashcardSetTopic(author, topic, newTopicName);
+        res.status(200).json({ message: 'Flashcard aggiornata con successo' });
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+});
+
 router.delete('/authors/:author/topics/:topic/flashcards/:question', async (req, res) => {
     const { author, topic, question } = req.params;
     try {

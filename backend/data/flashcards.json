@@ -85,7 +85,16 @@
   {
     "author": "d",
     "topic": "testDaFrontend",
-    "flashcards": []
+    "flashcards": [
+      {
+        "question": "testv2domanda",
+        "answer": "r"
+      },
+      {
+        "question": "testv2",
+        "answer": "r2"
+      }
+    ]
   },
   {
     "author": "d",
@@ -95,11 +104,21 @@
   {
     "author": "d",
     "topic": "etstTopic",
-    "flashcards": []
+    "flashcards": [
+      {
+        "question": "d",
+        "answer": "e"
+      }
+    ]
   },
   {
     "author": "mati",
     "topic": "Economia",
+    "flashcards": []
+  },
+  {
+    "author": "d",
+    "topic": "testaggiunta",
     "flashcards": []
   }
 ]

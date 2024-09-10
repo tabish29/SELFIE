@@ -38,8 +38,6 @@ async function addFlashcardSet(author, topic, question, answer) {
 
     if (question !== "" && answer !== "") {
         flashcardSet.flashcards.push({ question, answer });
-    } else {
-        throw new Error('Domanda o risposta vuote');
     }
 
     await writeFlashcardFile(flashcards);
@@ -94,6 +92,20 @@ async function updateFlashcard(author, topic, question, newQuestion, newAnswer) 
     await writeFlashcardFile(flashcards);
 }
 
+async function updateFlashcardSetTopic(author, oldTopicName, newTopicName) {
+  
+    const flashcards = await readFlashcardFile();
+    const flashcardSetIndex = flashcards.findIndex(fc => fc.author === author && fc.topic === oldTopicName);
+    
+    if (flashcardSetIndex === -1) {
+        throw new Error('Set di flashcard non trovato');
+    }
+    
+    flashcards[flashcardSetIndex].topic = newTopicName;
+
+    await writeFlashcardFile(flashcards);
+}
+
 async function getAllFlashcards() {
     return await readFlashcardFile();
 }
@@ -109,5 +121,6 @@ module.exports = {
     updateFlashcard,
     getAllFlashcards,
     getFlashcardsByAuthor,
-    deleteFlashcardSet
+    deleteFlashcardSet,
+    updateFlashcardSetTopic
 };

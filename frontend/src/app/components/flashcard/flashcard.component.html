@@ -12,6 +12,7 @@
         </option>
       </select>
       <button *ngIf="selectedTopic" (click)="deleteTopic(selectedTopic)">Elimina Topic</button>
+      <button *ngIf="selectedTopic" (click)="updateTopic(selectedTopic)">Aggiorna Topic</button>
     </div>
 
     <!-- Sezione per aggiungere un nuovo topic -->

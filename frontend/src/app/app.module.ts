@@ -41,7 +41,8 @@ import { PomodoroReportComponent } from './components/home-page/pomodoro-report/
 import { OrologioComponent } from './components/home-page/orologio/orologio.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { FlashcardComponent } from './components/flashcard/flashcard.component';
-import { NewEventDialogComponent } from './components/new-event-dialog/new-event-dialog.component'; 
+import { NewEventDialogComponent } from './components/new-event-dialog/new-event-dialog.component';
+import { UpdateTopicDialogComponent } from './components/flashcard/update-topic-dialog/update-topic.component'; 
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { NewEventDialogComponent } from './components/new-event-dialog/new-event
     OrologioComponent,
     TruncatePipe,
     FlashcardComponent,
-    NewEventDialogComponent
+    NewEventDialogComponent,
+    UpdateTopicDialogComponent
   ],
   imports: [
     BrowserModule,

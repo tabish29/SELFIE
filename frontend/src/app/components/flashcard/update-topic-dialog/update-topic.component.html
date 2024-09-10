@@ -1,0 +1,14 @@
+<div class="dialog-container">
+    <h2>Aggiorna il nome del topic</h2>
+  
+    <div class="input-container">
+      <label for="topicName">Nuovo nome del topic:</label>
+      <input id="topicName" type="text" [(ngModel)]="updatedTopicName" placeholder="Inserisci il nuovo nome del topic">
+    </div>
+  
+    <div class="dialog-actions">
+      <button mat-button (click)="onCancel()">Annulla</button>
+      <button mat-button (click)="onSave()" [disabled]="!updatedTopicName.trim()">Salva</button>
+    </div>
+  </div>
+  
