@@ -60,7 +60,7 @@ router.get('/authors/:author', async (req, res) => {
     }
 });
 
-router.put('/:author/:topic/:question', async (req, res) => {
+router.put('/authors/:author/topics/:topic/flashcards/:question', async (req, res) => {
     const { author, topic, question } = req.params;
     const { newQuestion, newAnswer } = req.body;
 
@@ -78,7 +78,7 @@ router.put('/authors/:author/topics/:topic', async (req, res) => {
 
     try {
         await flashcardController.updateFlashcardSetTopic(author, topic, newTopicName);
-        res.status(200).json({ message: 'Flashcard aggiornata con successo' });
+        res.status(200).json({ message: 'Tpic della flshcardSet aggiornato con successo' });
     } catch (error) {
         res.status(400).json({ error: error.message });
     }

@@ -4,8 +4,8 @@
     "topic": "Geografia",
     "flashcards": [
       {
-        "question": "Qual è la capitale della Francia?",
-        "answer": "La capitale della Francia è Parigi."
+        "question": "Qual è la capitale dell'Italia?",
+        "answer": "La capitale del'Italia è Roma."
       },
       {
         "question": "Qual è la capitale della Germania?",
@@ -92,7 +92,7 @@
       },
       {
         "question": "testv2",
-        "answer": "r2"
+        "answer": "r2-v2"
       }
     ]
   },
@@ -106,8 +106,12 @@
     "topic": "etstTopic",
     "flashcards": [
       {
-        "question": "d",
-        "answer": "e"
+        "question": "d-2",
+        "answer": "e-v2"
+      },
+      {
+        "question": "d-v1",
+        "answer": "e-v1"
       }
     ]
   },

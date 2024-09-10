@@ -4,6 +4,7 @@ import { FlashcardService } from '../../services/flashcard.service';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { MatDialog } from '@angular/material/dialog';
 import { UpdateTopicDialogComponent } from './update-topic-dialog/update-topic.component';
+import { UpdateFlashcardDialogComponent } from './update-flashcard-dialog/update-flashcard-dialog.component';
 
 @Component({
   selector: 'app-flashcard',
@@ -160,12 +161,12 @@ export class FlashcardComponent {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         const oldTopicname = result.oldTopicName;
-        const newTopicName= result.newTopicName;  
+        const newTopicName = result.newTopicName;
 
         this.flashcardService.updateFlashcardSetTopic(this.author, oldTopicName, newTopicName).subscribe(
           response => {
             console.log('Topic aggiornato con successo!')
-           
+
             const updatedSet = this.flashcardSets.find(set => set.topic === oldTopicName);
             if (updatedSet) {
               updatedSet.topic = newTopicName;
@@ -179,6 +180,52 @@ export class FlashcardComponent {
         );
       }
     });
+  }
+
+  openUpdateFlashcardDialog(flashcard: any): void {
+    const dialogRef = this.dialog.open(UpdateFlashcardDialogComponent, {
+      width: '800px',
+      data: { flashcard: flashcard }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        const { oldQuestion, newQuestion, newAnswer } = result;
+
+        this.flashcardService.updateFlashcard(this.author, this.selectedTopic, oldQuestion, newQuestion, newAnswer).subscribe(
+          response => {
+            console.log('Flashcard aggiornata con successo!');
+            this.updateFlashcardLocally(this.selectedTopic, oldQuestion, newQuestion, newAnswer);
+            this.loadFlashcards();
+          },
+          error => console.error('Errore durante l\'aggiornamento della flashcard', error)
+        );
+
+      }
+    });
+  }
+
+  updateFlashcardLocally(topic: string, oldQuestion: string, newQuestion: string, newAnswer: string): void {
+    const selectedSet = this.flashcardSets.find(set => set.topic === topic && set.author === this.author);
+    if (selectedSet) {
+      const flashcardIndex = selectedSet.flashcards.findIndex(fc => fc.question === oldQuestion);
+      if (flashcardIndex !== -1) {
+        const flashcard = selectedSet.flashcards[flashcardIndex];
+        selectedSet.flashcards[flashcardIndex] = {
+          ...flashcard,
+          question: newQuestion || flashcard.question,
+          answer: newAnswer || flashcard.answer
+        };
+
+        if (this.currentFlashcard && this.currentFlashcard.question === oldQuestion) {
+          this.currentFlashcard = {
+            ...this.currentFlashcard,
+            question: newQuestion || this.currentFlashcard.question,
+            answer: newAnswer || this.currentFlashcard.answer
+          };
+        }
+      }
+    }
   }
 
 }

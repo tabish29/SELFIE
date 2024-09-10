@@ -42,7 +42,8 @@ import { OrologioComponent } from './components/home-page/orologio/orologio.comp
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { FlashcardComponent } from './components/flashcard/flashcard.component';
 import { NewEventDialogComponent } from './components/new-event-dialog/new-event-dialog.component';
-import { UpdateTopicDialogComponent } from './components/flashcard/update-topic-dialog/update-topic.component'; 
+import { UpdateTopicDialogComponent } from './components/flashcard/update-topic-dialog/update-topic.component';
+import { UpdateFlashcardDialogComponent } from './components/flashcard/update-flashcard-dialog/update-flashcard-dialog.component'; 
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { UpdateTopicDialogComponent } from './components/flashcard/update-topic-
     TruncatePipe,
     FlashcardComponent,
     NewEventDialogComponent,
-    UpdateTopicDialogComponent
+    UpdateTopicDialogComponent,
+    UpdateFlashcardDialogComponent
   ],
   imports: [
     BrowserModule,

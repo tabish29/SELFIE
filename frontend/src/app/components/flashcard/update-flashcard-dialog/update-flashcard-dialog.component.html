@@ -1,0 +1,19 @@
+<div class="dialog-container">
+    <h2>Aggiorna la Flashcard</h2>
+  
+    <div class="input-container">
+      <label for="question">Domanda:</label>
+      <input id="question" type="text" [(ngModel)]="updatedQuestion" placeholder="Inserisci la nuova domanda">
+    </div>
+  
+    <div class="input-container">
+      <label for="answer">Risposta:</label>
+      <input id="answer" type="text" [(ngModel)]="updatedAnswer" placeholder="Inserisci la nuova risposta">
+    </div>
+  
+    <div class="dialog-actions">
+      <button mat-button (click)="onCancel()">Annulla</button>
+      <button mat-button (click)="onSave()" [disabled]="!updatedQuestion.trim() || !updatedAnswer.trim()">Salva</button>
+    </div>
+  </div>
+  

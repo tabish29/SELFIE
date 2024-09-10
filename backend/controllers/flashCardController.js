@@ -74,22 +74,28 @@ async function deleteFlashcardSet(author, topic) {
 }
 
 async function updateFlashcard(author, topic, question, newQuestion, newAnswer) {
-    const flashcards = await readFlashcardFile();
+    const flashcardSets = await readFlashcardFile();
 
-    const flashcardSet = flashcards.find(fc => fc.author === author && fc.topic === topic);
-    if (!flashcardSet) {
+    const setIndex = flashcardSets.findIndex(fc => fc.author === author && fc.topic === topic);
+    if (setIndex === -1) {
         throw new Error('Set di flashcard non trovato');
     }
 
-    const flashcard = flashcardSet.flashcards.find(fc => fc.question === question);
-    if (!flashcard) {
+    const flashcardSet = flashcardSets[setIndex];
+
+    const flashcardIndex = flashcardSet.flashcards.findIndex(fc => fc.question === question);
+    if (flashcardIndex === -1) {
         throw new Error('Flashcard non trovata');
     }
 
-    flashcard.question = newQuestion || flashcard.question;
-    flashcard.answer = newAnswer || flashcard.answer;
+    if (newQuestion) {
+        flashcardSets[setIndex].flashcards[flashcardIndex].question = newQuestion;
+    }
+    if (newAnswer) {
+        flashcardSets[setIndex].flashcards[flashcardIndex].answer = newAnswer;
+    }
 
-    await writeFlashcardFile(flashcards);
+    await writeFlashcardFile(flashcardSets);
 }
 
 async function updateFlashcardSetTopic(author, oldTopicName, newTopicName) {

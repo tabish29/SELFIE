@@ -34,6 +34,15 @@ export class FlashcardService {
     return this.http.put<FlashcardSet>(`${this.apiUrl}/authors/${author}/topics/${oldTopicName}`, { newTopicName });
   }
 
+  updateFlashcard(author: string, topic: string, oldQuestion: string, newQuestion: string, newAnswer: string): Observable<void> {
+    const encodedOldQuestion = encodeURIComponent(oldQuestion);
+
+    return this.http.put<void>(`${this.apiUrl}/authors/${author}/topics/${topic}/flashcards/${encodedOldQuestion}`, {
+      newQuestion,
+      newAnswer
+    });
+  }
+
   deleteFlashcardSet(author: string, topic: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/authors/${author}/topics/${topic}`);
   }
