@@ -34,6 +34,7 @@ async function findEventByTitle(title) {
 }
 
 async function getAllEvents() {
+    console.log("getAllEvents");
     return await readEventsFile();
 }
 

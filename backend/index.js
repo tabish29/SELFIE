@@ -6,6 +6,7 @@ const timeMachineRoutes = require('./routes/timeMachineRoute');
 const userNoteRoutes = require('./routes/userNoteRoute');
 const wordRoutes = require('./routes/wordRoute');
 const activityRoutes = require('./routes/activityRoute');
+const eventRoutes = require('./routes/eventRoute');
 const flashCardRoutes= require('./routes/flashCardRoute');
 
 const app = express();
@@ -25,7 +26,7 @@ app.use('/words', wordRoutes);
 
 app.use('/activities', activityRoutes);
 
-app.use('/events', activityRoutes);
+app.use('/events', eventRoutes);
 
 app.use('/flashcards', flashCardRoutes);
 

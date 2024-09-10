@@ -228,10 +228,39 @@ export class CalendarComponent {
       }
 
       
+      
     });
+    dialogRef.afterClosed().subscribe(result => {
+      
 
+      if (result) {
+
+        const newEvent: Event = {
+          title: result.title,
+          dateStart: result.dateStart,
+          dateEnd: result.dateEnd,
+          notes: result.notes,
+          authorUsername: this.authorUsername
+        };
+
+        this.events.push(newEvent);
+        
+        
+        
+
+        this.eventService.createEvent(newEvent).subscribe(
+          () =>  {console.log('Evento creato'), 
+            this.loadActivities()}
+          
+        )
+        
+        
+      }
+      
+    });
     
-
+    
+/*
     dialogRef.afterClosed().subscribe(result => {
       const calendarApi = selectInfo.view.calendar;
       calendarApi.unselect(); // clear date selection
@@ -246,7 +275,7 @@ export class CalendarComponent {
         });
       }
     });
-    
+    */
 
     /*
     const title = prompt('Please enter a new title for your event');
