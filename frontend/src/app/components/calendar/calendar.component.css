@@ -51,7 +51,53 @@ h2 {
     
   }
 
-  .highlighted-day {
-    background-color: yellow !important; /* Colore di sfondo giallo */
-    color: black; /* Colore del testo (opzionale) */
+  .legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  p{
+    margin: 0;
+  }
+
+  .color {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+  }
+
+  #activity{
+    background: green;
+  }
+
+  #event{
+    background: blue;
+  }
+
+  input{
+    margin-right: 8px;
+  }
+
+  button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s;
+    width: 100px;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
   }

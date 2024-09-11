@@ -161,11 +161,13 @@ export class CalendarComponent {
           if (!b.dueDate) return -1; // Metti null alla fine
           return 0; // Se entrambe sono null, lasciale inalterate
         });
+
+        
         
       }
       
+      
     );
-
     
   }
   
@@ -184,11 +186,13 @@ export class CalendarComponent {
     
   onCheckboxChange(activity: Activity){
     console.log(activity.title + " checked")
-    this.activityService.deleteActivity(activity.title).subscribe(
+    if (confirm("Vuoi eliminare " + activity.title + "?")) {
+      this.activityService.deleteActivity(activity.title).subscribe(
       () => {console.log(activity.title + "deleted"),
         this.loadActivities()
       }
     )
+    }
     
   }
 
@@ -196,8 +200,9 @@ export class CalendarComponent {
   
   /* EVENTS */
 
-  handleDateSelect(selectInfo: DateSelectArg) {
-    console.log('Date selected:', selectInfo);
+  handleDateSelect(selectInfo: DateSelectArg) {}
+  handleNewEvent() {
+    //console.log('Date selected:', selectInfo);
     
     
     const dialogRef = this.dialog.open(NewEventDialogComponent, {
@@ -283,14 +288,14 @@ export class CalendarComponent {
         this.events = data;
 
         for(var i=0; i<this.events.length; i++){
-          if(this.pastEvent(this.events[i])){
+          if(!this.pastEvent(this.events[i])){
             //SEGNA EVENTO PASSATO -> NON CARICARE GLI EVENTI PASSATI
           }
         }
         
         
 
-        //ELENCO LATERALE DELLE ATTIVITA
+        //ELENCO LATERALE DELLE EVENTI
         this.events.sort((a, b) => {
           if (a.dateStart && b.dateStart) {
             return new Date(a.dateStart).getTime() - new Date(b.dateStart).getTime();
@@ -338,16 +343,20 @@ export class CalendarComponent {
     if(!event.dateEnd){
       return false;
     }
-      const todayDate = new Date(this.today);
-      const dateEnd = new Date(event.dateEnd);
-  
-      console.log(event.title + " " + (dateEnd < todayDate));
-      return dateEnd < todayDate; //True se scaduta prima di oggi 
+    const todayDate = new Date(this.today);
+    const dateEnd = new Date(event.dateEnd);
+
+    return dateEnd < todayDate; //True se scaduta prima di oggi 
   }
 
   handleEventClick(clickInfo: EventClickArg) {
-    if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
+    if (confirm("Vuoi eliminare " + clickInfo.event.title + "?")) {
       clickInfo.event.remove();
+      this.eventService.deleteEvent(clickInfo.event.title).subscribe(
+        () => {console.log(clickInfo.event.title + "deleted"),
+          this.loadEvents()
+        }
+      )
     }
   }
 
@@ -356,7 +365,7 @@ export class CalendarComponent {
     this.changeDetector.detectChanges(); 
   }
 
-  hadleNewActivity(){
+  handleNewActivity(){
     
     const dialogRef = this.dialog.open(NewActivityDialogComponent, {
       width: '400px',

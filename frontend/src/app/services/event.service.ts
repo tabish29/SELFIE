@@ -29,6 +29,7 @@ export class EventService {
   }
 
   deleteEvent(title: string): Observable<void> {
+    console.log("deleteEvent");
     return this.http.delete<void>(`${this.apiUrl}/${title}`);
   }
 
