@@ -19,9 +19,10 @@
         <ul>
           <p>(<b>check</b> per eliminare)</p>
           <li *ngFor="let activity of activities" > 
-            <input type="checkbox" (change)="onCheckboxChange(activity)" />
-            <b [ngClass]="{'expired': isExpired(activity)}">{{ activity.title }}</b> - {{ activity.dueDate | date:'dd MMMM yyyy' }}
-            <i>{{ activity.notes }}</i>
+            <p><input type="checkbox" (change)="onCheckboxChange(activity)" />
+            <b [ngClass]="{'expired': isExpired(activity)}">{{ activity.title }}</b></p>
+            <p>{{ activity.dueDate | date:'dd MMMM yyyy' }}</p>
+            <p><i>{{ activity.notes }}</i></p>
             
           </li>
         </ul>
@@ -31,8 +32,10 @@
         <h2>Eventi ({{events.length}})</h2>
         <ul>
           <li *ngFor="let event of events" > 
-            <b>{{ event.title }}</b> - {{ event.dateStart | date:'dd MMMM yyyy' }} - {{ event.dateStart | date:'dd MMMM yyyy' }}
-            <i>{{ event.notes }}</i>
+            <p><b>{{ event.title }}</b></p>
+            <p>{{ event.dateStart | date:'dd MMMM yyyy, HH:mm' }}</p>
+            <p>{{ event.dateEnd | date:'dd MMMM yyyy, HH:mm' }}</p>
+            <p><i>{{ event.notes }}</i></p>
             
           </li>
           <!-- <li *ngFor='let event of currentEvents()'> -->

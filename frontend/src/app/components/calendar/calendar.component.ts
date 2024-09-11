@@ -303,6 +303,13 @@ export class CalendarComponent {
       (data) => {
         this.events = data;
 
+        for(var i=0; i<this.events.length; i++){
+          if(this.pastEvent(this.events[i])){
+            //SEGNA EVENTO PASSATO -> NON CARICARE GLI EVENTI PASSATI
+          }
+        }
+        
+        
 
         //ELENCO LATERALE DELLE ATTIVITA
         this.events.sort((a, b) => {
@@ -315,6 +322,8 @@ export class CalendarComponent {
           return 0; // Se entrambe sono null, lasciale inalterate
         });
         
+        
+
         this.calendarOptions.set({
           ...this.calendarOptions(),  // Mantiene le altre opzioni
           events: this.events.map(event => ({
@@ -325,6 +334,8 @@ export class CalendarComponent {
             allDay: false  // Imposta allDay a false se non lo è, oppure gestiscilo in base ai dati
           }))
         });
+
+        console.log(this.events);
         
       }
       
@@ -342,6 +353,17 @@ export class CalendarComponent {
     });*/
     
     
+  }
+
+  pastEvent(event: Event){
+    if(!event.dateEnd){
+      return false;
+    }
+      const todayDate = new Date(this.today);
+      const dateEnd = new Date(event.dateEnd);
+  
+      console.log(event.title + " " + (dateEnd < todayDate));
+      return dateEnd < todayDate; //True se scaduta prima di oggi 
   }
 
   handleEventClick(clickInfo: EventClickArg) {

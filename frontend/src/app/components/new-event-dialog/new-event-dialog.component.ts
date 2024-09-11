@@ -32,7 +32,7 @@ export class NewEventDialogComponent {
   onSave(): void {
     const inputError = document.getElementById('inputError');
 
-    if(!this.data.title || !this.data.dateStart || !this.data.dateEnd || !this.data.dateStart){
+    if(!this.data.title || !this.data.dateStart || !this.data.dateEnd || !this.data.dateEnd){
       if(inputError){
         inputError.textContent = 'Inserisci il titolo e la data!';
       }
