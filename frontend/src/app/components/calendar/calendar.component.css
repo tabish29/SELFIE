@@ -50,3 +50,8 @@ h2 {
     color: red; 
     
   }
+
+  .highlighted-day {
+    background-color: yellow !important; /* Colore di sfondo giallo */
+    color: black; /* Colore del testo (opzionale) */
+  }

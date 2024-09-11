@@ -62,6 +62,12 @@ export class CalendarComponent {
       center: 'title',
       right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
     },
+    customButtons:{
+      today:{
+        text: 'Today',
+        click: this.goToCustomDate.bind(this)
+      }
+    },
     initialView: 'dayGridMonth',
     initialDate: new Date(),
     initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
@@ -72,7 +78,7 @@ export class CalendarComponent {
     dayMaxEvents: true,
     select: this.handleDateSelect.bind(this),
     eventClick: this.handleEventClick.bind(this),
-    eventsSet: this.handleEvents.bind(this)
+    eventsSet: this.handleEvents.bind(this),
     
     
     /* you can update a remote database when these fire:
@@ -99,8 +105,7 @@ export class CalendarComponent {
         
         this.today = this.convertToDateTimeLocalFormat(timeMachine.date);
         
-        this.updateCalendarDate();
-
+        this.goToCustomDate();
 
       },
       (error) => console.error('Errore nel recupero del time machine', error)
@@ -113,19 +118,9 @@ export class CalendarComponent {
     
   }
 
-  /*
-  ngAfterViewInit(): void {
-
-
-    // accedo al DOM e cambio il comportamento del pulsante today
-    setTimeout(() => {
-      const todayButton = document.querySelector('.fc-today-button');
-      if (todayButton) {
-        todayButton.addEventListener('click', () => {
-          this.handleTodayButtonClick(); 
-        });
-      }
-    });
+  goToCustomDate(): void{
+    const calendarApi = this.fullcalendar.getApi();
+    calendarApi.gotoDate(this.today);
   }
 
 
@@ -135,24 +130,8 @@ export class CalendarComponent {
       calendarApi.gotoDate(this.today);
       this.changeDetector.detectChanges();
     }
-  }*/
-
-  
-  // FUNZIONA IN PARTE
-  updateCalendarDate(): void {
-    console.log("Today is set to: ", this.today);
-    console.log("FullCalendar instance: ", this.fullcalendar);
-    
-    if (this.fullcalendar && this.today) {
-      
-      const calendarApi = this.fullcalendar.getApi();
-      calendarApi.gotoDate(this.today); 
-  
-      this.changeDetector.detectChanges();
-    }else{
-      console.log("fullcalendar or today is missing");
-    }
   }
+
 
   changeView(viewName: string) {
     this.fullcalendar.getApi().changeView(viewName);
