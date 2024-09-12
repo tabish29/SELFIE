@@ -12,6 +12,7 @@ export class NewEventDialogComponent {
   title: string = '';
   dateStart: null = null;
   dateEnd: null = null;
+  allDay: boolean = false;
   //luogo
   notes: string = '';
   //ripetizione
@@ -31,13 +32,34 @@ export class NewEventDialogComponent {
 
   onSave(): void {
     const inputError = document.getElementById('inputError');
-
-    if(!this.data.title || !this.data.dateStart || !this.data.dateEnd || !this.data.dateEnd){
+    console.log(this.data);
+    if(!this.data.title || !this.data.dateStart || (!this.data.dateEnd && !this.allDay)){
       if(inputError){
         inputError.textContent = 'Inserisci il titolo e la data!';
       }
     } else{
+      if(this.allDay){
+        this.dialogRef.close(this.data);
+      }else{
+        this.data.dateEnd = this.data.dateStart;
+        this.dialogRef.close(this.data);
+      }
+      this.data.dateEnd = this.data.dateStart;
       this.dialogRef.close(this.data);
+    }
+    
+  }
+
+  allDayChange(): void{
+    
+    if(this.allDay){
+      console.log("unchecked");
+      this.allDay = false;
+      
+      
+    }else {
+      this.allDay = true;
+      
     }
     
   }

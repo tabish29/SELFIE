@@ -1,38 +1,8 @@
 [
   {
-    "title": "attività",
-    "dueDate": "2024-09-11T22:00:00.000Z",
-    "notes": "aaa",
-    "authorUsername": "mati"
-  },
-  {
-    "title": "prova senza note",
-    "dueDate": "2024-09-10T22:00:00.000Z",
+    "title": "Finire il progetto",
+    "dueDate": "2024-09-29T22:00:00.000Z",
     "notes": "",
-    "authorUsername": "mati"
-  },
-  {
-    "title": "prova ordine",
-    "dueDate": "2024-09-10T22:00:00.000Z",
-    "notes": "",
-    "authorUsername": "mati"
-  },
-  {
-    "title": "activity",
-    "dueDate": "2024-09-10T22:00:00.000Z",
-    "notes": "",
-    "authorUsername": "mati"
-  },
-  {
-    "title": "prova",
-    "dueDate": "2024-09-09T22:00:00.000Z",
-    "notes": "",
-    "authorUsername": "mati"
-  },
-  {
-    "title": "aaaa",
-    "dueDate": "2024-09-19T22:00:00.000Z",
-    "notes": "aaa",
     "authorUsername": "mati"
   }
 ]

@@ -185,7 +185,6 @@ export class CalendarComponent {
   
     
   onCheckboxChange(activity: Activity){
-    console.log(activity.title + " checked")
     if (confirm("Vuoi eliminare " + activity.title + "?")) {
       this.activityService.deleteActivity(activity.title).subscribe(
       () => {console.log(activity.title + "deleted"),
@@ -347,6 +346,15 @@ export class CalendarComponent {
     const dateEnd = new Date(event.dateEnd);
 
     return dateEnd < todayDate; //True se scaduta prima di oggi 
+  }
+
+  isAllDay(event: Event): boolean{
+    if(event.dateStart == event.dateEnd){
+      return true;
+    }else {
+      return false;
+    }
+  
   }
 
   handleEventClick(clickInfo: EventClickArg) {

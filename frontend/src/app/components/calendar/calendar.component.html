@@ -27,7 +27,7 @@
           <li *ngFor="let activity of activities" > 
             <p><input type="checkbox" (change)="onCheckboxChange(activity)" />
             <b [ngClass]="{'expired': isExpired(activity)}">{{ activity.title }}</b></p>
-            <p>{{ activity.dueDate | date:'dd MMMM yyyy' }}</p>
+            <p>{{ activity.dueDate | date:'dd/MM/yyyy' }}</p>
             <p><i>{{ activity.notes }}</i></p>
             
           </li>
@@ -39,8 +39,9 @@
         <ul style="list-style-type: none;">
           <li *ngFor="let event of events" > 
             <p><b>{{ event.title }}</b></p>
-            <p>{{ event.dateStart | date:'dd MMMM yyyy, HH:mm' }}</p>
-            <p>{{ event.dateEnd | date:'dd MMMM yyyy, HH:mm' }}</p>
+            <p>inizio: {{ event.dateStart | date:'dd/MM/yyyy HH:mm' }}</p>
+            <p *ngIf="isAllDay(event)">Tutto il giorno</p>
+            <p *ngIf="!isAllDay(event)">fine: {{ event.dateEnd | date:'dd/MM/yyyy HH:mm' }}</p>
             <p><i>{{ event.notes }}</i></p>
             
           </li>

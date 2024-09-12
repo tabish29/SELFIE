@@ -1,22 +1,29 @@
 [
   {
-    "title": "primo evento",
-    "dateStart": "2024-09-10T22:00:00.000Z",
-    "dateEnd": "2024-09-11T22:00:00.000Z",
-    "notes": "aaa",
+    "title": "Matrimonio Giulia",
+    "dateStart": "2024-09-20T16:00",
+    "dateEnd": "2024-09-20T23:55",
+    "notes": "Portare il regalo!",
     "authorUsername": "mati"
   },
   {
-    "title": "secondo evento",
-    "dateStart": "2024-09-12T22:00:00.000Z",
-    "dateEnd": "2024-09-12T22:00:00.000Z",
+    "title": "Prova tutto il giorno",
+    "dateStart": "2024-09-12T12:00",
+    "dateEnd": "2024-09-13T12:00",
     "notes": "",
     "authorUsername": "mati"
   },
   {
-    "title": "prova orari",
-    "dateStart": "2024-09-18T15:00",
-    "dateEnd": "2024-09-20T12:00",
+    "title": "Compleanno Gabri",
+    "dateStart": "2024-08-27",
+    "dateEnd": "2024-08-27",
+    "notes": "",
+    "authorUsername": "mati"
+  },
+  {
+    "title": "Prova",
+    "dateStart": "2024-09-22",
+    "dateEnd": "2024-09-22",
     "notes": "",
     "authorUsername": "mati"
   }
