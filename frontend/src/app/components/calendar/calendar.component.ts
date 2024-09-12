@@ -305,8 +305,35 @@ export class CalendarComponent {
           return 0; // Se entrambe sono null, lasciale inalterate
         });
         
-        
+        // Mappa le attività nel formato degli eventi di FullCalendar
+      const activityEvents = this.activities.map(activity => ({
+        title: activity.title,
+        start: activity.dueDate ? new Date(activity.dueDate) : undefined, // Utilizza la data di scadenza come data di inizio
+        allDay: true, // Imposta come all-day se non c'è un'ora specifica
+        backgroundColor: '#FFBB33', // Cambia colore per distinguere le attività dagli eventi
+        borderColor: '#FF8800',
+        description: activity.notes // Puoi usare description per le note o altre informazioni
+      }));
 
+      // Mappa gli eventi nel formato corretto
+      const calendarEvents = this.events.map(event => ({
+        title: event.title,
+        start: event.dateStart,
+        end: event.dateEnd,
+        notes: event.notes,
+        allDay: this.isAllDay(event) // Se l'evento è tutto il giorno
+      }));
+
+      // Combina eventi e attività
+      const allCalendarEvents = [...calendarEvents, ...activityEvents];
+
+      // Imposta le opzioni del calendario
+      this.calendarOptions.set({
+        ...this.calendarOptions(), // Mantieni le altre opzioni
+        events: allCalendarEvents // Inserisci tutti gli eventi e le attività
+      });
+        
+        /*
         this.calendarOptions.set({
           ...this.calendarOptions(),  // Mantiene le altre opzioni
           events: this.events.map(event => ({
@@ -316,9 +343,10 @@ export class CalendarComponent {
             notes: event.notes,
             allDay: false  // Imposta allDay a false se non lo è, oppure gestiscilo in base ai dati
           }))
-        });
+        });*/
 
         console.log(this.events);
+        console.log(this.activities);
         
       }
       
