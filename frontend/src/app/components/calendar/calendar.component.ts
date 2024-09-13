@@ -5,7 +5,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';  
 import listPlugin from '@fullcalendar/list';        
 import interactionPlugin from '@fullcalendar/interaction';  
-import { INITIAL_EVENTS, createEventId } from './event-utils';
+//import { INITIAL_EVENTS, createEventId } from './event-utils';
 import { MatDialog } from '@angular/material/dialog';
 import { NewActivityDialogComponent } from '../new-activity-dialog/new-activity-dialog.component';
 import { NewEventDialogComponent } from '../new-event-dialog/new-event-dialog.component';
@@ -36,7 +36,7 @@ export class CalendarComponent {
     private eventService: EventService,
     private localStorageService: LocalStorageService,
     private timeMachineService: TimeMachineService,
-    private http: HttpClient
+    //private http: HttpClient
   ) {}
 
   
@@ -70,13 +70,13 @@ export class CalendarComponent {
     },
     initialView: 'dayGridMonth',
     initialDate: new Date(),
-    initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
+    //initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
     weekends: true,
     editable: true,
-    selectable: true,
+    selectable: false,
     selectMirror: true,
     dayMaxEvents: true,
-    select: this.handleDateSelect.bind(this),
+    //select: this.handleDateSelect.bind(this),
     eventClick: this.handleEventClick.bind(this),
     eventsSet: this.handleEvents.bind(this),
     
@@ -116,6 +116,36 @@ export class CalendarComponent {
     this.loadActivities();
     this.loadEvents();
     
+  }
+
+  loadCalendar(): void{
+    // Mappa le attività nel formato degli eventi di FullCalendar
+    const activityEvents = this.activities.map(activity => ({
+      title: activity.title,
+      start: activity.dueDate ? new Date(activity.dueDate) : undefined, // Utilizza la data di scadenza come data di inizio
+      allDay: true, // Imposta come all-day se non c'è un'ora specifica
+      backgroundColor: '#FFBB33', // Cambia colore per distinguere le attività dagli eventi
+      borderColor: '#FF8800',
+      description: activity.notes // Puoi usare description per le note o altre informazioni
+    }));
+
+    // Mappa gli eventi nel formato corretto
+    const calendarEvents = this.events.map(event => ({
+      title: event.title,
+      start: event.dateStart,
+      end: event.dateEnd,
+      notes: event.notes,
+      allDay: this.isAllDay(event) // Se l'evento è tutto il giorno
+    }));
+
+    // Combina eventi e attività
+    const allCalendarEvents = [...calendarEvents, ...activityEvents];
+
+    // Imposta le opzioni del calendario
+    this.calendarOptions.set({
+      ...this.calendarOptions(), // Mantieni le altre opzioni
+      events: allCalendarEvents // Inserisci tutti gli eventi e le attività
+    });
   }
 
   goToCustomDate(): void{
@@ -199,7 +229,7 @@ export class CalendarComponent {
   
   /* EVENTS */
 
-  handleDateSelect(selectInfo: DateSelectArg) {}
+  //handleDateSelect(selectInfo: DateSelectArg) {}
   handleNewEvent() {
     //console.log('Date selected:', selectInfo);
     
@@ -244,39 +274,6 @@ export class CalendarComponent {
       
     });
     
-    
-/*
-    dialogRef.afterClosed().subscribe(result => {
-      const calendarApi = selectInfo.view.calendar;
-      calendarApi.unselect(); // clear date selection
-
-      if (result) {
-        calendarApi.addEvent({
-          id: createEventId(),
-          title: result.title,
-          start: result.start,
-          end: result.end,
-          allDay: result.allDay
-        });
-      }
-    });
-    */
-
-    /*
-    const title = prompt('Please enter a new title for your event');
-    const calendarApi = selectInfo.view.calendar;
-
-    calendarApi.unselect(); // clear date selection
-
-    if (title) {
-      calendarApi.addEvent({
-        id: createEventId(),
-        title,
-        start: selectInfo.startStr,
-        end: selectInfo.endStr,
-        allDay: selectInfo.allDay
-      });
-    }*/
   }
 
   loadEvents(){
@@ -305,45 +302,8 @@ export class CalendarComponent {
           return 0; // Se entrambe sono null, lasciale inalterate
         });
         
-        // Mappa le attività nel formato degli eventi di FullCalendar
-      const activityEvents = this.activities.map(activity => ({
-        title: activity.title,
-        start: activity.dueDate ? new Date(activity.dueDate) : undefined, // Utilizza la data di scadenza come data di inizio
-        allDay: true, // Imposta come all-day se non c'è un'ora specifica
-        backgroundColor: '#FFBB33', // Cambia colore per distinguere le attività dagli eventi
-        borderColor: '#FF8800',
-        description: activity.notes // Puoi usare description per le note o altre informazioni
-      }));
-
-      // Mappa gli eventi nel formato corretto
-      const calendarEvents = this.events.map(event => ({
-        title: event.title,
-        start: event.dateStart,
-        end: event.dateEnd,
-        notes: event.notes,
-        allDay: this.isAllDay(event) // Se l'evento è tutto il giorno
-      }));
-
-      // Combina eventi e attività
-      const allCalendarEvents = [...calendarEvents, ...activityEvents];
-
-      // Imposta le opzioni del calendario
-      this.calendarOptions.set({
-        ...this.calendarOptions(), // Mantieni le altre opzioni
-        events: allCalendarEvents // Inserisci tutti gli eventi e le attività
-      });
-        
-        /*
-        this.calendarOptions.set({
-          ...this.calendarOptions(),  // Mantiene le altre opzioni
-          events: this.events.map(event => ({
-            title: event.title,
-            start: event.dateStart,
-            end: event.dateEnd,
-            notes: event.notes,
-            allDay: false  // Imposta allDay a false se non lo è, oppure gestiscilo in base ai dati
-          }))
-        });*/
+        this.loadCalendar();
+      
 
         console.log(this.events);
         console.log(this.activities);
@@ -351,18 +311,7 @@ export class CalendarComponent {
       }
       
     );
-/*
-    this.http.get<any[]>('http://localhost:3000/events').subscribe(events => {
-      // Imposta le opzioni del calendario con gli eventi
-      this.calendarOptions.set( {
-        initialView: 'dayGridMonth',
-        events: events, // Gli eventi dal server
-        editable: true,
-        selectable: true,
-        // Altre opzioni
-      });
-    });*/
-    
+
     
   }
 
@@ -388,6 +337,9 @@ export class CalendarComponent {
   handleEventClick(clickInfo: EventClickArg) {
     if (confirm("Vuoi eliminare " + clickInfo.event.title + "?")) {
       clickInfo.event.remove();
+
+      //se evento -> elimina evento
+      //se attività -> elimina attività
       this.eventService.deleteEvent(clickInfo.event.title).subscribe(
         () => {console.log(clickInfo.event.title + "deleted"),
           this.loadEvents()
@@ -428,8 +380,10 @@ export class CalendarComponent {
 
         this.activityService.createActivity(newActivity).subscribe(
           () =>  {console.log('Attività creata'), 
-            this.loadActivities()}
-          
+            this.loadActivities()
+            this.loadCalendar();
+          }
+            
         )
         
         

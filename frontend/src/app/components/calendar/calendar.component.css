@@ -68,7 +68,8 @@ h2 {
   }
 
   #activity{
-    background: green;
+    background: #FFBB33; 
+    border: #FF8800;
   }
 
   #event{
