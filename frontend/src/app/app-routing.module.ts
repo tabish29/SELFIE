@@ -15,6 +15,7 @@ import { ImpiccatoComponent } from './components/game/impiccato/impiccato.compon
 import { PuzzleComponent } from './components/game/puzzle/puzzle.component';
 import { FlashcardComponent } from './components/flashcard/flashcard.component'; 
 import { accessGuard } from './guards/access.guard';
+import { MusicComponent } from './components/music/music.component';
 
 const routes: Routes = [
   {
@@ -77,6 +78,11 @@ const routes: Routes = [
   {
     path: 'flashCard',
     component: FlashcardComponent,
+    canActivate: [accessGuard]
+  },
+  {
+    path: 'music',
+    component: MusicComponent,
     canActivate: [accessGuard]
   },
   {

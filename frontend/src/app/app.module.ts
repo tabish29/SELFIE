@@ -43,7 +43,8 @@ import { TruncatePipe } from './pipes/truncate.pipe';
 import { FlashcardComponent } from './components/flashcard/flashcard.component';
 import { NewEventDialogComponent } from './components/new-event-dialog/new-event-dialog.component';
 import { UpdateTopicDialogComponent } from './components/flashcard/update-topic-dialog/update-topic.component';
-import { UpdateFlashcardDialogComponent } from './components/flashcard/update-flashcard-dialog/update-flashcard-dialog.component'; 
+import { UpdateFlashcardDialogComponent } from './components/flashcard/update-flashcard-dialog/update-flashcard-dialog.component';
+import { MusicComponent } from './components/music/music.component'; 
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { UpdateFlashcardDialogComponent } from './components/flashcard/update-fl
     FlashcardComponent,
     NewEventDialogComponent,
     UpdateTopicDialogComponent,
-    UpdateFlashcardDialogComponent
+    UpdateFlashcardDialogComponent,
+    MusicComponent
   ],
   imports: [
     BrowserModule,
