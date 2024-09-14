@@ -121,6 +121,7 @@ export class CalendarComponent {
   loadCalendar(): void{
     // Mappa le attività nel formato degli eventi di FullCalendar
     const activityEvents = this.activities.map(activity => ({
+      
       title: activity.title,
       start: activity.dueDate ? new Date(activity.dueDate) : undefined, // Utilizza la data di scadenza come data di inizio
       allDay: true, // Imposta come all-day se non c'è un'ora specifica
@@ -134,6 +135,8 @@ export class CalendarComponent {
       title: event.title,
       start: event.dateStart,
       end: event.dateEnd,
+      backgroundColor: '#4c95e4', // Cambia colore per distinguere le attività dagli eventi
+      borderColor: 'blue',
       notes: event.notes,
       allDay: this.isAllDay(event) // Se l'evento è tutto il giorno
     }));
