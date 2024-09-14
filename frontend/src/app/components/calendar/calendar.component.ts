@@ -123,7 +123,7 @@ export class CalendarComponent {
     const activityEvents = this.activities.map(activity => ({
       
       title: activity.title,
-      start: activity.dueDate ? new Date(activity.dueDate) : undefined, // Utilizza la data di scadenza come data di inizio
+      start: this.isExpired(activity) ? new Date(this.today) : (activity.dueDate ? new Date(activity.dueDate) : undefined), // Utilizza la data di scadenza come data di inizio
       allDay: true, // Imposta come all-day se non c'è un'ora specifica
       backgroundColor: '#FFBB33', // Cambia colore per distinguere le attività dagli eventi
       borderColor: '#FF8800',
