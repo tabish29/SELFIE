@@ -5,7 +5,7 @@
     <input type="file" (change)="onFileUpload($event)" accept=".mp3" />
 
     <div *ngIf="musicList.length > 0">
-        <p>Now Playing: {{ musicList[currentTrackIndex] }}</p>
+        <p class="track">Now Playing: {{ musicList[currentTrackIndex] }}</p>
         <button (click)="playTrack(currentTrackIndex)">Play</button>
         <button (click)="pauseTrack()">Pause</button>
         <button (click)="previousTrack()">Previous</button>
@@ -13,9 +13,8 @@
     </div>
 
     <ul>
-        <li *ngFor="let track of musicList; let i = index">
+        <li class="track" *ngFor="let track of musicList; let i = index">
             {{ track }}
-            <button (click)="playTrack(i)">Play</button>
             <button (click)="deleteTrack(track)">Delete</button>
         </li>
     </ul>

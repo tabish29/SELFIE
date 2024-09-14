@@ -7,9 +7,9 @@ import { MusicService } from '../../services/music.service';
   styleUrl: './music.component.css'
 })
 export class MusicComponent {
-  musicList: string[] = [];   // Lista delle tracce MP3
-  currentTrackIndex = 0;      // Indice della traccia corrente
-  audio = new Audio();        // Oggetto Audio HTML5
+  musicList: string[] = [];   
+  currentTrackIndex = 0;     
+  audio = new Audio();    
 
   constructor(private musicService: MusicService) { }
 
@@ -21,9 +21,6 @@ export class MusicComponent {
   loadMusicList(): void {
     this.musicService.getMusicList().subscribe((list: string[]) => {
       this.musicList = list;
-      if (this.musicList.length > 0) {
-        this.playTrack(0); 
-      }
     });
   }
 
@@ -74,7 +71,7 @@ export class MusicComponent {
   // Metodo per eliminare un file MP3
   deleteTrack(filename: string): void {
     this.musicService.deleteFile(filename).subscribe(() => {
-      //this.loadMusicList(); // Ricarica la lista dopo l'eliminazione
+      this.loadMusicList(); 
     });
   }
 }
