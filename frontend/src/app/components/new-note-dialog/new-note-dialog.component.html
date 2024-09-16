@@ -39,5 +39,5 @@
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onCancel()">Annulla</button>
-  <button mat-button (click)="onCreate()" [disabled]="!title || !content">Crea Nota</button>
+  <button mat-button (click)="onCreate()" [disabled]="!title || !content || !selectedColor">Crea Nota</button>
 </div>
