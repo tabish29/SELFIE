@@ -81,11 +81,6 @@ const routes: Routes = [
     canActivate: [accessGuard]
   },
   {
-    path: 'music',
-    component: MusicComponent,
-    canActivate: [accessGuard]
-  },
-  {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full'

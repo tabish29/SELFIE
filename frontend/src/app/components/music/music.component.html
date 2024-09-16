@@ -1,21 +1,25 @@
-<!-- music.component.html -->
-<div>
+<div class="music-container">
     <h2>Music Player</h2>
 
-    <input type="file" (change)="onFileUpload($event)" accept=".mp3" />
+    <label class="loadMusic">
+        Carica la tua musica
+        <input type="file" (change)="onFileUpload($event)" accept=".mp3" style="display: none;" />
+    </label>
 
     <div *ngIf="musicList.length > 0">
-        <p class="track">Now Playing: {{ musicList[currentTrackIndex] }}</p>
-        <button (click)="playTrack(currentTrackIndex)">Play</button>
-        <button (click)="pauseTrack()">Pause</button>
-        <button (click)="previousTrack()">Previous</button>
-        <button (click)="nextTrack()">Next</button>
-    </div>
+        <p class="track">
+            Stai ascoltando:<br> 
+            <strong>{{ musicList[currentTrackIndex] }}</strong> <br>
+            <button class="delete-btn" *ngIf="musicList[currentTrackIndex]"
+                (click)="deleteTrack(musicList[currentTrackIndex])">Elimina traccia</button>
+        </p>
 
-    <ul>
-        <li class="track" *ngFor="let track of musicList; let i = index">
-            {{ track }}
-            <button (click)="deleteTrack(track)">Delete</button>
-        </li>
-    </ul>
+
+        <audio controls [src]="audio.src" (ended)="nextTrack()"></audio>
+
+        <div class="controls">
+            <button class="control-btn" (click)="previousTrack()">Precedente</button>
+            <button class="control-btn" (click)="nextTrack()">Successiva</button>
+        </div>
+    </div>
 </div>
