@@ -1,20 +1,19 @@
 <div class="page-container">
     <app-navbar></app-navbar>
-    <h3>Gioco Snake</h3>
     <div class="container">
-        <div class="mainbar">
-            <div class="snake-game">
-                <canvas id="gameCanvas"></canvas>
-            </div>          
-            <button class="reset-button" (click)="resetGame()">Resetta Gioco</button>
-    
-            <!-- Pop-up per la sconfitta -->
-            <div id="game-over-modal" *ngIf="gameOver" class="game-over-modal">
-                <p>Hai perso! Il serpente ha mangiato la coda.</p>
-                <button class="close-modal" (click)="resetGame()">Gioca di nuovo</button>
-            </div>
+        <h3>Gioco Snake</h3>
+        <div class="snake-game">
+            <canvas id="gameCanvas"></canvas>
+        </div>          
+        <button class="reset-button" (click)="resetGame()">Resetta Gioco</button>
+
+        <!-- Pop-up per la sconfitta -->
+        <div id="game-over-modal" *ngIf="gameOver" class="game-over-modal">
+            <p>Hai perso! Il serpente ha mangiato la coda.</p>
+            <button class="close-modal" (click)="resetGame()">Gioca di nuovo</button>
         </div>
-        <div class="sidebar">
+
+        <div class="timebar">
             <app-time-machine></app-time-machine>
         </div>
     </div>

@@ -1,71 +1,69 @@
 <div class="page-container">
   <app-navbar></app-navbar>
   <div class="container">
-    <div class="mainbar">
-      <div class="flashcard-page">
-        <div class="setting">
-           <!-- Sezione per aggiungere un nuovo topic -->
-          <div class="add-topic">
-            <label for="new-topic">Aggiungi un nuovo Topic:</label>
-            <input id="new-topic" type="text" [(ngModel)]="newTopic" placeholder="Inserisci un nuovo topic">
-            <button (click)="addTopic()">Aggiungi Topic</button>
-          </div>
-
-          <!-- Sezione per selezionare il topic -->
-          <div class="topic-selection">
-            <label for="topic-select">Seleziona un Topic:</label>
-            <select id="topic-select" [(ngModel)]="selectedTopic" (change)="onTopicChange()">
-              <option *ngFor="let flashcardSet of flashcardSets" [value]="flashcardSet.topic">
-                {{ flashcardSet.topic }}
-              </option>
-            </select>
-            <div class="but">
-              <button *ngIf="selectedTopic" (click)="deleteTopic(selectedTopic)">Elimina Topic</button>
-              <button *ngIf="selectedTopic" (click)="updateTopic(selectedTopic)">Aggiorna Topic</button>
-            </div>
-          </div>
+    <div class="flashcard-page">
+      <div class="setting">
+          <!-- Sezione per aggiungere un nuovo topic -->
+        <div class="add-topic">
+          <label for="new-topic">Aggiungi un nuovo Topic:</label>
+          <input id="new-topic" type="text" [(ngModel)]="newTopic" placeholder="Inserisci un nuovo topic">
+          <button (click)="addTopic()">Aggiungi Topic</button>
         </div>
-        
-    
-        <!-- Sezione per visualizzare una carta alla volta -->
-        <div *ngIf="selectedTopic && currentFlashcard">
-          <div class="flashcard-navigation">
-            <button class="prevButton" (click)="prevFlashcard()">&#10094;</button>
-            <div class="flashcard-container">
-              <div class="flashcard" [class.flipped]="isFlipped" (click)="flipCard()">
-                <div class="front" *ngIf="!isFlipped">
-                  <p>{{ currentFlashcard.question }}</p>
-                </div>
-                <div class="back" *ngIf="isFlipped">
-                  <p>{{ currentFlashcard.answer }}</p>
-                </div>
-              </div>
-              <div>
-    
-              </div>
-            </div>
-            <button class="nextButton" (click)="nextFlashcard()">&#10095;</button>
+
+        <!-- Sezione per selezionare il topic -->
+        <div class="topic-selection">
+          <label for="topic-select">Seleziona un Topic:</label>
+          <select id="topic-select" [(ngModel)]="selectedTopic" (change)="onTopicChange()">
+            <option *ngFor="let flashcardSet of flashcardSets" [value]="flashcardSet.topic">
+              {{ flashcardSet.topic }}
+            </option>
+          </select>
+          <div class="but">
+            <button *ngIf="selectedTopic" (click)="deleteTopic(selectedTopic)">Elimina Topic</button>
+            <button *ngIf="selectedTopic" (click)="updateTopic(selectedTopic)">Aggiorna Topic</button>
           </div>
-          <button (click)="deleteFlashcard(currentFlashcard)" class="delete-button">Elimina Flashcard</button>
-          <button (click)="openUpdateFlashcardDialog(currentFlashcard)" class="delete-button">Aggiorna Flashcard</button>
         </div>
       </div>
-    
-      <div *ngIf="selectedTopic" class="create-flashcard-section">
-        <h3>Aggiungi una nuova flashcard per il topic: {{ selectedTopic }}</h3>
-    
-        <div class="new-flashcard-form">
-          <label for="new-question">Domanda:</label>
-          <input id="new-question" type="text" [(ngModel)]="newQuestion" placeholder="Inserisci la domanda">
-    
-          <label for="new-answer">Risposta:</label>
-          <input id="new-answer" type="text" [(ngModel)]="newAnswer" placeholder="Inserisci la risposta">
-    
-          <button (click)="addFlashcard()">Aggiungi Flashcard</button>
+      
+  
+      <!-- Sezione per visualizzare una carta alla volta -->
+      <div *ngIf="selectedTopic && currentFlashcard">
+        <div class="flashcard-navigation">
+          <button class="prevButton" (click)="prevFlashcard()">&#10094;</button>
+          <div class="flashcard-container">
+            <div class="flashcard" [class.flipped]="isFlipped" (click)="flipCard()">
+              <div class="front" *ngIf="!isFlipped">
+                <p>{{ currentFlashcard.question }}</p>
+              </div>
+              <div class="back" *ngIf="isFlipped">
+                <p>{{ currentFlashcard.answer }}</p>
+              </div>
+            </div>
+            <div>
+  
+            </div>
+          </div>
+          <button class="nextButton" (click)="nextFlashcard()">&#10095;</button>
         </div>
+        <button (click)="deleteFlashcard(currentFlashcard)" class="delete-button">Elimina Flashcard</button>
+        <button (click)="openUpdateFlashcardDialog(currentFlashcard)" class="delete-button">Aggiorna Flashcard</button>
       </div>
     </div>
-    <div class="sidebar">
+  
+    <div *ngIf="selectedTopic" class="create-flashcard-section">
+      <h3>Aggiungi una nuova flashcard per il topic: {{ selectedTopic }}</h3>
+  
+      <div class="new-flashcard-form">
+        <label for="new-question">Domanda:</label>
+        <input id="new-question" type="text" [(ngModel)]="newQuestion" placeholder="Inserisci la domanda">
+  
+        <label for="new-answer">Risposta:</label>
+        <input id="new-answer" type="text" [(ngModel)]="newAnswer" placeholder="Inserisci la risposta">
+  
+        <button (click)="addFlashcard()">Aggiungi Flashcard</button>
+      </div>
+    </div>
+    <div class="timebar">
       <app-time-machine></app-time-machine>
     </div>
   </div>

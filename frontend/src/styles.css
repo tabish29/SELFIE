@@ -20,15 +20,18 @@ html,body{
     height: auto;
     align-items: center;
     width: 100%;
-    display: flex;
 }
 
-.mainbar {
-    width: 75%;
+.timebar {
+    position: fixed;
+    bottom: 50px;
+    right: 0;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    cursor: move;
 }
-
-.sidebar {
-    width: 25%;
-    padding-right: 0;
-    box-sizing: border-box;
+app-time-machine {
+    display: block;
 }

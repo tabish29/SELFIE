@@ -1,7 +1,7 @@
 .container{
     padding: 5px;
 }
-.mainbar {
+.grid-card {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;

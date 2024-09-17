@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { NewNoteDialogComponent } from '../new-note-dialog/new-note-dialog.component';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { UpdateNoteDialogComponent } from '../update-note-dialog/update-note-dialog.component';
+import { DragService } from '../../services/drag.service';
 
 @Component({
   selector: 'app-user-notes',
@@ -34,8 +35,14 @@ export class UserNotesComponent {
   constructor(
     private dialog: MatDialog,
     private userNotesService: UserNoteService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private dragService: DragService
   ) { }
+
+  onMouseDown(event: MouseEvent): void {
+    const target = event.target as HTMLElement;
+    this.dragService.startDrag(event, target);
+  }
 
   ngOnInit(): void {
     this.authorUsername = this.localStorageService.getItem('username');
@@ -207,4 +214,5 @@ export class UserNotesComponent {
       error => console.error('Errore nel caricamento delle note dell\'autore', error)
     );
   }
+  
 }

@@ -1,8 +1,7 @@
 
 <app-navbar></app-navbar>
-<h2>Gioco dell'Impiccato</h2>
-<div class="container">
-    <div class="mainbar">
+    <div class="container">
+        <h2>Gioco dell'Impiccato</h2>
         <div class="columns-container">
             <!-- Colonna per le informazioni del gioco -->
             <div id="left-column">
@@ -32,7 +31,7 @@
                 </div>
             </div>
         </div>
-    
+
         <!-- Alfabeto per la selezione delle lettere -->
         <div id="alphabet">
             <span *ngFor="let letter of alphabet"
@@ -47,9 +46,9 @@
             <p>{{ gameOverMessage }}</p>
             <button class="close-modal" (click)="resetGame()">Gioca di nuovo</button>
         </div>
+
+        <div class="timebar">
+            <app-time-machine></app-time-machine>
+        </div>
     </div>
-    <div class="sidebar">
-        <app-time-machine></app-time-machine>
-    </div>
-</div>
 <app-footer></app-footer>

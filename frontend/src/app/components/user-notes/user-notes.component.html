@@ -2,7 +2,6 @@
 
 <div class="container">
   <h1>Gestione Note</h1>
-
   <!-- Sezione filtri -->
   <div class="filter-section">
     <label for="filter">Filtra per:</label>
@@ -64,5 +63,7 @@
   </div>
 
 </div>
-
+<div class="timebar" (mousedown)="onMouseDown($event)">
+  <app-time-machine></app-time-machine>
+</div>
 <app-footer></app-footer>
