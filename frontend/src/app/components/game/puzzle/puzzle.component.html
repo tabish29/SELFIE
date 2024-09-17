@@ -1,17 +1,22 @@
 <div class="page-container">
     <app-navbar></app-navbar>
+    <h2>15-Puzzle</h2>
     <div class="container">
-        <h2>15-Puzzle</h2>
-        <div id="board" class="board">
-            <div class="cell" *ngFor="let cell of puzzle; let i = index" 
-                 [ngClass]="{'empty': cell === null}" (click)="moveTile(i)">
-                {{ cell !== null ? cell : '' }}
+        <div class="mainbar">
+            <div id="board" class="board">
+                <div class="cell" *ngFor="let cell of puzzle; let i = index" 
+                     [ngClass]="{'empty': cell === null}" (click)="moveTile(i)">
+                    {{ cell !== null ? cell : '' }}
+                </div>
+            </div>
+            <button class="reset-button" (click)="resetPuzzle()">Resetta Gioco</button>
+            <div id="winner-modal" *ngIf="isSolved" class="winner-modal">
+                <p>Hai completato 15-puzzle!</p>
+                <button class="close-modal" (click)="resetPuzzle()">Gioca di nuovo</button>
             </div>
         </div>
-        <button class="reset-button" (click)="resetPuzzle()">Resetta Gioco</button>
-        <div id="winner-modal" *ngIf="isSolved" class="winner-modal">
-            <p>Hai completato 15-puzzle!</p>
-            <button class="close-modal" (click)="resetPuzzle()">Gioca di nuovo</button>
+        <div class="sidebar">
+            <app-time-machine></app-time-machine>
         </div>
     </div>
     <app-footer></app-footer>

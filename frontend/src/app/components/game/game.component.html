@@ -1,8 +1,8 @@
 <div class="page-container">
     <app-navbar></app-navbar>
+    <h4>Fai un break e divertiti</h4>
     <div class="container">
-        <h4>Fai un break e divertiti</h4>
-        <div class="games-grid">
+        <div class="mainbar">
             <div class="game-card" (click)="goToGame('tris')">
                 <img src="assets/tris.png" alt="Tris">
                 <p>Tris</p>
@@ -19,6 +19,9 @@
                 <img src="assets/snake.png" alt="Snake">
                 <p>Snake</p>
             </div>
+        </div>
+        <div class="sidebar">
+            <app-time-machine></app-time-machine>
         </div>
     </div>
     <app-footer></app-footer>

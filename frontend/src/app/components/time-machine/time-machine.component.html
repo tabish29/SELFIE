@@ -1,16 +1,18 @@
-<div class="page-container">
-    <app-navbar></app-navbar>
+<div class="host-block" *ngIf="timeMachine">
+    <div class="time-display">
+        <h2>{{ timeMachine.date | date: 'EEEE, d MMMM' }}</h2> <!-- Giorno e data -->
+        <h1>{{ timeMachine.date | date: 'HH:mm:ss' }}</h1> <!-- Ora -->
+    </div>
 
-    <div class="host-block" *ngIf="timeMachine">
-        <h2>TimeMachine di {{ username }}</h2>
-        <p>Data attuale: {{ timeMachine.date }}</p>
-
+    <div class="info-block">
+        <h3>Account: {{ username }}</h3>
+        
         <label for="newDate">Nuova data e ora:</label>
         <input id="newDate" type="datetime-local" [(ngModel)]="newDate">
 
-        <button (click)="updateTimeMachine()">Aggiorna</button>
-        <button (click)="resetTimeMachine()">Reset</button>
+        <div class="button-group">
+            <button (click)="updateTimeMachine()">Aggiorna</button>
+            <button (click)="resetTimeMachine()">Reset</button>
+        </div>
     </div>
-
-    <app-footer></app-footer>
 </div>

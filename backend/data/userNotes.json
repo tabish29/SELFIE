@@ -340,5 +340,16 @@
     "createdAt": "04/09/2024 13:27",
     "updatedAt": "04/09/2024 13:27",
     "authorUsername": "a"
+  },
+  {
+    "title": "Palestra1",
+    "content": "passo1: iscriversi in palestra\npasso 2: andare in palestraaaaaaaaaaaaaaaaaaaa",
+    "categories": [
+      "Palestra"
+    ],
+    "createdAt": "04/09/2024 22:53",
+    "updatedAt": "04/09/2024 22:53",
+    "authorUsername": "Leo",
+    "noteColor": "blue"
   }
 ]

@@ -1,85 +1,93 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-/* Contenitore principale della pagina */
-.page-container {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 100vw;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-}
-/* Aggiungi uno sfondo leggero e centra il contenuto */
+/* Stile principale per il blocco */
 .host-block {
-    display: block;
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 600px;
-    margin: 20px auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Stili per il titolo */
-  h2 {
-    color: #333;
-    font-family: 'Arial', sans-serif;
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-  
-  /* Stili per il paragrafo */
-  p {
-    color: #666;
-    font-family: 'Arial', sans-serif;
-    font-size: 18px;
-    margin-bottom: 20px;
-  }
-  
-  /* Stili per le etichette */
-  label {
-    display: block;
-    color: #555;
-    font-family: 'Arial', sans-serif;
-    font-size: 16px;
-    margin-bottom: 5px;
-  }
-  
-  /* Stili per l'input */
-  input[type="datetime-local"] {
-    width: calc(100% - 20px);
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    box-sizing: border-box;
-  }
-  
-  /* Stili per i pulsanti */
-  button {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-right: 10px;
-    transition: background-color 0.3s;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  button:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-  }
-  
+  display: block;
+  background-color: #f1f1f1;
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 500px;
+  margin: 50px auto;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Stile per il display del tempo (giorno e ora) */
+.time-display h2 {
+  font-size: 28px;
+  color: #007bff;
+  margin-bottom: 5px;
+  font-family: 'Arial', sans-serif;
+}
+
+.time-display h1 {
+  font-size: 48px;
+  color: #007bff;
+  margin-bottom: 20px;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Info Account e Data */
+.info-block {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Titolo Account in grigio più chiaro */
+.info-block h3 {
+  color: #777; /* Grigio più chiaro per l'account */
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+/* Paragrafo della data */
+.info-block p {
+  color: #666;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+/* Label e input per la data */
+label {
+  color: #555;
+  font-size: 16px;
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="datetime-local"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+/* Gruppo di pulsanti */
+.button-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+button {
+  flex: 1;
+  margin: 5px;
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
