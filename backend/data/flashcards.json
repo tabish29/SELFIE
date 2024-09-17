@@ -124,5 +124,38 @@
     "author": "d",
     "topic": "testaggiunta",
     "flashcards": []
+  },
+  {
+    "author": "Leo",
+    "topic": "Casa",
+    "flashcards": []
+  },
+  {
+    "author": "Leo",
+    "topic": "Palestra",
+    "flashcards": [
+      {
+        "question": "Esercizio virale su instagram",
+        "answer": "muscle-up"
+      },
+      {
+        "question": "fondamentale per gambe",
+        "answer": "squat"
+      },
+      {
+        "question": "Fondamentale per petto",
+        "answer": "bilancere"
+      }
+    ]
+  },
+  {
+    "author": "Leo",
+    "topic": "Studio",
+    "flashcards": []
+  },
+  {
+    "author": "Leo",
+    "topic": "Ragazze",
+    "flashcards": []
   }
 ]

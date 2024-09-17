@@ -24,10 +24,11 @@ html,body{
 }
 
 .mainbar {
-    width: 80%;
+    width: 75%;
 }
 
 .sidebar {
-    width: 20%;
-    padding-right: 25px;
+    width: 25%;
+    padding-right: 0;
+    box-sizing: border-box;
 }
