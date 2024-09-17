@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DragService } from '../../../services/drag.service';
 
 @Component({
   selector: 'app-puzzle',
@@ -9,8 +10,15 @@ export class PuzzleComponent {
   puzzle: (number | null)[] = []; // Inizializza la proprietà 'puzzle'
   isSolved: boolean = false; // Definisce la proprietà 'isSolved'
 
-  constructor() {
+  constructor(
+    private dragService: DragService
+  ) { 
     this.resetPuzzle(); // Inizializza il puzzle
+  }
+  
+  onMouseDown(event: MouseEvent): void {
+    const target = event.target as HTMLElement;
+    this.dragService.startDrag(event, target);
   }
 
   // Metodo per resettare il puzzle

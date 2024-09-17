@@ -60,7 +60,8 @@
         </full-calendar>
       </div>
     </div>
-    <div class="timebar">
+    <div class="timebar" (mousedown)="onMouseDown($event)">
+      <span>&#8596;</span>
       <app-time-machine></app-time-machine>
     </div>
   <app-footer></app-footer>

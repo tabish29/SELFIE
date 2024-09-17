@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DragService } from '../../services/drag.service';
 
 @Component({
   selector: 'app-pomodoro-timer',
@@ -21,6 +22,15 @@ export class PomodoroTimerComponent {
 
   isWorkMode: boolean = true;
   isBreakMode: boolean = false;
+
+  constructor(
+    private dragService: DragService
+  ) { }
+  
+  onMouseDown(event: MouseEvent): void {
+    const target = event.target as HTMLElement;
+    this.dragService.startDrag(event, target);
+  }
 
   ngOnInit() {
     this.updateTimer();

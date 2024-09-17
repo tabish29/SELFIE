@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DragService } from '../../services/drag.service';
 
 @Component({
   selector: 'app-home-page',
@@ -6,6 +7,14 @@ import { Component } from '@angular/core';
   styleUrl: './home-page.component.css'
 })
 export class HomePageComponent {
-
+  
+  constructor(
+    private dragService: DragService
+  ) { }
+  
+  onMouseDown(event: MouseEvent): void {
+    const target = event.target as HTMLElement;
+    this.dragService.startDrag(event, target);
+  }
 
 }

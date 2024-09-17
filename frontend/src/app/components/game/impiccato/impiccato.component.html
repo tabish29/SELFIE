@@ -47,7 +47,8 @@
             <button class="close-modal" (click)="resetGame()">Gioca di nuovo</button>
         </div>
 
-        <div class="timebar">
+        <div class="timebar" (mousedown)="onMouseDown($event)">
+            <span>&#8596;</span>
             <app-time-machine></app-time-machine>
         </div>
     </div>

@@ -17,6 +17,7 @@ import { LocalStorageService } from '../../services/local-storage.service';
 import { TimeMachineService } from '../../services/time-machine.service';
 import { TimeMachine } from '../../models/TimeMachine';
 import { HttpClient } from '@angular/common/http';
+import { DragService } from '../../services/drag.service';
 
 
 
@@ -36,6 +37,7 @@ export class CalendarComponent {
     private eventService: EventService,
     private localStorageService: LocalStorageService,
     private timeMachineService: TimeMachineService,
+    private dragService: DragService
     //private http: HttpClient
   ) {}
 
@@ -89,6 +91,10 @@ export class CalendarComponent {
   });
 
   
+  onMouseDown(event: MouseEvent): void {
+    const target = event.target as HTMLElement;
+    this.dragService.startDrag(event, target);
+  }
   
   
 

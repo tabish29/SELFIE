@@ -5,6 +5,7 @@ import { LocalStorageService } from '../../services/local-storage.service';
 import { MatDialog } from '@angular/material/dialog';
 import { UpdateTopicDialogComponent } from './update-topic-dialog/update-topic.component';
 import { UpdateFlashcardDialogComponent } from './update-flashcard-dialog/update-flashcard-dialog.component';
+import { DragService } from '../../services/drag.service';
 
 @Component({
   selector: 'app-flashcard',
@@ -22,7 +23,17 @@ export class FlashcardComponent {
   newQuestion: string = '';
   newAnswer: string = '';
 
-  constructor(private flashcardService: FlashcardService, private localStorageService: LocalStorageService, private dialog: MatDialog) { }
+  constructor(
+    private flashcardService: FlashcardService, 
+    private localStorageService: LocalStorageService, 
+    private dialog: MatDialog,
+    private dragService: DragService
+  ) { }
+  
+  onMouseDown(event: MouseEvent): void {
+    const target = event.target as HTMLElement;
+    this.dragService.startDrag(event, target);
+  }
 
   ngOnInit(): void {
     this.author = this.localStorageService.getItem('username');

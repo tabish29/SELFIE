@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DragService } from '../../../services/drag.service';
 
 @Component({
   selector: 'app-tris',
@@ -11,6 +12,14 @@ export class TrisComponent {
   winner: string | null = null; // Variabile per memorizzare il vincitore
   isDraw: boolean = false; // Variabile per gestire il pareggio
 
+  constructor(
+    private dragService: DragService
+  ) { }
+  
+  onMouseDown(event: MouseEvent): void {
+    const target = event.target as HTMLElement;
+    this.dragService.startDrag(event, target);
+  }
   // Metodo per gestire il click su una cella
   makeMove(index: number): void {
     if (!this.cells[index] && !this.winner && !this.isDraw) { // Se la cella è vuota e non c'è un vincitore o pareggio

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { DragService } from '../../services/drag.service';
 
 @Component({
   selector: 'app-game',
@@ -7,7 +8,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./game.component.css']
 })
 export class GameComponent {
-  constructor(private router: Router) { }
+
+  constructor(
+    private dragService: DragService,
+    private router: Router
+  ) { }
+  
+  onMouseDown(event: MouseEvent): void {
+    const target = event.target as HTMLElement;
+    this.dragService.startDrag(event, target);
+  }
 
   goToGame(gameName: string): void {
     this.router.navigate(['/game', gameName]);

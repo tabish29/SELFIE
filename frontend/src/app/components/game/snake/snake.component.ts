@@ -1,4 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { DragService } from '../../../services/drag.service';
 
 @Component({
   selector: 'app-snake',
@@ -21,6 +22,15 @@ export class SnakeComponent implements OnInit, AfterViewInit {
   private speed = 250;
   public gameOver: boolean = false;
 
+  constructor(
+    private dragService: DragService
+  ) { }
+  
+  onMouseDown(event: MouseEvent): void {
+    const target = event.target as HTMLElement;
+    this.dragService.startDrag(event, target);
+  }
+  
   ngOnInit(): void {
     this.initializeFoodPosition();
   }

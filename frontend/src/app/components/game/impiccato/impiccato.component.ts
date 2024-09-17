@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WordService } from '../../../services/word.service'; // Importa il servizio
+import { DragService } from '../../../services/drag.service';
 
 @Component({
   selector: 'app-impiccato',
@@ -17,8 +18,15 @@ export class ImpiccatoComponent implements OnInit {
   alphabet: string[] = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''); // Alfabeto
   currentGuess: string = ''; // Lettera corrente
 
-  constructor(private wordService: WordService) {}
-
+  constructor(
+    private wordService: WordService,
+    private dragService: DragService
+  ) { }
+  
+  onMouseDown(event: MouseEvent): void {
+    const target = event.target as HTMLElement;
+    this.dragService.startDrag(event, target);
+  }
   ngOnInit(): void {
     this.loadRandomWord(); // Carica una parola casuale all'inizio del gioco
   }
