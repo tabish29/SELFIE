@@ -26,10 +26,16 @@ html,body{
     position: fixed;
     bottom: 50px;
     right: 0;
-    background-color: rgba(0, 0, 0, 0);
+    width: 240px; 
+    height: 280px;
+    border-radius: 10px;
+    background-color: #f0f0f0;
+    z-index: 1000;
     padding: 20px;
     cursor: move;
-    z-index: 1000;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
 }
 .timebar span{
     font-size: 25px;
@@ -37,6 +43,6 @@ html,body{
     margin: 0;
     padding: 0;
 }
-app-time-machine {
+.timebar app-time-machine {
     display: block;
 }

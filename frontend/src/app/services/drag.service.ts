@@ -12,32 +12,36 @@ export class DragService {
 
   constructor() {}
 
-  // Metodo per iniziare il trascinamento
-  startDrag(event: MouseEvent, element: HTMLElement): void {
+  startDrag(event: MouseEvent, element: HTMLElement) {
     this.isDragging = true;
     this.element = element;
+
+    // Calcola l'offset iniziale del mouse rispetto all'elemento
     this.offsetX = event.clientX - element.getBoundingClientRect().left;
     this.offsetY = event.clientY - element.getBoundingClientRect().top;
 
-    // Aggiungi gli eventi di movimento e rilascio
-    document.addEventListener('mousemove', this.onMouseMove);
-    document.addEventListener('mouseup', this.onMouseUp);
+    // Aggiungi gli eventi mousemove e mouseup
+    document.addEventListener('mousemove', this.onMouseMove.bind(this));
+    document.addEventListener('mouseup', this.onMouseUp.bind(this));
   }
 
-  // Gestisce il movimento del mouse
-  private onMouseMove = (event: MouseEvent): void => {
+  private onMouseMove(event: MouseEvent) {
     if (this.isDragging && this.element) {
-      const x = event.clientX - this.offsetX;
-      const y = event.clientY - this.offsetY;
-      this.element.style.left = `${x}px`;
-      this.element.style.top = `${y}px`;
+      // Sposta l'elemento mantenendo le dimensioni fisse
+      this.element.style.left = `${event.clientX - this.offsetX}px`;
+      this.element.style.top = `${event.clientY - this.offsetY}px`;
+      this.element.style.right = 'auto'; // Rimuovi allineamento a destra per abilitare il movimento
+      this.element.style.bottom = 'auto'; // Rimuovi allineamento in basso per abilitare il movimento
     }
-  };
+  }
 
-  // Termina il trascinamento
-  private onMouseUp = (): void => {
+  private onMouseUp() {
+    // Ferma il trascinamento
     this.isDragging = false;
-    document.removeEventListener('mousemove', this.onMouseMove);
-    document.removeEventListener('mouseup', this.onMouseUp);
-  };
+    this.element = null;
+
+    // Rimuovi gli eventi mousemove e mouseup
+    document.removeEventListener('mousemove', this.onMouseMove.bind(this));
+    document.removeEventListener('mouseup', this.onMouseUp.bind(this));
+  }
 }
