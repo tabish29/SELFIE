@@ -18,7 +18,17 @@ export class TimeMachineComponent {
   ngOnInit(): void {
     this.username = this.localStorageService.getItem('username');
     if (this.username) {
-      this.loadTimeMachine(this.username);
+       this.loadTimeMachine(this.username);
+
+      this.timeMachineService.timeMachineObservable.subscribe(
+        (timeMachine) => {
+          if (timeMachine) {
+            this.timeMachine = timeMachine;
+          }
+        }
+      );
+
+     
     }
   }
 
@@ -26,7 +36,6 @@ export class TimeMachineComponent {
     this.timeMachineService.getTimeMachine(ownerUsername).subscribe(
       (timeMachine) => {
         this.timeMachine = timeMachine;
-        this.newDate = timeMachine.date;
       },
       (error) => {
         console.error('Errore nel caricamento della TimeMachine', error);
@@ -59,7 +68,6 @@ export class TimeMachineComponent {
 
           if (this.timeMachine) {
             this.timeMachine.date = formattedDate;
-            this.newDate = formattedDate;
           }
         },
         (error) => {

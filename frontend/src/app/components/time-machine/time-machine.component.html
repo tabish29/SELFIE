@@ -1,12 +1,11 @@
 <div class="host-block" *ngIf="timeMachine">
     <div class="time-display">
-        <h6>{{ timeMachine.date | date: 'dd/MMMM/yyyy'}}</h6> <!-- Giorno e data -->
-        <h5>{{ timeMachine.date | date: 'HH:mm:ss'}}</h5> <!-- Ora -->
+        <h6>{{ timeMachine.date | customDate }}</h6>
     </div>
 
     <div class="info-block">
         <p>Account: {{ username }}</p>
-        
+
         <label for="newDate">Imposta data e ora:</label>
         <input id="newDate" type="datetime-local" [(ngModel)]="newDate">
 
