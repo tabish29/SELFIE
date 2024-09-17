@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { TimeMachine } from '../models/TimeMachine';
-import { interval, Observable, Subscription } from 'rxjs';
+import { BehaviorSubject, interval, Observable, Subscription, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +9,8 @@ import { interval, Observable, Subscription } from 'rxjs';
 export class TimeMachineService {
 
   private baseTimeMachineApiUrl = 'http://localhost:3000/timeMachines';
+  private timeMachineSubject = new BehaviorSubject<TimeMachine | null>(null);
+  public timeMachineObservable = this.timeMachineSubject.asObservable();
 
   private updateSubscription: Subscription | null = null;
 
@@ -18,8 +20,14 @@ export class TimeMachineService {
     return this.http.post(this.baseTimeMachineApiUrl, timeMachine);
   }
 
-  updateTimeMachine(ownerUsername: string, updatedData: Partial<TimeMachine>): Observable<any> {
-    return this.http.put(`${this.baseTimeMachineApiUrl}/${ownerUsername}`, updatedData);
+   updateTimeMachine(ownerUsername: string, updatedData: Partial<TimeMachine>): Observable<any> {
+    return this.http.put(`${this.baseTimeMachineApiUrl}/${ownerUsername}`, updatedData).pipe(
+      tap(() => {
+        this.getTimeMachine(ownerUsername).subscribe((timeMachine) => {
+          this.timeMachineSubject.next(timeMachine);
+        });
+      })
+    );
   }
 
   deleteTimeMachine(ownerUsername: string): Observable<any> {

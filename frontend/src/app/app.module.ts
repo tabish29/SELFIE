@@ -44,7 +44,8 @@ import { FlashcardComponent } from './components/flashcard/flashcard.component';
 import { NewEventDialogComponent } from './components/new-event-dialog/new-event-dialog.component';
 import { UpdateTopicDialogComponent } from './components/flashcard/update-topic-dialog/update-topic.component';
 import { UpdateFlashcardDialogComponent } from './components/flashcard/update-flashcard-dialog/update-flashcard-dialog.component';
-import { MusicComponent } from './components/music/music.component'; 
+import { MusicComponent } from './components/music/music.component';
+import { CustomDatePipe } from './pipes/custom-date.pipe'; 
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import { MusicComponent } from './components/music/music.component';
     NewEventDialogComponent,
     UpdateTopicDialogComponent,
     UpdateFlashcardDialogComponent,
-    MusicComponent
+    MusicComponent,
+    CustomDatePipe
   ],
   imports: [
     BrowserModule,
