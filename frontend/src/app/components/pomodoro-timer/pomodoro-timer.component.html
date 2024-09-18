@@ -17,7 +17,7 @@
         </label>
         <label>
           Numero di Cicli:
-          <input type="number" [(ngModel)]="selectedCycles" min="2">
+          <input type="number" [(ngModel)]="selectedCycles" min="2" [disabled]="isRunning">
         </label>
         <label>
           Ore Totali:
@@ -28,8 +28,7 @@
           <input type="number" [(ngModel)]="totalMinutes" (input)="calculateCycles()" min="0" [disabled]="isRunning">
         </label>
 
-
-        <div *ngIf="cycleProposals.length">
+        <div *ngIf="cycleProposals && cycleProposals.length > 0">
           <h3>Proposte di Cicli:</h3>
           <ul>
             <li *ngFor="let proposal of cycleProposals">{{ proposal }}</li>
