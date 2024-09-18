@@ -5,26 +5,13 @@
 }
 
 /* Contenitore principale della pagina */
-.page-container {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  width: 100vw;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-  overflow-y: auto; 
-}
 
 .container {
   background-image: url('/assets/Pomodoro.png');
   background-size: 150px 150px;
   display: flex; 
-}
-
-app-music {
-  flex: 1; 
+  justify-content: center;
+  flex-wrap: wrap
 }
 
 .pomodoro-timer {
@@ -39,9 +26,10 @@ app-music {
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   max-width: 400px;
-  margin: 50px auto;
+  margin: 5px 0px;
   font-family: 'Arial', sans-serif;
   transition: background-color 0.5s;
+  border: 2px solid black;
 }
 
 h1 {
@@ -77,10 +65,32 @@ h1 {
   animation-duration: 1s;
   animation-iteration-count: infinite;
 }
+/* Pulsanti del Pomodoro */
+.controls-button-group-1, .controls-button-group-2 {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 10px;
+}
 
-.controls button {
-  margin: 5px;
-  padding: 10px 20px;
+.controls-button-group-1 {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  width: 100%;
+}
+.controls-button-group-2 {
+  display: flex;
+  gap: 50px;
+  justify-content: space-between;
+  width: 70%;
+  margin-top: 10px;
+}
+
+.controls-button-group-1 button, .controls-button-group-2 button {
+  flex: 1;
+  padding: 12px 20px;
   font-size: 16px;
   border: none;
   border-radius: 5px;
@@ -88,18 +98,27 @@ h1 {
   transition: background-color 0.3s;
 }
 
-.controls button:disabled {
+.controls-button-group-1 button{
+  background-color: #007bff;
+  color: white;
+}
+
+.controls-button-group-1 button:hover {
+  background-color: #0056b3;
+}
+
+.controls-button-group-2  button{
+  background-color: #28a745;
+  color: white;
+}
+
+.controls-button-group-2 button:hover {
+  background-color: #218838;
+}
+
+.controls-button-group-1 button:disabled, .controls-button-group-2 button:disabled  {
   background-color: #ccc;
   cursor: not-allowed;
-}
-
-.controls button:not(:disabled) {
-  background-color: #007bff;
-  color: #fff;
-}
-
-.controls button:not(:disabled):hover {
-  background-color: #0056b3;
 }
 
 .session-info p {

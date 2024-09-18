@@ -1,10 +1,14 @@
+
 .container {
     max-width: 1000px;
-    margin: auto;
+    margin-left: 20px;
     padding: 20px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    border-radius: 10px;
     background-color: #fff;
+}
+.timebar app-time-machine {
+    display: block;
 }
 
 h1 {
@@ -12,6 +16,33 @@ h1 {
     color: #333;
 }
 
+/* Sezione filtri */
+.filter-section, .color-filter-section {
+    margin: 20px 300px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.filter-section label, .color-filter-section label {
+    font-weight: bold;
+    color: #555;
+}
+
+.filter-section select, .color-filter-section select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.filter-section select:focus, .color-filter-section select:focus {
+    border-color: #007bff; /* Colore blu per il focus */
+}
+
+/*Sezione Visualizzare Note*/
 .notes-section {
     margin-top: 20px;
 }

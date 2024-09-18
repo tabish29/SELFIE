@@ -1,7 +1,6 @@
 <div class="page-container">
   <app-navbar></app-navbar>
   <div class="container">
-    <app-music></app-music>
     <div class="pomodoro-timer" [ngClass]="{'work-mode': isWorkMode, 'break-mode': isBreakMode}">
       <h2>Pomodoro Timer</h2>
 
@@ -42,10 +41,12 @@
         <span class="time">{{ minutes | number: '2.0' }}</span>:<span class="time">{{ seconds | number: '2.0' }}</span>
       </div>
 
-      <div class="controls">
+      <div class="controls-button-group-1">
         <button (click)="startTimer()" [disabled]="isRunning">Inizia</button>
         <button (click)="pauseTimer()" [disabled]="!isRunning">Pausa</button>
         <button (click)="resetTimer()">Reset</button>
+      </div>
+      <div class="controls-button-group-2">
         <button (click)="forceNextSession()">Prossima Sessione</button>
         <button (click)="endCycle()">Fine Ciclo</button>
       </div>
@@ -54,6 +55,9 @@
         <p>{{ sessionMessage }}</p>
       </div>
     </div>
+
+    <app-music></app-music>
+
     <div class="timebar" (mousedown)="onMouseDown($event)">
       <span>&#8596;</span>
       <app-time-machine></app-time-machine>
