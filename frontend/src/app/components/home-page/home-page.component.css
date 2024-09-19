@@ -6,7 +6,6 @@
 
 /* Contenitore principale della pagina */
 .page-container {
-    background-image: url('/assets/home2.png');
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -21,7 +20,12 @@
     justify-content: center;
     align-items: center;
 }
-
+.navigator{
+    display: flex;
+}
+.navigator button{
+    width: 20px;
+}
 .container {
     justify-content: center;
     align-items: center;
