@@ -25,12 +25,12 @@ Lo stack tecnologico include:
 # Progetto Backend
 ## Istruzioni
 
-1. **Installare il paccheto express **:
+1. **Installare il paccheto express**:
     ```bash
       npm i express
     ```
 
-2. **Installare il paccheto nodemon **:
+2. **Installare il paccheto nodemon**:
     ```bash
       npm i nodemon --save-dev
     ```
