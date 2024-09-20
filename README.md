@@ -27,15 +27,18 @@ Lo stack tecnologico include:
 
 1. **Installare il paccheto express **:
     ```bash
-      npm i express 
+      npm i express
+    ```
 
 2. **Installare il paccheto nodemon **:
     ```bash
-      npm i nodemon --save-dev 
+      npm i nodemon --save-dev
+    ```
 3.**Digitare il segeunte comando per fare lo start del server**:
     ```bash
 
       npm start
+    ```
      
 # Progetto Frontend
 
@@ -49,9 +52,12 @@ Per inizializzare la parte frontend del progetto, è necessario avere installato
 
    ```bash
    npm install -g @angular/cli
+    ```
 2. **Andare sulla cartella frontend**
    ```bash
    cd frontend
+    ```
 3.**Digitare il segeunte comando**
    ```bash
    ng serve
+   ```
