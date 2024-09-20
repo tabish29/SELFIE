@@ -35,10 +35,9 @@ Lo stack tecnologico include:
       npm i nodemon --save-dev
     ```
 3.**Digitare il segeunte comando per fare lo start del server**:
-    ```bash
-
-      npm start
-    ```
+  ```bash
+       npm start
+  ```
      
 # Progetto Frontend
 
