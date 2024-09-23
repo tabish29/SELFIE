@@ -46,10 +46,7 @@ export class PomodoroTimerService {
 
   startTimer() {
     if (!this.state.isRunning) {
-      if (this.state.sessionCount === 0 && this.state.sessionMessage != "Sessione di Pausa") {
 
-        this.notifyUser("Inizio primo ciclo!");
-      }
       this.state.isRunning = true;
       this.state.interval = setInterval(() => {
         if (this.state.seconds === 0) {
@@ -120,7 +117,7 @@ export class PomodoroTimerService {
         this.notifyUser('Complimenti! Hai finito la sessione del Pomodoro Timer che avevi impostato.');
         this.resetTimer();
       } else {
-        this.notifyUser("Inizio nuovo ciclo");
+        this.notifyUser("Inizio ciclo");
         this.startTimer();
       }
 
@@ -136,6 +133,14 @@ export class PomodoroTimerService {
   endCycle() {
     this.state.sessionMessage = "Fine Ciclo";
     this.notifyUser("Hai terminato il ciclo corrente.");
+    this.switchSession();
+    this.updateTimer();
+    this.notifyChange();
+  }
+
+  restartCycle(){
+    this.state.sessionCount--;
+    this.state.sessionMessage = "Ricomincia il Ciclo";
     this.switchSession();
     this.updateTimer();
     this.notifyChange();

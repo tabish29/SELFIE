@@ -78,6 +78,10 @@ export class PomodoroTimerComponent {
     this.pomodoroTimerService.endCycle();
   }
 
+  restartCycle() {
+    this.pomodoroTimerService.restartCycle();
+  }
+  
   calculateCycles() {
     const totalMinutesAvailable = (this.totalHours * 60) + this.totalMinutes;
     const combinations = [
