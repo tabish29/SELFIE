@@ -11,6 +11,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select'; 
+import { MatOptionModule } from '@angular/material/core';  
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -96,7 +99,9 @@ import { CustomDatePipe } from './pipes/custom-date.pipe';
     MatDatepickerModule,
     MatNativeDateModule,
     MatCheckboxModule,
-    MatIconModule
+    MatIconModule,
+    MatSelectModule, // Aggiungi MatSelectModule qui
+    MatOptionModule
 
   ],
   providers: [

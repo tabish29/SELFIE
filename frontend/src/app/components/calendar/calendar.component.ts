@@ -5,6 +5,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';  
 import listPlugin from '@fullcalendar/list';        
 import interactionPlugin from '@fullcalendar/interaction';  
+import rrulePlugin from '@fullcalendar/rrule';
 //import { INITIAL_EVENTS, createEventId } from './event-utils';
 import { MatDialog } from '@angular/material/dialog';
 import { NewActivityDialogComponent } from '../new-activity-dialog/new-activity-dialog.component';
@@ -16,7 +17,7 @@ import { EventService } from '../../services/event.service';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { TimeMachineService } from '../../services/time-machine.service';
 import { TimeMachine } from '../../models/TimeMachine';
-import { HttpClient } from '@angular/common/http';
+//import { HttpClient } from '@angular/common/http';
 import { DragService } from '../../services/drag.service';
 
 
@@ -57,7 +58,8 @@ export class CalendarComponent {
       dayGridPlugin,
       timeGridPlugin,
       listPlugin,
-      interactionPlugin
+      interactionPlugin,
+      rrulePlugin 
     ],
     headerToolbar: {
       left: 'prev,next today',
@@ -137,15 +139,24 @@ export class CalendarComponent {
     }));
 
     // Mappa gli eventi nel formato corretto
-    const calendarEvents = this.events.map(event => ({
+    const calendarEvents = this.events.map(event => {
+      const rrule: any = {};
+
+      if(event.recurrence != 'none'){
+        rrule.freq = event.recurrence;
+      }
+
+      return{
       title: event.title,
       start: event.dateStart,
       end: event.dateEnd,
       backgroundColor: '#4c95e4', // Cambia colore per distinguere le attività dagli eventi
       borderColor: 'blue',
       notes: event.notes,
+      rrule: Object.keys(rrule).length ? rrule : undefined,
       allDay: this.isAllDay(event) // Se l'evento è tutto il giorno
-    }));
+      }
+    });
 
     // Combina eventi e attività
     const allCalendarEvents = [...calendarEvents, ...activityEvents];
@@ -264,6 +275,7 @@ export class CalendarComponent {
           dateStart: result.dateStart,
           dateEnd: result.dateEnd,
           notes: result.notes,
+          recurrence: result.recurrence,
           authorUsername: this.authorUsername
         };
 
