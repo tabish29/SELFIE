@@ -62,15 +62,13 @@ export class UltimaNotaComponent {
     // Esegui la chiamata al servizio passando lo username
     this.timeMachineService.getTimeMachine(this.authorUsername).subscribe(
       (timeMachine: TimeMachine) => {
-        const today = new Date(timeMachine.date); // Converte la stringa in un oggetto Date
-
+        const today = timeMachine.date.slice(0,10); // Converte la stringa in un oggetto Date
+        
         this.noteDay = this.notes.filter(note => {
-          const noteDate = new Date(note.updatedAt || note.createdAt);
-          
+          const noteDate = (note.updatedAt || note.createdAt).slice(0,10);
+          //console.log(noteDate, today);
           // Verifica se la nota è stata creata o aggiornata oggi
-          return noteDate.getDate() === today.getDate() &&
-                noteDate.getMonth() === today.getMonth() &&
-                noteDate.getFullYear() === today.getFullYear();
+          return noteDate === today;
         });
         
         console.log('Note del giorno:', this.noteDay);
@@ -150,8 +148,6 @@ export class UltimaNotaComponent {
         return 'Visualizzazione 2';
       case 2:
         return 'Visualizzazione 3';
-      case 3:
-        return 'Visualizzazione 4';
       default:
         return 'Visualizzazione Predefinita';
     }

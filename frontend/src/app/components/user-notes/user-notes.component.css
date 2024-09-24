@@ -61,6 +61,13 @@ h1 {
     transition: transform 0.3s, box-shadow 0.3s;
     cursor: pointer;
 }
+/*testo va a capo  e spezza la parola se esce dal contenitore*/
+.note-item pre {
+    white-space: normal;      
+    word-break: break-word;  
+    overflow-wrap: break-word;
+}
+  
 
 .note-item:hover {
     transform: translateY(-5px);

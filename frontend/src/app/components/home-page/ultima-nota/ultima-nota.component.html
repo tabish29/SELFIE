@@ -1,27 +1,28 @@
 <div class="nota-container">
     <div *ngIf="visualMode === 0" class="nota-box">
-    <h2>Elenco Note (Recenti ???)</h2>
+    <h5>Elenco Note</h5>
     <ul>
         <li *ngFor="let note of notes" (click)="selectNote(note)">
-        <strong>{{ note.title }}</strong> - {{ note.createdAt | date:'short' }}
+        <strong>{{ note.title }}</strong> - {{ note.createdAt.slice(0,10) }}
         </li>
     </ul>
     </div>
   
     <div *ngIf="visualMode === 1" class="nota-grid">
-        <h2>Visualizzazione a Griglia</h2>
         <div class="note-item" *ngFor="let note of notes" (click)="selectNote(note)" [ngStyle]="{'background-color': note.noteColor}">
             <h3>{{ note.title }}</h3>
-            <pre>{{ note.content | truncate:200 }}</pre>
-            <p>Creato: {{ note.createdAt | date }}</p>
+            <pre>{{ note.content}}</pre>
+            <p>Creato: {{ note.createdAt}}</p>
         </div>
     </div>
 
     <div *ngIf="visualMode === 2" class="nota-box">
-        <h2>Elenco Note del Giorno</h2>
+        <h5>Note del Giorno</h5>
+        <!-- Controllo se non ci sono note -->
+        <p *ngIf="noteDay.length === 0">Oggi non sono state scritte nuove note.</p>
         <ul>
             <li *ngFor="let noteD of noteDay" (click)="selectNote(noteD)">
-            <strong>{{ noteD.title }}</strong> - {{ noteD.createdAt | date:'short' }}
+            <strong>{{ noteD.title }}</strong>
             </li>
         </ul>
     </div>

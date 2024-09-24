@@ -26,12 +26,12 @@ export class HomePageComponent {
     if (this.currentVisualMode > 0) {
       this.currentVisualMode--;
     } else {
-      this.currentVisualMode = 3; // Torna all'ultima modalità (ciclo)
+      this.currentVisualMode = 2; // Torna all'ultima modalità (ciclo)
     }
   }
 
   nextNote() {
-    if (this.currentVisualMode < 3) {
+    if (this.currentVisualMode < 2) {
       this.currentVisualMode++;
     } else {
       this.currentVisualMode = 0; // Ricomincia da 0
