@@ -15,7 +15,7 @@ export class NewEventDialogComponent {
   allDay: boolean = false;
   //luogo
   notes: string = '';
-  //ripetizione
+  recurrence: string = '';
   //fine ripetizione
   authorUsername: string | null = null;
 
@@ -33,9 +33,9 @@ export class NewEventDialogComponent {
   onSave(): void {
     const inputError = document.getElementById('inputError');
     console.log(this.data);
-    if(!this.data.title || !this.data.dateStart || (!this.data.dateEnd && !this.allDay)){
+    if(!this.data.title || !this.data.dateStart || (!this.data.dateEnd && !this.allDay) || !this.data.recurrence){
       if(inputError){
-        inputError.textContent = 'Inserisci il titolo e la data!';
+        inputError.textContent = 'Inserisci titolo, data e ripetizione!';
       }
     } else{
       if(this.allDay){

@@ -7,7 +7,7 @@ export class Event {
         public dateEnd: Date,
         //luogo
         public notes: string,
-        //ripetizione
+        public recurrence: string,
         //fine ripetizione
         public authorUsername: string) {
 

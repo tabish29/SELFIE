@@ -32,6 +32,17 @@
     <textarea matInput [(ngModel)]="data.notes"></textarea>
   </mat-form-field>
 
+  <mat-form-field>
+    <mat-label>Ripeti</mat-label>
+    <mat-select [(ngModel)]="data.recurrence">
+      <mat-option value="none">Nessuna</mat-option>
+      <mat-option value="daily">Ogni giorno</mat-option>
+      <mat-option value="weekly">Ogni settimana</mat-option>
+      <mat-option value="monthly">Ogni mese</mat-option>
+      <mat-option value="yearly">Ogni anno</mat-option>
+    </mat-select>
+  </mat-form-field> 
+
 
 </mat-dialog-content>
 <p id="inputError" class="error-message"></p>

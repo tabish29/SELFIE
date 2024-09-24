@@ -14,14 +14,14 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-    const { title, dateStart, dateEnd, notes = '', authorUsername } = req.body;
+    const { title, dateStart, dateEnd, notes = '', recurrence, authorUsername } = req.body;
     
     try {
-        if (!title || !dateStart || !dateEnd || !authorUsername) {
+        if (!title || !dateStart || !dateEnd || !recurrence || !authorUsername) {
             throw new Error('Inserire tutti i campi obbligatori');
         }
 
-        await eventController.addEvent(title, dateStart, dateEnd, notes, authorUsername);
+        await eventController.addEvent(title, dateStart, dateEnd, notes, recurrence, authorUsername);
         res.status(201).json({ message: 'Evento aggiunta con successo' });
     } catch (error) {
         console.error('Errore durante l\'aggiunta dell\'evento:', error.message);
