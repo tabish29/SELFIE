@@ -1,7 +1,38 @@
-<div class="report-card" *ngIf="report">
-    <h3>Report Ultimo Pomodoro</h3>
-    <p>Tempo trascorso: {{ report.timeSpent }} minuti</p>
-    <p>Obiettivo: {{ report.goal }}</p>
-    <p>Data: {{ report.date | date: 'dd/MM/yyyy HH:mm' }}</p>
+<div class="pomodoro-container">
+    <!-- Modalità di visualizzazione Pomodoro -->
+    <div *ngIf="visualMode === 0" class="pomodoro-box">
+        <h5>Elenco Pomodoros</h5>
+        <ul>
+            <!--li *ngFor="let pomodoro of pomodoros" (click)="selectPomodoro(pomodoro)">
+                <strong>{{ pomodoro.title }}</strong> - {{ pomodoro.startTime | date: 'short' }}
+            </li -->
+        </ul>
+    </div>
+
+    <div *ngIf="visualMode === 1" class="pomodoro-timer">
+        <h3>Timer Pomodoro</h3>
+        <!--p>Tempo rimanente: {{ remainingTime | date:'mm:ss' }}</p>
+        <button (click)="startTimer()" [disabled]="isRunning">Inizia</button>
+        <button (click)="pauseTimer()" [disabled]="!isRunning">Pausa</button>
+        <button (click)="resetTimer()">Reset</button-->
+    </div>
+
+    <div *ngIf="visualMode === 2" class="completed-pomodoros">
+        <h5>Pomodoros Completati</h5>
+        <!--p *ngIf="completedPomodoros.length === 0">Non ci sono Pomodoros completati.</p>
+        <ul>
+            <li *ngFor="let completed of completedPomodoros">
+                <strong>{{ completed.title }}</strong> - {{ completed.finishTime | date: 'short' }}
+            </li>
+        </ul -->
+    </div>
+
+    <div *ngIf="visualMode === 3" class="pomodoro-settings">
+        <h5>Impostazioni Pomodoro</h5>
+        <!--label for="workDuration">Durata Lavoro (minuti):</label>
+        <input type="number" id="workDuration" [(ngModel)]="workDuration" min="1" />
+        <label for="breakDuration">Durata Pausa (minuti):</label>
+        <input type="number" id="breakDuration" [(ngModel)]="breakDuration" min="1" />
+         Metodi per gestire le impostazioni del Pomodoro -->
+    </div>
 </div>
-<p *ngIf="!report">Nessun report disponibile.</p>

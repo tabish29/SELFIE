@@ -5,7 +5,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';  
 import listPlugin from '@fullcalendar/list';        
 import interactionPlugin from '@fullcalendar/interaction';  
-import rrulePlugin from '@fullcalendar/rrule';
+//import rrulePlugin from '@fullcalendar/rrule';
 //import { INITIAL_EVENTS, createEventId } from './event-utils';
 import { MatDialog } from '@angular/material/dialog';
 import { NewActivityDialogComponent } from '../new-activity-dialog/new-activity-dialog.component';
@@ -59,7 +59,7 @@ export class CalendarComponent {
       timeGridPlugin,
       listPlugin,
       interactionPlugin,
-      rrulePlugin 
+      //rrulePlugin 
     ],
     headerToolbar: {
       left: 'prev,next today',

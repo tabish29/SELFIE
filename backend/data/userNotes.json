@@ -327,4 +327,89 @@
     "authorUsername": "Leo",
     "noteColor": "red"
   }
+  {
+    "title": "Nota 1",
+    "content": "Nulla da comunicare",
+    "categories": [],
+    "createdAt": "24/09/2024 18:08",
+    "updatedAt": "24/09/2024 18:08",
+    "authorUsername": "Leo",
+    "noteColor": "white"
+  },
+  {
+    "title": "Nota 2",
+    "content": "Festa??",
+    "categories": [
+      "Festa"
+    ],
+    "createdAt": "24/09/2024 18:08",
+    "updatedAt": "24/09/2024 18:08",
+    "authorUsername": "Leo",
+    "noteColor": "green"
+  },
+  {
+    "title": "Nota 3",
+    "content": "Compiti da fare in classe sono tanti a casa devi riposarti.",
+    "categories": [
+      "Compiti"
+    ],
+    "createdAt": "24/09/2024 18:09",
+    "updatedAt": "24/09/2024 18:09",
+    "authorUsername": "Leo",
+    "noteColor": "brown"
+  },
+  {
+    "title": "Nota 4",
+    "content": "okokokok",
+    "categories": [],
+    "createdAt": "24/09/2024 18:09",
+    "updatedAt": "24/09/2024 18:09",
+    "authorUsername": "Leo",
+    "noteColor": "orange"
+  },
+  {
+    "title": "Sex",
+    "content": "farlo protetto.",
+    "categories": [],
+    "createdAt": "25/09/2024 06:33",
+    "updatedAt": "25/09/2024 06:33",
+    "authorUsername": "Leo",
+    "noteColor": "purple"
+  },
+  {
+    "title": "Festa Compleanno Leonardo Console",
+    "content": "Festa annullata",
+    "categories": [],
+    "createdAt": "26/09/2024 08:37",
+    "updatedAt": "26/09/2024 08:37",
+    "authorUsername": "Leo",
+    "noteColor": "gray"
+  },
+  {
+    "title": "Nota 5",
+    "content": "nulla da dire in merito all'accaduto",
+    "categories": [],
+    "createdAt": "26/09/2024 08:38",
+    "updatedAt": "26/09/2024 08:38",
+    "authorUsername": "Leo",
+    "noteColor": "orange"
+  },
+  {
+    "title": "Nota 6",
+    "content": "Sex sex",
+    "categories": [],
+    "createdAt": "26/09/2024 08:38",
+    "updatedAt": "26/09/2024 08:38",
+    "authorUsername": "Leo",
+    "noteColor": "purple"
+  },
+  {
+    "title": "Ciao Lungo",
+    "content": "Ciaoooooooooooooooooooooooooooooooooooooooooooooooooooooo",
+    "categories": [],
+    "createdAt": "26/09/2024 08:43",
+    "updatedAt": "26/09/2024 08:43",
+    "authorUsername": "Leo",
+    "noteColor": "white"
+  }
 ]

@@ -17,11 +17,6 @@
     z-index: 1000;
     overflow: scroll;
 }
-.main-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 .navigator{
     display: flex;
 }

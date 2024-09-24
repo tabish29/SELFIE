@@ -1,7 +1,45 @@
-<div class="preview-card">
-    <h3>Eventi della Settimana</h3>
-    <ul *ngIf="eventi.length > 0">
-        <li *ngFor="let evento of eventi">{{ evento.nome }} - {{ evento.data | date: 'dd/MM/yyyy' }}</li>
-    </ul>
-    <p *ngIf="eventi.length === 0">Nessun evento per questa settimana.</p>
+<div class="preview-container">
+    <!-- Modalità di visualizzazione per gli eventi della settimana -->
+    <div *ngIf="visualMode === 0" class="preview-box">
+        <h3>Eventi della Settimana</h3>
+        <ul *ngIf="eventi.length > 0">
+            <li *ngFor="let evento of eventi">
+                {{ evento.nome }} - {{ evento.data | date: 'dd/MM/yyyy' }}
+                <!-- Mostra il nome e la data dell'evento -->
+            </li>
+        </ul>
+        <p *ngIf="eventi.length === 0">Nessun evento per questa settimana.</p>
+        <!-- Messaggio se non ci sono eventi -->
+    </div>
+
+    <div *ngIf="visualMode === 1" class="preview-card">
+        <h3>Eventi in Arrivo</h3>
+        <div class="event-item" *ngFor="let evento of eventi" [ngStyle]="{'background-color': evento.colore}">
+            <h4>{{ evento.nome }}</h4>
+            <p>Data: {{ evento.data | date: 'dd/MM/yyyy' }}</p>
+            <p>Descrizione: {{ evento.descrizione }}</p>
+            <!-- Mostra dettagli aggiuntivi sugli eventi -->
+        </div>
+    </div>
+
+    <!--div *ngIf="visualMode === 2" class="completed-events">
+        <h3>Eventi Passati</h3>
+        <p *ngIf="eventiPassati.length === 0">Non ci sono eventi passati.</p>
+        <ul>
+            <li *ngFor="let evento of eventiPassati">
+                <strong>{{ evento.nome }}</strong> - {{ evento.data | date: 'dd/MM/yyyy' }}
+            </li>
+        </ul>
+    </div -->
+
+    <!--div *ngIf="visualMode === 3" class="event-settings">
+        <h3>Impostazioni Evento</h3>
+        <label for="eventoNome">Nome Evento:</label>
+        <input type="text" id="eventoNome" [(ngModel)]="nuovoEvento.nome" />
+        
+        <label for="eventoData">Data Evento:</label>
+        <input type="date" id="eventoData" [(ngModel)]="nuovoEvento.data" />
+
+        <button (click)="aggiungiEvento()">Aggiungi Evento</button>
+    </div -->
 </div>

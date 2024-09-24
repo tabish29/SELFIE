@@ -39,9 +39,7 @@ import { ImpiccatoComponent } from './components/game/impiccato/impiccato.compon
 import { PuzzleComponent } from './components/game/puzzle/puzzle.component';
 import { EventiPreviewComponent } from './components/home-page/eventi-preview/eventi-preview.component';
 import { UltimaNotaComponent } from './components/home-page/ultima-nota/ultima-nota.component';
-import { AttivitaImminenteComponent } from './components/home-page/attivita-imminente/attivita-imminente.component';
 import { PomodoroReportComponent } from './components/home-page/pomodoro-report/pomodoro-report.component';
-import { OrologioComponent } from './components/home-page/orologio/orologio.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { FlashcardComponent } from './components/flashcard/flashcard.component';
 import { NewEventDialogComponent } from './components/new-event-dialog/new-event-dialog.component';
@@ -73,9 +71,7 @@ import { CustomDatePipe } from './pipes/custom-date.pipe';
     PuzzleComponent,
     EventiPreviewComponent,
     UltimaNotaComponent,
-    AttivitaImminenteComponent,
     PomodoroReportComponent,
-    OrologioComponent,
     TruncatePipe,
     FlashcardComponent,
     NewEventDialogComponent,

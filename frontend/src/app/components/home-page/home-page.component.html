@@ -5,24 +5,26 @@
         <h3>Benvenuto su SELFIE</h3>
         
         <div class="previews-container">
-            <!-- Eventi della settimana/giorno corrente > 
-            <app-eventi-preview></app-eventi-preview -->
-
+            
+            <!-- Eventi della settimana/giorno corrente --> 
+            <div class="navigator">
+                <button class="prevButton" (click)="preEventi()">&#10094;</button>
+                <app-eventi-preview [visualMode]="currentEventiVisualMode"></app-eventi-preview >
+                <button class="nextButton" (click)="nextEventi()">&#10095;</button>
+            </div>
             <!-- Ultima nota creata -->
             <div class="navigator">
                 <button class="prevButton" (click)="preNote()">&#10094;</button>
-                <app-ultima-nota [visualMode]="currentVisualMode"></app-ultima-nota>
+                <app-ultima-nota [visualMode]="currentNoteVisualMode"></app-ultima-nota>
                 <button class="nextButton" (click)="nextNote()">&#10095;</button>
             </div>
-            
-            <!-- Attività imminente >
-            <app-attivita-imminente></app-attivita-imminente -->
+            <!-- Navigazione per il report pomodoro -->
+            <div class="navigator">
+                <button class="prevButton" (click)="prePomodoro()">&#10094;</button>
+                <app-pomodoro-report [visualMode]="currentPomodoroVisualMode"></app-pomodoro-report>
+                <button class="nextButton" (click)="nextPomodoro()">&#10095;</button>
+            </div>
 
-            <!-- Report sull'ultimo Pomodoro >
-            <app-pomodoro-report></app-pomodoro-report -->
-
-            <!-- Orologio con l'orario del giorno >
-            <app-orologio></app-orologio-->
         </div>
         
         <div class="timebar" (mousedown)="onMouseDown($event)">

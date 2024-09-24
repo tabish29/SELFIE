@@ -1,15 +1,16 @@
-.preview-card {
+.preview-box, .preview-card {
     background-color: white;
-    border-radius: 10px;
+    border-radius: 3px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    width: 100%;
-    max-width: 300px;
+    width: 300px;
+    height: 300px;
     text-align: center;
 }
 
-.preview-card h3 {
+.preview-card h3, .preview-box h3 {
     color: #007bff;
+    font-family:fantasy;
 }
 
 .preview-card ul {

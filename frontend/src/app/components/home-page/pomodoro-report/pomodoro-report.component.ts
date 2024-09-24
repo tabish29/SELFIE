@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { PomodoroService } from '../../../services/pomodoro.service'; // Importa il servizio
 
 @Component({
@@ -8,6 +8,7 @@ import { PomodoroService } from '../../../services/pomodoro.service'; // Importa
 })
 export class PomodoroReportComponent implements OnInit {
   report: any;
+  @Input() visualMode: number = 0; // Modalità di visualizzazione corrente
 
   constructor(private pomodoroService: PomodoroService) {}
 
@@ -16,5 +17,19 @@ export class PomodoroReportComponent implements OnInit {
     this.pomodoroService.getLastPomodoro().subscribe((data) => {
       this.report = data;
     });
+  }
+
+  // Modalità di visualizzazione differenti
+  get currentView() {
+    switch (this.visualMode) {
+      case 0:
+        return 'Visualizzazione 1';
+      case 1:
+        return 'Visualizzazione 2';
+      case 2:
+        return 'Visualizzazione 3';
+      default:
+        return 'Visualizzazione Predefinita';
+    }
   }
 }
