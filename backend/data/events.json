@@ -22,5 +22,45 @@
     "notes": "",
     "recurrence": "weekly",
     "authorUsername": "mati"
+  },
+  {
+    "title": "Festa compleanno",
+    "dateStart": "2024-09-20",
+    "dateEnd": "2024-09-20",
+    "notes": "Festeggiare in famiglia",
+    "recurrence": "yearly",
+    "authorUsername": "Leo"
+  },
+  {
+    "title": "Gita a milano",
+    "dateStart": "2024-09-26T09:00",
+    "dateEnd": "2024-09-26T09:00",
+    "notes": "Nathan va a milano",
+    "recurrence": "none",
+    "authorUsername": "Leo"
+  },
+  {
+    "title": "Sex",
+    "dateStart": "2024-10-03",
+    "dateEnd": "2024-10-03",
+    "notes": "",
+    "recurrence": "none",
+    "authorUsername": "Leo"
+  },
+  {
+    "title": "Spesa",
+    "dateStart": "2024-09-30",
+    "dateEnd": "2024-09-30",
+    "notes": "",
+    "recurrence": "none",
+    "authorUsername": "Leo"
+  },
+  {
+    "title": "Studiare",
+    "dateStart": "2024-09-28",
+    "dateEnd": "2024-09-28",
+    "notes": "",
+    "recurrence": "daily",
+    "authorUsername": "Leo"
   }
 ]

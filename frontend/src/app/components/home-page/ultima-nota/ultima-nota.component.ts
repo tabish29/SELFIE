@@ -28,7 +28,7 @@ export class UltimaNotaComponent {
 
   ngOnInit(): void {
     this.authorUsername = this.localStorageService.getItem('username');
-
+    //console.log("note: ",this.authorUsername);
     if (this.authorUsername) {
       this.loadNotesByAuthor(this.authorUsername);
     } else {
@@ -54,7 +54,7 @@ export class UltimaNotaComponent {
       this.notes.sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime());
       this.selectedNote = this.notes[0]; // Seleziona l'ultima nota aggiornata
     }
-    console.log('Note:', this.notes);
+    //console.log('Note:', this.notes);
   }
 
   // Metodo per caricare solo le note del giorno
@@ -71,7 +71,7 @@ export class UltimaNotaComponent {
           return noteDate === today;
         });
         
-        console.log('Note del giorno:', this.noteDay);
+        //console.log('Note del giorno:', this.noteDay);
       },
       error => {
         console.error('Errore durante il recupero della time machine:', error);

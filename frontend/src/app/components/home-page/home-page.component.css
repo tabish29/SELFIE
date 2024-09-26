@@ -17,6 +17,12 @@
     z-index: 1000;
     overflow: scroll;
 }
+.previews-container{
+    display: flex;
+}
+.previews-container div{
+    margin: 10px;
+}
 .navigator{
     display: flex;
 }
