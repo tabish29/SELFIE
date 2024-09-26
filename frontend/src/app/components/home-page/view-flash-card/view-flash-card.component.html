@@ -1,7 +1,7 @@
-<div class="pomodoro-container">
-    <!-- Modalità di visualizzazione Pomodoro -->
-    <div *ngIf="visualMode === 0" class="pomodoro-view">
-        <h5>Elenco Pomodoros</h5>
+<div class="flash-card-container">
+    <!-- Modalità di visualizzazione Flash-Card -->
+    <div *ngIf="visualMode === 0" class="preview-card">
+        <h5>Flash card 1</h5>
         <ul>
             <!--li *ngFor="let pomodoro of pomodoros" (click)="selectPomodoro(pomodoro)">
                 <strong>{{ pomodoro.title }}</strong> - {{ pomodoro.startTime | date: 'short' }}
@@ -9,16 +9,16 @@
         </ul>
     </div>
 
-    <div *ngIf="visualMode === 1" class="pomodoro-view">
-        <h3>Timer Pomodoro</h3>
+    <div *ngIf="visualMode === 1" class="preview-card">
+        <h3>Flash card 2</h3>
         <!--p>Tempo rimanente: {{ remainingTime | date:'mm:ss' }}</p>
         <button (click)="startTimer()" [disabled]="isRunning">Inizia</button>
         <button (click)="pauseTimer()" [disabled]="!isRunning">Pausa</button>
         <button (click)="resetTimer()">Reset</button-->
     </div>
 
-    <div *ngIf="visualMode === 2" class="pomodoro-view">
-        <h5>Pomodoros Completati</h5>
+    <div *ngIf="visualMode === 2" class="preview-card">
+        <h5>Flash card 3</h5>
         <!--p *ngIf="completedPomodoros.length === 0">Non ci sono Pomodoros completati.</p>
         <ul>
             <li *ngFor="let completed of completedPomodoros">
@@ -26,13 +26,4 @@
             </li>
         </ul -->
     </div>
-
-    <!--div *ngIf="visualMode === 3" class="pomodoro-settings">
-        <h5>Impostazioni Pomodoro</h5>
-        <label for="workDuration">Durata Lavoro (minuti):</label>
-        <input type="number" id="workDuration" [(ngModel)]="workDuration" min="1" />
-        <label for="breakDuration">Durata Pausa (minuti):</label>
-        <input type="number" id="breakDuration" [(ngModel)]="breakDuration" min="1" />
-         Metodi per gestire le impostazioni del Pomodoro >
-    </div-->
 </div>

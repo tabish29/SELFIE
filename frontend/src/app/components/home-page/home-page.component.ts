@@ -10,7 +10,7 @@ export class HomePageComponent {
   currentNoteVisualMode: number = 0;
   currentEventiVisualMode: number = 0;
   currentPomodoroVisualMode: number = 0;
-  currentOrologioVisualMode: number = 0;
+  currentCardVisualMode: number = 0;
 
   constructor(
     private dragService: DragService
@@ -71,6 +71,22 @@ export class HomePageComponent {
       this.currentPomodoroVisualMode++;
     } else {
       this.currentPomodoroVisualMode = 0; // Ricomincia da 0
+    }
+  }
+  // Funzioni per la navigazione del report flash-card
+  preCard() {
+    if (this.currentCardVisualMode > 0) {
+      this.currentCardVisualMode--;
+    } else {
+      this.currentCardVisualMode = 2; // Cicla all'ultima modalità per il pomodoro
+    }
+  }
+
+  nextCard() {
+    if (this.currentCardVisualMode < 2) {
+      this.currentCardVisualMode++;
+    } else {
+      this.currentCardVisualMode = 0; // Ricomincia da 0
     }
   }
 

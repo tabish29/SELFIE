@@ -1,7 +1,7 @@
 <div class="preview-container">
     <!-- Monthly Events View -->
     <div *ngIf="visualMode === 0" class="preview-box">
-        <h3>Monthly Events</h3>
+        <h3>Eventi Mensili</h3>
         <ul *ngIf="monthlyEvents.length > 0">
             <li *ngFor="let event of monthlyEvents">
                 <p>{{ event.title }}</p>
@@ -14,7 +14,7 @@
 
     <!-- Daily Events View -->
     <div *ngIf="visualMode === 1" class="preview-card">
-        <h3>Daily Events</h3>
+        <h3>Eventi Giornalieri</h3>
         <ul *ngIf="dailyEvents.length > 0">
             <li *ngFor="let event of dailyEvents">
                 <p>{{ event.title }}</p>
@@ -27,7 +27,7 @@
 
     <!-- Weekly Events View -->
     <div *ngIf="visualMode === 2" class="preview-card">
-        <h3>Weekly Events</h3>
+        <h3>Eventi Settimanali</h3>
         <ul *ngIf="weeklyEvents.length > 0">
             <li *ngFor="let event of weeklyEvents">
                 <p>{{ event.title }}</p>

@@ -1,4 +1,4 @@
-.pomodoro-view{
+.preview-card{
     background-color: white;
     border-radius: 3px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -9,7 +9,7 @@
     overflow-y: scroll;
 }
 
-.pomodoro-view h3 {
+.preview-card h3 {
     color: #007bff;
     font-family:fantasy;
 }
