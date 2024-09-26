@@ -411,5 +411,14 @@
     "updatedAt": "26/09/2024 08:43",
     "authorUsername": "Leo",
     "noteColor": "white"
+  },
+  {
+    "title": "Bhooo",
+    "content": "non saprei ma in blu",
+    "categories": [],
+    "createdAt": "26/09/2024 17:03",
+    "updatedAt": "26/09/2024 17:03",
+    "authorUsername": "Leo",
+    "noteColor": "blue"
   }
 ]

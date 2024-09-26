@@ -29,12 +29,23 @@ export class EventiPreviewComponent implements OnInit {
   ngOnInit(): void {
     // Recupera lo username dell'autore dall'archiviazione locale
     this.authorUsername = this.localStorageService.getItem('username');
+    // Recupera il visualMode salvato nel localStorage
+    const savedVisualMode = this.localStorageService.getItem('eventiVisualMode');
+    if (savedVisualMode !== null) {
+      this.visualMode = Number(savedVisualMode);
+    }
     // Se l'username esiste, carica gli eventi relativi all'autore e la data dalla TimeMachine
     if (this.authorUsername) {
       this.loadTimeMachineDate(); // Carica la data dalla TimeMachine
     } else {
       console.log("Non esiste l'username dell'autore");
     }
+  }
+  
+  // Cambia modalità e salva lo stato nel localStorage
+  changeVisualMode(newMode: number): void {
+    this.visualMode = newMode;
+    this.localStorageService.setItem('eventiVisualMode', String(this.visualMode));
   }
 
   // Carica la data corrente dalla TimeMachine
@@ -114,16 +125,6 @@ export class EventiPreviewComponent implements OnInit {
     date.setDate(date.getDate() + days);
     return date.toISOString().slice(0, 10); // Ritorna la data in formato YYYY-MM-DD
   }
-
-  // Metodo per selezionare l'ultimo evento aggiornato
-  /*selectLatestEvent(): void {
-    if (this.events.length > 0) {
-      // Ordina gli eventi per data di aggiornamento decrescente
-      this.events.sort((a, b) => new Date(b.dateEnd).getTime() - new Date(a.dateEnd).getTime());
-      this.selectedEvent = this.events[0]; // Seleziona l'evento più recente
-    }
-    console.log('Eventi:', this.events);
-  }*/
 
   // Modalità di visualizzazione differenti
   get currentView() {

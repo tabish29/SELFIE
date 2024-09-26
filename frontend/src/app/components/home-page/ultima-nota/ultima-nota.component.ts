@@ -29,11 +29,21 @@ export class UltimaNotaComponent {
   ngOnInit(): void {
     this.authorUsername = this.localStorageService.getItem('username');
     //console.log("note: ",this.authorUsername);
+    const savedVisualMode = this.localStorageService.getItem('noteVisualMode');
+    if (savedVisualMode !== null) {
+      this.visualMode = Number(savedVisualMode);
+    }
+    
     if (this.authorUsername) {
       this.loadNotesByAuthor(this.authorUsername);
     } else {
       console.log("Non esiste l'username dell'autore");
     }
+  }
+  // Metodo per cambiare il visualMode e salvarlo nel localStorage
+  changeVisualMode(newMode: number): void {
+    this.visualMode = newMode;
+    this.localStorageService.setItem('noteVisualMode', String(this.visualMode));
   }
 
   // Metodo per caricare le note dell'autore
