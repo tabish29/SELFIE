@@ -21,7 +21,9 @@
       <option *ngFor="let color of colors" [value]="color.value">{{ color.name }}</option>
     </select>
   </div>
-
+  <div class="action-buttons">
+    <button (click)="openCreateNoteDialog()">Crea Nota</button>
+  </div>
   <!-- Sezione per visualizzare le note filtrate per colore -->
   <div *ngIf="selectedColor !== 'none' && filteredByColorNotes.length > 0" class="notes-section">
     <h2>Le tue Note</h2>
@@ -58,9 +60,6 @@
     <p>Nessuna nota disponibile del colore selezionato.</p>
   </div>
 
-  <div class="action-buttons">
-    <button (click)="openCreateNoteDialog()">Crea Nota</button>
-  </div>
   <div class="timebar" (mousedown)="onMouseDown($event)">
     <span>&#8596;</span>
     <app-time-machine></app-time-machine>

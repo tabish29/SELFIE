@@ -3,13 +3,26 @@
     border-radius: 3px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    width: 300px;
-    height: 300px;
+    width: 350px;
+    height: 350px;
     text-align: center;
     overflow-y: scroll;
 }
 
-.preview-card h3 {
-    color: #007bff;
+.preview-card h4 {
+    color: #73ff00cb;
     font-family:fantasy;
+}
+.preview-card h6 {
+    color: #000000;
+    font-family:cursive;
+}
+.preview-card ul li {
+    list-style: none;
+}
+.preview-card ol li {
+    color: #000000;
+    font-family:cursive;
+    margin: 0px 70px;
+    text-align: left;
 }

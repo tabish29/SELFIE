@@ -56,23 +56,7 @@ export class HomePageComponent {
       this.currentEventiVisualMode = 0; // Ricomincia da 0
     }
   }
-
-  // Funzioni per la navigazione del report pomodoro
-  prePomodoro() {
-    if (this.currentPomodoroVisualMode > 0) {
-      this.currentPomodoroVisualMode--;
-    } else {
-      this.currentPomodoroVisualMode = 2; // Cicla all'ultima modalità per il pomodoro
-    }
-  }
-
-  nextPomodoro() {
-    if (this.currentPomodoroVisualMode < 2) {
-      this.currentPomodoroVisualMode++;
-    } else {
-      this.currentPomodoroVisualMode = 0; // Ricomincia da 0
-    }
-  }
+  
   // Funzioni per la navigazione del report flash-card
   preCard() {
     if (this.currentCardVisualMode > 0) {
