@@ -13,10 +13,10 @@ export class NewEventDialogComponent {
   dateStart: null = null;
   dateEnd: null = null;
   allDay: boolean = false;
-  //luogo
+  place: string = '';
   notes: string = '';
   recurrence: string = '';
-  //fine ripetizione
+  recurrenceEnd: null = null;
   authorUsername: string | null = null;
 
   constructor(
@@ -35,7 +35,7 @@ export class NewEventDialogComponent {
     console.log(this.data);
     if(!this.data.title || !this.data.dateStart || (!this.data.dateEnd && !this.allDay) || !this.data.recurrence){
       if(inputError){
-        inputError.textContent = 'Inserisci titolo, data e ripetizione!';
+        inputError.textContent = 'Titolo, data e ripetizione sono obbligatori!';
       }
     } else{
       if(this.allDay){

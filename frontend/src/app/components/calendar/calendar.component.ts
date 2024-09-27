@@ -5,7 +5,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';  
 import listPlugin from '@fullcalendar/list';        
 import interactionPlugin from '@fullcalendar/interaction';  
-//import rrulePlugin from '@fullcalendar/rrule';
+import rrulePlugin from '@fullcalendar/rrule';
 //import { INITIAL_EVENTS, createEventId } from './event-utils';
 import { MatDialog } from '@angular/material/dialog';
 import { NewActivityDialogComponent } from '../new-activity-dialog/new-activity-dialog.component';
@@ -59,7 +59,7 @@ export class CalendarComponent {
       timeGridPlugin,
       listPlugin,
       interactionPlugin,
-      //rrulePlugin 
+      rrulePlugin 
     ],
     headerToolbar: {
       left: 'prev,next today',
@@ -144,14 +144,19 @@ export class CalendarComponent {
 
       if(event.recurrence != 'none'){
         rrule.freq = event.recurrence;
+        rrule.dtstart = new Date(event.dateStart); 
+      }
+
+      if (event.recurrenceEnd) {
+        rrule.until = new Date(event.recurrenceEnd); // Imposta la data di fine della ripetizione
       }
 
       return{
       title: event.title,
       start: event.dateStart,
       end: event.dateEnd,
-      backgroundColor: '#4c95e4', // Cambia colore per distinguere le attività dagli eventi
-      borderColor: 'blue',
+      place: event.place,
+      backgroundColor: '#4c95e4', 
       notes: event.notes,
       rrule: Object.keys(rrule).length ? rrule : undefined,
       allDay: this.isAllDay(event) // Se l'evento è tutto il giorno
@@ -274,8 +279,10 @@ export class CalendarComponent {
           title: result.title,
           dateStart: result.dateStart,
           dateEnd: result.dateEnd,
+          place: result.place,
           notes: result.notes,
           recurrence: result.recurrence,
+          recurrenceEnd: result.recurrenceEnd,
           authorUsername: this.authorUsername
         };
 

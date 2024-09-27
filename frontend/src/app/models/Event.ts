@@ -5,10 +5,10 @@ export class Event {
         public title: string,
         public dateStart: Date,
         public dateEnd: Date,
-        //luogo
+        public place: string,
         public notes: string,
         public recurrence: string,
-        //fine ripetizione
+        public recurrenceEnd: Date,
         public authorUsername: string) {
 
     }

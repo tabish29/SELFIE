@@ -26,6 +26,11 @@
       <input matInput type="date" [(ngModel)]="data.dateStart">
     </mat-form-field>
   </div>
+
+  <mat-form-field>
+    <mat-label>Luogo</mat-label>
+    <input matInput [(ngModel)]="data.place">
+  </mat-form-field>
   
   <mat-form-field>
     <mat-label>Note</mat-label>
@@ -42,6 +47,11 @@
       <mat-option value="yearly">Ogni anno</mat-option>
     </mat-select>
   </mat-form-field> 
+
+  <mat-form-field *ngIf="data.recurrence !== 'none'">
+    <mat-label>Fine ripetizione</mat-label>
+    <input matInput type="date" [(ngModel)]="data.recurrenceEnd">
+  </mat-form-field>
 
 
 </mat-dialog-content>

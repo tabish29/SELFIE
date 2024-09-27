@@ -16,14 +16,6 @@
     "authorUsername": "mati"
   },
   {
-    "title": "prova",
-    "dateStart": "2024-10-11",
-    "dateEnd": "2024-10-11",
-    "notes": "",
-    "recurrence": "weekly",
-    "authorUsername": "mati"
-  },
-  {
     "title": "Festa compleanno",
     "dateStart": "2024-09-20",
     "dateEnd": "2024-09-20",
@@ -62,5 +54,23 @@
     "notes": "",
     "recurrence": "daily",
     "authorUsername": "Leo"
+  },
+  {
+    "title": "danza",
+    "dateStart": "2024-10-07T19:00",
+    "dateEnd": "2024-10-07T19:00",
+    "notes": "",
+    "recurrence": "weekly",
+    "authorUsername": "mati"
+  },
+  {
+    "title": "Prova",
+    "dateStart": "2024-10-12",
+    "dateEnd": "2024-10-12",
+    "place": "Boh",
+    "notes": "",
+    "recurrence": "monthly",
+    "recurrenceEnd": "2025-01-10",
+    "authorUsername": "mati"
   }
 ]

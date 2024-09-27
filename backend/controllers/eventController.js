@@ -38,7 +38,7 @@ async function getAllEvents() {
     return await readEventsFile();
 }
 
-async function addEvent(title, dateStart, dateEnd, notes, recurrence, authorUsername) {
+async function addEvent(title, dateStart, dateEnd, place, notes, recurrence, recurrenceEnd, authorUsername) {
     if (!title || !dateStart || !dateEnd || !authorUsername) {
         throw new Error('Title, dateStart, dateEnd, authorUsername are required');
     }
@@ -52,8 +52,10 @@ async function addEvent(title, dateStart, dateEnd, notes, recurrence, authorUser
         title,
         dateStart,
         dateEnd,
+        place,
         notes,
         recurrence,
+        recurrenceEnd,
         authorUsername
     );
 
