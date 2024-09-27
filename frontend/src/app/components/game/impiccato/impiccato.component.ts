@@ -86,17 +86,13 @@ export class ImpiccatoComponent implements OnInit {
   }
 
   // Metodo per resettare il gioco
-  /*resetGame(): void {
+  resetGame(): void {
     this.loadRandomWord(); // Carica una nuova parola casuale
     this.guessedLetters = [];
     this.remainingAttempts = 6;
     this.isGameOver = false;
     this.currentGuess = '';
     this.hangmanImage = '/assets/hangman1.png';
-  }*/
-  resetGame(): void {
-    // Ricarica la pagina
-    window.location.reload();
   }
 
 }
