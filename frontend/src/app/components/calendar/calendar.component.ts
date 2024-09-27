@@ -261,11 +261,7 @@ export class CalendarComponent {
     
     const dialogRef = this.dialog.open(NewEventDialogComponent, {
       width: '400px',
-      data: {
-        /*startStr: selectInfo.startStr,
-        endStr: selectInfo.endStr,
-        allDay: selectInfo.allDay*/
-      }
+      data: {}
 
       
       

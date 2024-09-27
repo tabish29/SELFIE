@@ -56,14 +56,6 @@
     "authorUsername": "Leo"
   },
   {
-    "title": "danza",
-    "dateStart": "2024-10-07T19:00",
-    "dateEnd": "2024-10-07T19:00",
-    "notes": "",
-    "recurrence": "weekly",
-    "authorUsername": "mati"
-  },
-  {
     "title": "Prova",
     "dateStart": "2024-10-12",
     "dateEnd": "2024-10-12",
@@ -71,6 +63,16 @@
     "notes": "",
     "recurrence": "monthly",
     "recurrenceEnd": "2025-01-10",
+    "authorUsername": "mati"
+  },
+  {
+    "title": "danza",
+    "dateStart": "2024-10-07T19:00",
+    "dateEnd": "2024-10-07T20:30",
+    "place": "Bolognina",
+    "notes": "",
+    "recurrence": "weekly",
+    "recurrenceEnd": "2024-12-30",
     "authorUsername": "mati"
   }
 ]

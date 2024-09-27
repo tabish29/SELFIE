@@ -37,14 +37,11 @@ export class NewEventDialogComponent {
       if(inputError){
         inputError.textContent = 'Titolo, data e ripetizione sono obbligatori!';
       }
-    } else{
-      if(this.allDay){
-        this.dialogRef.close(this.data);
-      }else{
-        this.data.dateEnd = this.data.dateStart;
-        this.dialogRef.close(this.data);
+    } else {
+      if (this.allDay) {
+        this.data.dateEnd = this.data.dateEnd || this.data.dateStart;
       }
-      this.data.dateEnd = this.data.dateStart;
+      
       this.dialogRef.close(this.data);
     }
     
