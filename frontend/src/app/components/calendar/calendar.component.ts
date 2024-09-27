@@ -133,7 +133,7 @@ export class CalendarComponent {
       title: activity.title,
       start: this.isExpired(activity) ? new Date(this.today) : (activity.dueDate ? new Date(activity.dueDate) : undefined), // Utilizza la data di scadenza come data di inizio
       allDay: true, // Imposta come all-day se non c'è un'ora specifica
-      backgroundColor: '#FFBB33', // Cambia colore per distinguere le attività dagli eventi
+      backgroundColor: this.isExpired(activity) ? '#d82839':'#FFBB33', // Cambia colore per distinguere le attività dagli eventi
       borderColor: '#FF8800',
       description: activity.notes // Puoi usare description per le note o altre informazioni
     }));

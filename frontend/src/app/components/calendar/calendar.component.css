@@ -72,6 +72,11 @@ h2 {
     border: #FF8800;
   }
 
+  #activityExpired{
+    background: #d82839; 
+    border: #FF8800;
+  }
+
   #event{
     background: #4c95e4;
   }
