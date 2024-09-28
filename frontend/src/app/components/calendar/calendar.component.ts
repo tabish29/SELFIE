@@ -126,11 +126,11 @@ export class CalendarComponent {
     const activityEvents = this.activities.map(activity => ({
       
       title: activity.title,
-      start: this.isExpired(activity) ? new Date(this.today) : (activity.dueDate ? new Date(activity.dueDate) : undefined), // Utilizza la data di scadenza come data di inizio
-      allDay: true, // Imposta come all-day se non c'è un'ora specifica
-      backgroundColor: this.isExpired(activity) ? '#d82839':'#FFBB33', // Cambia colore per distinguere le attività dagli eventi
+      start: this.isExpired(activity) ? new Date(this.today) : (activity.dueDate ? new Date(activity.dueDate) : undefined), // scadenza come data di inizio
+      allDay: true, 
+      backgroundColor: this.isExpired(activity) ? '#d82839':'#FFBB33', 
       borderColor: '#FF8800',
-      description: activity.notes // Puoi usare description per le note o altre informazioni
+      description: activity.notes 
     }));
 
     // Mappa gli eventi nel degli eventi di FullCalendar
@@ -139,12 +139,12 @@ export class CalendarComponent {
 
       if(event.recurrence != 'none'){
         rrule.freq = event.recurrence;
-        rrule.dtstart = new Date(event.dateStart);
+        rrule.dtstart = new Date(event.dateStart).toISOString();
         
       }
 
       if (event.recurrenceEnd) {
-        rrule.until = new Date(event.recurrenceEnd); 
+        rrule.until = new Date(event.recurrenceEnd).toISOString(); 
       }
 
       return{
