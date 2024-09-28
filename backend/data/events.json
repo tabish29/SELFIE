@@ -26,5 +26,14 @@
     "notes": "",
     "recurrence": "yearly",
     "authorUsername": "mati"
+  },
+  {
+    "title": "Festa fiera",
+    "dateStart": "2024-09-26T18:00",
+    "dateEnd": "2024-09-29T23:00",
+    "place": "Crespellano",
+    "notes": "Non ci sono parcheggi",
+    "recurrence": "none",
+    "authorUsername": "mati"
   }
 ]

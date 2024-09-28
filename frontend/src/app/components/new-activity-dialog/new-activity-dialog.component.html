@@ -1,26 +1,28 @@
-<h2 mat-dialog-title>Nuova Attività</h2>
-<mat-dialog-content>
-  <mat-form-field>
-    <mat-label>Titolo</mat-label>
-    <input matInput [(ngModel)]="data.title">
-  </mat-form-field>
+<div class="activityDialog">
+  <h2 mat-dialog-title>Nuova Attività</h2>
+  <mat-dialog-content>
+    <mat-form-field class="custom-form-field">
+      <mat-label>Titolo</mat-label>
+      <input matInput [(ngModel)]="data.title" required>
+    </mat-form-field>
 
-  <mat-form-field>
-    <mat-label>Da completare entro il</mat-label>
-    <input matInput [matDatepicker]="picker" [(ngModel)]="data.dueDate">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
+    <mat-form-field class="custom-form-field">
+      <mat-label>Da completare entro il</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="data.dueDate" required>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
 
-  <mat-form-field>
-    <mat-label>Note</mat-label>
-    <textarea matInput [(ngModel)]="data.notes"></textarea>
-  </mat-form-field>
+    <mat-form-field class="custom-form-field">
+      <mat-label>Note</mat-label>
+      <textarea matInput [(ngModel)]="data.notes"></textarea>
+    </mat-form-field>
 
 
-</mat-dialog-content>
-<p id="inputError" class="error-message"></p>
-<mat-dialog-actions>
-  <button mat-button (click)="onCancel()">Annulla</button>
-  <button mat-button (click)="onSave()">Salva</button>
-</mat-dialog-actions>
+  </mat-dialog-content>
+  <p id="inputError" class="error-message"></p>
+  <mat-dialog-actions>
+    <button mat-button (click)="onCancel()">Annulla</button>
+    <button mat-button (click)="onSave()">Salva</button>
+  </mat-dialog-actions>
+</div>

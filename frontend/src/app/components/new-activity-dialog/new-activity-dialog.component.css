@@ -1,3 +1,13 @@
+.activityDialog{
+    background: #FFBB33; ;
+}
+
 .error-message{
+    margin-left: 5%;
     color: red;
+}
+
+.custom-form-field {
+    width: 100%; 
+    max-width: 400px; 
 }

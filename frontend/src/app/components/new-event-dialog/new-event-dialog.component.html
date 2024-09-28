@@ -1,62 +1,68 @@
-<h2 mat-dialog-title>Nuovo Evento</h2>
-<mat-dialog-content>
-  <mat-form-field>
-    <mat-label>Titolo</mat-label>
-    <input matInput [(ngModel)]="data.title">
-  </mat-form-field>
-
-  <p><input type="checkbox" (change)="allDayChange()" />Tutto il giorno</p>
-
-  <div *ngIf="!allDay">
-    <!-- unchecked -->
-    <mat-form-field>
-      <mat-label>Data e ora di inizio</mat-label>
-      <input matInput type="datetime-local" [(ngModel)]="data.dateStart">
+<div class="eventDialog">
+  <h2 mat-dialog-title>Nuovo Evento</h2>
+  <mat-dialog-content>
+    <mat-form-field class="custom-form-field">
+      <mat-label>Titolo</mat-label>
+      <input matInput [(ngModel)]="data.title" required>
     </mat-form-field>
 
-    <mat-form-field>
-      <mat-label>Data e ora di fine</mat-label>
-      <input matInput type="datetime-local" [(ngModel)]="data.dateEnd">
+    <p><input type="checkbox" (change)="allDayChange()" />Tutto il giorno</p>
+
+    <div *ngIf="!allDay">
+      <!-- unchecked -->
+      <mat-form-field class="custom-form-field">
+        <mat-label>Data e ora di inizio </mat-label>
+        <input matInput type="datetime-local" [(ngModel)]="data.dateStart" required>
+      </mat-form-field>
+
+      <mat-form-field class="custom-form-field">
+        <mat-label>Data e ora di fine</mat-label>
+        <input matInput type="datetime-local" [(ngModel)]="data.dateEnd" required>
+      </mat-form-field>
+    </div>
+      <!-- checked -->
+    <div *ngIf="allDay">
+      <mat-form-field class="custom-form-field">
+        <mat-label>Data di inizio</mat-label>
+        <input matInput type="date" [(ngModel)]="data.dateStart" required>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field class="custom-form-field">
+      <mat-label>Luogo</mat-label>
+      <input matInput [(ngModel)]="data.place">
     </mat-form-field>
-  </div>
-    <!-- checked -->
-  <div *ngIf="allDay">
-    <mat-form-field>
-      <mat-label>Data di inizio</mat-label>
-      <input matInput type="date" [(ngModel)]="data.dateStart">
+    
+    <mat-form-field class="custom-form-field">
+      <mat-label>Note</mat-label>
+      <textarea matInput [(ngModel)]="data.notes"></textarea>
     </mat-form-field>
-  </div>
 
-  <mat-form-field>
-    <mat-label>Luogo</mat-label>
-    <input matInput [(ngModel)]="data.place">
-  </mat-form-field>
-  
-  <mat-form-field>
-    <mat-label>Note</mat-label>
-    <textarea matInput [(ngModel)]="data.notes"></textarea>
-  </mat-form-field>
+    <mat-form-field class="custom-form-field">
+      <mat-label>Ripeti</mat-label>
+      <mat-select [(ngModel)]="data.recurrence" required>
+        <mat-option value="none">Nessuna</mat-option>
+        <mat-option value="daily">Ogni giorno</mat-option>
+        <mat-option value="weekly">Ogni settimana</mat-option>
+        <mat-option value="monthly">Ogni mese</mat-option>
+        <mat-option value="yearly">Ogni anno</mat-option>
+      </mat-select>
+    </mat-form-field> 
 
-  <mat-form-field>
-    <mat-label>Ripeti</mat-label>
-    <mat-select [(ngModel)]="data.recurrence">
-      <mat-option value="none">Nessuna</mat-option>
-      <mat-option value="daily">Ogni giorno</mat-option>
-      <mat-option value="weekly">Ogni settimana</mat-option>
-      <mat-option value="monthly">Ogni mese</mat-option>
-      <mat-option value="yearly">Ogni anno</mat-option>
-    </mat-select>
-  </mat-form-field> 
+    <mat-form-field class="custom-form-field" *ngIf="data.recurrence !== 'none'">
+      <mat-label>Fine ripetizione</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="data.recurrenceEnd" required>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
 
-  <mat-form-field *ngIf="data.recurrence !== 'none'">
-    <mat-label>Fine ripetizione</mat-label>
-    <input matInput type="date" [(ngModel)]="data.recurrenceEnd">
-  </mat-form-field>
+    
 
 
-</mat-dialog-content>
-<p id="inputError" class="error-message"></p>
-<mat-dialog-actions>
-  <button mat-button (click)="onCancel()">Annulla</button>
-  <button mat-button (click)="onSave()">Salva</button>
-</mat-dialog-actions>
+  </mat-dialog-content>
+  <p id="inputError" class="error-message"></p>
+  <mat-dialog-actions>
+    <button mat-button (click)="onCancel()">Annulla</button>
+    <button mat-button (click)="onSave()">Salva</button>
+  </mat-dialog-actions>
+</div>
