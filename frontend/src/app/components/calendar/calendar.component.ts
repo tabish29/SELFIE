@@ -1,12 +1,12 @@
 import { Component , signal, ChangeDetectorRef, ViewChild } from '@angular/core';
-import { FullCalendarComponent, FullCalendarModule } from '@fullcalendar/angular'; 
-import { CalendarOptions, DateSelectArg, EventClickArg, EventApi } from '@fullcalendar/core';
+import { FullCalendarComponent } from '@fullcalendar/angular'; 
+//import { FullCalendarModule } from '@fullcalendar/angular'; 
+import { CalendarOptions, EventClickArg, EventApi } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';  
 import listPlugin from '@fullcalendar/list';        
 import interactionPlugin from '@fullcalendar/interaction';  
 import rrulePlugin from '@fullcalendar/rrule';
-//import { INITIAL_EVENTS, createEventId } from './event-utils';
 import { MatDialog } from '@angular/material/dialog';
 import { NewActivityDialogComponent } from '../new-activity-dialog/new-activity-dialog.component';
 import { NewEventDialogComponent } from '../new-event-dialog/new-event-dialog.component';
@@ -17,7 +17,6 @@ import { EventService } from '../../services/event.service';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { TimeMachineService } from '../../services/time-machine.service';
 import { TimeMachine } from '../../models/TimeMachine';
-//import { HttpClient } from '@angular/common/http';
 import { DragService } from '../../services/drag.service';
 
 
@@ -39,7 +38,6 @@ export class CalendarComponent {
     private localStorageService: LocalStorageService,
     private timeMachineService: TimeMachineService,
     private dragService: DragService
-    //private http: HttpClient
   ) {}
 
   
@@ -49,10 +47,9 @@ export class CalendarComponent {
   authorUsername: string = '';
   today: string = '';
   calendarInitialized = false;
-  
-
   currentEvents = signal<EventApi[]>([]);
   calendarVisible = signal(true);
+
   calendarOptions = signal<CalendarOptions>({
     plugins: [
       dayGridPlugin,
@@ -74,34 +71,30 @@ export class CalendarComponent {
     },
     initialView: 'dayGridMonth',
     initialDate: new Date(),
-    //initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
     weekends: true,
     editable: true,
     selectable: false,
     selectMirror: true,
     dayMaxEvents: true,
-    //select: this.handleDateSelect.bind(this),
     eventClick: this.handleEventClick.bind(this),
     eventsSet: this.handleEvents.bind(this),
     
-    
-    /* you can update a remote database when these fire:
-    eventAdd:
-    eventChange:
-    eventRemove:
-    */
   });
 
   
-  onMouseDown(event: MouseEvent): void {
+  public onMouseDown(event: MouseEvent): void {
     const target = event.target as HTMLElement;
     this.dragService.startDrag(event, target);
   }
   
+  private handleEvents(events: EventApi[]) {
+    this.currentEvents.set(events);
+    this.changeDetector.detectChanges(); 
+  }
   
 
   /* CALENDAR */
-  ngOnInit(): void {
+  public ngOnInit(): void {
     
     this.authorUsername = this.localStorageService.getItem('username') || '';
     if (!this.authorUsername) {
@@ -126,8 +119,8 @@ export class CalendarComponent {
     
   }
 
-  loadCalendar(): void{
-    // Mappa le attività nel formato degli eventi di FullCalendar
+  private loadCalendar(): void{
+    // Mappa le attività come eventi nel formato degli eventi di FullCalendar
     const activityEvents = this.activities.map(activity => ({
       
       title: activity.title,
@@ -138,7 +131,7 @@ export class CalendarComponent {
       description: activity.notes // Puoi usare description per le note o altre informazioni
     }));
 
-    // Mappa gli eventi nel formato corretto
+    // Mappa gli eventi nel degli eventi di FullCalendar
     const calendarEvents = this.events.map(event => {
       const rrule: any = {};
 
@@ -148,7 +141,7 @@ export class CalendarComponent {
       }
 
       if (event.recurrenceEnd) {
-        rrule.until = new Date(event.recurrenceEnd); // Imposta la data di fine della ripetizione
+        rrule.until = new Date(event.recurrenceEnd); 
       }
 
       return{
@@ -159,13 +152,12 @@ export class CalendarComponent {
       backgroundColor: '#4c95e4', 
       notes: event.notes,
       rrule: Object.keys(rrule).length ? rrule : undefined,
-      allDay: this.isAllDay(event) // Se l'evento è tutto il giorno
+      allDay: this.isAllDay(event) 
       }
     });
 
-    // Combina eventi e attività
+    // Combina eventi e attività in un unico array
     const allCalendarEvents = [...calendarEvents, ...activityEvents];
-
     // Imposta le opzioni del calendario
     this.calendarOptions.set({
       ...this.calendarOptions(), // Mantieni le altre opzioni
@@ -173,211 +165,31 @@ export class CalendarComponent {
     });
   }
 
-  goToCustomDate(): void{
+  private goToCustomDate(): void{
     const calendarApi = this.fullcalendar.getApi();
     calendarApi.gotoDate(this.today);
+    this.changeDetector.detectChanges();
   }
 
 
+  /*
   handleTodayButtonClick() {
     const calendarApi = this.fullcalendar.getApi();
     if (calendarApi) {
       calendarApi.gotoDate(this.today);
-      this.changeDetector.detectChanges();
+      
     }
-  }
+  }*/
 
 
-  changeView(viewName: string) {
+  public changeView(viewName: string) {
     this.fullcalendar.getApi().changeView(viewName);
   }
   
   
   /* ACTIVITIES */
-  //carica le attività dell'utente
-  loadActivities(){
 
-    this.activityService.getActivitiesByAuthor(this.authorUsername).subscribe(
-      (data) => {
-        this.activities = data;
-
-        for(var i = 0; i<this.activities.length; i++){
-          this.isExpired(this.activities[i]);
-          
-        }
-
-        //ELENCO LATERALE DELLE ATTIVITA
-        this.activities.sort((a, b) => {
-          if (a.dueDate && b.dueDate) {
-            return new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime();
-          }
-          // Se una delle due date è null, la consideriamo come "più lontana"
-          if (!a.dueDate) return 1; // Metti null alla fine
-          if (!b.dueDate) return -1; // Metti null alla fine
-          return 0; // Se entrambe sono null, lasciale inalterate
-        });
-
-        
-        
-      }
-      
-      
-    );
-    
-  }
-  
-  isExpired(activity: Activity): boolean {
-  if(!activity.dueDate){
-    return false;
-  }
-    const todayDate = new Date(this.today);
-    const dueDate = new Date(activity.dueDate);
-    todayDate.setHours(0, 0, 0, 0);
-
-    return dueDate < todayDate; //True se scaduta prima di oggi 
-  }
-
-  
-    
-  onCheckboxChange(activity: Activity){
-    if (confirm("Vuoi eliminare " + activity.title + "?")) {
-      this.activityService.deleteActivity(activity.title).subscribe(
-      () => {console.log(activity.title + "deleted"),
-        this.loadActivities()
-      }
-    )
-    }
-    
-  }
-
-
-  
-  /* EVENTS */
-
-  //handleDateSelect(selectInfo: DateSelectArg) {}
-  handleNewEvent() {
-    //console.log('Date selected:', selectInfo);
-    
-    
-    const dialogRef = this.dialog.open(NewEventDialogComponent, {
-      width: '400px',
-      data: {}
-
-      
-      
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      
-
-      if (result) {
-
-        const newEvent: Event = {
-          title: result.title,
-          dateStart: result.dateStart,
-          dateEnd: result.dateEnd,
-          place: result.place,
-          notes: result.notes,
-          recurrence: result.recurrence,
-          recurrenceEnd: result.recurrenceEnd,
-          authorUsername: this.authorUsername
-        };
-
-        this.events.push(newEvent);
-        
-        
-        
-
-        this.eventService.createEvent(newEvent).subscribe(
-          () =>  {console.log('Evento creato'), 
-            this.loadEvents()}
-          
-        )
-        
-        
-      }
-      
-    });
-    
-  }
-
-  loadEvents(){
-
-    
-    this.eventService.getEventsByAuthor(this.authorUsername).subscribe(
-      (data) => {
-        this.events = data;
-
-        for(var i=0; i<this.events.length; i++){
-          if(!this.pastEvent(this.events[i])){
-            //SEGNA EVENTO PASSATO -> NON CARICARE GLI EVENTI PASSATI
-          }
-        }
-        
-        
-
-        //ELENCO LATERALE DELLE EVENTI
-        this.events.sort((a, b) => {
-          if (a.dateStart && b.dateStart) {
-            return new Date(a.dateStart).getTime() - new Date(b.dateStart).getTime();
-          }
-          // Se una delle due date è null, la consideriamo come "più lontana"
-          if (!a.dateStart) return 1; // Metti null alla fine
-          if (!b.dateStart) return -1; // Metti null alla fine
-          return 0; // Se entrambe sono null, lasciale inalterate
-        });
-        
-        this.loadCalendar();
-      
-
-        console.log(this.events);
-        console.log(this.activities);
-        
-      }
-      
-    );
-
-    
-  }
-
-  pastEvent(event: Event){
-    if(!event.dateEnd){
-      return false;
-    }
-    const todayDate = new Date(this.today);
-    const dateEnd = new Date(event.dateEnd);
-
-    return dateEnd < todayDate; //True se scaduta prima di oggi 
-  }
-
-  isAllDay(event: Event): boolean{
-    if(event.dateStart == event.dateEnd){
-      return true;
-    }else {
-      return false;
-    }
-  
-  }
-
-  handleEventClick(clickInfo: EventClickArg) {
-    if (confirm("Vuoi eliminare " + clickInfo.event.title + "?")) {
-      clickInfo.event.remove();
-
-      //se evento -> elimina evento
-      //se attività -> elimina attività
-      this.eventService.deleteEvent(clickInfo.event.title).subscribe(
-        () => {console.log(clickInfo.event.title + "deleted"),
-          this.loadEvents()
-        }
-      )
-    }
-  }
-
-  handleEvents(events: EventApi[]) {
-    this.currentEvents.set(events);
-    this.changeDetector.detectChanges(); 
-  }
-
-  handleNewActivity(){
+  public handleNewActivity(){
     
     const dialogRef = this.dialog.open(NewActivityDialogComponent, {
       width: '400px',
@@ -398,9 +210,6 @@ export class CalendarComponent {
         };
 
         this.activities.push(newActivity);
-        
-        
-        
 
         this.activityService.createActivity(newActivity).subscribe(
           () =>  {console.log('Attività creata'), 
@@ -415,6 +224,164 @@ export class CalendarComponent {
       
     });
     
+  }
+
+  //carica le attività
+  loadActivities(){
+
+    this.activityService.getActivitiesByAuthor(this.authorUsername).subscribe(
+      (data) => {
+        this.activities = data;
+
+        /*
+        for(var i = 0; i<this.activities.length; i++){
+          this.isExpired(this.activities[i]);
+          
+        }*/
+
+        //elenco laterale
+        this.activities.sort((a, b) => {
+          if (a.dueDate && b.dueDate) {
+            return new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime();
+          }
+          // Se una delle due date è null, la consideriamo come "più lontana"
+          if (!a.dueDate) return 1; // Metti null alla fine
+          if (!b.dueDate) return -1; // Metti null alla fine
+          return 0; // Se entrambe sono null, lasciale inalterate
+        });
+      }
+    );
+  }
+  
+  public isExpired(activity: Activity): boolean {
+  if(!activity.dueDate){
+    return false;
+  }
+    const todayDate = new Date(this.today);
+    const dueDate = new Date(activity.dueDate);
+    todayDate.setHours(0, 0, 0, 0);
+
+    return dueDate < todayDate; //True se scaduta prima di oggi 
+  }
+
+  
+  //eliminazione con checkbox
+  public onCheckboxChange(activity: Activity){
+    if (confirm("Vuoi eliminare " + activity.title + "?")) {
+      this.activityService.deleteActivity(activity.title).subscribe(
+      () => {console.log(activity.title + "deleted"),
+        this.loadActivities()
+      }
+    )
+    }
+  }
+
+
+  
+  /* EVENTS */
+
+  public handleNewEvent() {
+   
+    const dialogRef = this.dialog.open(NewEventDialogComponent, {
+      width: '400px',
+      data: {}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      
+
+      if (result) {
+
+        const newEvent: Event = {
+          title: result.title,
+          dateStart: result.dateStart,
+          dateEnd: result.dateEnd,
+          place: result.place,
+          notes: result.notes,
+          recurrence: result.recurrence,
+          recurrenceEnd: result.recurrenceEnd,
+          authorUsername: this.authorUsername
+        };
+
+        this.events.push(newEvent);
+
+        this.eventService.createEvent(newEvent).subscribe(
+          () =>  {console.log('Evento creato'), 
+            this.loadEvents()}
+          
+        )
+
+      }
+      
+    });
+    
+  }
+
+  private loadEvents(){
+
+    
+    this.eventService.getEventsByAuthor(this.authorUsername).subscribe(
+      (data) => {
+        this.events = data;
+
+        /*
+        for(var i=0; i<this.events.length; i++){
+          if(!this.pastEvent(this.events[i])){
+            //SEGNA EVENTO PASSATO -> NON CARICARE GLI EVENTI PASSATI
+          }
+        }
+        
+        
+
+        //ELENCO LATERALE DELLE EVENTI
+        this.events.sort((a, b) => {
+          if (a.dateStart && b.dateStart) {
+            return new Date(a.dateStart).getTime() - new Date(b.dateStart).getTime();
+          }
+          // Se una delle due date è null, la consideriamo come "più lontana"
+          if (!a.dateStart) return 1; // Metti null alla fine
+          if (!b.dateStart) return -1; // Metti null alla fine
+          return 0; // Se entrambe sono null, lasciale inalterate
+        });*/
+        
+        this.loadCalendar();
+        
+      }
+      
+    );
+
+    
+  }
+
+  /*
+  pastEvent(event: Event){
+    if(!event.dateEnd){
+      return false;
+    }
+    const todayDate = new Date(this.today);
+    const dateEnd = new Date(event.dateEnd);
+
+    return dateEnd < todayDate; //True se scaduta prima di oggi 
+  }*/
+
+  private isAllDay(event: Event): boolean{
+    if(event.dateStart == event.dateEnd){
+      return true;
+    }else {
+      return false;
+    }
+  
+  }
+
+  private handleEventClick(clickInfo: EventClickArg) {
+    if (confirm("Vuoi eliminare " + clickInfo.event.title + "?")) {
+      clickInfo.event.remove();
+
+      this.eventService.deleteEvent(clickInfo.event.title).subscribe(
+        () => {console.log(clickInfo.event.title + "deleted"),
+          this.loadEvents()
+        }
+      )
+    }
   }
 
   convertToDateTimeLocalFormat(dateStr: string): string {
