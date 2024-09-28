@@ -4,6 +4,8 @@ import { FullCalendarComponent } from '@fullcalendar/angular';
 import { MatDialog } from '@angular/material/dialog';
 import { NewActivityDialogComponent } from '../new-activity-dialog/new-activity-dialog.component';
 import { NewEventDialogComponent } from '../new-event-dialog/new-event-dialog.component';
+import { UpdateEventComponent } from '../update-event/update-event.component';
+
 import { Activity } from '../../models/Activity';
 import { Event } from '../../models/Event';
 import { ActivityService } from '../../services/activity.service';
@@ -376,6 +378,16 @@ export class CalendarComponent {
   }
 
   private handleEventClick(clickInfo: EventClickArg) {
+    
+    /*
+    const dialogRef = this.dialog.open(UpdateEventComponent, {
+      width: '400px',
+      data: {}
+    });*/
+    
+      
+
+    //DELETE EVENT
     if (confirm("Vuoi eliminare " + clickInfo.event.title + "?")) {
       clickInfo.event.remove();
 

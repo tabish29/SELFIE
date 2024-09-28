@@ -1,10 +1,12 @@
 <div class="eventDialog">
   <h2 mat-dialog-title>Nuovo Evento</h2>
   <mat-dialog-content>
+    <Label>Non creare eventi con lo stesso titolo. Non verranno salvati.</Label>
     <mat-form-field class="custom-form-field">
       <mat-label>Titolo</mat-label>
       <input matInput [(ngModel)]="data.title" required>
     </mat-form-field>
+    
 
     <p><input type="checkbox" (change)="allDayChange()" />Tutto il giorno</p>
 
@@ -17,14 +19,17 @@
 
       <mat-form-field class="custom-form-field">
         <mat-label>Data e ora di fine</mat-label>
-        <input matInput type="datetime-local" [(ngModel)]="data.dateEnd" required>
+        <input matInput type="datetime-local" [(ngModel)]="data.dateEnd"  required>
       </mat-form-field>
     </div>
       <!-- checked -->
     <div *ngIf="allDay">
       <mat-form-field class="custom-form-field">
         <mat-label>Data di inizio</mat-label>
-        <input matInput type="date" [(ngModel)]="data.dateStart" required>
+        <!--<input matInput type="date" [(ngModel)]="data.dateStart" required>-->
+        <input matInput [matDatepicker]="picker" [(ngModel)]="data.dateStart" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
     </div>
 

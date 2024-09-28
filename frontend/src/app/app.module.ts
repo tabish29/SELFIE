@@ -46,7 +46,8 @@ import { UpdateTopicDialogComponent } from './components/flashcard/update-topic-
 import { UpdateFlashcardDialogComponent } from './components/flashcard/update-flashcard-dialog/update-flashcard-dialog.component';
 import { MusicComponent } from './components/music/music.component';
 import { CustomDatePipe } from './pipes/custom-date.pipe';
-import { ViewFlashCardComponent } from './components/home-page/view-flash-card/view-flash-card.component'; 
+import { ViewFlashCardComponent } from './components/home-page/view-flash-card/view-flash-card.component';
+import { UpdateEventComponent } from './components/update-event/update-event.component'; 
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { ViewFlashCardComponent } from './components/home-page/view-flash-card/v
     UpdateFlashcardDialogComponent,
     MusicComponent,
     CustomDatePipe,
-    ViewFlashCardComponent
+    ViewFlashCardComponent,
+    UpdateEventComponent
   ],
   imports: [
     BrowserModule,

@@ -27,16 +27,25 @@ export class NewEventDialogComponent {
   ) {}
 
   ngOnInit(): void {
+
     this.authorUsername = this.localStorageService.getItem('username');
+   
   }
 
   onSave(): void {
     const inputError = document.getElementById('inputError');
+    
     console.log(this.data);
     if(!this.data.title || !this.data.dateStart || (!this.data.dateEnd && !this.allDay) || !this.data.recurrence){
       if(inputError){
         inputError.textContent = 'Titolo, data e ripetizione sono obbligatori!';
       }
+    }else if(this.data.dateStart > this.data.dateEnd) {
+      if(inputError){
+        inputError.textContent = 'Non può finire prima di iniziare!';
+      }
+    
+
     } else {
       if (this.allDay) {
         this.data.dateEnd = this.data.dateEnd || this.data.dateStart;
