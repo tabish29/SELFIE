@@ -44,6 +44,8 @@ export class NewEventDialogComponent {
       
       this.dialogRef.close(this.data);
     }
+
+   
     
   }
 

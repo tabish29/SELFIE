@@ -1,12 +1,6 @@
 import { Component , signal, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { FullCalendarComponent } from '@fullcalendar/angular'; 
 //import { FullCalendarModule } from '@fullcalendar/angular'; 
-import { CalendarOptions, EventClickArg, EventApi } from '@fullcalendar/core';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGridPlugin from '@fullcalendar/timegrid';  
-import listPlugin from '@fullcalendar/list';        
-import interactionPlugin from '@fullcalendar/interaction';  
-import rrulePlugin from '@fullcalendar/rrule';
 import { MatDialog } from '@angular/material/dialog';
 import { NewActivityDialogComponent } from '../new-activity-dialog/new-activity-dialog.component';
 import { NewEventDialogComponent } from '../new-event-dialog/new-event-dialog.component';
@@ -18,6 +12,13 @@ import { LocalStorageService } from '../../services/local-storage.service';
 import { TimeMachineService } from '../../services/time-machine.service';
 import { TimeMachine } from '../../models/TimeMachine';
 import { DragService } from '../../services/drag.service';
+
+import { CalendarOptions, EventClickArg, EventApi } from '@fullcalendar/core';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';  
+import listPlugin from '@fullcalendar/list';        
+import interactionPlugin from '@fullcalendar/interaction';  
+import rrulePlugin from '@fullcalendar/rrule';
 
 
 
@@ -76,6 +77,7 @@ export class CalendarComponent {
     selectable: false,
     selectMirror: true,
     dayMaxEvents: true,
+    timeZone: 'local',
     eventClick: this.handleEventClick.bind(this),
     eventsSet: this.handleEvents.bind(this),
     
@@ -137,7 +139,8 @@ export class CalendarComponent {
 
       if(event.recurrence != 'none'){
         rrule.freq = event.recurrence;
-        rrule.dtstart = new Date(event.dateStart); 
+        rrule.dtstart = new Date(event.dateStart);
+        
       }
 
       if (event.recurrenceEnd) {
@@ -160,8 +163,8 @@ export class CalendarComponent {
     const allCalendarEvents = [...calendarEvents, ...activityEvents];
     // Imposta le opzioni del calendario
     this.calendarOptions.set({
-      ...this.calendarOptions(), // Mantieni le altre opzioni
-      events: allCalendarEvents // Inserisci tutti gli eventi e le attività
+      ...this.calendarOptions(), // mantiene le altre opzioni
+      events: allCalendarEvents // inserisce tutti gli eventi e le attività
     });
   }
 
@@ -384,7 +387,7 @@ export class CalendarComponent {
     }
   }
 
-  convertToDateTimeLocalFormat(dateStr: string): string {
+  private convertToDateTimeLocalFormat(dateStr: string): string {
     // Formato time machine: "dd/MM/yyyy hh:mm"
     const [datePart, timePart] = dateStr.split(' '); // Divide la data e l'ora
     const [day, month, year] = datePart.split('/'); // Divide la parte della data

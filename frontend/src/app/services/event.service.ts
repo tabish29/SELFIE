@@ -7,15 +7,14 @@ import { Event } from '../models/Event';
   providedIn: 'root',
 })
 export class EventService {
-  //private apiUrl = 'http://localhost:3000/api/events'; // URL del tuo back-end
   private apiUrl = 'http://localhost:3000/events';
 
   constructor(private http: HttpClient) {}
 
-  // Recupera gli eventi della settimana
+  /*// Recupera gli eventi della settimana
   getEventiSettimana(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/settimana`);
-  }
+  }*/
 
   getEvent(): Observable<Event[]> {
     return this.http.get<Event[]>(this.apiUrl);

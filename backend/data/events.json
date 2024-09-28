@@ -1,0 +1,30 @@
+[
+  {
+    "title": "Matrimonio Giulia",
+    "dateStart": "2024-09-20T16:00",
+    "dateEnd": "2024-09-20T23:59",
+    "place": "Corte D'Aibo",
+    "notes": "",
+    "recurrence": "none",
+    "authorUsername": "mati"
+  },
+  {
+    "title": "Danza",
+    "dateStart": "2024-10-07T19:00",
+    "dateEnd": "2024-10-07T20:00",
+    "place": "Leggere Strutture",
+    "notes": "",
+    "recurrence": "weekly",
+    "recurrenceEnd": "2024-12-30",
+    "authorUsername": "mati"
+  },
+  {
+    "title": "Compleanno Gabri",
+    "dateStart": "2024-08-27",
+    "dateEnd": "2024-08-27",
+    "place": "",
+    "notes": "",
+    "recurrence": "yearly",
+    "authorUsername": "mati"
+  }
+]

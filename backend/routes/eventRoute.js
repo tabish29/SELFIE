@@ -15,9 +15,8 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
     const { title, dateStart, dateEnd, notes = '', place = '', recurrence, recurrenceEnd, authorUsername } = req.body;
-    
     try {
-        if (!title || !dateStart || !dateEnd || !place || !recurrence || !authorUsername) {
+        if (!title || !dateStart || !dateEnd || !recurrence || !authorUsername) {
             throw new Error('Inserire tutti i campi obbligatori');
         }
 
