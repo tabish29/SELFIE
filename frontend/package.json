@@ -29,6 +29,7 @@
     "@fullcalendar/interaction": "^6.1.15",
     "@fullcalendar/list": "^6.1.15",
     "@fullcalendar/timegrid": "^6.1.15",
+    "@fullcalendar/rrule": "6.1.15",
     "bcryptjs": "^2.4.3",
     "express": "^4.18.2",
     "rxjs": "~7.8.0",

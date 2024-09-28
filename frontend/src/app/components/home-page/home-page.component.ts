@@ -17,6 +17,7 @@ export class HomePageComponent {
     private dragService: DragService,
     private localStorageService: LocalStorageService
   ) { }
+
   ngOnInit(): void {
     // Recupera gli stati dal localStorage al caricamento della pagina
     const savedNoteVisualMode = this.localStorageService.getItem('noteVisualMode');
