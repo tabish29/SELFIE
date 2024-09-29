@@ -31,4 +31,10 @@ export class ActivityService {
   getActivitiesByAuthor(authorUsername: string): Observable<Activity[]> {
     return this.http.get<Activity[]>(`${this.apiUrl}/authors/${authorUsername}`);
   }
+
+  updateActivity(activity: Activity): Observable<Activity> {
+    return this.http.put<Activity>(`${this.apiUrl}/${activity.title}`, activity);
+  }
+
+ 
 }

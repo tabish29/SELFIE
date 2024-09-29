@@ -36,4 +36,10 @@ export class EventService {
     console.log("autore: " + authorUsername);
     return this.http.get<Event[]>(`${this.apiUrl}/authors/${authorUsername}`);
   }
+
+  updateEvent(event: Event): Observable<Event> {
+    return this.http.put<Event>(`${this.apiUrl}/${event.title}`, event);
+  }
 }
+
+

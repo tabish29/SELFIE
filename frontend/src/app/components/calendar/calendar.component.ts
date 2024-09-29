@@ -4,7 +4,6 @@ import { FullCalendarComponent } from '@fullcalendar/angular';
 import { MatDialog } from '@angular/material/dialog';
 import { NewActivityDialogComponent } from '../new-activity-dialog/new-activity-dialog.component';
 import { NewEventDialogComponent } from '../new-event-dialog/new-event-dialog.component';
-import { UpdateEventComponent } from '../update-event/update-event.component';
 
 import { Activity } from '../../models/Activity';
 import { Event } from '../../models/Event';
@@ -378,6 +377,83 @@ export class CalendarComponent {
   }
 
   private handleEventClick(clickInfo: EventClickArg) {
+
+    const clickedTitle = clickInfo.event.title;
+    const clickedActivity = this.activities.find(activity => activity.title === clickedTitle);
+
+    if (clickedActivity) {
+      const dialogRef = this.dialog.open(NewActivityDialogComponent, {
+        width: '400px',
+        data: { // Passa i dati esistenti dell'attività
+          title: clickedActivity.title,
+          dueDate: clickedActivity.dueDate,
+          notes: clickedActivity.notes
+        }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          // Aggiorna l'attività esistente
+          clickedActivity.title = result.title;
+          clickedActivity.dueDate = result.dueDate;
+          clickedActivity.notes = result.notes;
+  
+          // Salva le modifiche sul server
+          this.activityService.updateActivity(clickedActivity).subscribe(
+            () => {
+              console.log('Attività aggiornata con successo');
+              this.loadActivities(); // Ricarica le attività
+              this.loadCalendar(); // Aggiorna il calendario
+            }
+          );
+        }
+      });
+    } else {
+      // Cerca l'evento corrispondente all'interno dell'array `events`
+      const clickedEvent = this.events.find(event => event.title === clickedTitle);
+      
+      if (clickedEvent) {
+        const isAllDay = this.isAllDay(clickedEvent);
+
+        // apre il dialogo per modificare l'evento
+        const dialogRef = this.dialog.open(NewEventDialogComponent, {
+          width: '400px',
+          data: { // Passa i dati esistenti dell'evento
+            title: clickedEvent.title,
+            dateStart: clickedEvent.dateStart,
+            dateEnd: clickedEvent.dateEnd,
+            place: clickedEvent.place,
+            notes: clickedEvent.notes,
+            recurrence: clickedEvent.recurrence,
+            recurrenceEnd: clickedEvent.recurrenceEnd,
+            allday: isAllDay 
+          }
+        });
+  
+        dialogRef.afterClosed().subscribe(result => {
+          if (result) {
+            // Aggiorna l'evento esistente
+            clickedEvent.title = result.title;
+            clickedEvent.dateStart = result.dateStart;
+            clickedEvent.dateEnd = result.dateEnd;
+            clickedEvent.place = result.place;
+            clickedEvent.notes = result.notes;
+            clickedEvent.recurrence = result.recurrence;
+            clickedEvent.recurrenceEnd = result.recurrenceEnd;
+  
+            // Salva le modifiche sul server
+            this.eventService.updateEvent(clickedEvent).subscribe(
+              () => {
+                console.log('Evento aggiornato con successo');
+                this.loadEvents(); // Ricarica gli eventi
+                this.loadCalendar(); // Aggiorna il calendario
+              }
+            );
+          }
+        });
+      }
+    }
+  
+
     
     /*
     const dialogRef = this.dialog.open(UpdateEventComponent, {
@@ -388,7 +464,7 @@ export class CalendarComponent {
       
 
     //DELETE EVENT
-    if (confirm("Vuoi eliminare " + clickInfo.event.title + "?")) {
+    /*if (confirm("Vuoi eliminare " + clickInfo.event.title + "?")) {
       clickInfo.event.remove();
 
       this.eventService.deleteEvent(clickInfo.event.title).subscribe(
@@ -396,7 +472,8 @@ export class CalendarComponent {
           this.loadEvents()
         }
       )
-    }
+    }*/
+  
   }
 
   private convertToDateTimeLocalFormat(dateStr: string): string {

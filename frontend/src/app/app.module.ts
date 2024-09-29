@@ -47,7 +47,6 @@ import { UpdateFlashcardDialogComponent } from './components/flashcard/update-fl
 import { MusicComponent } from './components/music/music.component';
 import { CustomDatePipe } from './pipes/custom-date.pipe';
 import { ViewFlashCardComponent } from './components/home-page/view-flash-card/view-flash-card.component';
-import { UpdateEventComponent } from './components/update-event/update-event.component'; 
 
 @NgModule({
   declarations: [
@@ -79,8 +78,7 @@ import { UpdateEventComponent } from './components/update-event/update-event.com
     UpdateFlashcardDialogComponent,
     MusicComponent,
     CustomDatePipe,
-    ViewFlashCardComponent,
-    UpdateEventComponent
+    ViewFlashCardComponent
   ],
   imports: [
     BrowserModule,

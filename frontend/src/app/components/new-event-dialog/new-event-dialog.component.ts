@@ -24,7 +24,9 @@ export class NewEventDialogComponent {
     private eventService: EventService,
     private localStorageService: LocalStorageService,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+  ) {
+    
+  }
 
   ngOnInit(): void {
 
@@ -36,16 +38,17 @@ export class NewEventDialogComponent {
     const inputError = document.getElementById('inputError');
     
     console.log(this.data);
+
+    //controllo sui campi obbligatori
     if(!this.data.title || !this.data.dateStart || (!this.data.dateEnd && !this.allDay) || !this.data.recurrence){
       if(inputError){
         inputError.textContent = 'Titolo, data e ripetizione sono obbligatori!';
       }
+     //controllo date 
     }else if(this.data.dateStart > this.data.dateEnd) {
       if(inputError){
         inputError.textContent = 'Non può finire prima di iniziare!';
       }
-    
-
     } else {
       if (this.allDay) {
         this.data.dateEnd = this.data.dateEnd || this.data.dateStart;
@@ -58,19 +61,18 @@ export class NewEventDialogComponent {
     
   }
 
-  allDayChange(): void{
-    
-    if(this.allDay){
-      console.log("unchecked");
+  public allDayChange(): void{
+
+    this.allDay = !this.allDay;
+    /*if(this.allDay){
       this.allDay = false;
-      
-      
     }else {
       this.allDay = true;
-      
-    }
+    }*/
+
     
   }
+
 
   onCancel(): void {
     this.dialogRef.close();

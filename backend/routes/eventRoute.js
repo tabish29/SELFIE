@@ -29,6 +29,27 @@ router.post('/', async (req, res) => {
     }
 });
 
+router.put('/:title', async (req, res) => {
+    const { title } = req.params; // Titolo dell'evento da aggiornare
+    const updatedData = req.body; // Dati aggiornati dell'evento passati nel body
+
+    try {
+        // Verifica la presenza dei campi obbligatori (opzionale)
+        if (!updatedData.title || !updatedData.dateStart || !updatedData.dateEnd || !updatedData.recurrence || !updatedData.authorUsername) {
+            throw new Error('Inserire tutti i campi obbligatori');
+        }
+
+        // Chiamata al controller per aggiornare l'evento con il titolo specificato
+        const updatedEvent = await eventController.updateEvent(title, updatedData);
+
+        // Risposta di successo
+        res.status(200).json({ message: 'Evento aggiornato con successo', event: updatedEvent });
+    } catch (error) {
+        console.error('Errore durante l\'aggiornamento dell\'evento:', error.message);
+        res.status(400).json({ error: error.message });
+    }
+});
+
 router.get('/authors/:authorUsername', async (req, res) => {
     console.log("get eventRoute");
     const { authorUsername } = req.params;

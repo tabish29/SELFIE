@@ -115,6 +115,35 @@ async function getEventsByAuthor(authorUsername) {
     
 }
 
+const updateEvent = async (title, updatedData) => {
+    try {
+        // Cerca l'evento da aggiornare in base al titolo
+        const event = await Event.findOne({ title });
+
+        if (!event) {
+            throw new Error('Evento non trovato');
+        }
+
+        // Aggiorna i campi con i dati forniti, o mantieni quelli esistenti se non sono stati passati
+        event.title = updatedData.title || event.title;
+        event.dateStart = updatedData.dateStart || event.dateStart;
+        event.dateEnd = updatedData.dateEnd || event.dateEnd;
+        event.place = updatedData.place || event.place;
+        event.notes = updatedData.notes || event.notes;
+        event.recurrence = updatedData.recurrence || event.recurrence;
+        event.recurrenceEnd = updatedData.recurrenceEnd || event.recurrenceEnd;
+        event.authorUsername = updatedData.authorUsername || event.authorUsername;
+
+        // Salva l'evento aggiornato nel database
+        const updatedEvent = await event.save();
+
+        return updatedEvent;
+    } catch (error) {
+        console.error('Errore durante l\'aggiornamento dell\'evento:', error.message);
+        throw error;
+    }
+};
+
 module.exports = {
     saveEvent,
     findEventByTitle,
@@ -123,5 +152,6 @@ module.exports = {
     deleteEvent,
     //updateActivity,
     //getEventsPreview,
-    getEventsByAuthor
+    getEventsByAuthor,
+    updateEvent
 };
