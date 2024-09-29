@@ -66,8 +66,10 @@
 
   </mat-dialog-content>
   <p id="inputError" class="error-message"></p>
-  <mat-dialog-actions>
+  <mat-dialog-actions >
+    
     <button mat-button (click)="onCancel()">Annulla</button>
     <button mat-button (click)="onSave()">Salva</button>
+    <button mat-button (click)="onDelete()" id=""delete>Elimina</button>
   </mat-dialog-actions>
 </div>

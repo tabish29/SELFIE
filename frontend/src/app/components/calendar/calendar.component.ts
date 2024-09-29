@@ -377,6 +377,7 @@ export class CalendarComponent {
   }
 
   private handleEventClick(clickInfo: EventClickArg) {
+    
 
     const clickedTitle = clickInfo.event.title;
     const clickedActivity = this.activities.find(activity => activity.title === clickedTitle);
@@ -407,6 +408,8 @@ export class CalendarComponent {
           );
         }
       });
+
+      
     } else {
       // Cerca l'evento corrispondente all'interno dell'array `events`
       const clickedEvent = this.events.find(event => event.title === clickedTitle);
@@ -416,6 +419,7 @@ export class CalendarComponent {
 
         // apre il dialogo per modificare l'evento
         const dialogRef = this.dialog.open(NewEventDialogComponent, {
+          
           width: '400px',
           data: { // Passa i dati esistenti dell'evento
             title: clickedEvent.title,
@@ -429,6 +433,7 @@ export class CalendarComponent {
           }
         });
   
+
         dialogRef.afterClosed().subscribe(result => {
           if (result) {
             // Aggiorna l'evento esistente
@@ -448,32 +453,31 @@ export class CalendarComponent {
                 this.loadCalendar(); // Aggiorna il calendario
               }
             );
+          }else{
+            //DELETE EVENT
+            if (confirm("Vuoi eliminare " + clickInfo.event.title + "?")) {
+              clickInfo.event.remove();
+
+              this.eventService.deleteEvent(clickInfo.event.title).subscribe(
+                () => {console.log(clickInfo.event.title + "deleted"),
+                  this.loadEvents()
+                }
+              )
+            }
           }
         });
+
       }
     }
   
-
-    
-    /*
-    const dialogRef = this.dialog.open(UpdateEventComponent, {
-      width: '400px',
-      data: {}
-    });*/
-    
       
 
-    //DELETE EVENT
-    /*if (confirm("Vuoi eliminare " + clickInfo.event.title + "?")) {
-      clickInfo.event.remove();
-
-      this.eventService.deleteEvent(clickInfo.event.title).subscribe(
-        () => {console.log(clickInfo.event.title + "deleted"),
-          this.loadEvents()
-        }
-      )
-    }*/
+    
   
+  }
+
+  public deleteEvent(){
+    
   }
 
   private convertToDateTimeLocalFormat(dateStr: string): string {

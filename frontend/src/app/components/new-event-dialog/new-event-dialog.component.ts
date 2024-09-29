@@ -78,4 +78,8 @@ export class NewEventDialogComponent {
     this.dialogRef.close();
   }
 
+  onDelete(): void{
+    this.dialogRef.close(false);
+  }
+
 }

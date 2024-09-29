@@ -52,4 +52,5 @@ export class NewActivityDialogComponent {
   onCancel(): void {
     this.dialogRef.close();
   }
+
 }
