@@ -134,7 +134,8 @@ export class CalendarComponent {
       }
     );
 
- 
+    this.loadActivities();
+    this.loadEvents(); 
     this.loadCalendar();
   }
 
