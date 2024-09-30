@@ -1,4 +1,3 @@
-
 .container {
     max-width: 1500px;
     margin-left: 0px;
@@ -63,12 +62,17 @@ h1 {
 }
 /*testo va a capo  e spezza la parola se esce dal contenitore*/
 .note-item pre {
-    white-space: normal;      
+    white-space: pre-wrap;   
+    word-break: break-word;  
+    overflow-wrap: break-word;
+}
+
+.note-item h3 {
+    white-space: pre-wrap;     
     word-break: break-word;  
     overflow-wrap: break-word;
 }
   
-
 .note-item:hover {
     transform: translateY(-5px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);

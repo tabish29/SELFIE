@@ -1,17 +1,17 @@
 <h1 mat-dialog-title>Crea Nuova Nota</h1>
 <div mat-dialog-content>
-  <mat-form-field appearance="fill">
+  <mat-form-field class="titleArea" appearance="fill">
     <mat-label>Titolo</mat-label>
-    <input matInput [(ngModel)]="title" required>
+    <input matInput [(ngModel)]="title" required maxlength="50">
   </mat-form-field>
 
-  <mat-form-field appearance="fill">
+  <mat-form-field class="contentArea" appearance="fill">
     <mat-label>Contenuto</mat-label>
-    <textarea matInput [(ngModel)]="content" required></textarea>
+    <textarea matInput [(ngModel)]="content" required (input)="adjustHeight($event)" ></textarea>
   </mat-form-field>
 
   <!-- Campo per aggiungere una nuova categoria -->
-  <mat-form-field appearance="fill">
+  <mat-form-field class="categoryArea" appearance="fill">
     <mat-label>Inserisci Categoria</mat-label>
     <input matInput [(ngModel)]="categoryInput" placeholder="Aggiungi categoria">
   </mat-form-field>

@@ -89,7 +89,13 @@ export class UserNotesComponent {
   }
 
   filterByDate(): void {
-    this.notes.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+    const parseDate = (dateString: string): Date => {
+      const [day, month, yearAndTime] = dateString.split('/');
+      const [year, time] = yearAndTime.split(' ');
+      const [hours, minutes] = time.split(':');
+      return new Date(Number(year), Number(month) - 1, Number(day), Number(hours), Number(minutes));
+    };
+    this.notes.sort((a, b) => parseDate(b.createdAt).getTime() - parseDate(a.createdAt).getTime());
     this.filteredByColorNotes.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
   }
 
@@ -117,7 +123,7 @@ export class UserNotesComponent {
 
   openCreateNoteDialog(): void {
     const dialogRef = this.dialog.open(NewNoteDialogComponent, {
-      width: '400px',
+      width: '600px',
       data: {}
     });
 
@@ -139,7 +145,7 @@ export class UserNotesComponent {
 
   openUpdateNoteDialog(note: UserNote): void {
     const dialogRef = this.dialog.open(UpdateNoteDialogComponent, {
-      width: '400px',
+      width: '600px',
       data: note
     });
 

@@ -1,19 +1,19 @@
 <h1 mat-dialog-title>Update Note</h1>
 <div mat-dialog-content>
   <form>
-    <mat-form-field appearance="fill">
-      <mat-label>Title</mat-label>
+    <mat-form-field appearance="fill" class="titleArea">
+      <mat-label>Titolo</mat-label>
       <input matInput [(ngModel)]="note.title" name="title" required readonly/>
     </mat-form-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Content</mat-label>
-      <textarea matInput [(ngModel)]="note.content" name="content" required></textarea>
+    <mat-form-field appearance="fill" class="contentArea">
+      <mat-label>Contenuto</mat-label>
+      <textarea matInput [(ngModel)]="note.content" name="content" required (input)="adjustHeight($event)"></textarea>
     </mat-form-field>
   </form>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button (click)="onCancel()">Cancella</button>
   <button mat-button (click)="duplicateNote()">Duplica</button>
   <button mat-button (click)="onDelete()">Elimina</button>
   <button mat-button (click)="onUpdate()">Aggiorna</button>
