@@ -10,5 +10,11 @@
     "password": "$2b$10$/xsfLPzPMGyGCcgFCxJFKuCVYpmkuldyq6k4vaPlXRWhRJj4.rmkS",
     "firstName": "d",
     "lastName": "d"
+  },
+  {
+    "username": "Ale",
+    "password": "$2b$10$Fx2MZAl/Ghyh3uQ.v9BfAexSZEfASWwqzwC1SffoIhFXxHA4uKCz2",
+    "firstName": "Aless",
+    "lastName": "Deso"
   }
 ]
