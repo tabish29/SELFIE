@@ -127,6 +127,9 @@ export class CalendarComponent {
         if (updatedTimeMachine) {
           this.today = this.convertToDateTimeLocalFormat(updatedTimeMachine.date);
           this.goToCustomDate(); // Aggiorna la data nel calendario quando cambia
+          this.loadActivities();
+          this.loadEvents(); 
+          this.loadCalendar();
           console.log('TimeMachine aggiornata: ', updatedTimeMachine.date);
         } else {
           console.error('Nessuna TimeMachine disponibile');
@@ -134,9 +137,8 @@ export class CalendarComponent {
       }
     );
 
-    this.loadActivities();
-    this.loadEvents(); 
-    this.loadCalendar();
+    
+    
   }
 
   private loadCalendar(): void{
@@ -192,15 +194,7 @@ export class CalendarComponent {
     this.changeDetector.detectChanges();
   }
 
-
-  /*
-  handleTodayButtonClick() {
-    const calendarApi = this.fullcalendar.getApi();
-    if (calendarApi) {
-      calendarApi.gotoDate(this.today);
-      
-    }
-  }*/
+ 
 
 
   public changeView(viewName: string) {
