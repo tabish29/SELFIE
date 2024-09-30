@@ -104,22 +104,38 @@ export class CalendarComponent {
       console.error('Username is missing');
     }
 
-    this.timeMachineService.getTimeMachine(this.authorUsername).subscribe(
-      (timeMachine: TimeMachine) => {
-        
-        this.today = this.convertToDateTimeLocalFormat(timeMachine.date);
-        
-        this.goToCustomDate();
-
-      },
-      (error) => console.error('Errore nel recupero del time machine', error)
-    );
-
+    this.loadTimeMachineAndListenForChanges();
    
     
     this.loadActivities();
     this.loadEvents();
     
+  }
+
+  private loadTimeMachineAndListenForChanges(): void {
+    this.timeMachineService.getTimeMachine(this.authorUsername).subscribe(
+      (timeMachine) => {
+        this.today = this.convertToDateTimeLocalFormat(timeMachine.date);
+        this.goToCustomDate(); // Vai alla data iniziale
+      },
+      (error) => console.error('Errore nel recupero della TimeMachine', error)
+    );
+
+    // Sottoscrivi all'osservabile per ascoltare gli aggiornamenti in tempo reale
+    this.timeMachineService.timeMachineObservable.subscribe(
+      (updatedTimeMachine: TimeMachine | null) => {
+        if (updatedTimeMachine) {
+          this.today = this.convertToDateTimeLocalFormat(updatedTimeMachine.date);
+          this.goToCustomDate(); // Aggiorna la data nel calendario quando cambia
+          console.log('TimeMachine aggiornata: ', updatedTimeMachine.date);
+        } else {
+          console.error('Nessuna TimeMachine disponibile');
+        }
+      }
+    );
+
+ 
+    this.loadCalendar();
   }
 
   private loadCalendar(): void{
