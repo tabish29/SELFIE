@@ -476,9 +476,7 @@ export class CalendarComponent {
   
   }
 
-  public deleteEvent(){
-    
-  }
+  
 
   private convertToDateTimeLocalFormat(dateStr: string): string {
     // Formato time machine: "dd/MM/yyyy hh:mm"
