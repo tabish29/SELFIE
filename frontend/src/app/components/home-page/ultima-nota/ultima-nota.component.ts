@@ -17,6 +17,7 @@ export class UltimaNotaComponent {
   notes: UserNote[] = [];
   selectedNote: UserNote | null = null;
   authorUsername: string = '';
+  today: string = '';
   noteDay: UserNote[] = []; // Nuovo array per le note del giorno
 
   constructor(
@@ -35,7 +36,7 @@ export class UltimaNotaComponent {
     }
     
     if (this.authorUsername) {
-      this.loadNotesByAuthor(this.authorUsername);
+      this.loadTimeMachineDate();
     } else {
       console.log("Non esiste l'username dell'autore");
     }
@@ -44,6 +45,34 @@ export class UltimaNotaComponent {
   changeVisualMode(newMode: number): void {
     this.visualMode = newMode;
     this.localStorageService.setItem('noteVisualMode', String(this.visualMode));
+  }
+  
+  loadTimeMachineDate(): void {
+    this.timeMachineService.getTimeMachine(this.authorUsername).subscribe(
+      (timeMachine: TimeMachine) => {
+        this.today = timeMachine.date.slice(0, 10); // Converte la stringa in formato YYYY-MM-DD
+        
+        console.log("Data Time Machine:", this.today);
+        this.loadNotesByAuthor(this.authorUsername); // Carica le note dopo aver ottenuto la data
+      },
+      error => {
+        console.error('Errore durante il recupero della time machine:', error);
+      }
+    );
+
+    // Sottoscrizione per ascoltare gli aggiornamenti in tempo reale
+    this.timeMachineService.timeMachineObservable.subscribe(
+      (updatedTimeMachine: TimeMachine | null) => {
+        if (updatedTimeMachine) {
+          this.today = updatedTimeMachine.date.slice(0, 10); // Converte la stringa in formato YYYY-MM-DD
+          
+          this.loadNotesForToday(); // Aggiorna le note per il giorno corrente
+          console.log('TimeMachine aggiornata: ', updatedTimeMachine.date);
+        } else {
+          console.error('Nessuna TimeMachine disponibile');
+        }
+      }
+    );
   }
 
   // Metodo per caricare le note dell'autore

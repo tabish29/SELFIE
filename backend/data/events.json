@@ -53,5 +53,42 @@
     "notes": "andare all openday",
     "recurrence": "none",
     "authorUsername": "Ale"
+  },
+  {
+    "title": "Palestra",
+    "dateStart": "2024-09-15T09:00",
+    "dateEnd": "2024-10-20T09:00",
+    "place": "Pale",
+    "notes": "Allenarsi in palestra fa bene",
+    "recurrence": "none",
+    "authorUsername": "Ale"
+  },
+  {
+    "title": "Ciaooooooooo",
+    "dateStart": "2024-09-24T22:00:00.000Z",
+    "dateEnd": "2024-09-24T22:00:00.000Z",
+    "place": "",
+    "notes": "Salutare",
+    "recurrence": "daily",
+    "recurrenceEnd": "2024-09-26T22:00:00.000Z",
+    "authorUsername": "Ale"
+  },
+  {
+    "title": "Deso sei bellissimo ricordalo",
+    "dateStart": "2024-09-01T22:00:00.000Z",
+    "dateEnd": "2024-09-01T22:00:00.000Z",
+    "place": "",
+    "notes": "non fare nulla",
+    "recurrence": "none",
+    "authorUsername": "Ale"
+  },
+  {
+    "title": "nulla",
+    "dateStart": "2024-09-22T22:00:00.000Z",
+    "dateEnd": "2024-09-22T22:00:00.000Z",
+    "place": "",
+    "notes": "mmmmmmmmmmmmmmm",
+    "recurrence": "none",
+    "authorUsername": "Ale"
   }
 ]

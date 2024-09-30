@@ -65,6 +65,23 @@ export class EventiPreviewComponent implements OnInit {
         console.error('Errore durante il recupero della time machine:', error);
       }
     );
+    // Sottoscrivi all'osservabile per ascoltare gli aggiornamenti in tempo reale
+    this.timeMachineService.timeMachineObservable.subscribe(
+      (updatedTimeMachine: TimeMachine | null) => {
+        if (updatedTimeMachine) {
+          var temp = updatedTimeMachine.date.slice(0,10);
+          var d = temp.substring(0,2);
+          var m = temp.substring(3,5);
+          var y = temp.substring(6,10);
+          this.today = new Date(y+"-"+m+"-"+d); 
+          
+          this.loadEventsByAuthor(this.authorUsername);//Metodo di aggiornamento
+          console.log('TimeMachine aggiornata: ', updatedTimeMachine.date);
+        } else {
+          console.error('Nessuna TimeMachine disponibile');
+        }
+      }
+    );
   }
 
   // Metodo per caricare gli eventi relativi all'autore
