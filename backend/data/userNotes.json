@@ -134,5 +134,23 @@
     "updatedAt": "23/09/2024 16:34",
     "authorUsername": "Ale",
     "noteColor": "red"
+  },
+  {
+    "title": "Nota 10 novembre",
+    "content": "Provare per credere",
+    "categories": [],
+    "createdAt": "10/11/2024 16:44",
+    "updatedAt": "10/11/2024 16:44",
+    "authorUsername": "Ale",
+    "noteColor": "purple"
+  },
+  {
+    "title": "Seconda nota",
+    "content": "speriamo ",
+    "categories": [],
+    "createdAt": "10/11/2024 16:45",
+    "updatedAt": "10/11/2024 16:45",
+    "authorUsername": "Ale",
+    "noteColor": "green"
   }
 ]

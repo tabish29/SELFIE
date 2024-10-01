@@ -25,8 +25,8 @@
   cursor: pointer;
 }
 /*testo va a capo  e spezza la parola se esce dal contenitore*/
-.note-item pre {
-  white-space: normal;      
+.note-item pre, .note-item h3 {
+  white-space: pre-wrap;      
   word-break: break-word;  
   overflow-wrap: break-word;
 }

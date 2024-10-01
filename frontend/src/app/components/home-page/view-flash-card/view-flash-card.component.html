@@ -2,6 +2,7 @@
     <!-- Modalità di visualizzazione Flash-Card: Tutti i Topic -->
     <div *ngIf="visualMode === 0" class="preview-card">
         <h4>Elenco Topic</h4>
+        <p *ngIf="topics.length === 0">Non sono presenti Topics.</p>
         <ul>
             <li *ngFor="let topic of topics">
                 <h6>{{ topic }}</h6>
@@ -12,6 +13,7 @@
     <!-- Modalità di visualizzazione Flash-Card: Tutte le Domande per ogni Topic -->
     <div *ngIf="visualMode === 1" class="preview-card">
         <h4>Domande</h4>
+        <p *ngIf="flashcardSets.length === 0">Non sono presenti FlashCard.</p>
         <div *ngFor="let flashcardSet of flashcardSets">
             <h6>{{ flashcardSet.topic }}</h6>
             <ol>
@@ -25,6 +27,7 @@
     <!-- Modalità di visualizzazione Flash-Card: Tutte le Risposte per ogni Topic -->
     <div *ngIf="visualMode === 2" class="preview-card">
         <h4>Risposte</h4>
+        <p *ngIf="flashcardSets.length === 0">Non sono presenti FlashCard.</p>
         <div *ngFor="let flashcardSet of flashcardSets">
             <h6>{{ flashcardSet.topic }}</h6>
             <ol>

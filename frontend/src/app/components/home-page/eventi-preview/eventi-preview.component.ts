@@ -58,7 +58,7 @@ export class EventiPreviewComponent implements OnInit {
         var y = temp.substring(6,10);
     
         this.today = new Date(y+"-"+m+"-"+d); 
-        console.log("Controllo 1 data TM:",this.today);
+        //console.log("Controllo 1 data TM:",this.today);
         this.loadEventsByAuthor(this.authorUsername); // Carica gli eventi dell'autore dopo aver ottenuto la data
       },
       error => {
@@ -76,7 +76,7 @@ export class EventiPreviewComponent implements OnInit {
           this.today = new Date(y+"-"+m+"-"+d); 
           
           this.loadEventsByAuthor(this.authorUsername);//Metodo di aggiornamento
-          console.log('TimeMachine aggiornata: ', updatedTimeMachine.date);
+          //console.log('TimeMachine aggiornata: ', updatedTimeMachine.date);
         } else {
           console.error('Nessuna TimeMachine disponibile');
         }
@@ -89,27 +89,42 @@ export class EventiPreviewComponent implements OnInit {
     this.eventService.getEventsByAuthor(authorUsername).subscribe(
       (events: Event[]) => {
         this.events = events;
-        console.log(events);
+        //console.log(events);
+        this.events.forEach(event => {
+          const isFullDayEvent = this.isAllDay(event);
+          console.log(`Evento: ${event.title} - isFullDay: ${isFullDayEvent}`);
+          if(isFullDayEvent){
+            var dt = new Date(event.dateEnd);
+            dt.setUTCDate(dt.getUTCDate() + 1);
+            event.dateEnd = dt;
+          }
+        });
         this.filterEvents();  // Metodo per filtrare gli eventi mensili, settimanali e giornalieri
         //this.selectLatestEvent();  // Metodo per selezionare l'ultimo evento
       },
       error => console.error('Errore nel caricamento degli eventi dell\'autore', error)
     );
   }
-
+  private isAllDay(event: Event): boolean{
+    if(event.dateStart == event.dateEnd){
+      return true;
+    }else {
+      return false;
+    }
+  }
   // Metodo per filtrare eventi in base a giorno, settimana e mese
   filterEvents(): void {
     // Filtra eventi mensili
     this.monthlyEvents = this.events.filter(event => {
       const eventDate = new Date(event.dateStart).toISOString().slice(0, 7); // YYYY-MM
-      console.log("controllo:", eventDate,this.today.toISOString().slice(0, 7))
+      //console.log("controllo:", eventDate,this.today.toISOString().slice(0, 7))
       return eventDate === this.today.toISOString().slice(0, 7); // Verifica mese e anno
     });
 
     // Filtra eventi settimanali
     const weekStart = this.getStartOfWeek(this.today);
     const weekEnd = this.addDays(weekStart, 6); // Fine settimana
-
+    //console.log(weekStart, "-" , weekEnd);
     this.weeklyEvents = this.events.filter(event => {
       const eventDate = new Date(event.dateStart).toISOString().slice(0, 10); // YYYY-MM-DD
       return eventDate >= weekStart && eventDate <= weekEnd;
@@ -117,8 +132,8 @@ export class EventiPreviewComponent implements OnInit {
 
     // Filtra eventi giornalieri
     this.dailyEvents = this.events.filter(event => {
-      const eventDate = new Date(event.dateStart).toISOString().slice(0, 10); // YYYY-MM-DD
-      console.log(eventDate,this.today.toISOString().slice(0,10));
+      const eventDate = new Date(event.dateEnd).toISOString().slice(0, 10); // YYYY-MM-DD
+      //console.log("evento:: ", event, eventDate, "oggi", this.today.toISOString().slice(0,10));
       return eventDate === this.today.toISOString().slice(0,10);
     });
 

@@ -90,5 +90,50 @@
     "notes": "mmmmmmmmmmmmmmm",
     "recurrence": "none",
     "authorUsername": "Ale"
+  },
+  {
+    "title": "Compleanno A",
+    "dateStart": "2024-11-09T23:00:00.000Z",
+    "dateEnd": "2024-11-09T23:00:00.000Z",
+    "place": "",
+    "notes": "Festeggia a sorpresa a",
+    "recurrence": "none",
+    "authorUsername": "Ale"
+  },
+  {
+    "title": "Altro Evento all day",
+    "dateStart": "2024-11-13T23:00:00.000Z",
+    "dateEnd": "2024-11-13T23:00:00.000Z",
+    "place": "",
+    "notes": "okokok",
+    "recurrence": "none",
+    "authorUsername": "Ale"
+  },
+  {
+    "title": "Evento su 2 giorni",
+    "dateStart": "2024-10-17T11:00",
+    "dateEnd": "2024-10-18T12:00",
+    "place": "",
+    "notes": "che facciamo?",
+    "recurrence": "none",
+    "authorUsername": "Ale"
+  },
+  {
+    "title": "Funziona su 2 giorni?",
+    "dateStart": "2024-11-17T08:23",
+    "dateEnd": "2024-11-18T12:00",
+    "place": "",
+    "notes": "Funzionare???",
+    "recurrence": "none",
+    "authorUsername": "Ale"
+  },
+  {
+    "title": "Evento Cena",
+    "dateStart": "2024-11-10T20:00",
+    "dateEnd": "2024-11-10T23:00",
+    "place": "",
+    "notes": "Cena",
+    "recurrence": "none",
+    "authorUsername": "Ale"
   }
 ]
