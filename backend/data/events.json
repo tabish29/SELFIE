@@ -135,5 +135,14 @@
     "notes": "Cena",
     "recurrence": "none",
     "authorUsername": "Ale"
+  },
+  {
+    "title": "sovrapposizione",
+    "dateStart": "2024-10-07T17:00",
+    "dateEnd": "2024-10-07T23:00",
+    "place": "",
+    "notes": "",
+    "recurrence": "none",
+    "authorUsername": "mati"
   }
 ]
