@@ -72,7 +72,7 @@ export class CalendarComponent {
       }
     },
     initialView: 'dayGridMonth',
-    //initialDate: new Date(),
+    //now: '2024-10-15', perchè qui funziona ma dinamicamente no???
     weekends: true,
     editable: false, //drag-end-drop degli eventi
     selectable: false,  //selezione giorno
@@ -93,6 +93,7 @@ export class CalendarComponent {
     }
 
     this.loadTimeMachine();
+  
   }
 
   // Spostamento time-machine
@@ -118,8 +119,13 @@ export class CalendarComponent {
         if (updatedTimeMachine) { 
           this.today = this.convertToDateTimeLocalFormat(updatedTimeMachine.date);
           this.goToCustomDate(); 
-          
         } 
+
+        /*  PERCHE NON FUNZIONAAAA???
+        this.calendarOptions.set({
+          ...this.calendarOptions(),
+          now: this.convertToISOFormat(this.today)  // Imposta la nuova data 'now'
+        });*/
 
         this.loadActivities();
         this.loadEvents(); 
@@ -127,13 +133,26 @@ export class CalendarComponent {
       }
     );
 
+    
+
   }
+
+  /*private convertToISOFormat(dateStr: string): string {
+    const [datePart, timePart] = dateStr.split('T');
+    const [year, month, day] = datePart.split('-');
+    const formattedYear = year.length === 2 ? `20${year}` : year;
+    const isoDate = `${formattedYear}-${month}-${day}`;
+  
+    return isoDate;
+  }*/
   
   // Cambiamento data del calendario
   private goToCustomDate(): void{
+    
     const calendarApi = this.fullcalendar.getApi();
     calendarApi.gotoDate(this.today);
     this.changeDetector.detectChanges();
+    
   }
 
   /* CALENDAR */

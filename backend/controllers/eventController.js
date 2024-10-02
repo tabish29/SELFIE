@@ -77,38 +77,6 @@ async function deleteEvent(title) {
     await writeEventsFile(events);
 }
 
-/*
-async function updateActivity(title, updatedData) {
-    const activities = await readActivitiesFile();
-    const activityIndex = activities.findIndex(activity => activity.title === title);
-
-    if (noteIndex === -1) {
-        throw new Error('Attivita non trovata');
-    }
-
-    const activity = activities[activityIndex];
-
-
-    if (updatedData.content) {
-        activity.content = updatedData.content;
-        activity.updatedAt = new Date();
-    }
-
-
-    Object.assign(activity, updatedData);
-
-    await writeActivitiesFile(activities);
-}*/
-
-/*
-async function getEventsPreview(length = 200) {
-    const events = await readEventsFile();
-    return events.map(activity => ({
-        title: event.title,
-        preview: event.content.length > length ? event.content.substring(0, length) + '...' : event.content
-    }));
-}*/
-
 async function getEventsByAuthor(authorUsername) {
     const events = await readEventsFile();
     return events.filter(event => event.authorUsername === authorUsername);
@@ -150,8 +118,6 @@ module.exports = {
     getAllEvents,
     addEvent,
     deleteEvent,
-    //updateActivity,
-    //getEventsPreview,
     getEventsByAuthor,
     updateEvent
 };

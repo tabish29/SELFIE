@@ -38,16 +38,9 @@ async function getAllActivities() {
 }
 
 async function addActivity(title, dueDate, notes, authorUsername) {
-    console.log("activityController: addActivity");
     if (!title || !dueDate || !authorUsername) {
         throw new Error('Title, dueDate, authorUsername are required');
     }
-
-    /*
-    const existingActivity = await findActivityByTitle(title);
-    if (existingActivity) {
-        throw new Error('Activity with this title already exists');
-    }*/
 
     const newActivity = new Activity(
         title,
@@ -99,29 +92,6 @@ const updateActivity = async (title, updatedData) => {
     }
 };
 
-/*
-async function updateActivity(title, updatedData) {
-    const activities = await readActivitiesFile();
-    const activityIndex = activities.findIndex(activity => activity.title === title);
-
-    if (noteIndex === -1) {
-        throw new Error('Attivita non trovata');
-    }
-
-    const activity = activities[activityIndex];
-
-
-    if (updatedData.content) {
-        activity.content = updatedData.content;
-        activity.updatedAt = new Date();
-    }
-
-
-    Object.assign(activity, updatedData);
-
-    await writeActivitiesFile(activities);
-}*/
-
 
 async function getActivitiesPreview(length = 200) {
     const activities = await readActivitiesFile();
@@ -143,7 +113,6 @@ module.exports = {
     getAllActivities,
     addActivity,
     deleteActivity,
-    //updateActivity,
     getActivitiesPreview,
     getActivitiesByAuthor,
     updateActivity 

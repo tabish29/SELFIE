@@ -1,13 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-//import { TimeMachineService } from '../../services/time-machine.service';
 import { LocalStorageService } from '../../services/local-storage.service';
-//import { TimeMachine } from '../../models/TimeMachine';
-//import { CalendarComponent } from '../calendar/calendar.component';
-//import { Activity } from '../../models/Activity';
-import { ActivityService } from '../../services/activity.service';
-
-
 
 @Component({
   selector: 'app-new-activity-dialog',
@@ -15,17 +8,15 @@ import { ActivityService } from '../../services/activity.service';
   styleUrl: './new-activity-dialog.component.css'
 })
 export class NewActivityDialogComponent {
+  //proprietà della classe
   title: string = '';
   dueDate: null = null;
   notes: string = '';
   authorUsername: string | null = null;
 
   constructor(
-    public dialogRef: MatDialogRef<NewActivityDialogComponent>,
-    private activityService: ActivityService,
-    //private timeMachineService: TimeMachineService,
+    public dialogRef: MatDialogRef<NewActivityDialogComponent>, //riferimento al dialogo
     private localStorageService: LocalStorageService,
-    //private calendarComponent: CalendarComponent,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 

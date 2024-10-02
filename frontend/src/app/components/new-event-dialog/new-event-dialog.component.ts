@@ -1,7 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { LocalStorageService } from '../../services/local-storage.service';
-import { EventService } from '../../services/event.service';
 
 @Component({
   selector: 'app-new-event-dialog',
@@ -9,6 +8,7 @@ import { EventService } from '../../services/event.service';
   styleUrl: './new-event-dialog.component.css'
 })
 export class NewEventDialogComponent {
+  //proprietà della classe
   title: string = '';
   dateStart: null = null;
   dateEnd: null = null;
@@ -20,9 +20,8 @@ export class NewEventDialogComponent {
   authorUsername: string | null = null;
 
   constructor(
-    public dialogRef: MatDialogRef<NewEventDialogComponent>,
-    private eventService: EventService,
-    private localStorageService: LocalStorageService,
+    public dialogRef: MatDialogRef<NewEventDialogComponent>,  //riferimento al dialogo 
+    private localStorageService: LocalStorageService, //
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     
@@ -64,12 +63,6 @@ export class NewEventDialogComponent {
   public allDayChange(): void{
 
     this.allDay = !this.allDay;
-    /*if(this.allDay){
-      this.allDay = false;
-    }else {
-      this.allDay = true;
-    }*/
-
     
   }
 

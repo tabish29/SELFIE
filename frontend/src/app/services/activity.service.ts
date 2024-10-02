@@ -4,24 +4,24 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root'  //service disponibile a livello globale
 })
 export class ActivityService {
+
   private apiUrl = 'http://localhost:3000/activities';  
 
   constructor(private http: HttpClient) { }
 
-  getActivitiy(): Observable<Activity[]> {
+  getActivities(): Observable<Activity[]> {    
     return this.http.get<Activity[]>(this.apiUrl);
   }
 
-  getActivityByTitle(title: string): Observable<Activity> {
+  getActivityByTitle(title: string): Observable<Activity> {   
     return this.http.get<Activity>(`${this.apiUrl}/${title}`);
   }
 
   createActivity(activity: Activity): Observable<Activity> {
     return this.http.post<Activity>(this.apiUrl, activity);
-    
   }
 
   deleteActivity(title: string): Observable<void> {
@@ -36,5 +36,4 @@ export class ActivityService {
     return this.http.put<Activity>(`${this.apiUrl}/${activity.title}`, activity);
   }
 
- 
 }
