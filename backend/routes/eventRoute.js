@@ -58,10 +58,10 @@ router.get('/authors/:authorUsername', async (req, res) => {
     }
 });
 
-router.delete('/:title', async (req, res) => {
-    const { title } = req.params;
+router.delete('/:authorUsername/:title', async (req, res) => {
+    const { authorUsername, title } = req.params;
     try {
-        await eventController.deleteEvent(title);
+        await eventController.deleteEvent(authorUsername, title);
         res.status(200).json({ message: 'Evento eliminato con successo' });
     } catch (error) {
         res.status(404).json({ error: error.message });

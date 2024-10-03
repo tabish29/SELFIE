@@ -19,8 +19,8 @@ export class EventService {
     return this.http.post<Event>(this.apiUrl, event);
   }
 
-  deleteEvent(title: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${title}`);
+  deleteEvent(authorUsername: string, title: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${authorUsername}/${title}`);
   }
 
   getEventsByAuthor(authorUsername: string): Observable<Event[]> {

@@ -24,8 +24,8 @@ export class ActivityService {
     return this.http.post<Activity>(this.apiUrl, activity);
   }
 
-  deleteActivity(title: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${title}`);
+  deleteActivity(authorUsername: string, title: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${authorUsername}/${title}`);
   }
 
   getActivitiesByAuthor(authorUsername: string): Observable<Activity[]> {

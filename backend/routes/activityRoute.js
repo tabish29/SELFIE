@@ -59,10 +59,10 @@ router.get('/:title', async (req, res) => {
 });*/
 
 
-router.delete('/:title', async (req, res) => {
-    const { title } = req.params;
+router.delete('/:authorUsername/:title', async (req, res) => {
+    const { authorUsername, title } = req.params;
     try {
-        await activityController.deleteActivity(title);
+        await activityController.deleteActivity(authorUsername, title);
         res.status(200).json({ message: 'Attivita eliminata con successo' });
     } catch (error) {
         res.status(404).json({ error: error.message });

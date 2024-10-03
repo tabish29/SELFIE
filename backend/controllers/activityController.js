@@ -53,10 +53,9 @@ async function addActivity(title, dueDate, notes, authorUsername) {
 }
 
 
-async function deleteActivity(title) {
-    console.log("delete");
+async function deleteActivity(authorUsername, title) {
     const activities = await readActivitiesFile();
-    const activityIndex = activities.findIndex(activity => activity.title === title);
+    const activityIndex = activities.findIndex(activity => activity.title === title && activity.authorUsername === authorUsername);
 
     if (activityIndex === -1) {
         throw new Error('Attivita non trovata');

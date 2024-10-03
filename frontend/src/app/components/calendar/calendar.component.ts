@@ -304,7 +304,7 @@ export class CalendarComponent {
   // Eliminazione con checkbox
   public onCheckboxChange(activity: Activity){
     if (confirm("Vuoi eliminare " + activity.title + "?")) {  //crea finestra di conferma
-      this.activityService.deleteActivity(activity.title).subscribe(
+      this.activityService.deleteActivity(this.authorUsername, activity.title).subscribe(
       () => {console.log(activity.title + "deleted"),
         this.loadActivities()
       }
@@ -473,7 +473,7 @@ export class CalendarComponent {
             if (confirm("Vuoi eliminare " + clickInfo.event.title + "?")) {
               clickInfo.event.remove();
 
-              this.eventService.deleteEvent(clickInfo.event.title).subscribe(
+              this.eventService.deleteEvent(this.authorUsername, clickInfo.event.title).subscribe(
                 () => {console.log(clickInfo.event.title + "deleted"),
                   this.loadEvents()
                 }

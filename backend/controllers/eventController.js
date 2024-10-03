@@ -63,9 +63,9 @@ async function addEvent(title, dateStart, dateEnd, place, notes, recurrence, rec
 }
 
 
-async function deleteEvent(title) {
+async function deleteEvent(authorUsername, title) {
     const events = await readEventsFile();
-    const eventIndex = events.findIndex(event => event.title === title );
+    const eventIndex = events.findIndex(event => event.title === title  && event.authorUsername === authorUsername);
 
     if (eventIndex === -1) {
         throw new Error('Evento non trovato');
