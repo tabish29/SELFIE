@@ -82,36 +82,27 @@ async function getEventsByAuthor(authorUsername) {
     
 }
 
-async function updateEvent(title, updatedData) {
-    console.log(title);
-    console.log(updatedData);
+async function updateEvent(authorUsername, title, updatedData) {
     const events = await readEventsFile();
-    const eventIndex = events.findIndex(event => event.title === title);
+    const eventIndex = events.findIndex(event => event.title === title && event.authorUsername === authorUsername);
 
     if (eventIndex === -1) {
         throw new Error('Evento non trovato');
     }
 
     const event = events[eventIndex]; 
-    console.log(event);
 
-    if (!title || !dateStart || !dateEnd || !authorUsername) {
-        throw new Error('Title, dateStart, dateEnd, authorUsername are required');
-    }
+    console.log("evento: " + event.dateStart + event.dateEnd + event.place + event.notes + event.recurrence + event.recurrenceEnd);
+    console.log("nuovi dati: " + updatedData.dateStart + updatedData.dateEnd + updatedData.place + updatedData.notes + updatedData.recurrence + updatedData.recurrenceEnd);
     
-    event.title = event.title;
-    event.dateStart = updatedData.dateStart || event.dateStart;
-    event.dateEnd = updatedData.dateEnd || event.dateEnd;
-    event.place = updatedData.place || event.place;
-    event.notes = updatedData.notes || event.notes;
-    event.recurrence = updatedData.recurrence || event.recurrence;
-    event.recurrenceEnd = updatedData.recurrenceEnd || event.recurrenceEnd;
-    event.authorUsername = updatedData.authorUsername || event.authorUsername;
-
-    // Salva l'evento aggiornato nel database
-    await writeEventsFile(events);  // Supponendo che questa funzione sovrascriva il file con il nuovo array
-
-    return event; 
+    event.dateStart = updatedData.dateStart;
+    event.dateEnd = updatedData.dateEnd;
+    event.place = updatedData.place || "";
+    event.notes = updatedData.notes || "";
+    event.recurrence = updatedData.recurrence || recurrence;
+    event.recurrenceEnd = updatedData.recurrenceEnd || "";
+    
+    await writeEventsFile(events);
     
 }
 

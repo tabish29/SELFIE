@@ -3,7 +3,7 @@
   <mat-dialog-content>
     <mat-form-field class="custom-form-field">
       <mat-label>Titolo</mat-label>
-      <input matInput [(ngModel)]="data.title" required>
+      <input matInput [(ngModel)]="data.title" [disabled]="isDisabled" required>
     </mat-form-field>
 
     <mat-form-field class="custom-form-field">

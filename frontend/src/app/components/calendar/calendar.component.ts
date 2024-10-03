@@ -72,7 +72,7 @@ export class CalendarComponent {
       }
     },
     initialView: 'dayGridMonth',
-    //now: '2024-10-15', perchè qui funziona ma dinamicamente no???
+    //now: '2024-10-15', //perchè qui funziona ma dinamicamente no???
     weekends: true,
     editable: false, //drag-end-drop degli eventi
     selectable: false,  //selezione giorno
@@ -92,8 +92,8 @@ export class CalendarComponent {
       console.error('Username is missing');
     }
 
-    this.loadTimeMachine();
-  
+    this.loadTimeMachine();    
+    
   }
 
   // Spostamento time-machine
@@ -121,11 +121,7 @@ export class CalendarComponent {
           this.goToCustomDate(); 
         } 
 
-        /*  PERCHE NON FUNZIONAAAA???
-        this.calendarOptions.set({
-          ...this.calendarOptions(),
-          now: this.convertToISOFormat(this.today)  // Imposta la nuova data 'now'
-        });*/
+        
 
         this.loadActivities();
         this.loadEvents(); 
@@ -133,25 +129,34 @@ export class CalendarComponent {
       }
     );
 
-    
-
   }
 
-  /*private convertToISOFormat(dateStr: string): string {
+  private convertToISOFormat(dateStr: string): string {
     const [datePart, timePart] = dateStr.split('T');
     const [year, month, day] = datePart.split('-');
     const formattedYear = year.length === 2 ? `20${year}` : year;
     const isoDate = `${formattedYear}-${month}-${day}`;
   
     return isoDate;
-  }*/
+  }
   
   // Cambiamento data del calendario
   private goToCustomDate(): void{
+    console.log(this.convertToISOFormat(this.today));
     
+    //PERCHE NON FUNZIONAAAA???
+    this.calendarOptions.set({
+      ...this.calendarOptions(),
+      //now: this.convertToISOFormat(this.today)  // Imposta la nuova data 'now'
+      //now: this.today
+      now: '2024-10-15'
+    });
+
     const calendarApi = this.fullcalendar.getApi();
     calendarApi.gotoDate(this.today);
     this.changeDetector.detectChanges();
+
+    
     
   }
 
@@ -389,22 +394,24 @@ export class CalendarComponent {
         data: { // Passa i dati esistenti dell'attività
           title: clickedActivity.title,
           dueDate: clickedActivity.dueDate,
-          notes: clickedActivity.notes
+          notes: clickedActivity.notes,
         }
       });
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
-          // Aggiorna l'attività esistente
-          clickedActivity.title = result.title;
-          clickedActivity.dueDate = result.dueDate;
-          clickedActivity.notes = result.notes;
+          //Nuovi dati
+          const modifiedActivity: Activity = {
+            title: result.title,
+            dueDate: result.dueDate,
+            notes: result.notes,
+            authorUsername: this.authorUsername
+          };
   
           // Salva le modifiche sul server
-          this.activityService.updateActivity(clickedActivity).subscribe(
+          this.activityService.updateActivity(this.authorUsername, modifiedActivity.title, modifiedActivity).subscribe(
             () => {
-              console.log('Attività aggiornata con successo');
-              this.loadActivities(); 
-              this.loadCalendar(); 
+              console.log('Evento aggiornato con successo');
+              this.loadActivities();
             }
           );
         }
@@ -438,22 +445,23 @@ export class CalendarComponent {
 
         dialogRef.afterClosed().subscribe(result => {
 
+          var endOfRecurrence = (result.recurrence == "none"? "" : result.recurrenceEnd); 
           if (result) {
-            // Aggiorna l'evento esistente
-            clickedEvent.title = result.title;
-            clickedEvent.dateStart = new Date(result.dateStart);
-            clickedEvent.dateEnd = new Date(result.dateEnd);
-            //clickedEvent.dateStart = result.dateStart;
-            //clickedEvent.dateEnd = result.dateEnd;
-            clickedEvent.place = result.place;
-            clickedEvent.notes = result.notes;
-            clickedEvent.recurrence = result.recurrence;
-            clickedEvent.recurrenceEnd = result.recurrenceEnd;
-  
-            console.log(clickedEvent)
+            //Nuovi dati
+            const modifiedEvent: Event = {
+              title: result.title,
+              dateStart: result.dateStart,
+              dateEnd: result.dateEnd,
+              place: result.place,
+              notes: result.notes,
+              recurrence: result.recurrence,
+              recurrenceEnd: endOfRecurrence,
+              authorUsername: this.authorUsername
+            };
+
 
             // Salva le modifiche sul server
-            this.eventService.updateEvent(clickedEvent).subscribe(
+            this.eventService.updateEvent(modifiedEvent.authorUsername, modifiedEvent.title, modifiedEvent).subscribe(
               () => {
                 console.log('Evento aggiornato con successo');
                 this.loadEvents();

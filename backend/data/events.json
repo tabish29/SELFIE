@@ -15,7 +15,7 @@
     "place": "Leggere Strutture",
     "notes": "",
     "recurrence": "weekly",
-    "recurrenceEnd": "2024-12-30",
+    "recurrenceEnd": "2024-10-27T23:00:00.000Z",
     "authorUsername": "mati"
   },
   {
@@ -153,5 +153,15 @@
     "notes": "",
     "recurrence": "none",
     "authorUsername": "mati"
+  },
+  {
+    "title": "Disperazione",
+    "dateStart": "2024-10-21T22:00:00.000Z",
+    "dateEnd": "2024-10-21T22:00:00.000Z",
+    "place": "Luogo",
+    "notes": "aaa",
+    "recurrence": "none",
+    "authorUsername": "mati",
+    "recurrenceEnd": ""
   }
 ]

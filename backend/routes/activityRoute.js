@@ -29,23 +29,16 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.put('/:title', async (req, res) => {
-    const { title } = req.params; // Titolo passato nell'URL
-    const updatedData = req.body; // Dati dell'attività aggiornati passati nel body della richiesta
+router.put('/:authorUsername/:title', async (req, res) => {
+
+    const { authorUsername, title } = req.params; 
+    const updatedData = req.body; 
 
     try {
-        // Verifica se il titolo esiste nel body (opzionale)
-        if (!updatedData.title || !updatedData.dueDate || !updatedData.authorUsername) {
-            throw new Error('Inserire tutti i campi obbligatori');
-        }
-
-        // Chiamata al controller per aggiornare l'attività con il titolo specificato
-        const updatedActivity = await activityController.updateActivity(title, updatedData);
-
-        // Se l'attività è stata aggiornata con successo
-        res.status(200).json({ message: 'Attività aggiornata con successo', activity: updatedActivity });
+        await activityController.updateActivity(authorUsername, title, updatedData);
+        res.status(200).json({ message: 'Evento aggiornato con successo'});
     } catch (error) {
-        console.error('Errore durante l\'aggiornamento dell\'attività:', error.message);
+        console.error('Errore durante l\'aggiornamento dell\'evento:', error.message);
         res.status(400).json({ error: error.message });
     }
 });

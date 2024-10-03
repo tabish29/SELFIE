@@ -67,30 +67,22 @@ async function deleteActivity(title) {
     await writeActivitiesFile(activities);
 }
 
-const updateActivity = async (title, updatedData) => {
-    try {
-        // Trova l'attività esistente in base al titolo
-        const activity = await Activity.findOne({ title });
+async function updateActivity(authorUsername, title, updatedData) {
+    const activities = await readActivitiesFile();
+    const activityIndex = activities.findIndex(activity => activity.title === title && activity.authorUsername === authorUsername);
 
-        if (!activity) {
-            throw new Error('Attività non trovata');
-        }
-
-        // Aggiorna i campi con i dati forniti
-        activity.title = updatedData.title || activity.title;
-        activity.dueDate = updatedData.dueDate || activity.dueDate;
-        activity.notes = updatedData.notes || activity.notes;
-        activity.authorUsername = updatedData.authorUsername || activity.authorUsername;
-
-        // Salva le modifiche nel database
-        const updatedActivity = await activity.save();
-
-        return updatedActivity;
-    } catch (error) {
-        console.error('Errore durante l\'aggiornamento dell\'attività:', error.message);
-        throw error;
+    if (activityIndex === -1) {
+        throw new Error('Attività non trovata');
     }
-};
+
+    const activity = activities[activityIndex]; 
+    
+    activity.dueDate = updatedData.dueDate;
+    activity.notes = updatedData.notes || "";
+    
+    await writeActivitiesFile(activities);
+    
+}
 
 
 async function getActivitiesPreview(length = 200) {

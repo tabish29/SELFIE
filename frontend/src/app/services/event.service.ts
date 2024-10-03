@@ -27,8 +27,8 @@ export class EventService {
     return this.http.get<Event[]>(`${this.apiUrl}/authors/${authorUsername}`);
   }
 
-  updateEvent(event: Event): Observable<Event> {
-    return this.http.put<Event>(`${this.apiUrl}/${event.title}`, event);
+  updateEvent(authorUsername: string, title: string, event: Event): Observable<Event> {
+    return this.http.put<Event>(`${this.apiUrl}/${authorUsername}/${title}`, event);
   }
 }
 
