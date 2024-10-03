@@ -335,6 +335,8 @@ export class CalendarComponent {
           authorUsername: this.authorUsername
         };
 
+        console.log("data evento creato: " + newEvent.dateStart);
+
         this.events.push(newEvent);
 
         this.eventService.createEvent(newEvent).subscribe(
@@ -414,9 +416,8 @@ export class CalendarComponent {
       //EVENTI
       // Cerca l'evento nell'array degli eventi
       const clickedEvent = this.events.find(event => event.title === clickedTitle);
-      
+
       if (clickedEvent) {
-        const isAllDay = this.isAllDay(clickedEvent);
 
         // apre il dialogo per modificare l'evento
         const dialogRef = this.dialog.open(NewEventDialogComponent, {
@@ -430,22 +431,27 @@ export class CalendarComponent {
             notes: clickedEvent.notes,
             recurrence: clickedEvent.recurrence,
             recurrenceEnd: clickedEvent.recurrenceEnd,
-            allday: isAllDay 
+            allday: this.isAllDay(clickedEvent)
+            
           }
         });
-  
 
         dialogRef.afterClosed().subscribe(result => {
+
           if (result) {
             // Aggiorna l'evento esistente
             clickedEvent.title = result.title;
-            clickedEvent.dateStart = result.dateStart;
-            clickedEvent.dateEnd = result.dateEnd;
+            clickedEvent.dateStart = new Date(result.dateStart);
+            clickedEvent.dateEnd = new Date(result.dateEnd);
+            //clickedEvent.dateStart = result.dateStart;
+            //clickedEvent.dateEnd = result.dateEnd;
             clickedEvent.place = result.place;
             clickedEvent.notes = result.notes;
             clickedEvent.recurrence = result.recurrence;
             clickedEvent.recurrenceEnd = result.recurrenceEnd;
   
+            console.log(clickedEvent)
+
             // Salva le modifiche sul server
             this.eventService.updateEvent(clickedEvent).subscribe(
               () => {

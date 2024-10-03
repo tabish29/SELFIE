@@ -64,9 +64,8 @@ async function addEvent(title, dateStart, dateEnd, place, notes, recurrence, rec
 
 
 async function deleteEvent(title) {
-    console.log("delete");
     const events = await readEventsFile();
-    const eventIndex = events.findIndex(event => event.title === title);
+    const eventIndex = events.findIndex(event => event.title === title );
 
     if (eventIndex === -1) {
         throw new Error('Evento non trovato');
@@ -83,34 +82,38 @@ async function getEventsByAuthor(authorUsername) {
     
 }
 
-const updateEvent = async (title, updatedData) => {
-    try {
-        // Cerca l'evento da aggiornare in base al titolo
-        const event = await Event.findOne({ title });
+async function updateEvent(title, updatedData) {
+    console.log(title);
+    console.log(updatedData);
+    const events = await readEventsFile();
+    const eventIndex = events.findIndex(event => event.title === title);
 
-        if (!event) {
-            throw new Error('Evento non trovato');
-        }
-
-        // Aggiorna i campi con i dati forniti, o mantieni quelli esistenti se non sono stati passati
-        event.title = updatedData.title || event.title;
-        event.dateStart = updatedData.dateStart || event.dateStart;
-        event.dateEnd = updatedData.dateEnd || event.dateEnd;
-        event.place = updatedData.place || event.place;
-        event.notes = updatedData.notes || event.notes;
-        event.recurrence = updatedData.recurrence || event.recurrence;
-        event.recurrenceEnd = updatedData.recurrenceEnd || event.recurrenceEnd;
-        event.authorUsername = updatedData.authorUsername || event.authorUsername;
-
-        // Salva l'evento aggiornato nel database
-        const updatedEvent = await event.save();
-
-        return updatedEvent;
-    } catch (error) {
-        console.error('Errore durante l\'aggiornamento dell\'evento:', error.message);
-        throw error;
+    if (eventIndex === -1) {
+        throw new Error('Evento non trovato');
     }
-};
+
+    const event = events[eventIndex]; 
+    console.log(event);
+
+    if (!title || !dateStart || !dateEnd || !authorUsername) {
+        throw new Error('Title, dateStart, dateEnd, authorUsername are required');
+    }
+    
+    event.title = event.title;
+    event.dateStart = updatedData.dateStart || event.dateStart;
+    event.dateEnd = updatedData.dateEnd || event.dateEnd;
+    event.place = updatedData.place || event.place;
+    event.notes = updatedData.notes || event.notes;
+    event.recurrence = updatedData.recurrence || event.recurrence;
+    event.recurrenceEnd = updatedData.recurrenceEnd || event.recurrenceEnd;
+    event.authorUsername = updatedData.authorUsername || event.authorUsername;
+
+    // Salva l'evento aggiornato nel database
+    await writeEventsFile(events);  // Supponendo che questa funzione sovrascriva il file con il nuovo array
+
+    return event; 
+    
+}
 
 module.exports = {
     saveEvent,

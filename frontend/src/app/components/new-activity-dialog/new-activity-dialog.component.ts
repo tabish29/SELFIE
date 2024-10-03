@@ -18,14 +18,17 @@ export class NewActivityDialogComponent {
     public dialogRef: MatDialogRef<NewActivityDialogComponent>, //riferimento al dialogo
     private localStorageService: LocalStorageService,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+  ) {
+    // imposta i valori iniziali in base ai dati passati
+    this.title = data.title || '';           
+    this.dueDate = data.dueDate || null; 
+    this.notes = data.notes || '';
+  }
 
   
   ngOnInit(): void {
     this.authorUsername = this.localStorageService.getItem('username');
   }
-
-  
 
   onSave(): void {
     const inputError = document.getElementById('inputError');

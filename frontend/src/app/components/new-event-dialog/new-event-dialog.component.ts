@@ -24,7 +24,15 @@ export class NewEventDialogComponent {
     private localStorageService: LocalStorageService, //
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    
+    // imposta i valori iniziali in base ai dati passati
+    this.title = data.title || '';           
+    this.dateStart = data.dateStart || null; 
+    this.dateEnd = data.dateEnd || null;     
+    this.allDay = data.allday || false;      
+    this.place = data.place || '';
+    this.notes = data.notes || '';
+    this.recurrence = data.recurrence || '';
+    this.recurrenceEnd = data.recurrenceEnd || null;
   }
 
   ngOnInit(): void {
@@ -35,8 +43,6 @@ export class NewEventDialogComponent {
 
   onSave(): void {
     const inputError = document.getElementById('inputError');
-    
-    console.log(this.data);
 
     //controllo sui campi obbligatori
     if(!this.data.title || !this.data.dateStart || (!this.data.dateEnd && !this.allDay) || !this.data.recurrence){
@@ -50,7 +56,8 @@ export class NewEventDialogComponent {
       }
     } else {
       if (this.allDay) {
-        this.data.dateEnd = this.data.dateEnd || this.data.dateStart;
+        //this.data.dateEnd = this.data.dateEnd || this.data.dateStart;
+        this.data.dateEnd = this.data.dateStart;
       }
       
       this.dialogRef.close(this.data);

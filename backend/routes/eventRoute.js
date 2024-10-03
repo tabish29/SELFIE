@@ -30,9 +30,12 @@ router.post('/', async (req, res) => {
 });
 
 router.put('/:title', async (req, res) => {
+
     const { title } = req.params; // Titolo dell'evento da aggiornare
     const updatedData = req.body; // Dati aggiornati dell'evento passati nel body
 
+    console.log(title);
+    
     try {
         // Verifica la presenza dei campi obbligatori (opzionale)
         if (!updatedData.title || !updatedData.dateStart || !updatedData.dateEnd || !updatedData.recurrence || !updatedData.authorUsername) {
