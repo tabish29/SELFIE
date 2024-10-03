@@ -72,13 +72,13 @@ export class CalendarComponent {
       }
     },
     initialView: 'dayGridMonth',
-    //now: '2024-10-15', //perchè qui funziona ma dinamicamente no???
     weekends: true,
     editable: false, //drag-end-drop degli eventi
     selectable: false,  //selezione giorno
     selectMirror: false,
     dayMaxEvents: true, //se troppi eventi: visualizza +n eventi
     timeZone: 'local',
+    nowIndicator: false, 
     eventClick: this.handleEventClick.bind(this),
     eventsSet: this.handleEvents.bind(this),
     
@@ -132,31 +132,20 @@ export class CalendarComponent {
   }
 
   private convertToISOFormat(dateStr: string): string {
-    const [datePart, timePart] = dateStr.split('T');
-    const [year, month, day] = datePart.split('-');
-    const formattedYear = year.length === 2 ? `20${year}` : year;
-    const isoDate = `${formattedYear}-${month}-${day}`;
-  
+
+    const isoDate = dateStr.slice(0,10);
+    console.log("isoDate: "+isoDate);
+
     return isoDate;
   }
   
   // Cambiamento data del calendario
   private goToCustomDate(): void{
-    console.log(this.convertToISOFormat(this.today));
-    
-    //PERCHE NON FUNZIONAAAA???
-    this.calendarOptions.set({
-      ...this.calendarOptions(),
-      //now: this.convertToISOFormat(this.today)  // Imposta la nuova data 'now'
-      //now: this.today
-      now: '2024-10-15'
-    });
+
 
     const calendarApi = this.fullcalendar.getApi();
     calendarApi.gotoDate(this.today);
     this.changeDetector.detectChanges();
-
-    
     
   }
 
@@ -164,6 +153,25 @@ export class CalendarComponent {
   
   // Carica attività ed eventi nel calendario
   private loadCalendar(): void{
+
+    
+    const t = this.today; 
+    const s = '2024-10-15'; 
+
+    //console.log("prima if: "+t);
+
+    if(s != undefined){
+      //console.log("dopo if: "+t);
+
+      //NON RIUSCIAMO A CAPIRE PERCHE CON s FUNZIONA E CON t NO
+      this.calendarOptions.set({
+        ...this.calendarOptions(),
+        //now: this.convertToISOFormat(t)
+        //now: s
+      });
+    }{
+      //console.log("not t")
+    }
 
     // Mappa le ATTIVITA' come eventi nel formato degli eventi di FullCalendar
     const calendarActivities = this.activities.map(activity => ({
@@ -223,14 +231,6 @@ export class CalendarComponent {
     this.currentEvents.set(events);
     this.changeDetector.detectChanges(); 
   }
-
-  
-
-  /*// Cambiamento vista calendario
-  public changeView(viewName: string) {
-    this.fullcalendar.getApi().changeView(viewName);
-  }*/
-  
   
   /* ACTIVITIES */
 
@@ -278,16 +278,9 @@ export class CalendarComponent {
         this.activities.sort((a, b) => {  //modifica l'array originale
           if (a.dueDate && b.dueDate) { // controllo se entrambe le date sono presenti
             return new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime(); 
-            //conversione in timestamp per fare il confronto:
-            //se valore di ritorno positivo -> a successivo a b, 
-            //se valore di ritorno negativo -> a successivo a b, 
-            //se valore di ritorno = zero -> stessa data (rimangono in ordine relativo) 
             
           }
-          /* controlli inutili: dueDate obbligatoria
-          if (!a.dueDate) return 1; 
-          if (!b.dueDate) return -1; 
-          */
+
           return 0;
         });
       }
