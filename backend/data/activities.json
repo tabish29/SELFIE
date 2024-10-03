@@ -1,11 +1,5 @@
 [
   {
-    "title": "Finire progetto",
-    "dueDate": "2024-09-29T22:00:00.000Z",
-    "notes": "",
-    "authorUsername": "mati"
-  },
-  {
     "title": "Ciao",
     "dueDate": "2024-10-01T22:00:00.000Z",
     "notes": "bho",
@@ -18,9 +12,9 @@
     "authorUsername": "Ale"
   },
   {
-    "title": "Prova",
-    "dueDate": "2024-10-09T22:00:00.000Z",
-    "notes": "",
+    "title": "Prepara la valigia",
+    "dueDate": "2024-11-04T23:00:00.000Z",
+    "notes": "Elenco",
     "authorUsername": "mati"
   }
 ]

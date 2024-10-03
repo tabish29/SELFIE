@@ -190,6 +190,11 @@ export class CalendarComponent {
         rrule.until = new Date(event.recurrenceEnd).toISOString(); 
       }
 
+      //serve per gli eventi ricorrenti (altrimenti non visualizza orario fine nel calendario)
+      const startTime = new Date(event.dateStart).getTime();
+      const endTime = new Date(event.dateEnd).getTime();
+      const durationInMs = endTime - startTime;
+
       return{
         //ogni event di events diventa compatibile con FullCalendar
         title: event.title,
@@ -199,6 +204,7 @@ export class CalendarComponent {
         backgroundColor: '#4c95e4', 
         notes: event.notes,
         rrule: Object.keys(rrule).length ? rrule : undefined,
+        duration: durationInMs > 0 ? { milliseconds: durationInMs } : undefined,
         allDay: this.isAllDay(event) 
       }
     });
@@ -220,8 +226,8 @@ export class CalendarComponent {
 
   
 
-  // Cambiamento vista calendario
-  /*public changeView(viewName: string) {
+  /*// Cambiamento vista calendario
+  public changeView(viewName: string) {
     this.fullcalendar.getApi().changeView(viewName);
   }*/
   
