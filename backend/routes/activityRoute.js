@@ -43,22 +43,6 @@ router.put('/:authorUsername/:title', async (req, res) => {
     }
 });
 
-/* serve?
-router.get('/:title', async (req, res) => {
-    const { title } = req.params;
-    try {
-        const activity = await activityController.findActivityByTitle(title);
-        if (activity) {
-            res.status(200).json(activity);
-        } else {
-            res.status(404).json({ error: 'Attivita non trovata' });
-        }
-    } catch (error) {
-        res.status(500).json({ error: 'Errore nel recuperare la attivita' });
-    }
-});*/
-
-
 router.delete('/:authorUsername/:title', async (req, res) => {
     const { authorUsername, title } = req.params;
     try {
@@ -68,31 +52,6 @@ router.delete('/:authorUsername/:title', async (req, res) => {
         res.status(404).json({ error: error.message });
     }
 });
-
-/*
-router.put('/:title', async (req, res) => {
-    const { title } = req.params;
-    const updatedData = req.body;
-
-    try {
-        await acctivityController.updateActivity(title, updatedData);
-        res.status(200).json({ message: 'Attivita aggiornata con successo' });
-    } catch (error) {
-        res.status(400).json({ error: error.message });
-    }
-});*/
-
-/*
-router.get('/previews', async (req, res) => {
-    const length = parseInt(req.query.length) || 200;
-    try {
-        const previews = await activityController.getActivitiesPreview(length);
-        res.status(200).json(previews);
-    } catch (error) {
-        res.status(500).json({ error: 'Errore nel recuperare le preview delle attivita' });
-    }
-});*/
-
 
 router.get('/authors/:authorUsername', async (req, res) => {
     const { authorUsername } = req.params;

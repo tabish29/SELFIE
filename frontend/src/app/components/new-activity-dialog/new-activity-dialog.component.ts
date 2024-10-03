@@ -13,6 +13,7 @@ export class NewActivityDialogComponent {
   dueDate: null = null;
   notes: string = '';
   authorUsername: string | null = null;
+  isReadOnly: boolean = false;
 
   constructor(
     public dialogRef: MatDialogRef<NewActivityDialogComponent>, //riferimento al dialogo
@@ -23,6 +24,7 @@ export class NewActivityDialogComponent {
     this.title = data.title || '';           
     this.dueDate = data.dueDate || null; 
     this.notes = data.notes || '';
+    this.isReadOnly = data.updating;
   }
 
   

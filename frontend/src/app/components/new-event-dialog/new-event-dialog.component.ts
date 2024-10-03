@@ -18,6 +18,7 @@ export class NewEventDialogComponent {
   recurrence: string = '';
   recurrenceEnd: null = null;
   authorUsername: string | null = null;
+  isReadOnly: boolean = false;
 
   constructor(
     public dialogRef: MatDialogRef<NewEventDialogComponent>,  //riferimento al dialogo 
@@ -33,6 +34,7 @@ export class NewEventDialogComponent {
     this.notes = data.notes || '';
     this.recurrence = data.recurrence || '';
     this.recurrenceEnd = data.recurrenceEnd || null;
+    this.isReadOnly = data.updating;
   }
 
   ngOnInit(): void {
@@ -56,15 +58,12 @@ export class NewEventDialogComponent {
       }
     } else {
       if (this.allDay) {
-        //this.data.dateEnd = this.data.dateEnd || this.data.dateStart;
         this.data.dateEnd = this.data.dateStart;
       }
       
       this.dialogRef.close(this.data);
     }
 
-   
-    
   }
 
   public allDayChange(): void{

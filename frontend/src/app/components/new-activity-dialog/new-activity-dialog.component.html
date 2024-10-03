@@ -1,9 +1,10 @@
 <div class="activityDialog">
   <h2 mat-dialog-title>Attività</h2>
   <mat-dialog-content>
+    <Label>Non creare attività con lo stesso titolo.</Label>
     <mat-form-field class="custom-form-field">
       <mat-label>Titolo</mat-label>
-      <input matInput [(ngModel)]="data.title" required>
+      <input matInput [(ngModel)]="data.title" [readonly]="isReadOnly" required>
     </mat-form-field>
 
     <mat-form-field class="custom-form-field">

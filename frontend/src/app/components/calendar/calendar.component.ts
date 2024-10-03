@@ -395,6 +395,7 @@ export class CalendarComponent {
           title: clickedActivity.title,
           dueDate: clickedActivity.dueDate,
           notes: clickedActivity.notes,
+          updating: true
         }
       });
       dialogRef.afterClosed().subscribe(result => {
@@ -438,8 +439,8 @@ export class CalendarComponent {
             notes: clickedEvent.notes,
             recurrence: clickedEvent.recurrence,
             recurrenceEnd: clickedEvent.recurrenceEnd,
-            allday: this.isAllDay(clickedEvent)
-            
+            allday: this.isAllDay(clickedEvent),
+            updating: true
           }
         });
 
