@@ -93,7 +93,8 @@ export class CalendarComponent {
     }
 
     this.loadTimeMachine();    
-    
+    this.loadCalendar();
+
   }
 
   // Spostamento time-machine
