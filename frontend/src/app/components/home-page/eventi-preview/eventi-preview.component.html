@@ -9,7 +9,7 @@
                 <p>{{ event.dateEnd | date: 'dd/MM/yyyy HH:mm' }}</p>
             </li>
         </ul>
-        <p *ngIf="monthlyEvents.length === 0">No events for this month.</p>
+        <p *ngIf="monthlyEvents.length === 0">Non ci sono eventi per questo mese.</p>
     </div>
 
     <!-- Daily Events View -->
@@ -22,7 +22,7 @@
                 <p>{{ event.dateEnd | date: 'dd/MM/yyyy HH:mm' }}</p>
             </li>
         </ul>
-        <p *ngIf="dailyEvents.length === 0">No events for today.</p>
+        <p *ngIf="dailyEvents.length === 0">Non ci sono eventi per oggi.</p>
     </div>
 
     <!-- Weekly Events View -->
@@ -36,6 +36,6 @@
                 <span>"{{ event.notes }}"</span>
             </li>
         </ul>
-        <p *ngIf="weeklyEvents.length === 0">No events for this week.</p>
+        <p *ngIf="weeklyEvents.length === 0">Non ci sono eventi per questa settimana.</p>
     </div>
 </div>

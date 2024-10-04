@@ -24,6 +24,7 @@
   <div class="action-buttons">
     <button (click)="openCreateNoteDialog()">Crea Nota</button>
   </div>
+  
   <!-- Sezione per visualizzare le note filtrate per colore -->
   <div *ngIf="selectedColor !== 'none' && filteredByColorNotes.length > 0" class="notes-section">
     <h2>Le tue Note</h2>
@@ -46,7 +47,7 @@
         [ngStyle]="{'background-color': note.noteColor}">
         <h3>{{ note.title }}</h3>
         <pre>{{ note.content | truncate:200 }}</pre>
-        <p><strong>Creato il:</strong> {{ note.createdAt }}</p>
+        <p><strong>Creata il:</strong> {{ note.createdAt }}</p>
         <p><strong>Ultima modifica:</strong> {{ note.updatedAt }}</p>
       </div>
     </div>
