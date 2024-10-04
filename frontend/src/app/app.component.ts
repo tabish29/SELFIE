@@ -15,9 +15,9 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    /*if (typeof window !== 'undefined') {
+    if (typeof window !== 'undefined') {
       window.addEventListener('beforeunload', this.clearLocalStorage);
-    }*/
+    }
 
     const username = this.localStorageService.getItem('username');
 
@@ -27,9 +27,9 @@ export class AppComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-   /* if (typeof window !== 'undefined') {
+   if (typeof window !== 'undefined') {
       window.removeEventListener('beforeunload', this.clearLocalStorage);
-    } */
+    } 
   }
 
   clearLocalStorage(): void {
