@@ -1,178 +1,40 @@
 [
   {
-    "title": "Matrimonio Giulia",
-    "dateStart": "2024-09-20T16:00",
-    "dateEnd": "2024-09-20T23:59",
-    "place": "Corte D'Aibo",
-    "notes": "",
+    "title": "Esame Laboratorio Tech Web",
+    "dateStart": "2024-10-09T15:30",
+    "dateEnd": "2024-10-09T16:30",
+    "place": "Teams",
+    "notes": "Collegarsi qualche minuto prima",
     "recurrence": "none",
-    "authorUsername": "mati"
+    "authorUsername": "mario12"
   },
   {
-    "title": "Compleanno Gabri",
-    "dateStart": "2024-08-27",
-    "dateEnd": "2024-08-27",
+    "title": "Compleanno papa",
+    "dateStart": "2024-10-16T22:00:00.000Z",
+    "dateEnd": "2024-10-16T22:00:00.000Z",
     "place": "",
     "notes": "",
     "recurrence": "yearly",
-    "authorUsername": "mati"
+    "authorUsername": "mario12"
   },
   {
-    "title": "Festa fiera",
-    "dateStart": "2024-09-26T18:00",
-    "dateEnd": "2024-09-29T23:00",
-    "place": "Crespellano",
-    "notes": "Non ci sono parcheggi",
-    "recurrence": "none",
-    "authorUsername": "mati",
-    "recurrenceEnd": ""
-  },
-  {
-    "title": "aaa",
-    "dateStart": "2024-09-13T17:00",
-    "dateEnd": "2024-09-13T18:00",
-    "place": "",
+    "title": "Tango Argentino",
+    "dateStart": "2024-11-02T19:00",
+    "dateEnd": "2024-11-02T22:00",
+    "place": "Via marsala",
     "notes": "",
-    "recurrence": "none",
-    "authorUsername": "mati"
+    "recurrence": "weekly",
+    "recurrenceEnd": "2024-12-16T23:00:00.000Z",
+    "authorUsername": "mario12"
   },
   {
-    "title": "Open Day Tango",
-    "dateStart": "2024-09-22T22:00:00.000Z",
-    "dateEnd": "2024-09-22T22:00:00.000Z",
-    "place": "",
-    "notes": "andare all openday",
-    "recurrence": "none",
-    "authorUsername": "Ale"
-  },
-  {
-    "title": "Palestra",
-    "dateStart": "2024-09-15T09:00",
-    "dateEnd": "2024-10-20T09:00",
-    "place": "Pale",
-    "notes": "Allenarsi in palestra fa bene",
-    "recurrence": "none",
-    "authorUsername": "Ale"
-  },
-  {
-    "title": "Ciaooooooooo",
-    "dateStart": "2024-09-24T22:00:00.000Z",
-    "dateEnd": "2024-09-24T22:00:00.000Z",
-    "place": "",
-    "notes": "Salutare",
-    "recurrence": "daily",
-    "recurrenceEnd": "2024-09-26T22:00:00.000Z",
-    "authorUsername": "Ale"
-  },
-  {
-    "title": "Deso sei bellissimo ricordalo",
-    "dateStart": "2024-09-01T22:00:00.000Z",
-    "dateEnd": "2024-09-01T22:00:00.000Z",
-    "place": "",
-    "notes": "non fare nulla",
-    "recurrence": "none",
-    "authorUsername": "Ale"
-  },
-  {
-    "title": "nulla",
-    "dateStart": "2024-09-22T22:00:00.000Z",
-    "dateEnd": "2024-09-22T22:00:00.000Z",
-    "place": "",
-    "notes": "mmmmmmmmmmmmmmm",
-    "recurrence": "none",
-    "authorUsername": "Ale"
-  },
-  {
-    "title": "Compleanno A",
-    "dateStart": "2024-11-09T23:00:00.000Z",
-    "dateEnd": "2024-11-09T23:00:00.000Z",
-    "place": "",
-    "notes": "Festeggia a sorpresa a",
-    "recurrence": "none",
-    "authorUsername": "Ale"
-  },
-  {
-    "title": "Altro Evento all day",
-    "dateStart": "2024-11-13T23:00:00.000Z",
-    "dateEnd": "2024-11-13T23:00:00.000Z",
-    "place": "",
-    "notes": "okokok",
-    "recurrence": "none",
-    "authorUsername": "Ale"
-  },
-  {
-    "title": "Evento su 2 giorni",
-    "dateStart": "2024-10-17T11:00",
-    "dateEnd": "2024-10-18T12:00",
-    "place": "",
-    "notes": "che facciamo?",
-    "recurrence": "none",
-    "authorUsername": "Ale"
-  },
-  {
-    "title": "Funziona su 2 giorni?",
-    "dateStart": "2024-11-17T08:23",
-    "dateEnd": "2024-11-18T12:00",
-    "place": "",
-    "notes": "Funzionare???",
-    "recurrence": "none",
-    "authorUsername": "Ale"
-  },
-  {
-    "title": "Evento Cena",
-    "dateStart": "2024-11-10T20:00",
-    "dateEnd": "2024-11-10T23:00",
-    "place": "",
-    "notes": "Cena",
-    "recurrence": "none",
-    "authorUsername": "Ale"
-  },
-  {
-    "title": "Evento",
-    "dateStart": "2024-10-03T22:00:00.000Z",
-    "dateEnd": "2024-10-03T22:00:00.000Z",
-    "place": "",
-    "notes": "",
-    "recurrence": "none",
-    "authorUsername": "mati"
-  },
-  {
-    "title": "prova",
-    "dateStart": "2024-10-03T22:00:00.000Z",
-    "dateEnd": "2024-10-03T22:00:00.000Z",
-    "place": "",
-    "notes": "",
-    "recurrence": "none",
-    "authorUsername": "mati"
-  },
-  {
-    "title": "Vacanza",
-    "dateStart": "2024-11-07T09:00",
-    "dateEnd": "2024-11-09T23:00",
-    "place": "Montagna",
-    "notes": "Porta lo zaino e la valigia!",
-    "recurrence": "none",
-    "authorUsername": "mati",
-    "recurrenceEnd": ""
-  },
-  {
-    "title": "Danza",
-    "dateStart": "2024-11-11T19:00",
-    "dateEnd": "2024-11-11T20:00",
+    "title": "Andare a Correre",
+    "dateStart": "2024-11-06T09:00",
+    "dateEnd": "2024-11-06T11:00",
     "place": "",
     "notes": "",
     "recurrence": "weekly",
-    "recurrenceEnd": "2024-12-30T23:00:00.000Z",
-    "authorUsername": "mati"
-  },
-  {
-    "title": "Tirocinio",
-    "dateStart": "2024-11-12T09:00",
-    "dateEnd": "2024-11-12T18:00",
-    "place": "Azienda",
-    "notes": "",
-    "recurrence": "weekly",
-    "recurrenceEnd": "2024-11-28T23:00:00.000Z",
-    "authorUsername": "mati"
+    "recurrenceEnd": "2024-12-20T23:00:00.000Z",
+    "authorUsername": "mario12"
   }
 ]

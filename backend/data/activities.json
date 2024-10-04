@@ -1,20 +1,14 @@
 [
   {
-    "title": "Ciao",
-    "dueDate": "2024-10-01T22:00:00.000Z",
-    "notes": "bho",
-    "authorUsername": "Ale"
-  },
-  {
-    "title": "Consegna",
-    "dueDate": "2024-10-03T22:00:00.000Z",
+    "title": "Andare a fare la spesa",
+    "dueDate": "2024-10-13T22:00:00.000Z",
     "notes": "",
-    "authorUsername": "Ale"
+    "authorUsername": "mario12"
   },
   {
-    "title": "Prepara la valigia",
-    "dueDate": "2024-11-04T23:00:00.000Z",
-    "notes": "Elenco",
-    "authorUsername": "mati"
+    "title": "Pagare le tasse",
+    "dueDate": "2024-10-21T22:00:00.000Z",
+    "notes": "Tasse Universitarie Prima Rata",
+    "authorUsername": "mario12"
   }
 ]

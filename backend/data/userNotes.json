@@ -1,156 +1,34 @@
 [
   {
-    "title": "ftrd",
-    "content": "bvcxcd",
-    "categories": [],
-    "createdAt": "30/09/2024 07:34",
-    "updatedAt": "30/09/2024 07:34",
-    "authorUsername": "d",
-    "noteColor": "orange"
-  },
-  {
-    "title": "gf",
-    "content": "v",
-    "categories": [],
-    "createdAt": "30/09/2024 07:37",
-    "updatedAt": "30/09/2024 07:37",
-    "authorUsername": "d",
-    "noteColor": "purple"
-  },
-  {
-    "title": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaad",
-    "content": "c",
-    "categories": [],
-    "createdAt": "30/09/2024 07:42",
-    "updatedAt": "30/09/2024 07:42",
-    "authorUsername": "d",
-    "noteColor": "green"
-  },
-  {
-    "title": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaad",
-    "content": "v",
-    "categories": [],
-    "createdAt": "30/09/2024 07:42",
-    "updatedAt": "30/09/2024 07:42",
-    "authorUsername": "d",
-    "noteColor": "purple"
-  },
-  {
-    "title": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaad(2)",
-    "content": "v",
-    "categories": [],
-    "createdAt": "30/09/2024 07:42",
-    "updatedAt": "30/09/2024 07:42",
-    "authorUsername": "d",
-    "noteColor": "purple"
-  },
-  {
-    "title": "testandataed",
-    "content": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaadccjkdsbckjsbdcjbsjdbcjsbdckjnjsvjkbdsvjks \ncnskjdnc",
-    "categories": [],
-    "createdAt": "30/09/2024 07:45",
-    "updatedAt": "30/09/2024 07:45",
-    "authorUsername": "d",
-    "noteColor": "orange"
-  },
-  {
-    "title": "etstadrqw",
-    "content": "a\nv\nb",
-    "categories": [],
-    "createdAt": "30/09/2024 07:46",
-    "updatedAt": "30/09/2024 07:46",
-    "authorUsername": "d",
+    "title": "Lista Spesa",
+    "content": "Cioccolato Fondente\nZucchero\nUova\nCacao amaro in polvere\nBurro\nFarina\nNoccioline\nSale fino",
+    "categories": [
+      "Torta",
+      "Spesa"
+    ],
+    "createdAt": "04/10/2024 09:28",
+    "updatedAt": "04/10/2024 09:28",
+    "authorUsername": "mario12",
     "noteColor": "yellow"
   },
   {
-    "title": "Palestra",
-    "content": "Scheda 1: \ng1\ng2\ng3",
+    "title": "Film",
+    "content": "PARASITE.\nSTORIA DI UN MATRIMONIO.\nROMA.\nUN AFFARE DI FAMIGLIA.\nCOLD WAR.\nCHIAMAMI COL TUO NOME.\nBLADE RUNNER 2049.\nCORPO E ANIMA.",
     "categories": [
-      "Palestra"
+      "Film"
     ],
-    "createdAt": "02/09/2024 08:45",
-    "updatedAt": "02/09/2024 08:45",
-    "authorUsername": "Ale",
-    "noteColor": "blue"
-  },
-  {
-    "title": "Palestra 2",
-    "content": "Scheda 2",
-    "categories": [
-      "Palestra"
-    ],
-    "createdAt": "02/09/2024 08:46",
-    "updatedAt": "02/09/2024 08:46",
-    "authorUsername": "Ale",
-    "noteColor": "blue"
-  },
-  {
-    "title": "Saluti",
-    "content": "Ciaoooooooooooooooooooooo\nSalveeeeeeeeeeeeeeeeeeee",
-    "categories": [
-      "Saluti"
-    ],
-    "createdAt": "02/09/2024 08:46",
-    "updatedAt": "02/09/2024 08:46",
-    "authorUsername": "Ale",
-    "noteColor": "orange"
-  },
-  {
-    "title": "Esame Tech",
-    "content": "Finire progettooooooooooooooooooooooooooooooooooooo",
-    "categories": [
-      "Università"
-    ],
-    "createdAt": "02/09/2024 08:47",
-    "updatedAt": "02/09/2024 08:47",
-    "authorUsername": "Ale",
+    "createdAt": "04/10/2024 09:29",
+    "updatedAt": "04/10/2024 09:29",
+    "authorUsername": "mario12",
     "noteColor": "green"
   },
   {
-    "title": "Sport",
-    "content": "Openday Tango",
-    "categories": [
-      "Tango"
-    ],
-    "createdAt": "02/09/2024 08:47",
-    "updatedAt": "02/09/2024 08:47",
-    "authorUsername": "Ale",
-    "noteColor": "purple"
-  },
-  {
-    "title": "Poesia",
-    "content": "Si sta come d autunno\nSugli alberi le foglie",
+    "title": "Scheda Palestra 1",
+    "content": "Nuova suddivisione 5 giorni:\n\nGiorno 1: Push (petto, spalle, tricipiti)\nGiorno 2: Pull (schiena, bicipiti, posteriori)\nGiorno 3: Gambe\nGiorno 4: Upper focus (richiamo generale di petto, schiena, braccia)\nGiorno 5: Lower focus (gambe e core)\n\nAl termine di ogni giornata, inseriamo esercizi facoltativi per muscoli secondari (polpacci, avambracci, addominali, ecc.).\n\n\nGiorno 1: Push (Petto, Spalle, Tricipiti)\n1. Panca piana - 3x6, buffer 2, rest 2min (40kg)\n2. Spinte panca 45° manubri - 3x8, buffer 2, rest 2min (12kg)\n3. Croci ai cavi - 2x10, buffer 1, rest 90sec (5kg)\n4. Alzate laterali manubri - 3x10, buffer 1, rest 90sec (8kg)\n5. Push down - 4x12, buffer 1, rest 90sec (10kg)\n\nGiorno 2: Pull (Schiena, Bicipiti, Posteriori)\n1. Lat machine presa supina - 3x8, buffer 2, rest 2min (55kg)\n2. Rematore manubri - 3x10, buffer 2, rest 90sec (16kg)\n3. Row - 3x10, buffer 2, rest 90sec (30kg)\n4. Alzate posteriori panca 30° - 3x12, buffer 1, rest 90sec (4kg)\n5. Bicipiti panca 45° manubri - 4x10, rest 90sec (4/6kg)\\\n\nGiorno 3: Gambe\n1. Squat - 4x5, buffer 2, rest 2min (65kg)\n2. Stacco rumeno - 4x8, buffer 2, rest 2min (60kg)\n3. Leg extension - 3x10, buffer 1, rest 90sec (25kg)\n4. Polpacci in elevazione - 3x12, buffer 1, rest 90sec\n\nGiorno 4: Upper focus (Petto, Schiena, Braccia)\n1. Panca piana manubri - 3x8, buffer 2, rest 2min (18/20kg)\n2. Lat pull down - 2x12, buffer 1, rest 90sec (80kg)\n3. Spinte panca 45° manubri - 3x10, buffer 1, rest 90sec (14/16kg)\n4. Row machine - 3x8, buffer 2, rest 2min (70kg)\n5. Curl bilanciere - 3x10, rest 90sec\n6. Push down - 3x12, rest 90sec (10kg)\n\nGiorno 5: Lower focus (Gambe e Core)\n1. Stacchi - 3x5, buffer 2, rest 2min\n2. Pressa - 4x8, buffer 2, rest 2min\n3. Hip thrust - 2x10, buffer 1, rest 90sec\n4. Leg curl seduto - 4x10, buffer 1, rest 2min\n5. Polpacci - 3x12, buffer 1, rest 90sec",
     "categories": [],
-    "createdAt": "24/09/2024 16:25",
-    "updatedAt": "24/09/2024 16:25",
-    "authorUsername": "Ale",
-    "noteColor": "gray"
-  },
-  {
-    "title": "ciao tabish",
-    "content": "Provaaaaaaaaaaa",
-    "categories": [],
-    "createdAt": "23/09/2024 16:34",
-    "updatedAt": "23/09/2024 16:34",
-    "authorUsername": "Ale",
-    "noteColor": "red"
-  },
-  {
-    "title": "Nota 10 novembre",
-    "content": "Provare per credere",
-    "categories": [],
-    "createdAt": "10/11/2024 16:44",
-    "updatedAt": "10/11/2024 16:44",
-    "authorUsername": "Ale",
-    "noteColor": "purple"
-  },
-  {
-    "title": "Seconda nota",
-    "content": "speriamo ",
-    "categories": [],
-    "createdAt": "10/11/2024 16:45",
-    "updatedAt": "10/11/2024 16:45",
-    "authorUsername": "Ale",
-    "noteColor": "green"
+    "createdAt": "04/10/2024 09:36",
+    "updatedAt": "04/10/2024 09:36",
+    "authorUsername": "mario12",
+    "noteColor": "blue"
   }
 ]
