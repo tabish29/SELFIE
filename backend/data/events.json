@@ -36,5 +36,24 @@
     "recurrence": "weekly",
     "recurrenceEnd": "2024-12-20T23:00:00.000Z",
     "authorUsername": "mario12"
+  },
+  {
+    "title": "Gita in montagna",
+    "dateStart": "2024-10-24T08:00",
+    "dateEnd": "2024-10-26T16:00",
+    "place": "Trentino",
+    "notes": "Porta lo zaino!",
+    "recurrence": "none",
+    "authorUsername": "mario12"
+  },
+  {
+    "title": "Ripetizioni",
+    "dateStart": "2024-10-29T17:00",
+    "dateEnd": "2024-10-29T19:00",
+    "place": "Biblioteca",
+    "notes": "",
+    "recurrence": "daily",
+    "recurrenceEnd": "2024-10-31T23:00:00.000Z",
+    "authorUsername": "mario12"
   }
 ]
