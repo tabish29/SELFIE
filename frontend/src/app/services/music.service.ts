@@ -13,7 +13,6 @@ export class MusicService {
 
   
   uploadFile(file: File): Observable<any> {
-    console.log("sono all'interno del metodo della chimata post per fare l'upload della canzone");
     const formData: FormData = new FormData();
     formData.append('file', file, file.name);
 

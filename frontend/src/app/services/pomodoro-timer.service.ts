@@ -36,11 +36,6 @@ export class PomodoroTimerService {
 
   setState(newState: Partial<PomodoroTimer>): void {
     this.state = { ...this.state, ...newState };
-
-
-    console.log("Stato aggiornato---", this.state);
-
-
     this.stateSubject.next(this.state);
   }
 

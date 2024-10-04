@@ -1,5 +1,4 @@
 <div class="page-container">
-    <app-navbar></app-navbar>
     <div class="container">
         <form (ngSubmit)="register()" #registrationForm="ngForm">
             <h2>Registrazione</h2>
@@ -21,8 +20,8 @@
             <div *ngIf="errorMessage" class="error-message">
                 {{ errorMessage }}
             </div>
-
+            
+            <p class="home-link">Per ritornare alla schermata precedente <a routerLink="/login">Clicca qui</a></p>
         </form>
     </div>
-    <app-footer></app-footer>
 </div>
