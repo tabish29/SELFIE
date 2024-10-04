@@ -1,0 +1,72 @@
+[
+  {
+    "author": "mario12",
+    "topic": "tecWeb",
+    "flashcards": [
+      {
+        "question": "Che cos'è HTML?",
+        "answer": "HTML (HyperText Markup Language) è il linguaggio standard utilizzato per creare pagine web. Definisce la struttura del contenuto."
+      },
+      {
+        "question": "Qual è la funzione dei file CSS nella programmazione web?",
+        "answer": "CSS (Cascading Style Sheets) è utilizzato per definire lo stile e il layout delle pagine web, inclusi colori, font e spaziatura."
+      },
+      {
+        "question": "Che cos'è JavaScript?",
+        "answer": "JavaScript è un linguaggio di programmazione utilizzato per rendere dinamiche le pagine web."
+      },
+      {
+        "question": "Che cosa sono i framework front-end?",
+        "answer": "I framework front-end, come React, Angular e Vue.js, sono strumenti e librerie che semplificano lo sviluppo dell'interfaccia utente nelle applicazioni web."
+      },
+      {
+        "question": "Cos'è il DOM?",
+        "answer": "l DOM (Document Object Model) è una rappresentazione ad oggetti della struttura di un documento HTML o XML, che consente agli sviluppatori di manipolare il contenuto e la struttura delle pagine web in modo dinamico."
+      },
+      {
+        "question": "Cos'è il responsive design?",
+        "answer": "Il responsive design è un approccio alla progettazione web che consente a una pagina di adattarsi a diverse dimensioni di schermo e dispositivi, garantendo un'esperienza utente ottimale."
+      }
+    ]
+  },
+  {
+    "author": "mario12",
+    "topic": "storia",
+    "flashcards": [
+      {
+        "question": "Chi ha scoperto l'America?",
+        "answer": "Cristoforo Colombo ha scoperto l'America nel 1492."
+      },
+      {
+        "question": "Quale antica civiltà costruì le piramidi?",
+        "answer": "Gli antichi Egizi costruirono le piramidi."
+      },
+      {
+        "question": "Chi era Martin Luther King Jr.?",
+        "answer": "Martin Luther King Jr. era un leader dei diritti civili che ha lottato per l'uguaglianza degli afroamericani negli Stati Uniti."
+      }
+    ]
+  },
+  {
+    "author": "mario12",
+    "topic": "geografia",
+    "flashcards": [
+      {
+        "question": " Qual è il fiume più lungo del mondo?",
+        "answer": "Il fiume Rio delle Amazzoni è considerato il fiume più lungo del mondo."
+      },
+      {
+        "question": "Qual è la capitale dell'Italia?",
+        "answer": "La capitale dell'Italia è Roma."
+      },
+      {
+        "question": "Qual è la capitale della Francia?",
+        "answer": "La capitale della Francia è Parigi."
+      },
+      {
+        "question": "Qual è la capitale della Germania?",
+        "answer": "La capitale della Germania è Berlino."
+      }
+    ]
+  }
+]
