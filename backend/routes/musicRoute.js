@@ -38,12 +38,12 @@ router.delete('/:fileName', musicController.removeMusic);
 
 router.get('/', (req, res) => {
   if (!fs.existsSync(musicDirectory)) {
-    return res.status(400).json({ error: 'Music directory does not exist' });
+    return res.status(400).json({ error: 'La directory music non esiste' });
   }
 
   fs.readdir(musicDirectory, (err, files) => {
     if (err) {
-      return res.status(500).json({ error: 'Unable to scan directory' });
+      return res.status(500).json({ error: 'Impossibile analizzare la directory music' });
     }
 
     const mp3Files = files.filter(file => file.endsWith('.mp3'));

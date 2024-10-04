@@ -17,7 +17,7 @@ const PORT = process.env.PORT || 3000;
 app.use(bodyParser.json());
 app.use(cors());
 
-// Usa le route definite in userRoutes.js con prefisso /users
+
 app.use('/users', userRoutes);
 
 app.use('/timeMachines', timeMachineRoutes);

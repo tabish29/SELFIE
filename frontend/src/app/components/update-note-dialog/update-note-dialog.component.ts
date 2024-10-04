@@ -29,8 +29,6 @@ export class UpdateNoteDialogComponent {
         (timeMachine) => {
           const now = timeMachine.date;
           this.note.updatedAt = now;
-
-
           this.dialogRef.close({ isUpdated: true, note: this.note });
         },
         (error) => {

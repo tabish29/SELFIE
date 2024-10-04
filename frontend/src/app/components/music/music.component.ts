@@ -50,8 +50,7 @@ export class MusicComponent {
   }
 
   onFileUpload(event: any): void {
-    console.log("sono all'interno del metodo onfileUpload", event);
-    console.log("Event target files:", event.target.files);
+  
     const file = event.target.files[0];
     if (file) {
       this.musicService.uploadFile(file).subscribe((response) => {
@@ -59,7 +58,7 @@ export class MusicComponent {
         console.log(response);
       });
     } else {
-      console.log("non esiste nessun file");
+      console.log("Non esiste nessun file");
     }
   }
 

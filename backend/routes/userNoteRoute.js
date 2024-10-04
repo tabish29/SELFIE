@@ -64,16 +64,6 @@ router.put('/:authorUsername/:title', async (req, res) => {
     }
 });
 
-router.get('/previews', async (req, res) => {
-    const length = parseInt(req.query.length) || 200;
-    try {
-        const previews = await userNoteController.getNotesPreview(length);
-        res.status(200).json(previews);
-    } catch (error) {
-        res.status(500).json({ error: 'Errore nel recuperare le preview delle note' });
-    }
-});
-
 router.get('/authors/:authorUsername', async (req, res) => {
     const { authorUsername } = req.params;
     try {

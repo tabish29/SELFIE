@@ -20,7 +20,7 @@ export class LoginComponent {
   onLogin() {
     this.userService.login(this.username, this.password).subscribe(
       response => {
-        console.log('Login successful', response);
+        console.log('Login effettuato con successo', response);
       
         this.localStorageService.setItem('username', this.username);
         this.timeMachineService.startAutoUpdate(this.username, 60000);
@@ -28,7 +28,7 @@ export class LoginComponent {
         this.router.navigateByUrl('/home');
       },
       error => {
-        console.error('Login failed', error);
+        console.error('Fallito il login', error);
        
         if (error.error && error.error.error) {
           this.errorMessage = error.error.error; 

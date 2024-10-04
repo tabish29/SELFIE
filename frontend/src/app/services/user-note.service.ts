@@ -31,10 +31,6 @@ export class UserNoteService {
     return this.http.delete<void>(`${this.apiUrl}/${authorUsername}/${title}`);
   }
 
-  getNotesPreview(length: number = 200): Observable<{ title: string; preview: string; }[]> {
-    return this.http.get<{ title: string; preview: string; }[]>(`${this.apiUrl}/previews?length=${length}`);
-  }
-
   getNotesByAuthor(authorUsername: string): Observable<UserNote[]> {
     return this.http.get<UserNote[]>(`${this.apiUrl}/authors/${authorUsername}`);
   }

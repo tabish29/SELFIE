@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const Word = require('../models/word'); // Importa il modello Word
+const Word = require('../models/word'); 
 
 function getRandomWord() {
     const filePath = path.join(__dirname, '../data', 'words.json');
@@ -12,7 +12,7 @@ function getRandomWord() {
             try {
                 const words = JSON.parse(data);
                 if (words.length === 0) {
-                    return reject(new Error("No words found in the file."));
+                    return reject(new Error("Non è stata trovata nessuna parola nel file."));
                 }
                 const randomIndex = Math.floor(Math.random() * words.length);
                 const randomWord = new Word(words[randomIndex]); // Crea un'istanza di Word

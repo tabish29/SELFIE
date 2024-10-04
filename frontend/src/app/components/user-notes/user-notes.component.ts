@@ -54,7 +54,6 @@ export class UserNotesComponent {
     }
   }
 
-
   onFilterChange(event: any): void {
 
     if (event instanceof Event) {
@@ -205,13 +204,6 @@ export class UserNotesComponent {
     this.selectedNote = { ...note };
 
     this.openUpdateNoteDialog(this.selectedNote);
-  }
-
-  loadPreviews(): void {
-    this.userNotesService.getNotesPreview().subscribe(
-      previews => console.log(previews),
-      error => console.error('Errore nel caricamento delle anteprime', error)
-    );
   }
 
   loadNotesByAuthor(authorUsername: string): void {

@@ -78,7 +78,7 @@ router.put('/authors/:author/topics/:topic', async (req, res) => {
 
     try {
         await flashcardController.updateFlashcardSetTopic(author, topic, newTopicName);
-        res.status(200).json({ message: 'Tpic della flshcardSet aggiornato con successo' });
+        res.status(200).json({ message: 'Topic della flshcardSet aggiornato con successo' });
     } catch (error) {
         res.status(400).json({ error: error.message });
     }

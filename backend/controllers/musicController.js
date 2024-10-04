@@ -4,7 +4,7 @@ const path = require('path');
 // Path della cartella in cui salveremo i file
 const musicFolderPath = path.join(__dirname, '../data/musics');
 
-// Funzione per aggiungere il file
+// Funzione per aggiungere il file mp3
 const uploadMusic = (req, res) => {
   if (!req.file) {
     return res.status(400).send({ message: 'Nessun file inviato.' });
