@@ -7,24 +7,26 @@
 1. **Clonare la repository**:
    ```bash
    git clone https://github.com/tabish29/SELFIE.git
-   '''
+'''
 
 2. **Installare le dipendenze(Lato backend)**:
-   ```bash
-   cd backend
-   npm install
-  '''
-3. **Installare le dipendenze(Lato frontend)**:
-   ```bash
+```bash
    cd frontend
    npm install
 ```
+3. **Installare le dipendenze(Lato frontend)**:
+```bash
+   cd frontend
+   npm install
+```
+
 4.**Avviare il backend**:
-   ```bash
+```bash
   npm start
 ```
+
 5.**Avviare il frontend**:
-   ```bash
+```bash
   ng serve
 ```
 5.**Utilizzare l'applicazione**:
