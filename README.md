@@ -5,9 +5,9 @@
 ## Come iniziare
 
 1. **Clonare la repository**:
-   ```bash
+```bash
    git clone https://github.com/tabish29/SELFIE.git
-'''
+```
 
 2. **Installare le dipendenze(Lato backend)**:
 ```bash
