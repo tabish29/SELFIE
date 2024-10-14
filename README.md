@@ -7,7 +7,7 @@
 1. **Clonare la repository**:
    ```bash
    git clone https://github.com/tabish29/SELFIE.git
-  '''
+   '''
 
 2. **Installare le dipendenze(Lato backend)**:
    ```bash
