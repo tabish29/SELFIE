@@ -30,7 +30,7 @@
   ng serve
 ```
 5.**Utilizzare l'applicazione**:
-  Andare al link http://localhost:4200 nel proprio browser per poter utilizzare l'applicazione
+Andare al link http://localhost:4200 nel proprio browser per poter utilizzare l'applicazione
   
 ## Tecnologie utilizzate
 
