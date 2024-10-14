@@ -11,7 +11,7 @@
 
 2. **Installare le dipendenze(Lato backend)**:
 ```bash
-   cd frontend
+   cd backend
    npm install
 ```
 3. **Installare le dipendenze(Lato frontend)**:
